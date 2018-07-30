@@ -28,7 +28,7 @@ define('DIR_MODIFICATION', DIR_SYSTEM.'storage/modification/');
 
 
  $base_data=array(
- 			0=>array('username'=>'root','password'=>'root_luvme','database'=>'ohotdb'),
+ 			0=>array('username'=>'root','password'=>'root','database'=>'o'),
 		// 1=>array('username'=>'root','password'=>'root_luvme','database'=>'ohotdb'),
  );
 // DB
