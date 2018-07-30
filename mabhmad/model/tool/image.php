@@ -12,9 +12,9 @@ class ModelToolImage extends Model {
 		// print_r($this->config->get('configs_ssl'));exit();
 		
 		if ($this->request->server['HTTPS']) {
-			return HTTP_SERVERS . 'image/' . $image_new;
-		} else {
 			return HTTPS_SERVERS . 'image/' . $image_new;
+		} else {
+			return HTTP_SERVERS . 'image/' . $image_new;
 		}
 	}
 

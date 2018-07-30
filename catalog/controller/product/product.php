@@ -271,8 +271,13 @@ class ControllerProductProduct extends Controller {
 
             $data['points'] = $product_info['points'];
             $data['material'] = $product_info['material'];
-            $data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
-            $data['m_description'] = html_entity_decode($product_info['m_description'], ENT_QUOTES, 'UTF-8');
+            if ($this->request->server['HTTPS']) {
+            $data['description'] = str_replace('image/',HTTPS_SERVERS.'image/' ,html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8'));
+            $data['m_description'] = str_replace('image/',HTTPS_SERVERS.'image/' , html_entity_decode($product_info['m_description'], ENT_QUOTES, 'UTF-8'));
+            }else{
+                     $data['description'] = str_replace('image/',HTTP_SERVERS.'image/' html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8'));
+             $data['m_description'] = string str_replace('image/',HTTP_SERVERS.'image/' ,html_entity_decode($product_info['m_description'], ENT_QUOTES, 'UTF-8'));
+            }
 
             //产品属性
             $data['manufacturer'] = $product_info['manufacturer'];
