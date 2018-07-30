@@ -6,6 +6,8 @@
 //     $h = $h[0]=='m'?'m/':'catalog/';
 // }
 // HTTP
+define('HTTP_SERVERS', 'http://www.wp.com/');
+define('HTTPS_SERVERS', 'http://www.wp.com/');
 define('HTTP_SERVER', 'http://'.$_SERVER['HTTP_HOST'].'/');
 define('HTTP_SKIN', HTTP_SERVER.'catalog/view/theme/default/');
 
