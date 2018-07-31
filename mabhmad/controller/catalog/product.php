@@ -341,11 +341,9 @@ class ControllerCatalogProduct extends Controller {
 		// print_r($results);
 // exit();
 		foreach ($results as $result) {
-			if (is_file(DIR_IMAGE . $result['image'])) {
+		
 				$image = $this->model_tool_image->resize($result['image'], 50, 50);
-			} else {
-				$image = $this->model_tool_image->resize('no_image.png', 50, 50);
-			}
+		
 
 			$special = false;
 			$percent = false;
