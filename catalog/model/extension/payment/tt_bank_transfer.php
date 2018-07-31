@@ -17,7 +17,7 @@ class ModelExtensionPaymentTtBankTransfer extends Model {
 				'code'       => 'tt_bank_transfer',
 				'title'      => $this->language->get('text_title'),
 				'terms'      => '',
-				'image'      => $this->model_tool_image->resize($this->config->get('tt_bank_transfer_image'), 80, 40),
+				'image'      => $this->model_tool_image->resizes($this->config->get('tt_bank_transfer_image'), 80, 40),
 				'sort_order' => $this->config->get('tt_bank_transfer_sort_order')
 			);
 		}
