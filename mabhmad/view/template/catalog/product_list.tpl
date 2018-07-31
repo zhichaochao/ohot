@@ -215,10 +215,10 @@ $('#button-filter').on('click', function() {
     url += '&filter_free_postage=' + encodeURIComponent(filter_free_postage);
   }
 	
-	var filter_relation_product = $('input[name=\'filter_relation_product\']').val();
-    if (filter_relation_product != '*') {
-       url += '&filter_relation_product=' + encodeURIComponent(filter_relation_product);
-    }
+	// var filter_relation_product = $('input[name=\'filter_relation_product\']').val();
+ //    if (filter_relation_product != '*') {
+ //       url += '&filter_relation_product=' + encodeURIComponent(filter_relation_product);
+ //    }
 
   //var filter_image = $('select[name=\'filter_image\']').val();
 //
