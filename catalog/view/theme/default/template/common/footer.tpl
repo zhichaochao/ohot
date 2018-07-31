@@ -25,7 +25,7 @@
                       <li>
                     <h4>COMPANY INFO</h4>
                           <p><span><?php echo $yd_Call; ?></span> <?=$telephone;?></a></p>
-                          <p><span><?php echo $yd_Whatsapp; ?></span><?php echo $telephone; ?></p>
+                          <p><span><?php echo $yd_Whatsapp; ?></span><?php echo $whatsapp; ?></p>
                           <p><span><?php echo $yd_Email; ?></span><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
                         <p style="max-width:260px;line-height: 18px;margin-top: 3px;margin-bottom: 0;">
                           <span><?php echo $yd_Address; ?></span><?php echo $yd_Addcont; ?>
@@ -42,7 +42,7 @@
                     <ol class="clearfix">
                       <li><a target="_blank"  href="http://www.facebook.com/<?=$facebook;?>"><img src="/catalog/view/theme/default/img/png/fot_1.png" alt=""></a></li>
                       <li><a target="_blank"  href="http://www.instagram.com/hotbeautyhairofficial"><img src="/catalog/view/theme/default/img/png/fot_2.png" alt=""></a></li>
-                      <li><a target="_blank"  href="http://api.whatsapp.com/send?phone=<?=$telephone;?>"><img src="/catalog/view/theme/default/img/png/fot_3.png" alt=""></a></li>
+                      <li><a target="_blank"  href="http://api.whatsapp.com/send?phone=<?=$whatsapp;?>"><img src="/catalog/view/theme/default/img/png/fot_3.png" alt=""></a></li>
                     </ol>
                       </li>
               </ul>
@@ -76,7 +76,7 @@
                       <div class="slide_div">
                         <ol>
                       <li><a target="_blank" href="tel://<?=$telephone;?>"><span>Call Us:</span><?=$telephone;?></li></a>  
-                      <li><a target="_blank" href="whatsapp://send?phone=<?=$telephone;?>"><span>Whatsapp:</span> <?php echo $telephone; ?></a></li>
+                      <li><a target="_blank" href="whatsapp://send?phone=<?=$whatsapp;?>"><span>Whatsapp:</span> <?php echo $whatsapp; ?></a></li>
                       <li><a target="_blank" href="mailto:<?php echo $email; ?>"><span>Email:</span><?php echo $email; ?></a></li>
                       <li>                       
                           <a ><span><?php echo $yd_Address; ?></span><?php echo $yd_Addcont; ?></a>                  
