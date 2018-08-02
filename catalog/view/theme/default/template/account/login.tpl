@@ -25,7 +25,7 @@
               <p class="bt_p">Returning Customer</p>
               <!-- 新登录 -->
               <!-- <form class="login_form lr_form"> -->
-              <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="login_form lr_form">
+              <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="login_form lr_form" >
                 <label for="">
                   <span>E-Mail Address <i class="red_i">*</i></span>
                   <!-- <input class="email email1" type="text" /> -->
@@ -106,6 +106,7 @@
       </div>
     </div>
 <script>
+
 // Register
 $(document).delegate('#button-register', 'click', function() {
   // console.log($('#register-form-div input'));
@@ -147,6 +148,9 @@ $(document).delegate('#button-register', 'click', function() {
                $('#errorconfirm').show().html( json['error']['confirm'] );
               }
             } else{
+              if(json['error']['warning']){
+               $('#erroremail').show().html( json['error']['warning'] );
+              }
                $(".zzc_li").css("display","none");
               $("div").removeClass("hidden");
             }   

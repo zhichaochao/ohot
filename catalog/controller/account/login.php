@@ -52,9 +52,11 @@ class ControllerAccountLogin extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 		if (isset($this->request->get['other_login'])) {
 			$this->request->server['REQUEST_METHOD'] = 'POST';
-			$other_login=base64_decode(explode(',',$this->request->get['other_login']));
-			$this->request->post['email']=$other_login[0];
-			$this->request->post['password']=$other_login[1];
+			$other_login=explode(',',$this->request->get['other_login']);
+			$other_logins=base64_decode($other_login[0]);
+			$other=explode(',',$other_logins);
+			$this->request->post['email']=$other[0];
+			$this->request->post['password']=$other[1];
 
 		}
 		
@@ -149,6 +151,13 @@ class ControllerAccountLogin extends Controller {
 		}
 
 		$data['action'] = $this->url->link('account/login', '', true);
+		if ($this->request->server['HTTPS']) {
+			$data['action'] =str_replace(HTTPS_SERVER,HTTPS_SERVERS,$data['action']);
+		}else{
+
+			$data['action'] =str_replace(HTTP_SERVER,HTTP_SERVERS,$data['action']);
+		}
+
 		//$data['registers'] = $this->url->link('account/register', '', true);
 		$data['register'] = $this->url->link('account/login/register_save', '', true);
 		$data['forgotten'] = $this->url->link('account/forgotten', '', true);
