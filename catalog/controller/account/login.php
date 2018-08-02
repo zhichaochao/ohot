@@ -50,6 +50,13 @@ class ControllerAccountLogin extends Controller {
 		$this->load->language('account/login');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+		if (isset($this->request->get['other_login'])) {
+			$this->request->server['REQUEST_METHOD'] = 'POST';
+			$other_login=base64_decode(explode(',',$this->request->get['other_login']));
+			$this->request->post['email']=$other_login[0];
+			$this->request->post['password']=$other_login[1];
+
+		}
 		
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
