@@ -134,7 +134,11 @@
 									<div class="close"></div>
 								</div>
 							</div>
+							<?php if (!isset($logins)) { ?>
+							<a class="a_btn clearfix" href="<?php echo $login; ?>">PLEASE LOG IN FIRST&nbsp;&nbsp;&nbsp;&nbsp;></a>
+							<?php }else{ ?>
 							<a class="a_btn clearfix" id="button-cart" >ADD TO SHOPPING CART&nbsp;&nbsp;&nbsp;&nbsp;></a>
+							<?php }?>
 								<button class="xyd_btn <?=$wishlist==1 ?'off':'';?>"
 							 
 			              onclick="wishlist('<?php echo $product_id; ?>',this);"><span>WISHLIST</span></button>
