@@ -163,6 +163,7 @@ class ControllerCommonFooter extends Controller {
 		}
 		// print_r($_SERVER);
 		$data['thispage']=$_SERVER['QUERY_STRING'].$_SERVER['REQUEST_URI'];
+		$data['sername']=$_SERVER['REQUEST_URI'];
 	// print_r($data['thispage']);exit;
 		$data['email'] = $this->config->get('config_email');
 		$data['telephone'] = $this->config->get('config_telephone');
