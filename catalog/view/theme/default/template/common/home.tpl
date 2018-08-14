@@ -16,7 +16,8 @@
                         <?php if($fast['link']){?>
                         <a href="<?=$fast['link'];?>">
                             <div class="pic clearfix">
-                                <img class="changeimage" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>" src="<?=$fast['image'];?>" />
+                                <!-- <img class="changeimage" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>" src="<?=$fast['image'];?>" /> -->
+                                <img class="changeimage" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>"  />
                             </div>
                             <div class="text">
                                 <h2><?=$fast['title'];?></h2>
@@ -25,7 +26,7 @@
                         </a>
                         <?php }else{?>
                         <div class="pic clearfix">
-                                <img class="changeimage" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>" src="<?=$fast['image'];?>"  />
+                                 <img class="changeimage" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>" />
                             </div>
                             <div class="text">
                                 <h2><?=$fast['title'];?></h2>
@@ -55,7 +56,7 @@
                     <li>
                         <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage" data-image="<?=$val['image'];?>" src="<?=$val['image'];?>" data-mimage="<?=$val['image'];?>"  />
+                                <img class="changeimage" data-image="<?=$val['image'];?>"  data-mimage="<?=$val['image'];?>"  />
                                 <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -71,10 +72,10 @@
                   <?php if(isset($homes[1])){ ?>   
                 <div class="top top2 clearfix">
                     <div class="bt2">
-                        <h1><?=$homes[1]['category']['name'];?></h1>
+                        <h1><?=$homes[1]['title'];?></h1>
                         <a href="<?=$homes[1]['category_url'];?>" class="a_btn">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
                     </div>
-                    <img class="top2_img changeimage" data-image="<?=$homes[1]['image'];?>" src="<?=$homes[1]['image'];?>" data-mimage="<?=$homes[1]['mimage'];?>"  />
+                    <img class="top2_img changeimage" data-image="<?=$homes[1]['image'];?>"  data-mimage="<?=$homes[1]['mimage'];?>"  />
                     
                 </div>
                     <?php if(isset($homes[1]['child'])){ ?>
@@ -83,7 +84,7 @@
                     <li>
                         <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage" data-image="<?=$val['image'];?>" src="<?=$val['image'];?>"  data-mimage="<?=$val['image'];?>"  />
+                                <img class="changeimage" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
                                 <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -98,10 +99,10 @@
                <?php if(isset($homes[2])){ ?>   
                 <div class="top top3 clearfix">
                     <div class="bt2">
-                        <h1><?=$homes[2]['category']['name'];?></h1>
+                        <h1><?=$homes[2]['title'];?></h1>
                         <a href="<?=$homes[2]['category_url'];?>" class="a_btn">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
                     </div>
-                    <img class="top3_img changeimage" data-image="<?=$homes[2]['image'];?>" src="<?=$homes[2]['image'];?>" data-mimage="<?=$homes[2]['mimage'];?>"  />
+                    <img class="top3_img changeimage" data-image="<?=$homes[2]['image'];?>"  data-mimage="<?=$homes[2]['mimage'];?>"  />
                 </div>
                     <?php if(isset($homes[2]['child'])){ ?>
                 <ol class="ol_img4 ol_img clearfix">
@@ -109,7 +110,7 @@
                     <li>
                        <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage" data-image="<?=$val['image'];?>" src="<?=$val['image'];?>"  data-mimage="<?=$val['image'];?>"  />
+                                <img class="changeimage" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
                                  <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -133,7 +134,7 @@
                     <div class="bt2">
                         <a href="<?=$homes[3]['category_url'];?>" class="a_btn">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
                     </div>
-                    <img class="top4_img changeimage" data-image="<?=$homes[3]['image'];?>" src="<?=$homes[3]['image'];?>" data-mimage="<?=$homes[3]['mimage'];?>"  />
+                    <img class="top4_img changeimage" data-image="<?=$homes[3]['image'];?>" " data-mimage="<?=$homes[3]['mimage'];?>"  />
                 </div>
                    <?php if(isset($homes[3]['child'])){ ?>
                 <ol class="ol_img5 ol_img clearfix">
@@ -141,7 +142,7 @@
                     <li>
                        <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage" data-image="<?=$val['image'];?>" src="<?=$val['image'];?>"  data-mimage="<?=$val['image'];?>" />
+                                <img class="changeimage" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>" />
                               <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -193,10 +194,32 @@
             </div>
             
         </div>
+   
         
 <?php echo $footer; ?>
 
 <script>
+
+// var login_time = setTimeout(gg_show,1000);
+//     function gg_show (){
+//         $(".img_modal").fadeIn();
+//     }
+   
+    var gb=0;   
+        //关闭登陆注册
+        $(".img_modal .close").click(function(){
+            gb=1;
+            clearTimeout(login_time);
+            $(".img_modal").fadeOut();
+        })
+        $(".img_modal .text").hover(function(){
+            clearTimeout(login_time);
+            $(".img_modal").fadeIn();
+        },function(){
+            if(gb==0){
+                gg_show ();
+            }
+        })
  
     var mySwiper = new Swiper('#swiper2', {
         autoplay: true,
@@ -230,11 +253,11 @@
             }else{
               $(".video_div .video").attr("poster","/catalog/view/theme/default/img/jpg/video_bg.jpg");
             }
-            if(win<=992){
-                $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/yd_modal.jpg) no-repeat ").css("background-size","4rem 4.5rem");
-            }else{
-                    $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/pc_modal.jpg) no-repeat ");
-            }
+            // if(win<=992){
+            //     $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/yd_modal.jpg) no-repeat ").css("background-size","4rem 4.5rem");
+            // }else{
+            //         $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/pc_modal.jpg) no-repeat ");
+            // }
         $(window).resize(function() {
             var win = $(window).width();
             if(win<=750){
@@ -242,11 +265,11 @@
             }else{
               $(".video_div .video").attr("poster","/catalog/view/theme/default/img/jpg/video_bg.jpg");
             }
-            if(win<=992){
-                $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/yd_modal.jpg) no-repeat ").css("background-size","4rem 4.5rem");
-            }else{
-                    $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/pc_modal.jpg) no-repeat ");
-            }
+            // if(win<=992){
+            //     $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/yd_modal.jpg) no-repeat ").css("background-size","4rem 4.5rem");
+            // }else{
+            //         $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/pc_modal.jpg) no-repeat ");
+            // }
         })
         
     })

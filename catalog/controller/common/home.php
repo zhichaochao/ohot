@@ -8,7 +8,10 @@ class ControllerCommonHome extends Controller {
 			$this->document->addLink($this->config->get('config_url'), 'canonical');
 		}
 
-
+		$data['column_left'] = $this->load->controller('common/column_left');
+		$data['column_right'] = $this->load->controller('common/column_right');
+		$data['content_top'] = $this->load->controller('common/content_top');
+		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
@@ -54,7 +57,6 @@ class ControllerCommonHome extends Controller {
         $this->load->model('catalog/product');
         //首页推荐商品
         $recommend_products = $this->model_catalog_product->getRecommendProducts();
-        // print_r($recommend_products);exit();
         $i = 0;
         foreach($recommend_products as $key=>$row){
         	$recommend_products[$key]['key_id'] = $i;   //作为索引值 dyl add
@@ -83,14 +85,19 @@ class ControllerCommonHome extends Controller {
              $gallerys[$key]['image']= $this->model_tool_image->resize($value['image'], 241, 241);
         }
           $data['gallerys'] =$gallerys;
-           // print_r($gallerys);exit();
 
         $this->load->model('common/home');
           $homes=$this->model_common_home->getHomePages();
         if ($homes) {
           foreach ($homes as $key => $value) {
-              $homes[$key]['image']= $this->model_tool_image->resize($value['image'], 1040, 560);
+            if($key==3){
+                 $homes[$key]['image']= $this->model_tool_image->resize($value['image'], 1537, 600);   
+            }else{
+                $homes[$key]['image']= $this->model_tool_image->resize($value['image'], 1040, 560);
+            }
+              
               $homes[$key]['mimage']= $this->model_tool_image->resize($value['mimage'], 710, 400);
+              $homes[$key]['title']= $value['title'];
                 $homes[$key]['category']= $this->model_catalog_category->getCategory($value['category_id']);
                 $category_path=$this->get_category_path($value['category_id']);
               $homes[$key]['category_url']=$this->url->link('product/category', 'path=' .$category_path);
@@ -132,10 +139,11 @@ class ControllerCommonHome extends Controller {
 
           }
         }
-        // print_r($homes);exit();
         $data['homes']=$homes;
+        if(isset($this->session->data['choose'])){ $data['choose']=1; }else { $data['choose']=''; }
+        // unset($this->session->data['choose']);
 
-
+        $data['choose_url']=$this->url->link('common/home/set_session', '', true);
 		$this->response->setOutput($this->load->view('common/home', $data));
 	}
     protected function get_category_path($category_id)
@@ -149,5 +157,11 @@ class ControllerCommonHome extends Controller {
             $path=$this->get_category_path($category_info['parent_id']);
             return $path."_".$category_id;
         }
+    }
+  public function set_session() {
+
+        $this->session->data['choose'] =1 ;
+        $this->response->redirect($this->url->link('common/home', '', true));
+
     }
 }
