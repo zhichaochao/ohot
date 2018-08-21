@@ -40,8 +40,8 @@ class ControllerCommonFooter extends Controller {
 							'url'=>$this->url->link('information/information','information_id=2'),
 							),
 						2=>array(
-							'title'=>'Privacy Policy',
-							'url'=>$this->url->link('information/information','information_id=6'),
+							'title'=>'Terms & Conditions',
+							'url'=>$this->url->link('information/information','information_id=5'),
 
 							),
 						3=>array(
@@ -107,7 +107,7 @@ class ControllerCommonFooter extends Controller {
 		$data['home'] = $this->url->link('common/home', '', true);
 		$data['cart'] = $this->url->link('checkout/cart', '', true);
 		$data['account_left'] = $this->url->link('account/inquiry', '', true);
-		$data['contac'] = $this->url->link('product/category', '', true);
+		$data['contac'] = $this->url->link('product/allcategory', '', true);
 
 		$data['contact'] = $this->url->link('information/contact');
 		$data['return'] = $this->url->link('account/return/add', '', true);
@@ -164,12 +164,11 @@ class ControllerCommonFooter extends Controller {
 		// print_r($_SERVER);
 		$data['thispage']=$_SERVER['QUERY_STRING'].$_SERVER['REQUEST_URI'];
 		$data['sername']=$_SERVER['REQUEST_URI'];
-	// print_r($data['thispage']);exit;
 		$data['email'] = $this->config->get('config_email');
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['whatsapp'] = $this->config->get('config_whatsapp');
 		$data['skype'] = $this->config->get('config_skype');
 		$data['facebook'] = $this->config->get('config_facebook');
-		$data['whatsapp'] = $this->config->get('config_whatsapp');
 
 		$data['chat_code'] = $this->config->get('config_code');
 
