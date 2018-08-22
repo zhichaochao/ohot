@@ -41,13 +41,12 @@ class ControllerInformationProfile extends Controller {
 				}
 				$profile_know['childs']=$childs;
 				// print_r($profile_care['childs']);exit;
-				$http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
 				$videos=$this->model_catalog_profile->getVideos(array('start'=>0,'limit'=>3));
 				//var_dump($videos);exit;
 			    if ($videos) {
 				
 						foreach ($videos as $key => $value) {
-							$videos[$key]['video']=$http_type .HTTPS_SERVERS. $value['video'];
+							$videos[$key]['video']=HTTP_SERVERS. $value['video'];
 							$videos[$key]['title']=$value['title'];
 							$videos[$key]['image']=$this->model_tool_image->resize($value['image'],380,215);
 						}
@@ -80,7 +79,6 @@ class ControllerInformationProfile extends Controller {
 				$this->document->setTitle($this->language->get('heading_titles'));
 				$this->load->model('catalog/profile');
 					$this->load->model('tool/image');
-			$http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
 			  $url = '';
 			   if (isset($this->request->get['page'])) {
 				$page = $this->request->get['page'];
@@ -113,7 +111,7 @@ class ControllerInformationProfile extends Controller {
 				if ($videos) {
 				
 						foreach ($videos as $key => $value) {
-							$videos[$key]['video']=$http_type . HTTPS_SERVERS. $value['video'];
+							$videos[$key]['video']=HTTP_SERVERS. $value['video'];
 							$videos[$key]['title']=$value['title'];
 							$videos[$key]['image']=$this->model_tool_image->resize($value['image'],380,215);
 						}
