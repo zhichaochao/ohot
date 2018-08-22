@@ -242,7 +242,7 @@
         var myvideo = document.getElementById("video");
         $(".video_div .bg_div").click(function(){
             myvideo.play();
-            //$("#video").attr("controls","controls");
+            $("#video").attr("controls","controls");
             $(".video_div .bg_div").css("display","none")
         })
         
