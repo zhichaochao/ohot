@@ -296,16 +296,16 @@ function cart_removes(product_key){
 		//全选
 		$(".qx_label input").click(function(cart_id){
 			if($(this).prop("checked")){
+					$(this).siblings(".check_i").removeClass("active");
+				$(".dx_label input").each(function(){
+					$(this).prop("checked","");
+					$(this).siblings(".check_i").removeClass("active");
+				})				
+			}else{
 				$(this).siblings(".check_i").addClass("active");
 				$(".dx_label input").each(function(){
 					$(this).prop("checked",true);
 					$(this).siblings(".check_i").addClass("active");
-				})
-			}else{
-				$(this).siblings(".check_i").removeClass("active");
-				$(".dx_label input").each(function(){
-					$(this).prop("checked","");
-					$(this).siblings(".check_i").removeClass("active");
 				})
 			}
 		})

@@ -1383,33 +1383,7 @@ class ControllerCatalogProduct extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		// foreach ($this->request->post['product_description'] as $language_id => $value) {
-		// 	if ((utf8_strlen($value['name']) < 3) || (utf8_strlen($value['name']) > 255)) {
-		// 		$this->error['name'][$language_id] = $this->language->get('error_name');
-		// 	}
 
-		// 	if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {
-		// 		$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
-		// 	}
-		// }
-
-		// if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
-		// 	$this->error['model'] = $this->language->get('error_model');
-		// }
-
-		// if (utf8_strlen($this->request->post['keyword']) > 0) {
-		// 	$this->load->model('catalog/url_alias');
-
-		// 	$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
-
-		// 	if ($url_alias_info && isset($this->request->get['product_id']) && $url_alias_info['query'] != 'product_id=' . $this->request->get['product_id']) {
-		// 		$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-		// 	}
-
-		// 	if ($url_alias_info && !isset($this->request->get['product_id'])) {
-		// 		$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-		// 	}
-		// }
 		
 		//验证Special面板同类商品是否可以同步折扣信息
 		$this->load->model('catalog/product');
@@ -1483,40 +1457,7 @@ class ControllerCatalogProduct extends Controller {
 
 				$product_options = $this->model_catalog_product->getProductOptions($result['product_id']);
 
-				/*
-				foreach ($product_options as $product_option) {
-					$option_info = $this->model_catalog_option->getOption($product_option['option_id']);
 
-					if ($option_info) {
-						$product_option_value_data = array();
-
-						foreach ($product_option['product_option_value'] as $product_option_value) {
-							$option_value_info = $this->model_catalog_option->getOptionValue($product_option_value['option_value_id']);
-
-							if ($option_value_info) {
-								$product_option_value_data[] = array(
-									'product_option_value_id' => $product_option_value['product_option_value_id'],
-									'option_value_id'         => $product_option_value['option_value_id'],
-									'name'                    => $option_value_info['name'],
-									'price'                   => (float)$product_option_value['price'] ? $this->currency->format($product_option_value['price'], $this->config->get('config_currency')) : false,
-									'price_prefix'            => $product_option_value['price_prefix']
-								);
-							}
-						}
-
-						$option_data[] = array(
-							'product_option_id'    => $product_option['product_option_id'],
-							'product_option_value' => $product_option_value_data,
-							'option_id'            => $product_option['option_id'],
-							'name'                 => $option_info['name'],
-							'type'                 => $option_info['type'],
-							'value'                => $product_option['value'],
-							'option_value_id'      => $product_option['option_value_id'],
-							'required'             => $product_option['required']
-						);
-					}
-				}
-                */
 				$json[] = array(
 					'product_id' => $result['product_id'],
 					'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),

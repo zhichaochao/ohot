@@ -41,15 +41,7 @@ class ControllerCommonColumnLeft extends Controller {
 			);
 
 			// Catalog
-			// $catalog = array();
 
-			// if ($this->user->hasPermission('access', 'catalog/category')) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_category'),
-			// 		'href'     => $this->url->link('catalog/category', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
 
 			if ($this->user->hasPermission('access', 'catalog/product')) {
 				$catalog[] = array(
@@ -61,132 +53,17 @@ class ControllerCommonColumnLeft extends Controller {
 			
 		
 			// 分期付款
-			// if ($this->user->hasPermission('access', 'catalog/recurring')) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_recurring'),
-			// 		'href'     => $this->url->link('catalog/recurring', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
+
 			// 商品过滤
-			// if ($this->user->hasPermission('access', 'catalog/filter')) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_filter'),
-			// 		'href'     => $this->url->link('catalog/filter', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
+	
 
 			// Attributes
-			// $attribute = array();
-
-			// if ($this->user->hasPermission('access', 'catalog/attribute')) {
-			// 	$attribute[] = array(
-			// 		'name'     => $this->language->get('text_attribute'),
-			// 		'href'     => $this->url->link('catalog/attribute', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'catalog/attribute_group')) {
-			// 	$attribute[] = array(
-			// 		'name'	   => $this->language->get('text_attribute_group'),
-			// 		'href'     => $this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($attribute) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_attribute'),
-			// 		'href'     => '',
-			// 		'children' => $attribute
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'catalog/option')) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_option'),
-			// 		'href'     => $this->url->link('catalog/option', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
+			
 			// 品牌管理
-			// if ($this->user->hasPermission('access', 'catalog/manufacturer')) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_manufacturer'),
-			// 		'href'     => $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-			// 下载设置
-			// if ($this->user->hasPermission('access', 'catalog/download')) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_download'),
-			// 		'href'     => $this->url->link('catalog/download', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'catalog/review')) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_review'),
-			// 		'href'     => $this->url->link('catalog/review', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'catalog/nav')) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_nav'),
-			// 		'href'     => $this->url->link('catalog/nav', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'catalog/information')) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_information'),
-			// 		'href'     => $this->url->link('catalog/information', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
+			
 		
 			// Attributes
-			//$hairclub = array();
-		
-
-			// if ($this->user->hasPermission('access', 'catalog/profile')) {
-			// 	$hairclub[] = array(
-			// 		'name'	   => $this->language->get('text_profile'),
-			// 		'href'     => $this->url->link('catalog/profile', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-			// if ($this->user->hasPermission('access', 'catalog/video')) {
-			// 	$hairclub[] = array(
-			// 		'name'	   => $this->language->get('text_provideo'),
-			// 		'href'     => $this->url->link('catalog/video', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-			// if ($this->user->hasPermission('access', 'catalog/gallery')) {
-			// 	$hairclub[] = array(
-			//         'name'      => $this->language->get('text_gallery'),
-   //                  'href'      => $this->url->link('catalog/gallery', 'token=' . $this->session->data['token'], true),
-   //                  'children'  => array()
-   //              );
-			// }
-
-			// if ($hairclub) {
-			// 	$catalog[] = array(
-			// 		'name'	   => $this->language->get('text_hairclub'),
-			// 		'href'     => '',
-			// 		'children' => $hairclub
-			// 	);
-			// }
-		
-//			 print_r($catalog);exit();
+			
 
 			if ($catalog) {
 				$data['menus'][] = array(
@@ -201,15 +78,7 @@ class ControllerCommonColumnLeft extends Controller {
 
 			// Extension
 			$extension = array();
-			/*
-			if ($this->user->hasPermission('access', 'extension/store')) {
-				$extension[] = array(
-					'name'	   => $this->language->get('text_store'),
-					'href'     => $this->url->link('extension/store', 'token=' . $this->session->data['token'], true),
-					'children' => array()
-				);
-			}
-			*/
+		
 			if ($this->user->hasPermission('access', 'extension/installer')) {
 				$extension[] = array(
 					'name'	   => $this->language->get('text_installer'),
@@ -226,21 +95,7 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
-			// if ($this->user->hasPermission('access', 'extension/modification')) {
-			// 	$extension[] = array(
-			// 		'name'	   => $this->language->get('text_modification'),
-			// 		'href'     => $this->url->link('extension/modification', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'extension/event')) {
-			// 	$extension[] = array(
-			// 		'name'	   => $this->language->get('text_event'),
-			// 		'href'     => $this->url->link('extension/event', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
+	
 
 			if ($extension) {
 				$data['menus'][] = array(
@@ -255,55 +110,7 @@ class ControllerCommonColumnLeft extends Controller {
 			// Design
 			$design = array();
 
-			// if ($this->user->hasPermission('access', 'design/layout')) {
-			// 	$design[] = array(
-			// 		'name'	   => $this->language->get('text_layout'),
-			// 		'href'     => $this->url->link('design/layout', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-			/*
-			if ($this->user->hasPermission('access', 'design/menu')) {
-				$design[] = array(
-					'name'	   => $this->language->get('text_menu'),
-					'href'     => $this->url->link('design/menu', 'token=' . $this->session->data['token'], true),
-					'children' => array()
-				);
-			}
-			*/
-			/*
-			if ($this->user->hasPermission('access', 'design/theme')) {
-				$design[] = array(
-					'name'	   => $this->language->get('text_theme'),
-					'href'     => $this->url->link('design/theme', 'token=' . $this->session->data['token'], true),
-					'children' => array()
-				);
-			}
-
-			if ($this->user->hasPermission('access', 'design/language')) {
-				$design[] = array(
-					'name'	   => $this->language->get('text_translation'),
-					'href'     => $this->url->link('design/language', 'token=' . $this->session->data['token'], true),
-					'children' => array()
-				);
-			}
-			*/
-			// if ($this->user->hasPermission('access', 'design/home')) {
-			// 	$design[] = array(
-			// 		'name'	   => $this->language->get('text_home'),
-			// 		'href'     => $this->url->link('design/home', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'design/banner')) {
-			// 	$design[] = array(
-			// 		'name'	   => $this->language->get('text_banner'),
-			// 		'href'     => $this->url->link('design/banner', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
+		
 			if ($design) {
 				$data['menus'][] = array(
 					'id'       => 'menu-design',
@@ -325,57 +132,7 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
-			// if ($this->user->hasPermission('access', 'sale/recurring')) {
-			// 	$sale[] = array(
-			// 		'name'	   => $this->language->get('text_recurring'),
-			// 		'href'     => $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'sale/return')) {
-			// 	$sale[] = array(
-			// 		'name'	   => $this->language->get('text_return'),
-			// 		'href'     => $this->url->link('sale/return', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// Voucher
-			// $voucher = array();
-
-			// if ($this->user->hasPermission('access', 'sale/voucher')) {
-			// 	$voucher[] = array(
-			// 		'name'	   => $this->language->get('text_voucher'),
-			// 		'href'     => $this->url->link('sale/voucher', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'sale/voucher_theme')) {
-			// 	$voucher[] = array(
-			// 		'name'	   => $this->language->get('text_voucher_theme'),
-			// 		'href'     => $this->url->link('sale/voucher_theme', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($voucher) {
-			// 	$sale[] = array(
-			// 		'name'	   => $this->language->get('text_voucher'),
-			// 		'href'     => '',
-			// 		'children' => $voucher
-			// 	);
-			// }
-
-			//Product Inquiry  dyl add
-			// if ($this->user->hasPermission('access', 'sale/product_inquiry')) {
-			// 	$sale[] = array(
-			// 		'name'	   => 'Product Inquiry',
-			// 		'href'     => $this->url->link('sale/product_inquiry', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
+			
 			//Product Inquiry,end
 
 			if ($sale) {
@@ -413,28 +170,7 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
-			// if ($this->user->hasPermission('access', 'customer/customer_group')) {
-			// 	$customer[] = array(
-			// 		'name'	   => $this->language->get('text_customer_group'),
-			// 		'href'     => $this->url->link('customer/customer_group', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-
-			// if ($this->user->hasPermission('access', 'customer/custom_field')) {
-			// 	$customer[] = array(
-			// 		'name'	   => $this->language->get('text_custom_field'),
-			// 		'href'     => $this->url->link('customer/custom_field', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
-			// if ($this->user->hasPermission('access', 'customer/email')) {
-			// 	$customer[] = array(
-			// 		'name'	   => $this->language->get('text_custom_email'),
-			// 		'href'     => $this->url->link('customer/email', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
+			
 
 			if ($customer) {
 				$data['menus'][] = array(
@@ -504,13 +240,7 @@ class ControllerCommonColumnLeft extends Controller {
 			}
 
 			//Import Products  dyl add
-			// if ($this->user->hasPermission('access', 'tool/import_xls')) {
-			// 	$system[] = array(
-			// 		'name'	   => 'Import Products',
-			// 		'href'     => $this->url->link('tool/import_xls', 'token=' . $this->session->data['token'], true),
-			// 		'children' => array()
-			// 	);
-			// }
+		
 			//Import Products,end
 
 			// Users

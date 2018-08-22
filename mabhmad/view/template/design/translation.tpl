@@ -73,21 +73,5 @@
     </div>
 </div>
 
- <!-- <script type="text/javascript"><!--
-function install(code) {
-
-          $.ajax({
-              url: 'index.php?route=design/translation/install&token=<?php echo $token; ?>',
-              method: 'post',
-              dataType: 'json',
-              data: {code: code},
-              success: function(json) {
-              },
-              error: function(xhr, ajaxOptions, thrownError) {
-                  alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-              }
-          });
-};
-</script> -->
 
 <?php echo $footer; ?>

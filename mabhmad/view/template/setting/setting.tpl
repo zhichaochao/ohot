@@ -35,8 +35,6 @@
             <li><a href="#tab-store" data-toggle="tab"><?php echo $tab_store; ?></a></li>
             <li><a href="#tab-local" data-toggle="tab"><?php echo $tab_local; ?></a></li>
             <li><a href="#tab-option" data-toggle="tab"><?php echo $tab_option; ?></a></li>
-            <!-- <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
-            <li><a href="#tab-ftp" data-toggle="tab"><?php echo $tab_ftp; ?></a></li> -->
             <li><a href="#tab-mail" data-toggle="tab"><?php echo $tab_mail; ?></a></li>
             <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
           </ul>
@@ -63,35 +61,7 @@
                   <textarea name="config_meta_keyword" rows="5" placeholder="<?php echo $entry_meta_keyword; ?>" id="input-meta-keyword" class="form-control"><?php echo $config_meta_keyword; ?></textarea>
                 </div>
               </div>
-              <!-- <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-theme"><?php echo $entry_theme; ?></label>
-                <div class="col-sm-10">
-                  <select name="config_theme" id="input-theme" class="form-control">
-                    <?php foreach ($themes as $theme) { ?>
-                    <?php if ($theme['value'] == $config_theme) { ?>
-                    <option value="<?php echo $theme['value']; ?>" selected="selected"><?php echo $theme['text']; ?></option>
-                    <?php } else { ?>
-                    <option value="<?php echo $theme['value']; ?>"><?php echo $theme['text']; ?></option>
-                    <?php } ?>
-                    <?php } ?>
-                  </select>
-                  <br />
-                  <img src="" alt="" id="theme" class="img-thumbnail" /></div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-layout"><?php echo $entry_layout; ?></label>
-                <div class="col-sm-10">
-                  <select name="config_layout_id" id="input-layout" class="form-control">
-                    <?php foreach ($layouts as $layout) { ?>
-                    <?php if ($layout['layout_id'] == $config_layout_id) { ?>
-                    <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
-                    <?php } else { ?>
-                    <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
-                    <?php } ?>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div> -->
+              
             </div>
             <div class="tab-pane" id="tab-store">
               <div class="form-group required">
@@ -185,18 +155,7 @@
                   <input type="hidden" name="config_image" value="<?php echo $config_image; ?>" id="input-image" />
                 </div>
               </div>
-              <!-- <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-open"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_open; ?>"><?php echo $entry_open; ?></span></label>
-                <div class="col-sm-10">
-                  <textarea name="config_open" rows="5" placeholder="<?php echo $entry_open; ?>" id="input-open" class="form-control"><?php echo $config_open; ?></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-comment"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_comment; ?>"><?php echo $entry_comment; ?></span></label>
-                <div class="col-sm-10">
-                  <textarea name="config_comment" rows="5" placeholder="<?php echo $entry_comment; ?>" id="input-comment" class="form-control"><?php echo $config_comment; ?></textarea>
-                </div>
-              </div> -->
+              
               <?php if ($locations) { ?>
               <div class="form-group">
                 <label class="col-sm-2 control-label"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_location; ?>"><?php echo $entry_location; ?></span></label>
@@ -584,41 +543,7 @@
                     </label>
                   </div>
                 </div>
-                <!-- <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-customer-group"><span data-toggle="tooltip" title="<?php echo $help_customer_group; ?>"><?php echo $entry_customer_group; ?></span></label>
-                  <div class="col-sm-10">
-                    <select name="config_customer_group_id" id="input-customer-group" class="form-control">
-                      <?php foreach ($customer_groups as $customer_group) { ?>
-                      <?php if ($customer_group['customer_group_id'] == $config_customer_group_id) { ?>
-                      <option value="<?php echo $customer_group['customer_group_id']; ?>" selected="selected"><?php echo $customer_group['name']; ?></option>
-                      <?php } else { ?>
-                      <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></option>
-                      <?php } ?>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div> -->
-                <!-- <div class="form-group" style="background:red;">
-                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_customer_group_display; ?>"><?php echo $entry_customer_group_display; ?></span></label>
-                  <div class="col-sm-10">
-                    <?php foreach ($customer_groups as $customer_group) { ?>
-                    <div class="checkbox">
-                      <label>
-                        <?php if (in_array($customer_group['customer_group_id'], $config_customer_group_display)) { ?>
-                        <input type="checkbox" name="config_customer_group_display[]" value="<?php echo $customer_group['customer_group_id']; ?>" checked="checked" />
-                        <?php echo $customer_group['name']; ?>
-                        <?php } else { ?>
-                        <input type="checkbox" name="config_customer_group_display[]" value="<?php echo $customer_group['customer_group_id']; ?>" />
-                        <?php echo $customer_group['name']; ?>
-                        <?php } ?>
-                      </label>
-                    </div>
-                    <?php } ?>
-                    <?php if ($error_customer_group_display) { ?>
-                    <div class="text-danger"><?php echo $error_customer_group_display; ?></div>
-                    <?php } ?>
-                  </div>
-                </div> -->
+               
                 <div class="form-group">
                   <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_customer_price; ?>"><?php echo $entry_customer_price; ?></span></label>
                   <div class="col-sm-10">
@@ -1039,87 +964,7 @@
                 </div>
               </fieldset>
             </div>
-            <!-- <div class="tab-pane" id="tab-image">
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-logo"><?php echo $entry_logo; ?></label>
-                <div class="col-sm-10"><a href="" id="thumb-logo" data-toggle="image" class="img-thumbnail"><img src="<?php echo $logo; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
-                  <input type="hidden" name="config_logo" value="<?php echo $config_logo; ?>" id="input-logo" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-icon"><span data-toggle="tooltip" title="<?php echo $help_icon; ?>"><?php echo $entry_icon; ?></span></label>
-                <div class="col-sm-10"><a href="" id="thumb-icon" data-toggle="image" class="img-thumbnail"><img src="<?php echo $icon; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
-                  <input type="hidden" name="config_icon" value="<?php echo $config_icon; ?>" id="input-icon" />
-                </div>
-              </div>
-            </div> -->
-           <!--  <div class="tab-pane" id="tab-ftp">
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-ftp-host"><?php echo $entry_ftp_hostname; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="config_ftp_hostname" value="<?php echo $config_ftp_hostname; ?>" placeholder="<?php echo $entry_ftp_hostname; ?>" id="input-ftp-host" class="form-control" />
-                  <?php if ($error_ftp_hostname) { ?>
-                  <div class="text-danger"><?php echo $error_ftp_hostname; ?></div>
-                  <?php } ?>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-ftp-port"><?php echo $entry_ftp_port; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="config_ftp_port" value="<?php echo $config_ftp_port; ?>" placeholder="<?php echo $entry_ftp_port; ?>" id="input-ftp-port" class="form-control" />
-                  <?php if ($error_ftp_port) { ?>
-                  <div class="text-danger"><?php echo $error_ftp_port; ?></div>
-                  <?php } ?>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-ftp-username"><?php echo $entry_ftp_username; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="config_ftp_username" value="<?php echo $config_ftp_username; ?>" placeholder="<?php echo $entry_ftp_username; ?>" id="input-ftp-username" class="form-control" />
-                  <?php if ($error_ftp_username) { ?>
-                  <div class="text-danger"><?php echo $error_ftp_username; ?></div>
-                  <?php } ?>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-ftp-password"><?php echo $entry_ftp_password; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="config_ftp_password" value="<?php echo $config_ftp_password; ?>" placeholder="<?php echo $entry_ftp_password; ?>" id="input-ftp-password" class="form-control" />
-                  <?php if ($error_ftp_password) { ?>
-                  <div class="text-danger"><?php echo $error_ftp_password; ?></div>
-                  <?php } ?>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-ftp-root"><span data-toggle="tooltip" data-html="true" title="<?php echo htmlspecialchars($help_ftp_root); ?>"><?php echo $entry_ftp_root; ?></span></label>
-                <div class="col-sm-10">
-                  <input type="text" name="config_ftp_root" value="<?php echo $config_ftp_root; ?>" placeholder="<?php echo $entry_ftp_root; ?>" id="input-ftp-root" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label"><?php echo $entry_ftp_status; ?></label>
-                <div class="col-sm-10">
-                  <label class="radio-inline">
-                    <?php if ($config_ftp_status) { ?>
-                    <input type="radio" name="config_ftp_status" value="1" checked="checked" />
-                    <?php echo $text_yes; ?>
-                    <?php } else { ?>
-                    <input type="radio" name="config_ftp_status" value="1" />
-                    <?php echo $text_yes; ?>
-                    <?php } ?>
-                  </label>
-                  <label class="radio-inline">
-                    <?php if (!$config_ftp_status) { ?>
-                    <input type="radio" name="config_ftp_status" value="0" checked="checked" />
-                    <?php echo $text_no; ?>
-                    <?php } else { ?>
-                    <input type="radio" name="config_ftp_status" value="0" />
-                    <?php echo $text_no; ?>
-                    <?php } ?>
-                  </label>
-                </div>
-              </div>
-            </div> -->
+           
             <div class="tab-pane" id="tab-mail">
               <fieldset>
                 <legend><?php echo $text_general; ?></legend>

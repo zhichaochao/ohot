@@ -16,7 +16,7 @@
                         <?php if($fast['link']){?>
                         <a href="<?=$fast['link'];?>">
                             <div class="pic clearfix">
-                                <!-- <img class="changeimage" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>" src="<?=$fast['image'];?>" /> -->
+                               
                                 <img class="changeimage" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>"  />
                             </div>
                             <div class="text">
