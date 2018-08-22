@@ -47,7 +47,7 @@ class ControllerInformationProfile extends Controller {
 			    if ($videos) {
 				
 						foreach ($videos as $key => $value) {
-							$videos[$key]['video']=$http_type . $_SERVER['HTTP_HOST']. $value['video'];
+							$videos[$key]['video']=$http_type .HTTPS_SERVERS. $value['video'];
 							$videos[$key]['title']=$value['title'];
 							$videos[$key]['image']=$this->model_tool_image->resize($value['image'],380,215);
 						}
@@ -113,7 +113,7 @@ class ControllerInformationProfile extends Controller {
 				if ($videos) {
 				
 						foreach ($videos as $key => $value) {
-							$videos[$key]['video']=$http_type . $_SERVER['HTTP_HOST']. $value['video'];
+							$videos[$key]['video']=$http_type . HTTPS_SERVERS. $value['video'];
 							$videos[$key]['title']=$value['title'];
 							$videos[$key]['image']=$this->model_tool_image->resize($value['image'],380,215);
 						}
