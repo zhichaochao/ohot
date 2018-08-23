@@ -24,6 +24,17 @@
             </div>
           </div>
           <?=$description;?>
+          <?php if($videos){ ?>
+          <div class="text5 new_video">
+          <ul class="video_ul clearfix">
+            <?php   foreach ($videos as $key => $value) {?>
+              <li>
+                <video src="<?=$value['video'];?>" poster="<?=$value['image'];?>"></video>
+                <img class="bf" src="/catalog/view/theme/default/img/png/bf.png">
+              </li>
+            <?php } ?>
+            </ul></div>
+            <?php }?>
         </div>      
       </div>
     </div>
