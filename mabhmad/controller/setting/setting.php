@@ -10,6 +10,7 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			// print_r($this->request->post);exit();
 			$this->model_setting_setting->editSetting('config', $this->request->post);
 
 			if ($this->config->get('config_currency_auto')) {
@@ -64,8 +65,8 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_geocode'] = $this->language->get('entry_geocode');
 		$data['entry_email'] = $this->language->get('entry_email');
 		$data['entry_telephone'] = $this->language->get('entry_telephone');
-		$data['entry_whatsapp'] = $this->language->get('entry_whatsapp');
 		$data['entry_facebook'] = $this->language->get('entry_facebook');
+		$data['entry_whatsapp'] = $this->language->get('entry_whatsapp');
 		$data['entry_skype'] = $this->language->get('entry_skype');
 		$data['entry_fax'] = $this->language->get('entry_fax');
 		$data['entry_image'] = $this->language->get('entry_image');
@@ -1227,7 +1228,7 @@ class ControllerSettingSetting extends Controller {
 			$this->error['complete_status'] = $this->language->get('error_complete_status');
 		}
 
-		if ($this->request->post['config_ftp_status']) {
+		if (isset($this->request->post['config_ftp_status'])) {
 			if (!$this->request->post['config_ftp_hostname']) {
 				$this->error['ftp_hostname'] = $this->language->get('error_ftp_hostname');
 			}
