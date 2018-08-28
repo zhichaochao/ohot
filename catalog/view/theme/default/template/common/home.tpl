@@ -40,14 +40,14 @@
                 </ul>
                 
                 <?php if(isset($homes[0])){ ?>   
-                <div class="top clearfix">
-                    <div class="bt2">
-                        <h1>One Donor <?=$homes[0]['category']['name'];?></h1>
-                        <a href="<?=$homes[0]['category_url'];?>" class="a_btn">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
-                    </div>
+                <div class="top clearfix">  
                     <div class="video_div">
                         <video id="video" class="video" poster="<?=$homes[0]['image'];?>" src="<?=$video;?>" ></video>
                         <div class="bg_div"></div>
+                    </div>
+                    <div class="bt2">
+                        <h1>One Donor <?=$homes[0]['category']['name'];?></h1>
+                        <a href="<?=$homes[0]['category_url'];?>" class="a_btn mr_b_no">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
                     </div>
                 </div>
              <?php if(isset($homes[0]['child'])){ ?>
@@ -204,6 +204,10 @@
 //     function gg_show (){
 //         $(".img_modal").fadeIn();
 //     }
+var login_time = setTimeout(gg_show,1000);
+    function gg_show (){
+        $(".img_modal").fadeIn();
+    }
    
     var gb=0;   
         //关闭登陆注册
@@ -221,6 +225,13 @@
             }
         })
  
+ var li_w=6;
+    var win_w = $(window).innerWidth();
+    if(win_w>=1080){
+        li_w=6;
+    }else{
+        li_w=3
+    }
     var mySwiper = new Swiper('#swiper2', {
         loop:true,
         autoplay: true,
