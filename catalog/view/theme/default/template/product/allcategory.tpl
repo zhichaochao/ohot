@@ -8,16 +8,19 @@
       <?php foreach($nav['child'] as $child => $childs) {?>
         <li class="clearfix">
           <a href="<?php echo $childs['url']; ?>"><div class="pic_img">
-            <img src="<?php echo $childs['m_image']; ?>"/>
-            <div class="zzc_div"></div>
-            <div class="text">
-            </div>
+            <img src="<?php echo $childs['m_image']; ?>"/><p>
+            <div class="zzc_div"></div></p>
           </div></a>
         </li>
         <?php } ?>
         <?php } ?>
        <?php } } ?>
+       <li class="clearfix">
+          <a href="<?php echo $promotion['url']; ?>"><div class="pic_img">
+            <img src="<?php echo $promimg; ?>"/><p>
+            <div class="zzc_div"></div></p>
+          </div></a> 
+        </li>
       </ul>
     </div>
 <?php echo $footer; ?>
-

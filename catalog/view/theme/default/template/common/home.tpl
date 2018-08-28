@@ -164,7 +164,7 @@
                     <p>Customers share pictures and immediately buy the same</p>
                 </div>
                 
-                <ol class="ol_img6 clearfix">
+               <!--  <ol class="ol_img6 clearfix">
                       <?php foreach ($gallerys as $gallery) { ?>
                     <li>
                         <a href="<?=$gallery['url']?>">
@@ -174,7 +174,7 @@
                     <?php } ?>
                
                 
-                </ol>
+                </ol> -->
                 
                 <div class="product_lb clearfix">
                     <div class="swiper-container" id="swiper2">
@@ -222,13 +222,15 @@
         })
  
     var mySwiper = new Swiper('#swiper2', {
+        loop:true,
         autoplay: true,
-        slidesPerView : 3,
+        slidesPerView : li_w,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           },
     })
+
 
 
     $(function(){
