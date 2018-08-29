@@ -208,6 +208,7 @@ class ControllerCustomerInquiries extends Controller {
 				'name'       => $result['name'],
 				'email'     => $result['email'],
 				'phone'     => $result['phone'],
+				'status'     => $result['status'],
 				'comment'     =>utf8_substr(strip_tags($result['comment']),0,50).'...',
 				'submitTime' => date($this->language->get('date_format_short'), strtotime($result['submitTime'])),
 				'edit'       => $this->url->link('customer/inquiries/edit', 'token=' . $this->session->data['token'] . '&id=' . $result['id'], true)
