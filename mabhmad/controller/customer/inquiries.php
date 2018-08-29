@@ -474,6 +474,17 @@ class ControllerCustomerInquiries extends Controller {
 
 		return !$this->error;
 	}
+	public function click_jia() {
+		// print_r($this->request->post['id']);die;
+		$this->load->model('customer/inquiries');
+		$json = array();
+		if (isset($this->request->post['id'])) {
+			$inquiries_info = $this->model_customer_inquiries->updInquiries($this->request->post['id']);
+		}
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+
+	}
 
 
   
