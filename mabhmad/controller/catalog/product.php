@@ -398,6 +398,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['column_quantity'] = $this->language->get('column_quantity');
 		$data['column_status'] = $this->language->get('column_status');
 		$data['column_action'] = $this->language->get('column_action');
+		$data['column_browse'] = $this->language->get('column_browse');
 		$data['column_free_postage'] = $this->language->get('entry_free_postage');
 
 		$data['entry_name'] = $this->language->get('entry_name');
