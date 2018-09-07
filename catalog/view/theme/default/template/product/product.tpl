@@ -448,18 +448,18 @@ $(function(){
 			if(win>992){
 				if($(this).hasClass("off")){
 					$(this).removeClass("off");
-					$(this).css("border","1px solid #ccc").css("background","url(/catalog/view/theme/default/img/png/shop_star.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
+					// $(this).css("border","1px solid #ccc").css("background","url(/catalog/view/theme/default/img/png/shop_star.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
 				}else{
 					$(this).addClass("off");
-					$(this).css("border","1px solid #d5af74").css("background","url(/catalog/view/theme/default/img/png/shop_star_.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
+					// $(this).css("border","1px solid #d5af74").css("background","url(/catalog/view/theme/default/img/png/shop_star_.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
 				}
 			}else{
 				if($(this).hasClass("off")){
 					$(this).removeClass("off");
-					$(this).css("border","1px solid #ccc").css("background","url(/catalog/view/theme/default/img/png/shop_star.png) no-repeat center").css("background-size","0.38rem 0.36rem");
+					// $(this).css("border","1px solid #ccc").css("background","url(/catalog/view/theme/default/img/png/shop_star.png) no-repeat center").css("background-size","0.38rem 0.36rem");
 				}else{
 					$(this).addClass("off");
-					$(this).css("border","1px solid #d5af74").css("background","url(/catalog/view/theme/default/img/png/shop_star_.png) no-repeat  center").css("background-size","0.38rem 0.36rem");
+					// $(this).css("border","1px solid #d5af74").css("background","url(/catalog/view/theme/default/img/png/shop_star_.png) no-repeat  center").css("background-size","0.38rem 0.36rem");
 				}
 			}
 		})
