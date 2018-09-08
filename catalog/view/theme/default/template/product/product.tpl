@@ -576,6 +576,7 @@ function productInfoImg(elm) {
             success: function(json) {
             	if (json.success) {
         			$('#cart_count').html(json.total);
+        			$('.cart_count').html(json.total);
         			  $(".cart_li").click();
 
                 

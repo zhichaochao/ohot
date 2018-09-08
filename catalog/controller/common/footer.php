@@ -137,6 +137,8 @@ class ControllerCommonFooter extends Controller {
 		//底部wholesales的链接 dyl add
         $data['service_wholesales'] = $this->url->link('information/service/wholesales');
 
+        $data['text_cart_items'] = $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0);
+
 		// Whos Online
 		if ($this->config->get('config_customer_online')) {
 			$this->load->model('tool/online');

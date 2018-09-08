@@ -50,9 +50,12 @@
 <!-- End Google Tag Manager (noscript) -->
 <!-- 购物车 AJAX -->
 <script type="text/javascript">
-    // 购物车开关
+    // 购物车开关 
  $(function(){
-    $(".img_ol .cart_li").click(function(){
+    var win = $(window).innerWidth();
+
+     if(win>=920){
+$(".img_ol .cart_li").click(function(){
         $(".nav_cart").fadeIn();
         $.ajax({
             url: 'index.php?route=common/cart/info',
@@ -69,6 +72,7 @@
             }
         });  
     })
+}   
 });
 
 </script>
