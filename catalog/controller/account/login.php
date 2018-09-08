@@ -158,6 +158,12 @@ class ControllerAccountLogin extends Controller {
 			$data['action'] =str_replace(HTTP_SERVER,HTTP_SERVERS,$data['action']);
 		}
 
+		if ($this->request->server['HTTPS']) {
+		 $data['redirecturl']  = HTTPS_SERVER;
+		} else {
+		 $data['redirecturl'] = HTTP_SERVER;
+		}
+
 		//$data['registers'] = $this->url->link('account/register', '', true);
 		$data['register'] = $this->url->link('account/login/register_save', '', true);
 		$data['forgotten'] = $this->url->link('account/forgotten', '', true);

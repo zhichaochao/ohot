@@ -41,6 +41,7 @@
                 </label>
                 <input class="tj_input" type="submit" value="SIGN IN" />
                 <input type="hidden" name="redirect" value='<?=$redirect;?>'/>
+                <input type="hidden" name="url" value='<?=$redirecturl;?>'/>
               </form>
             </li>
             <li>
