@@ -94,6 +94,8 @@ class ControllerAccountOrder extends Controller {
 			
 		}
 		// print_r(	$data['orders']);exit;
+		$order_id=$data['orders']['order_id'];
+		// print_r($order_id);exit;
 		$pagination = new Pagination();
 		$pagination->total = $order_total;
 		$pagination->page = $page;
@@ -109,6 +111,9 @@ class ControllerAccountOrder extends Controller {
 		$data['skype'] =$this->config->get('config_skype');
 		// $data['column_left'] = $this->load->controller('common/column_left');
 		//$data['column_right'] = $this->load->controller('common/column_right');
+		$data['repay_receipt']	      = $this->url->link('account/order/repay_receipt', 'order_id=' . $order_id, true);
+		$order_info = $this->model_account_order->getOrder($order_id);
+		$data['bank_receipt'] =$order_info['bank_receipt'];
 		$data['account_left'] = $this->load->controller('account/left');
 		$data['content_top'] = $this->load->controller('common/content_top');
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
