@@ -409,12 +409,26 @@ $(function(){
 			$(".meas_img").fadeOut();
 		})
 		
-		$(".pra-list-ul>li").click(function(){
+
+
+
+		$(".pro_lb_off .swiper-slide").click(function(){
 			
+			$(this).addClass("active").siblings(".swiper-slide").removeClass("active");
 			var this_index = $(this).index();
-		
+			$(this).addClass("active").siblings("li").removeClass("active");
 			$(".swiper-pagination-clickable span").eq(this_index).trigger('click');
 		})
+		
+		
+		
+
+		// $(".pra-list-ul>li").click(function(){
+			
+		// 	var this_index = $(this).index();
+		
+		// 	$(".swiper-pagination-clickable span").eq(this_index).trigger('click');
+		// })
 		
 		
 		$(".pro_det_content .len_label>ul>li").click(function(){
