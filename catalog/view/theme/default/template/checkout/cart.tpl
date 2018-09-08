@@ -1,5 +1,10 @@
 <?php echo $header; ?>
 <!--内容-->
+<style>
+  @media only screen and (min-width: 1px) and (max-width: 920px) {
+    .cart_count{display: none;}
+  }
+</style>
 		<div class="shopcart2 clearfix">
 			<div class="content in_content shop2_content clearfix">
 				<div class="top clearfix">
