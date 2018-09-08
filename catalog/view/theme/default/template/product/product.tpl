@@ -7,7 +7,24 @@
 				<div class="ts_ps"></div>
 				<div class="top clearfix">
 					<div class="left clearfix">
-						<ol class="pro_img_ol">
+
+					<div class="pro_lb_off clearfix">
+							<div class="lb_text">
+								<div class="swiper-container" id="swiper2">
+								    <div class="swiper-wrapper">
+									   <?php foreach ($images as $k => $image) {?>
+										<div class="swiper-slide" <?php if($k==0 && !$video){ ?>class="on"<?php } ?>>
+											<img onclick="productInfoImg(this)" data-img="<?php echo $image['thumb2']; ?>" style="cursor: pointer !important;" src="<?php echo $image['thumb']; ?>"  title='<?php echo $heading_title; ?>'>
+										</div>
+										<?php } ?>
+							  		</div>
+								</div>
+							</div>
+					    	<div class="swiper-button-prevs"></div>
+							<div class="swiper-button-nexts"></div>
+						</div>
+
+						<!-- <ol class="pro_img_ol">
 						<?php if ($images) { ?>
 							<li class="li">
 							<div class="more-views">
@@ -29,7 +46,8 @@
 							</div>
 							</li>
 							<?php } ?>
-						</ol>
+						</ol> -->
+
 						<div class="pro_big_img" style="overflow: hidden;position:relative; ">
 							<div class="swiper-container" id="swiper3">
 							    <div class="swiper-wrapper">
@@ -194,7 +212,7 @@
 												<i>2-3</i>working days
 											</li>
 											<li>
-												<span>African Countries:</span>
+												<span>African:</span>
 												<i>3-5</i>working days
 											</li>
 											<li>
@@ -218,7 +236,7 @@
 												<i>3-4</i>working days
 											</li>
 											<li>
-												<span>Asia Countries:</span>
+												<span>Asia:</span>
 												<i>2-3</i>working days
 											</li>
 										</ul>
@@ -338,7 +356,6 @@
  }
 }
 var swiper3 = new Swiper('#swiper3', {
-	loop:true,
 	navigation: {
 	    nextEl: '.swiper-button-next',
 	    prevEl: '.swiper-button-prev',
@@ -347,7 +364,34 @@ var swiper3 = new Swiper('#swiper3', {
 		el: '.swiper-pagination',
 		clickable: true,
     },
+    on: {
+	    slideChangeTransitionStart: function(){
+	      $(".pl_img_ol>li").eq(this.activeIndex).addClass("active").siblings("li").removeClass("active");
+	      $(".lb_text .swiper-slide").eq(this.activeIndex).addClass("active").siblings(".swiper-slide").removeClass("active");
+	    },
+	 },
 });
+
+var swiper2 = new Swiper('#swiper2', {
+	freeMode:false,
+	slidesPerView:5,
+	direction: 'vertical',
+	navigation: {
+	    nextEl: '.swiper-button-nexts',
+	    prevEl: '.swiper-button-prevs',
+	},
+});
+// var swiper3 = new Swiper('#swiper3', {
+// 	loop:true,
+// 	navigation: {
+// 	    nextEl: '.swiper-button-next',
+// 	    prevEl: '.swiper-button-prev',
+// 	},
+// 	pagination: {
+// 		el: '.swiper-pagination',
+// 		clickable: true,
+//     },
+// });
 $(function(){
 	    $(".pro_det_dl>dd>p").click(function(){
       $(".pro_det_dl>dd>p").removeClass("active");
