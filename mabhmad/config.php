@@ -1,7 +1,7 @@
 <?php
 // HTTP
-define('HTTP_SERVERS', 'http://www.wp.com/');
-define('HTTPS_SERVERS', 'https://www.wp.com/');
+define('HTTP_SERVERS', 'http://opencart.com/');
+define('HTTPS_SERVERS', 'https://opencart.com/');
 define('HTTP_SERVER', 'http://'.$_SERVER['HTTP_HOST'].'/mabhmad/');
 define('HTTP_CATALOG', 'http://'.$_SERVER['HTTP_HOST'].'/');
 

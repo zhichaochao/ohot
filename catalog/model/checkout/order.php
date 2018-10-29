@@ -954,7 +954,7 @@ class ModelCheckoutOrder extends Model {
                     FROM " . DB_PREFIX . "order_product op
                     LEFT JOIN " . DB_PREFIX . "order_option oo ON oo.order_id = op.order_id
                     AND oo.order_product_id = op.order_product_id
-                    WHERE op.order_id = '" . (int)$order_id . "' GROUP BY op.product_id ORDER BY oo.order_product_id  ";
+                    WHERE op.order_id = '" . (int)$order_id . "' GROUP BY op.order_product_id ORDER BY oo.order_product_id  ";
 
         $order_query = $this->db->query($sql);
 //var_dump($order_query);exit;

@@ -30,6 +30,7 @@
         <h3 class="panel-title"><i class="fa fa-list"></i> <?php echo $text_list; ?></h3>
       </div>
       <div class="panel-body">
+    
         <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-inquiries">
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
@@ -81,6 +82,8 @@
                   <td class="text-right"><?php echo $inquiries['phone']; ?></td>
                   <td class="text-left"><?php echo $inquiries['comment']; ?></td>
                   <td class="text-left"><?php echo $inquiries['submitTime']; ?></td>
+                  <!-- <td class="text-left"><?php if($inquiries['status']==1){ echo '未处理';}else{ echo '已处理';}; ?></td> -->
+
                   <td class="text-left" onclick="click_jia(<?php echo $inquiries['id']; ?>)">
                 <?php if($inquiries['status']==1){ ?>  
                       <h3><font color="red">×</font></h3>
@@ -113,7 +116,7 @@
     </div>
   </div>
   <script type="text/javascript"><!--
-    function click_jia(id){
+  function click_jia(id){
 if(confirm('确认更改吗?')){
    $.ajax({
          url:"index.php?route=customer/inquiries/click_jia&token=<?php echo $token; ?>",
@@ -142,6 +145,17 @@ $('#button-filter').on('click', function() {
 		url += '&filter_email=' + encodeURIComponent(filter_email);
 	}
 	
+	// var filter_status = $('select[name=\'filter_status\']').val();
+	
+	// if (filter_status != '*') {
+	// 	url += '&filter_status=' + encodeURIComponent(filter_status); 
+	// }		
+			
+	// var submitTime = $('input[name=\'filter_date_added\']').val();
+	
+	// if (filter_date_added) {
+	// 	url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+	// }
 var submittime = $('input[name=\'submittime\']').val();
   
   if (submittime) {

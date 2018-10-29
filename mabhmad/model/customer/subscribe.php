@@ -53,7 +53,7 @@ class ModelCustomerSubscribe extends Model {
 
 		return $query->row['total'];
 	}
-public function updsubscribes($news_id) {
+	public function updsubscribes($news_id) {
 		$query = $this->db->query("SELECT  * FROM " . DB_PREFIX . "newsletter r  WHERE r.news_id = '" . (int)$news_id . "'");
 		if($query->row['status']==1){
 			$querys = $this->db->query("UPDATE " . DB_PREFIX . "newsletter SET status = 0 WHERE news_id = '" . (int)$news_id . "'");

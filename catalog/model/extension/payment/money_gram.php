@@ -17,7 +17,7 @@ class ModelExtensionPaymentMoneyGram extends Model {
 				'code'       => 'money_gram',
 				'title'      => $this->language->get('text_title'),
 				'terms'      => '',
-				'image'      => $this->model_tool_image->resizes($this->config->get('money_gram_image'), 80, 40),
+				'image'      => $this->model_tool_image->resize($this->config->get('money_gram_image'), 80, 40),
 				'sort_order' => $this->config->get('money_gram_sort_order')
 			);
 		}

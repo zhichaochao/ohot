@@ -41,7 +41,15 @@ class ControllerCommonColumnLeft extends Controller {
 			);
 
 			// Catalog
+			$catalog = array();
 
+			if ($this->user->hasPermission('access', 'catalog/category')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_category'),
+					'href'     => $this->url->link('catalog/category', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
 
 			if ($this->user->hasPermission('access', 'catalog/product')) {
 				$catalog[] = array(
@@ -52,18 +60,76 @@ class ControllerCommonColumnLeft extends Controller {
 			}
 			
 		
-			// 分期付款
 
-			// 商品过滤
-	
 
-			// Attributes
-			
-			// 品牌管理
-			
+			if ($this->user->hasPermission('access', 'catalog/option')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_option'),
+					'href'     => $this->url->link('catalog/option', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+
+			if ($this->user->hasPermission('access', 'catalog/review')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_review'),
+					'href'     => $this->url->link('catalog/review', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/nav')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_nav'),
+					'href'     => $this->url->link('catalog/nav', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/information')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_information'),
+					'href'     => $this->url->link('catalog/information', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
 		
 			// Attributes
-			
+			$hairclub = array();
+		
+
+			if ($this->user->hasPermission('access', 'catalog/profile')) {
+				$hairclub[] = array(
+					'name'	   => $this->language->get('text_profile'),
+					'href'     => $this->url->link('catalog/profile', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+			if ($this->user->hasPermission('access', 'catalog/video')) {
+				$hairclub[] = array(
+					'name'	   => $this->language->get('text_provideo'),
+					'href'     => $this->url->link('catalog/video', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+			if ($this->user->hasPermission('access', 'catalog/gallery')) {
+				$hairclub[] = array(
+			        'name'      => $this->language->get('text_gallery'),
+                    'href'      => $this->url->link('catalog/gallery', 'token=' . $this->session->data['token'], true),
+                    'children'  => array()
+                );
+			}
+
+			if ($hairclub) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_hairclub'),
+					'href'     => '',
+					'children' => $hairclub
+				);
+			}
+		
+//			 print_r($catalog);exit();
 
 			if ($catalog) {
 				$data['menus'][] = array(
@@ -78,7 +144,7 @@ class ControllerCommonColumnLeft extends Controller {
 
 			// Extension
 			$extension = array();
-		
+
 			if ($this->user->hasPermission('access', 'extension/installer')) {
 				$extension[] = array(
 					'name'	   => $this->language->get('text_installer'),
@@ -95,7 +161,7 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
-	
+
 
 			if ($extension) {
 				$data['menus'][] = array(
@@ -111,6 +177,23 @@ class ControllerCommonColumnLeft extends Controller {
 			$design = array();
 
 		
+			
+			if ($this->user->hasPermission('access', 'design/home')) {
+				$design[] = array(
+					'name'	   => $this->language->get('text_home'),
+					'href'     => $this->url->link('design/home', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'design/banner')) {
+				$design[] = array(
+					'name'	   => $this->language->get('text_banner'),
+					'href'     => $this->url->link('design/banner', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
 			if ($design) {
 				$data['menus'][] = array(
 					'id'       => 'menu-design',
@@ -132,7 +215,57 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
-			
+			if ($this->user->hasPermission('access', 'sale/recurring')) {
+				$sale[] = array(
+					'name'	   => $this->language->get('text_recurring'),
+					'href'     => $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'sale/return')) {
+				$sale[] = array(
+					'name'	   => $this->language->get('text_return'),
+					'href'     => $this->url->link('sale/return', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			// Voucher
+			$voucher = array();
+
+			if ($this->user->hasPermission('access', 'sale/voucher')) {
+				$voucher[] = array(
+					'name'	   => $this->language->get('text_voucher'),
+					'href'     => $this->url->link('sale/voucher', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'sale/voucher_theme')) {
+				$voucher[] = array(
+					'name'	   => $this->language->get('text_voucher_theme'),
+					'href'     => $this->url->link('sale/voucher_theme', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			if ($voucher) {
+				$sale[] = array(
+					'name'	   => $this->language->get('text_voucher'),
+					'href'     => '',
+					'children' => $voucher
+				);
+			}
+
+			//Product Inquiry  dyl add
+			if ($this->user->hasPermission('access', 'sale/product_inquiry')) {
+				$sale[] = array(
+					'name'	   => 'Product Inquiry',
+					'href'     => $this->url->link('sale/product_inquiry', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
 			//Product Inquiry,end
 
 			if ($sale) {
@@ -155,22 +288,34 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()
 				);
 			}
+			if ($this->user->hasPermission('access', 'customer/customer')) {
+				$customer[] = array(
+					'name'	   => $this->language->get('text_allcustomer'),
+					'href'     => $this->url->link('customer/allcustomer', 'token=' . $this->session->data['token'].'&key=0', true),
+					'children' => array()
+				);
+			}
 			if ($this->user->hasPermission('access', 'customer/inquiries')) {
 				$customer[] = array(
 					'name'	   => $this->language->get('text_inquiries'),
 					'href'     => $this->url->link('customer/inquiries', 'token=' . $this->session->data['token'], true),
 					'children' => array()
 				);
-			}
-			if ($this->user->hasPermission('access', 'customer/subscribe')) {
+			}if ($this->user->hasPermission('access', 'customer/subscribe')) {
 				$customer[] = array(
 					'name'	   => $this->language->get('text_subscribe'),
 					'href'     => $this->url->link('customer/subscribe', 'token=' . $this->session->data['token'], true),
 					'children' => array()
 				);
 			}
-
-			
+	
+			// if ($this->user->hasPermission('access', 'customer/email')) {
+			// 	$customer[] = array(
+			// 		'name'	   => $this->language->get('text_custom_email'),
+			// 		'href'     => $this->url->link('customer/email', 'token=' . $this->session->data['token'], true),
+			// 		'children' => array()
+			// 	);
+			// }
 
 			if ($customer) {
 				$data['menus'][] = array(

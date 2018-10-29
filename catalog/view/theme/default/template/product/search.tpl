@@ -7,7 +7,7 @@
       <input type="hidden" name="searchs" value='<?=$search;?>' id='searchs'/>
       <h1><?php echo $heading_title; ?></h1>
         <div class="form_sr clearfix">
-          <p class="p_sr"><?php echo $entry_search; ?></p>
+          <p class="p_sr"><?php echo $entry_search; ?>(<?=$total?> results) </p>
           <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_keyword; ?>" id="input-search" class="input_sr" />
            <select name="category_id" class="form-control">
             <option value="0"><?php echo $text_category; ?></option>

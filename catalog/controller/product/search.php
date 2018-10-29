@@ -515,6 +515,7 @@ class ControllerProductSearch extends Controller {
 		$data['sort'] = $sort;
 		$data['order'] = $order;
 		$data['limit'] = $limit;
+		$data['total'] = isset($product_total)?$product_total:0;
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');

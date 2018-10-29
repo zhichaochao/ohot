@@ -17,7 +17,7 @@ class ModelExtensionPaymentCash extends Model {
 				'code'       => 'cash',
 				'title'      => $this->language->get('text_title'),
 				'terms'      => '',
-				'image'      => $this->model_tool_image->resizes($this->config->get('cash_image'), 80, 40),
+				'image'      => $this->model_tool_image->resize($this->config->get('cash_image'), 80, 40),
 				'sort_order' => $this->config->get('cash_sort_order')
 			);
 		}

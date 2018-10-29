@@ -27,9 +27,9 @@ class ControllerCommonHome extends Controller {
 		 $data['fasts'] = array();
         $results = $this->model_design_banner->getBanner(2);
         foreach ($results as $result) {
-            if (is_file(DIR_IMAGE . $result['image'])) {
+            if ($result['image']) {
                 $image=$this->model_tool_image->resize($result['image'], 480, 480);
-                if (is_file(DIR_IMAGE . $result['mimage'])) {
+                if ( $result['mimage']) {
                    $mimage=  $this->model_tool_image->resize($result['mimage'], 230, 320);
                 }else{
                      $mimage=$image;
@@ -140,7 +140,7 @@ class ControllerCommonHome extends Controller {
           }
         }
         $data['homes']=$homes;
-        $data['video']=HTTP_SERVERS. $homes[0]['video'];
+        $data['video']=HTTPS_SERVERS. $homes[0]['video'];
         if(isset($this->session->data['choose'])){ $data['choose']=1; }else { $data['choose']=''; }
         // unset($this->session->data['choose']);
 

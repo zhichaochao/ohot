@@ -195,7 +195,7 @@
             
         </div>
    
-        
+      
 <?php echo $footer; ?>
 
 <script>

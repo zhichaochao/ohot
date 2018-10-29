@@ -64,7 +64,7 @@ class ControllerCommonFooter extends Controller {
 							'url'=>$this->url->link('information/information','information_id=9'),
 							),
 						2=>array(
-							'title'=>'Shipment & Pay',
+							'title'=>'Delivery Time&Bank Infor',
 							'url'=>$this->url->link('information/information','information_id=3'),
 
 							),
@@ -171,6 +171,7 @@ class ControllerCommonFooter extends Controller {
 		$data['whatsapp'] = $this->config->get('config_whatsapp');
 		$data['skype'] = $this->config->get('config_skype');
 		$data['facebook'] = $this->config->get('config_facebook');
+		$data['instagram'] = $this->config->get('config_instagram');
 
 		$data['chat_code'] = $this->config->get('config_code');
 

@@ -41,7 +41,7 @@
                 </label>
                 <input class="tj_input" type="submit" value="SIGN IN" />
                 <input type="hidden" name="redirect" value='<?=$redirect;?>'/>
-                <input type="hidden" name="url" value='<?=$redirecturl;?>'/>
+                <!-- <input type="hidden" name="url" value='<?=$redirecturl;?>'/> -->
               </form>
             </li>
             <li>
@@ -183,7 +183,7 @@ $(document).delegate('#button-register', 'click', function() {
       var re=/^[a-zA-Z]+$/;
       if(!re.test(text) && text !=""){
         $(this).siblings(".ts_p").addClass("off");
-        $(this).siblings(".ts_p").text("Please fill in in English");
+        $(this).siblings(".ts_p").text("Letters Only, No Space or Digit");
       }else{
         $(this).siblings(".ts_p").removeClass("off");
       }
