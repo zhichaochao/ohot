@@ -231,7 +231,52 @@ class ControllerCheckoutCart extends Controller {
                     }
                 }
             }
-            // print_r( $data['error_warning']);exit;
+
+
+              $order_data = array();
+            $totals = array();
+            $taxes = $this->cart->getTaxes();
+            $total = 0;
+            
+            $total_data = array(
+                'totals' => &$totals,
+                'taxes'  => &$taxes,
+                'total'  => &$total
+            );
+            // print_r($total_data);exit();
+            $this->load->model('extension/extension');
+            $sort_order = array();
+            $results = $this->model_extension_extension->getExtensions('total');
+            
+            foreach ($results as $key => $value) {
+                $sort_order[$key] = $this->config->get($value['code'] . '_sort_order');
+            }
+
+            array_multisort($sort_order, SORT_ASC, $results);
+               // print_r($results);exit();
+            foreach ($results as $result) {
+                if ($this->config->get($result['code'] . '_status')) {
+                    $this->load->model('extension/total/' . $result['code']);
+                    // We have to put the totals in an array so that they pass by reference.
+
+                    $this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
+                }
+            }
+            $sort_order = array();
+            foreach ($totals as $key => $value) {
+                $sort_order[$key] = $value['sort_order'];
+            }
+            // print_r($totals);exit();
+            array_multisort($sort_order, SORT_ASC, $totals);
+            $order_data['totals'] = $totals;
+            $data['totals'] = array();
+            foreach ($order_data['totals'] as $total) {
+                $data['totals'][] = array(
+                    'title' => $total['title'],
+                    'text'  => $this->currency->format($total['value'], $this->session->data['currency'])
+                );
+            }
+            // print_r( $data['totals']);exit;
 
             $data['paypal_checkout'] = HTTP_SERVER.'index.php?route=extension/payment/pp_express/express';
             $data['step_cart'] = $this->language->get('step_cart');

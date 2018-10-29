@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 
 
-<div class="content product_det in_content">
+<div class="content product_det in_content new_in_content">
 
 			<div class="pro_det_content clearfix">
 				<div class="ts_ps"></div>
@@ -459,14 +459,14 @@ $(function(){
 		$(".xxk_h1").click(function(){
 			if($(this).hasClass("off")){
 				$(this).removeClass("off");
-				$(this).css("background","url(/catalog/view/theme/default/img/png/jiahao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
+				// $(this).css("background","url(/catalog/view/theme/default/img/png/jiahao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
 				$(this).siblings(".xxk_text").slideUp();
 			}else{
 				$(".xxk_h1").removeClass("off");
-				$(".xxk_h1").css("background","url(/catalog/view/theme/default/img/png/jiahao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
+				// $(".xxk_h1").css("background","url(/catalog/view/theme/default/img/png/jiahao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
 				$('.xxk_text').slideUp();
 				$(this).addClass("off");
-				$(this).css("background","url(/catalog/view/theme/default/img/png/jianhao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
+				// $(this).css("background","url(/catalog/view/theme/default/img/png/jianhao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
 				$(this).siblings(".xxk_text").slideDown();
 			}
 		})
@@ -575,6 +575,7 @@ function productInfoImg(elm) {
      
             success: function(json) {
             	if (json.success) {
+            		tips("Successful shopping cart");
         			$('#cart_count').html(json.total);
         			$('.cart_count').html(json.total);
         			  $(".cart_li").click();

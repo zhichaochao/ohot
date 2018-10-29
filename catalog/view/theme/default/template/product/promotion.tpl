@@ -12,7 +12,7 @@
       
       <div class="pro_content clearfix">
         <div class="pro_text clearfix">
-          <ul class="pro_ul prolist">
+          <ul class="pro_ul prolist clearfix">
             <?php foreach ($products as $product) { ?>
             <li>
               <a href="<?php echo $product['href']; ?>">

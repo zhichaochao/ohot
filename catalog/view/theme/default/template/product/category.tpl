@@ -22,7 +22,7 @@
           </ol>
         </div>
         <div class="pro_text clearfix">
-          <ul class="pro_ul prolist">
+          <ul class="pro_ul prolist clearfix">
 
            <?php foreach ($products as $product) { ?>
             <li>
@@ -31,17 +31,18 @@
                   <img src="<?php echo $product['thumb']; ?>"   />
                 </div>
                 <div class="text clearfix" >
+                <p><?php echo $product['name']; ?></p>
                 <span class="price">
                   <?php if($product['special']) { ?>
                      <span><?php echo $product['special']; ?>
                      <del><?php echo $product['price']; ?></del></span>
                   <?php }else{ ?>
-                     <span class="price-single"><?php echo $product['price']; ?></span>
+                     <em class="price-single"><?php echo $product['price']; ?><span class="new">new</span></em>
                   <?php } ?>
                 </span>
                   <!-- <span>$35.30</span> -->
                   <p class="p1"><?php echo $product['texture']; ?></p>
-                  <p><?php echo $product['name']; ?></p>
+                  
                 </div>
               </a>
               <div class="sc_div <?=$product['wishlist']==1 ?'off':'';?>"
@@ -74,6 +75,7 @@
     dataType: 'json',
     success:function(data){
       if (data.success) {
+        tips('Cancel the collection','');
         $('#wishlist_count').html(data.total);
       }
                // location.reload(); 
@@ -89,6 +91,7 @@
     dataType: 'json',
     success:function(data){
       if (data.success) {
+        tips('Collection success','');
         $('#wishlist_count').html(data.total);
       }
                // location.reload(); 

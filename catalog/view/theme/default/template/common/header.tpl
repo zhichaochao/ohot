@@ -84,7 +84,7 @@ $(".img_ol .cart_li").click(function(){
 <body>
 <!--头部-->
         <div class="big_nav">
-            <div class="nav content clearfix">
+            <div class="nav yd_hide content clearfix">
 
                 <?php echo $currency; ?>
                 
@@ -189,6 +189,10 @@ $(".img_ol .cart_li").click(function(){
                     </ul>
                 </div>
                 
+            </div>
+            <div class="new_nav pc_hide clearfix">
+                <a class="fh" href="###"></a>
+                <p>PRODUCT DETAILS</p>
             </div>
         
         </div>
