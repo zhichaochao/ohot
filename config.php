@@ -6,8 +6,11 @@
 //     $h = $h[0]=='m'?'m/':'catalog/';
 // }
 // HTTP
-define('HTTP_SERVERS', 'http://opencart.com/');
-define('HTTPS_SERVERS', 'https://opencart.com/');
+define('HTTP_SERVERS', 'http://mad.hotbeautyhairmall.com/');
+define('HTTPS_SERVERS', 'https://mad.hotbeautyhairmall.com/');
+
+// define('HTTP_SERVERS', 'opencart.com/');
+// define('HTTPS_SERVERS', 'opencart.com/');
 define('HTTP_SERVER', 'http://'.$_SERVER['HTTP_HOST'].'/');
 define('HTTP_SKIN', HTTP_SERVER.'catalog/view/theme/default/');
 
