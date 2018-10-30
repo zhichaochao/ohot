@@ -606,7 +606,7 @@ class ControllerCheckoutConfirm extends Controller {
 			}
 		}
 		$data['payment'] = $this->url->link('checkout/payment', '', true);
-		$data['submit_bank_receipt'] = $this->url->link('account/order/receipt', 'order_id='.$order_id, true);
+		$data['submit_bank_receipt'] = $this->url->link('account/order/receipts', 'order_id='.$order_id, true);
         $this->load->model('checkout/order_total');
 	    $data['totals'] = $this->model_checkout_order_total->getOrderTotal2($order_id,$payment_code);
 	    $data['column_left'] = $this->load->controller('common/column_left');

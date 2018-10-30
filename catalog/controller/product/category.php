@@ -248,6 +248,7 @@ class ControllerProductCategory extends Controller {
                             
                 //texture
                 $texture = $this->model_catalog_product->getOptionDes('Texture',$result['product_id']);
+				$off=floor((1-$result['special']/$result['price'])*100);
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
@@ -257,6 +258,7 @@ class ControllerProductCategory extends Controller {
 					'name'        => utf8_substr(strip_tags($result['name']),0,40).'...',
 					'color_name'  => $color_name,
                     'texture'     => $texture,
+                    'off'		  =>$off,
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
 					'price'       => $this->currency->format($result['price'],$this->session->data['currency']),
 					'special'     => $result['special']>0? $this->currency->format($result['special'],$this->session->data['currency']) : '',
@@ -423,8 +425,15 @@ class ControllerProductCategory extends Controller {
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
+			// print_r($path);exit;
+			if($category_info['category_id']==17||$category_info['parent_id']==17){
+				$this->response->setOutput($this->load->view('product/promotion', $data));
 
-			$this->response->setOutput($this->load->view('product/category', $data));
+			}else{
+				$this->response->setOutput($this->load->view('product/category', $data));
+			}
+			
+
 		} else {
 			$url = '';
 

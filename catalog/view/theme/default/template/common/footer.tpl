@@ -55,7 +55,7 @@
     </div>
     
     <!--yd底部-->
-    <div class="yd_footer clearfix" >
+    <div class="yd_footer  clearfix" >
       <div class="top" >
         <ul class="ul_ydfot clearfix">
               <?php foreach($informations as $key => $information) { ?>

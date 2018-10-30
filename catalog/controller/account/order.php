@@ -80,7 +80,7 @@ class ControllerAccountOrder extends Controller {
 				'order_no'   => $result['order_no'],
 			
 				'status'     => $result['status'],
-				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'date_added' => $result['date_added'],
 		
 				'qty'        => $product_num,
 				'payment_code' => $result['payment_code'],
@@ -245,7 +245,7 @@ class ControllerAccountOrder extends Controller {
 			}
 
 			$data['order_id'] = $this->request->get['order_id'];
-			$data['date_added'] = date($this->language->get('date_format_short'), strtotime($order_info['date_added']));
+			$data['date_added'] = $order_info['date_added'];
 
 // 			if ($order_info['payment_address_format']) {
 // 				$format = $order_info['payment_address_format'];
@@ -873,6 +873,40 @@ class ControllerAccountOrder extends Controller {
 			
 		}
 		 $this->response->redirect($this->url->link('account/order/info','order_id='.$order_id));
+
+		
+	}
+	public function receipts()
+	{
+		if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('account/order', '', 'SSL');
+			$this->response->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+	    if (isset($this->request->get['order_id'])) {
+	        $order_id = $this->request->get['order_id'];
+	    } else {
+	        $order_id = 0;
+	    }
+	   
+	    $img = date("YmdHis").substr(md5(mt_rand(0,1000)),0,2).strtolower(strrchr($_FILES['bank_receipt']['name'],"."));
+		$souceName = DIR_IMAGE.'/bank_receipt/'.$img;
+		$imgk='../image/bank_receipt/'.$img;
+		$moveRes=move_uploaded_file($_FILES['bank_receipt']['tmp_name'],$souceName);
+		if ($moveRes) {
+			$this->load->model('account/order');
+			$this->model_account_order->submitOrderBankReceipt($order_id,$imgk);
+			
+		}
+		$data['vieworder'] = $this->url->link('account/order/info', 'order_id='.$order_id, true);
+		$data['shopping'] = $this->url->link('product/category');
+		$data['column_left'] = $this->load->controller('common/column_left');
+			//$data['column_right'] = $this->load->controller('common/column_right');
+			$data['account_left'] = $this->load->controller('account/left');
+			$data['content_top'] = $this->load->controller('common/content_top');
+			$data['content_bottom'] = $this->load->controller('common/content_bottom');
+			$data['footer'] = $this->load->controller('common/footer');
+			$data['header'] = $this->load->controller('common/header');
+		$this->response->setOutput($this->load->view('account/pay_success', $data));
 
 		
 	}

@@ -41,7 +41,7 @@
                     <div class="shop_search">
                         <p>
                             If you have coupons, please fill them out. If not, 
-                            please pay.
+                            please submit the order.
                         </p>
                         <i id="new-checkout-bot-code" style="color: #f00;"></i>
                         <label >
@@ -51,7 +51,7 @@
                     </div>
                     <?php if($cart==1){ ?>
                     <div class="btn">
-                            <a class="a_btn"  onclick="submitCart();">GO TO CHECK OUT&nbsp;&nbsp;&nbsp;></a>
+                            <a class="a_btn"  onclick="submitCart();">SUBMIT THE ORDER&nbsp;&nbsp;&nbsp;></a>
                     
                         </div>
                     <?php }else{ ?>

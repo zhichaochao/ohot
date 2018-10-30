@@ -1,5 +1,17 @@
 <?php echo $header; ?>
-	<link rel="stylesheet" type="text/css" href="/catalog/view/theme/default/stylesheet/common/success.css"/>
+
+<div class="content in_content success">
+			<img class="sg_img" src="catalog/view/theme/default/img/png/successful.png"/>
+			<h1>Congratulations !</h1>
+			<p>Payment is made successfully</p>
+			<div class="btn clearfix">
+				<a class="a_btn1" href="<?php echo $order_list; ?>">ORDER REVIEW</a>
+				<a class="a_btn2" href="<?php echo $continue; ?>">CONTINYE SHOPPING</a>
+			</div>
+		</div>
+
+		
+<!-- 	<link rel="stylesheet" type="text/css" href="/catalog/view/theme/default/stylesheet/common/success.css"/>
 
 <section class="content-wrap">
 	<div class="cgConter">
@@ -24,7 +36,7 @@
 
 		</div>
 	</div>
-</section>
+</section> -->
 
 <?php if(isset($order) && !empty($order_no)){ ?>
 <script>
@@ -64,3 +76,9 @@
 <?php } ?>
 
 <?php echo $footer; ?>
+<script type="text/javascript">
+$(function(){
+	$(".yd_footer , .yd_footer2").addClass("hide");
+})
+
+</script>

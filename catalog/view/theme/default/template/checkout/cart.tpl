@@ -15,19 +15,19 @@
 				<div class="shop2_text clearfix">
 				
 					<div class="left">
-						<!-- <label for="" class="qx_label" id="cart-tfoot">
+						<label for="" class="qx_label" id="cart-tfoot">
 							<span>ALL</span>
 							<input checked="checked" class="check_input" onclick="getOrder()" autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
 							<i class="check_i active"></i>
-							<!-- <input autocomplete="off" id="tfoot-checkbox-select-all" type="checkbox" class="check_i" > -->
-						<!-- </label> --> 
-						<div class="del clearfix">
-							<svg t="1539766974948" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
+							<!-- <input autocomplete="off" id="tfoot-checkbox-select-all" type="checkbox" class="check_i" > --> 
+						</label>
+						<!-- <div class="del clearfix yd_hide" >
+							<svg t="1539766974948" class="icon yd_hide" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
 								<path d="M793.6 998.4H220.16c-51.2 0-97.28-40.96-97.28-97.28V261.12c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v645.12c0 25.6 20.48 46.08 46.08 46.08h573.44c25.6 0 46.08-20.48 46.08-46.08v-563.2c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v563.2c0 46.08-46.08 92.16-97.28 92.16z" p-id="5270" fill="#333"></path>
 								<path d="M51.2 266.24c-10.24 0-20.48-10.24-25.6-25.6 0-15.36 10.24-25.6 25.6-25.6l916.48-81.92c15.36 0 25.6 10.24 25.6 25.6s-10.24 25.6-25.6 25.6L51.2 266.24c5.12 0 0 0 0 0z" p-id="5271" fill="#333"></path>
 								<path d="M343.04 230.4c-10.24 0-20.48-10.24-25.6-25.6l-5.12-76.8C307.2 87.04 337.92 51.2 378.88 46.08l225.28-20.48c20.48 0 40.96 5.12 56.32 15.36 15.36 10.24 25.6 30.72 25.6 51.2l5.12 81.92c0 15.36-10.24 25.6-25.6 25.6s-25.6-10.24-25.6-25.6l-5.12-81.92c0-10.24-10.24-20.48-25.6-20.48l-225.28 25.6c-5.12 0-10.24 5.12-15.36 10.24-5.12 0-5.12 10.24-5.12 15.36L368.64 204.8c0 10.24-10.24 25.6-25.6 25.6 5.12 0 0 0 0 0zM435.2 768c-15.36 0-25.6-15.36-25.6-30.72V399.36c0-15.36 10.24-40.96 25.6-40.96s25.6 25.6 25.6 35.84v337.92c0 15.36-10.24 35.84-25.6 35.84zM588.8 768c-15.36 0-25.6-15.36-25.6-30.72V465.92c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v271.36c0 15.36-10.24 30.72-25.6 30.72z" p-id="5272" fill="#333"></path>
 							</svg>	
-						</div>
+						</div> -->
 						<ul class="shop2_ul" id="cart_table">
 							 <?php foreach($products as $product){ ?>
 							<li class="clearfix">
@@ -85,8 +85,8 @@
 									</div>
 								</div>
 			
-								<!-- <div class="close" onclick="javascript:cart_remove('<?php echo $product['cart_id']; ?>');"></div>
-								<span class="wishlist <?=$product['wishlist']==1 ?'off':'';?>" 
+							 <div class="close yd_hide" onclick="javascript:cart_remove('<?php echo $product['cart_id']; ?>');"></div>
+									<!--<span class="wishlist <?=$product['wishlist']==1 ?'off':'';?>" 
 									
 								 onclick="wishlist('<?php echo $product['product_id']; ?>',this);cart_removes('<?php echo $product['cart_id']; ?>')">Move to Wishlist</span> -->
 							</li>
@@ -147,17 +147,18 @@
 						<!-- <i class="check_i"></i> -->
 					</label>
 
-					<?php foreach ($totals as $k => $total) { ?>
+
+                    <?php foreach ($totals as $k => $total) { ?>
                        <?php if($total['title']=='Total') { ?>
-                        <p >Total:  <span ><?php echo $total['text']; ?></span></p>
-                        <?php } ?>
-                            <p >Total:  <span ><?php echo $total['text']; ?></span></p>
+                        <p >Total: <span ><?php echo $total['text']; ?></span></p>
+                        <?php }else{ ?>
+                            <!-- <p>Total: <span ><?php echo $total['text']; ?></span></p> -->
                         <?php } ?>
                     <?php }  ?>
 
 
 					<!-- <p>Total: <span>$119.59</span></p> -->
-					<a class="tj_btn" href="<?php echo $total['text']; ?>"> CHECK OUT</a>
+					<a class="tj_btn" onclick="submitCart();" > CHECK OUT</a>
 				</div>
 
 			</div>
@@ -251,7 +252,7 @@ function cart_removes(product_key){
 	            break;
 	        case 1:
 	            qty = $(obj).next('input[type="text"]').val() - 1;
-	            if(qty == 0){alert('At least 1 product'); return false;};
+	            if(qty == 0){tips('At least 1 product','gantan'); return false;};
 	            $(obj).next('input[type="text"]').val(qty);
 	          // document.getElementById('cart-form').submit();
 	            break;
@@ -269,8 +270,10 @@ function cart_removes(product_key){
         dataType: 'json',
  
         success: function(json) {
+            tips("Successfully Modify Shopping Cart",'');
         	console.log(json);
         	getOrder();
+        	// location.reload()
         }
     })
 
@@ -286,7 +289,7 @@ function cart_removes(product_key){
 	    
 	}
 	function cart_remove(product_key){
-		//alert(product_key);
+		alert(product_key);
 	   if(confirm('Are you sure?')){
 
 	   	     $.ajax({

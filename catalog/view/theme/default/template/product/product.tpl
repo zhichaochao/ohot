@@ -333,6 +333,7 @@
     dataType: 'json',
     success:function(data){
       if (data.success) {
+        tips('Cancel the collection','');
         $('#wishlist_count').html(data.total);
       }
                // location.reload(); 
@@ -348,6 +349,7 @@
     dataType: 'json',
     success:function(data){
       if (data.success) {
+        tips('Collection success','');
         $('#wishlist_count').html(data.total);
       }
                // location.reload(); 
@@ -575,7 +577,7 @@ function productInfoImg(elm) {
      
             success: function(json) {
             	if (json.success) {
-            		tips("Successful shopping cart");
+            		tips("Successful Shopping Cart",'');
         			$('#cart_count').html(json.total);
         			$('.cart_count').html(json.total);
         			  $(".cart_li").click();
