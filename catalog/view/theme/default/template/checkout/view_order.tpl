@@ -1,5 +1,25 @@
 <?php echo $header; ?>
-
+<!--内容-->
+        <div class="content in_content pay new_in_content">
+            <div class="pay_text clearfix">
+                <p class="p1">Order Number: <span><?php echo $order['order_no']; ?></span></p>
+                <table class="pay_tb1">
+                    <?php if(is_array($totals)) foreach ($totals as $total) { ?>
+                            <tr>
+                                <td><span><?php echo $total['title']; ?></span></td>
+                                <td><span><?php echo $total['value']; ?></span></td>
+                            </tr>
+                        <?php } ?>
+                </table>
+                <?php if ($payment_method_code == 'pp_express') { ?>
+                <a class="a_btn" href="<?php echo $payment; ?>">CONTINUE</a>
+                
+                <?php }else{ ?>
+                <a class="a_btn" href="<?php echo $continue; ?>">CONTINUE</a>
+                <?php }?>
+            </div>
+             
+        </div>
 
 <!--内容-->
         
@@ -24,7 +44,7 @@
 
    
                 <div class="pay_4">
-                        <img class="xs_pay" src="img/jpg/pay_xs.png" alt="" />
+                        <img class="xs_pay" src="catalog/view/theme/default/img/jpg/pay_xs.png" alt="" />
                         <p>
                             If you have PayPal account, please pay your order by PayPal account directly.<br />
                             If you don't have a paypal account, you can also pay via paypal with your credit 

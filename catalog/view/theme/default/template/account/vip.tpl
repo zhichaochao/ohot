@@ -56,9 +56,9 @@
               <li>
                 <span>Your Accumulated Amount</span>
                 <span>$0</span>
-                <span>$500</span>
-                <span>$5000</span>
-                <span>$10000</span>
+                <span>$20000</span>
+                <span>$50000</span>
+                <span>$100000</span>
               </li>
               <li>
                 <span>VIP Grade Benifits</span>
@@ -151,9 +151,9 @@
               </p>
               <ul>
                 <li><p><span>• VIP:</span> Register to get account.</p></li>
-                <li><p><span>• Silver VIP:</span> Accumulative spent over $500.</p></li>
-                <li><p><span>• Gold VIP:</span> Accumulative spent among $5,000.</p></li>
-                <li><p><span>• Diamond VIP:</span> Accumulative spent over $10,000.</p></li>
+                <li><p><span>• Silver VIP:</span> Accumulative spent over $20,000.</p></li>
+                <li><p><span>• Gold VIP:</span> Accumulative spent among $50,000.</p></li>
+                <li><p><span>• Diamond VIP:</span> Accumulative spent over $100,000.</p></li>
               </ul>
               <p class="p2_text">
                 <span>Notes:</span>
@@ -176,13 +176,13 @@
 	$(function(){
 		var vipPoint = Number($('.vip-level-top').data('point'));
 		var $vipPg = $('.vip-level-pg');
-		if(0 <= vipPoint && vipPoint < 500){
+		if(0 <= vipPoint && vipPoint < 20000){
 			var vipLeft = vipPoint/500*258;
 			$vipPg.css({'left':vipLeft+'px'});
-		}else if(500 <= vipPoint && vipPoint < 8000){
+		}else if(500 <= vipPoint && vipPoint < 50000){
 			var vipLeft = (vipPoint-500)/7500*279+258;
 			$vipPg.css({'left':vipLeft+'px'});
-		}else if(8000 <= vipPoint && vipPoint < 20000){
+		}else if(8000 <= vipPoint && vipPoint < 100000){
 			var vipLeft = (vipPoint-8000)/12000*298+537;
 			$vipPg.css({'left':vipLeft+'px'});
 		}else{

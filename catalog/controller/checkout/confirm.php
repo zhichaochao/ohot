@@ -615,7 +615,113 @@ class ControllerCheckoutConfirm extends Controller {
 	    $data['content_bottom'] = $this->load->controller('common/content_bottom');
 	    $data['footer'] = $this->load->controller('common/footer');
 	    $data['header'] = $this->load->controller('common/header');
+
+	    $data['continue'] = $this->url->link('checkout/confirm/view_orders', '', true);
 	    $this->response->setOutput($this->load->view('checkout/view_order', $data));
+	}
+
+	function view_orders()
+	{
+		$this->load->model('tool/image');
+
+	    if(empty($this->session->data['order_id']))
+	        $this->response->redirect($this->url->link('account/order'));
+	        
+	    $this->load->language('checkout/checkout');
+	    
+	    $this->document->setTitle($this->language->get('heading_title'));
+            
+	    $data = array();
+	    $order_id = $this->session->data['order_id'];
+	    $this->load->model('checkout/order');
+	    $order = $this->model_checkout_order->getOrder($order_id);
+	    // print_r($order);exit();
+	    $data['order'] = $order;
+	    
+	    if(!$order || $order['order_status'] != 'Pending') 
+	        $this->response->redirect($this->url->link('account/order'));
+
+		$payment_code = $this->session->data['payment_code'];
+		$data['payment_method_code'] = $payment_code;
+
+		if(isset($payment_code) && $payment_code != 'pp_express') {
+			if ($this->config->get($payment_code . '_attributes') && $this->config->get($payment_code . '_status')) {
+				$payment_method_attributes = $this->config->get($payment_code . '_attributes');
+
+				$sort_order = [];
+				foreach ($payment_method_attributes as $payment_method_attribute) {
+					$sort_order[] = $payment_method_attribute['sort_order'];
+				}
+				array_multisort($sort_order, SORT_ASC, $payment_method_attributes);
+				$data['payment_method_attributes'] = $payment_method_attributes;
+				$data['payment_method_image'] = $this->model_tool_image->resize($this->config->get($payment_code . '_image'), 474, 154);
+			}
+		}
+		$data['payment'] = $this->url->link('checkout/payment', '', true);
+		$data['submit_bank_receipt'] = $this->url->link('account/order/receipts', 'order_id='.$order_id, true);
+        $this->load->model('checkout/order_total');
+	    $data['totals'] = $this->model_checkout_order_total->getOrderTotal2($order_id,$payment_code);
+	    $data['column_left'] = $this->load->controller('common/column_left');
+	    $data['column_right'] = $this->load->controller('common/column_right');
+	    $data['content_top'] = $this->load->controller('common/content_top');
+	    $data['content_bottom'] = $this->load->controller('common/content_bottom');
+	    $data['footer'] = $this->load->controller('common/footer');
+	    $data['header'] = $this->load->controller('common/header');
+
+	    $data['continue'] = $this->url->link('checkout/confirm/view_orderr', '', true);
+	    $this->response->setOutput($this->load->view('checkout/view_orders', $data));
+	}
+
+	function view_orderr()
+	{
+		$this->load->model('tool/image');
+
+	    if(empty($this->session->data['order_id']))
+	        $this->response->redirect($this->url->link('account/order'));
+	        
+	    $this->load->language('checkout/checkout');
+	    
+	    $this->document->setTitle($this->language->get('heading_title'));
+            
+	    $data = array();
+	    $order_id = $this->session->data['order_id'];
+	    $this->load->model('checkout/order');
+	    $order = $this->model_checkout_order->getOrder($order_id);
+	    // print_r($order);exit();
+	    $data['order'] = $order;
+	    
+	    if(!$order || $order['order_status'] != 'Pending') 
+	        $this->response->redirect($this->url->link('account/order'));
+
+		$payment_code = $this->session->data['payment_code'];
+		$data['payment_method_code'] = $payment_code;
+
+		if(isset($payment_code) && $payment_code != 'pp_express') {
+			if ($this->config->get($payment_code . '_attributes') && $this->config->get($payment_code . '_status')) {
+				$payment_method_attributes = $this->config->get($payment_code . '_attributes');
+
+				$sort_order = [];
+				foreach ($payment_method_attributes as $payment_method_attribute) {
+					$sort_order[] = $payment_method_attribute['sort_order'];
+				}
+				array_multisort($sort_order, SORT_ASC, $payment_method_attributes);
+				$data['payment_method_attributes'] = $payment_method_attributes;
+				$data['payment_method_image'] = $this->model_tool_image->resize($this->config->get($payment_code . '_image'), 474, 154);
+			}
+		}
+		$data['payment'] = $this->url->link('checkout/payment', '', true);
+		$data['submit_bank_receipt'] = $this->url->link('account/order/receipts', 'order_id='.$order_id, true);
+        $this->load->model('checkout/order_total');
+	    $data['totals'] = $this->model_checkout_order_total->getOrderTotal2($order_id,$payment_code);
+	    $data['column_left'] = $this->load->controller('common/column_left');
+	    $data['column_right'] = $this->load->controller('common/column_right');
+	    $data['content_top'] = $this->load->controller('common/content_top');
+	    $data['content_bottom'] = $this->load->controller('common/content_bottom');
+	    $data['footer'] = $this->load->controller('common/footer');
+	    $data['header'] = $this->load->controller('common/header');
+
+	    // $data['continue'] = $this->url->link('checkout/confirm/view_orders', '', true);
+	    $this->response->setOutput($this->load->view('checkout/view_orderr', $data));
 	}
 	
 	
