@@ -204,7 +204,7 @@ class ControllerProductCategory extends Controller {
 			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
 
 			$results = $this->model_catalog_product->getProducts($filter_data);
-			// print_r($filter_data);exit();
+			// print_r($results);exit();
 
 			foreach ($results as $result) {
 				if ($result['image']) {
@@ -255,6 +255,7 @@ class ControllerProductCategory extends Controller {
 					'thumb'       => $image,
 					//'name'        => $result['name'],
 					'max_name'	  => $result['name'],
+					'is_new'	  => $result['is_new'],
 					'name'        => utf8_substr(strip_tags($result['name']),0,40).'...',
 					'color_name'  => $color_name,
                     'texture'     => $texture,

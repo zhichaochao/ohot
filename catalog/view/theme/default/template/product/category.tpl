@@ -37,7 +37,13 @@
                      <span><?php echo $product['special']; ?>
                      <del><?php echo $product['price']; ?></del></span>
                   <?php }else{ ?>
-                     <em class="price-single"><?php echo $product['price']; ?><span class="new">new</span></em>
+                     <em class="price-single"><?php echo $product['price']; ?>
+
+                     <?php if($product['is_new']==0) { ?>
+                     <span class="new">new</span>
+                      <?php } ?>
+
+                     </em>
                   <?php } ?>
                 </span>
                   <!-- <span>$35.30</span> -->

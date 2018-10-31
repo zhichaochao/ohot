@@ -348,11 +348,11 @@
                 <div class="col-sm-10">
                   <select name="is_new" id="input-is-new" class="form-control">
                     <?php if ($is_new) { ?>
-                    <option value="1" selected="selected">Yes</option>
-                    <option value="0">No</option>
+                    <option value="1" selected="selected">No</option>
+                    <option value="0">Yes</option>
                     <?php } else { ?>
-                    <option value="1">Yes</option>
-                    <option value="0" selected="selected">No</option>
+                    <option value="1">No</option>
+                    <option value="0" selected="selected">Yes</option>
                     <?php } ?>
                   </select>
                 </div>

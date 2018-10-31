@@ -84,6 +84,7 @@ class ModelCatalogProduct extends Model {
 				'date_modified'    => $query->row['date_modified'],
 				'viewed'           => $query->row['viewed'],
                 'video'            => $query->row['video'],
+                'is_new'            => $query->row['is_new'],
                 'video_link'       => $query->row['video_link'],
 
                 //新增读取的产品属性
