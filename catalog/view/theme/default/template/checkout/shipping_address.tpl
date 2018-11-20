@@ -1,9 +1,9 @@
 
  <link rel="stylesheet" href="/catalog/view/theme/default/js/select2/css/select2.css" />
         <script type="text/javascript" src="/catalog/view/theme/default/js/select2/js/select2.js" ></script>
-  <div class="bg_fff" id="shipping-existing" style="display: <?php echo ($eaddress||empty($addresses) ? 'none' : 'block'); ?>;">
+  <div class="bg_fff yd_hide" id="shipping-existing" style="display: <?php echo ($eaddress||empty($addresses) ? 'none' : 'block'); ?>;">
 
-       <h2><em style="color: #f00;">*</em>Select the shipping address</h2>
+                 <h2><span>1</span>Select the shipping address</h2>
                         <ul class="address_ul clearfix">
                       <?php foreach ($addresses as $address) { ?>
                           <?php 
@@ -15,6 +15,7 @@
                               }
                           ?>
                             <li aid="<?=$address['address_id']?>" class=" <?php if ($address['address_id'] == $address_id) echo 'active'; ?> clearfix">
+                                <div class="text_li">
                                 <span> <?php echo $address['firstname'] .' '. $address['lastname']; ?> </span>
                                 <p><?php echo $address['telephone']; ?>  <?php 
                     if(mb_strlen($address['address_1'],'UTF8')>15){ 
@@ -27,14 +28,67 @@
                                 <p><?php echo $address['city']; ?>, <?php echo $address['zone']; ?>,<?php echo $custom_field ? ',' . $custom_field : ''; ?></p>
                                 <span><?php echo $address['postcode']; ?></span>
                                 <span><?php echo $address['country']; ?></span>
-                                <a class="a_btn" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')"></a>
-                                <i></i>
-                                <a class="go_btn"  onclick="setDefault('<?php echo $address['address_id']; ?>', this)" >sent to this address&nbsp;&nbsp;&nbsp;></a>
+                                <a class="a_btn" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a>
+                              
+
+                              <a class="def" href="">Default</a>
+                                <!-- <a class="go_btn"  onclick="setDefault('<?php echo $address['address_id']; ?>', this)" >sent to this address&nbsp;&nbsp;&nbsp;></a> -->
+                              </div>
                             </li>
                            <?php } ?>
                            
                         </ul>
-                        <a class="add_a" id='show-shipping-new'>Add new address</a>
+                        <li class="clearfix">
+                        <a class="add_a" id='show-shipping-new'><span>Add new address</span></a>
+                      </li>
+
+
+    
+       
+
+   
+
+  </div>
+    <div class="bg_fff pc_hide" id="shipping-existings" style="display: <?php echo ($eaddress||empty($addresses) ? 'none' : 'block'); ?>;">
+
+                
+                   <div class="zfbt clearfix"><span>1</span><h1>Shipping Address</h1></div>
+                        <ul class="zf_1_ol clearfix">
+                      <?php foreach ($addresses as $address) { ?>
+                          <?php 
+                              $custom_field = '';
+                              if(!empty($address['custom_field']) && is_array($address['custom_field'])){
+                                  foreach($address['custom_field'] as $c_val){
+                                      $custom_field .= $custom_field ? ',' . $c_val : $c_val;
+                                  }
+                              }
+                          ?>
+                            <li aid="<?=$address['address_id']?>" class=" <?php if ($address['address_id'] == $address_id) echo 'active'; ?>">
+                                <!-- <div class="text_li"> -->
+                                <p> <?php echo $address['firstname'] .' '. $address['lastname']; ?> </p>
+                                <p><?php echo $address['telephone']; ?>  <?php 
+                                  if(mb_strlen($address['address_1'],'UTF8')>15){ 
+                                    echo mb_substr($address['address_1'],0,15).'...';
+                                  }else{ 
+                                    echo $address['address_1'];
+                                  }; 
+                                ?>
+                                </p>
+                                <p><?php echo $address['city']; ?>, <?php echo $address['zone']; ?>,<?php echo $custom_field ? ',' . $custom_field : ''; ?></p>
+                                <p><?php echo $address['postcode']; ?></p>
+                                <p><?php echo $address['country']; ?></p>
+                                <!-- <a class="a_btn" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a> -->
+                                <span class="<?php if ($address['address_id'] == $address_id) echo 'def'; ?>">Default</span>
+                               <a class="edit" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a>
+                                <!-- <a class="go_btn"  onclick="setDefault('<?php echo $address['address_id']; ?>', this)" >sent to this address&nbsp;&nbsp;&nbsp;></a> -->
+                              <!-- </div> -->
+                            </li>
+                           <?php } ?>
+                           
+                        </ul>
+                        <li class="clearfix">
+                        <a class="add_a" id='show-shipping-new'><span>Add new address</span></a>
+                      </li>
 
 
     
@@ -47,7 +101,7 @@
 
   <div id="shipping-new" class="bg_fff" style="display: <?php echo ($eaddress||empty($addresses) ? 'block' : 'none'); ?>;">
 
-  <p class="form_p">* Required fields</p>
+  <p class="form_p">* Required fields111</p>
             <form class="add_form clearfix" id="collapse-shipping-address">
               <label for="input-shipping-firstname">
                 <span><?php echo $entry_firstname; ?> *</span>
@@ -134,6 +188,29 @@ $('#shipping-existing').on('mouseleave','tr',function(){
 	$(this).children('.new-checkout-address-rig').css('visibility','hidden');
 });
 $('.address_ul li').on('click', function() {
+   $(this).addClass('active').siblings().removeClass('active');
+    $.ajax({
+        url: 'index.php?route=checkout/shipping_address/changeAddress&address_id='+$(this).attr('aid'),
+        dataType: 'json',
+    
+        success: function(json) {
+            if (json['redirect']) {
+                location = json['redirect'];
+            } else if (json['error']) {
+         
+                alert(json['error']);
+            } else {
+                getShippingMethod();
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+});
+//yd
+$('.zf_1_ol li').on('click', function() {
    $(this).addClass('active').siblings().removeClass('active');
     $.ajax({
         url: 'index.php?route=checkout/shipping_address/changeAddress&address_id='+$(this).attr('aid'),
@@ -323,3 +400,37 @@ $(document).ready(function(){
 
 
 //--></script>
+<script type="text/javascript">
+  $(function(){
+//    yd选择支付地址
+    $(".zf_1 .zf_1_ol>li").click(function(){
+      $(this).addClass("active").siblings().removeClass("active");
+    })
+    
+//    pc选择支付地址
+    $(".address_ul>li").click(function(){
+      let li_len = $(".address_ul>li").length;
+      if($(this).index()+1 != li_len){
+        $(this).addClass("active").siblings("li").removeClass("active");
+      }
+    })
+    
+    //点击下一步操作按钮
+    $(".address_content .btn240").click(function(){
+      
+      //展开第二步操作的内容
+      $(".div_two").slideDown();
+    })
+    
+    //第二步操作的单选
+    $(".dx_label input").click(function(){
+      if($(this).prop("checked")){
+        $(this).siblings(".check_i").addClass("active");
+        
+      }else{
+        $(this).siblings(".check_i").removeClass("active");
+      }
+    })
+    
+  })
+</script>

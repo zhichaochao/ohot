@@ -1,56 +1,45 @@
-<?php echo $header; ?>
-<!--内容-->
-<style>
-  @media only screen and (min-width: 1px) and (max-width: 920px) {
-    .cart_count{display: none;}
-  }
-</style>
-		<div class="shopcart2 clearfix">
-			<div class="content in_content shop2_content clearfix new_in_content" >
-				<!-- <div class="top clearfix">
-					<h1>SHOPPING CART</h1>
-					<a href="<?php echo $url?>">Continue Shopping</a>
-				</div> -->
-			
-				<div class="shop2_text clearfix">
-				
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="catalog/view/theme/default/css/common.css" />
+		<link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
+		<script type="text/javascript" src="catalog/view/theme/default/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="catalog/view/theme/default/js/common.js" ></script>
+		<title>SHOPCART2</title>
+		
+	</head>
+	<body><!--内容-->
+		<div class="shopcart2 pc_hide clearfix">
+			<div class="content  shop2_content clearfix">
+				<div class="shop2_text  clearfix">
 					<div class="left">
-						<label for="" class="qx_label" id="cart-tfoot">
-							<span>ALL</span>
-							<input checked="checked" class="check_input" onclick="getOrder()" autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
-							<i class="check_i active"></i>
-							<!-- <input autocomplete="off" id="tfoot-checkbox-select-all" type="checkbox" class="check_i" > --> 
-						</label>
-						<!-- <div class="del clearfix yd_hide" >
-							<svg t="1539766974948" class="icon yd_hide" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
+						<div class="new_nav pc_hide clearfix">
+							<a class="fh" href="<?php echo $continueshopping?>"></a>
+							<p>MY ORDERS</p>
+						</div>
+						<div class="del clearfix">
+							<svg t="1539766974948" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
 								<path d="M793.6 998.4H220.16c-51.2 0-97.28-40.96-97.28-97.28V261.12c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v645.12c0 25.6 20.48 46.08 46.08 46.08h573.44c25.6 0 46.08-20.48 46.08-46.08v-563.2c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v563.2c0 46.08-46.08 92.16-97.28 92.16z" p-id="5270" fill="#333"></path>
 								<path d="M51.2 266.24c-10.24 0-20.48-10.24-25.6-25.6 0-15.36 10.24-25.6 25.6-25.6l916.48-81.92c15.36 0 25.6 10.24 25.6 25.6s-10.24 25.6-25.6 25.6L51.2 266.24c5.12 0 0 0 0 0z" p-id="5271" fill="#333"></path>
 								<path d="M343.04 230.4c-10.24 0-20.48-10.24-25.6-25.6l-5.12-76.8C307.2 87.04 337.92 51.2 378.88 46.08l225.28-20.48c20.48 0 40.96 5.12 56.32 15.36 15.36 10.24 25.6 30.72 25.6 51.2l5.12 81.92c0 15.36-10.24 25.6-25.6 25.6s-25.6-10.24-25.6-25.6l-5.12-81.92c0-10.24-10.24-20.48-25.6-20.48l-225.28 25.6c-5.12 0-10.24 5.12-15.36 10.24-5.12 0-5.12 10.24-5.12 15.36L368.64 204.8c0 10.24-10.24 25.6-25.6 25.6 5.12 0 0 0 0 0zM435.2 768c-15.36 0-25.6-15.36-25.6-30.72V399.36c0-15.36 10.24-40.96 25.6-40.96s25.6 25.6 25.6 35.84v337.92c0 15.36-10.24 35.84-25.6 35.84zM588.8 768c-15.36 0-25.6-15.36-25.6-30.72V465.92c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v271.36c0 15.36-10.24 30.72-25.6 30.72z" p-id="5272" fill="#333"></path>
 							</svg>	
-						</div> -->
-						<ul class="shop2_ul" id="cart_table">
-							 <?php foreach($products as $product){ ?>
-							<li class="clearfix">
+						</div>
+						<ul class="shop2_ul">
 
-								<label for="" class="dx_label">
+						<?php foreach($products as $product){ ?>
+							<li class="clearfix">
+							<label for="" class="dx_label">
 									 <input checked="checked" onclick="getOrder()" class="check_input" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
 									 <i class="check_i active"></i>
-									<!-- <input autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>" class="check_i" > -->
-								</label>	
-								<?php if ($product['thumb']) { ?>
-									<div class="pic_img">
-			                        <a href="<?php echo $product['href']; ?>">
-			                   <img src="<?php echo $product['thumb']; ?>"  title="<?php echo $product['name']; ?>" class="pic_img" />
-			                        </a>
-			                        </div>
-			                      <?php } ?>
-								<!-- <div >
-									<a href="###"><img src="img/jpg/pro_det1.jpg" alt="" /></a>
-								</div> -->
+							</label>
+								<div class="pic_img">
+									<a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="" /></a>
+								</div>
 								<div class="text">
 									<a class="a_bt" href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
-									<!-- <p><span>Color:</span> Natural Black</p> -->
-									<!-- <p> -->
 									<?php if ($product['option']) { ?>                         
 			                         <?php foreach ($product['option'] as $option) { ?>						  
 			                          <p>
@@ -60,109 +49,188 @@
 			                          </p>                        
 			                         <?php } ?>                         
 			                        <?php } ?>
-			                        <!-- </p> -->
-
-									<p><?=$product['model'];?></p>
-									<!-- <p class="ts_ps"><?=$product['stock']?'':'Lack of stock';?></p> -->
-									
 								</div>
 								<div class="price clearfix">
-
-									<!-- <p>$35.65<span>$35.65</span></p> -->
-									<?php if($product['original_price']) { ?>
-					                    <p ><?php echo $product['price']; ?>
-					                    <span><?php echo $product['original_price']; ?></span></p>
-				                    <?php }else{ ?>
-				                    	<p><?php echo $product['price']; ?></p>
-				                    <?php } ?>
+										<?php if($product['original_price']) { ?>
+											<p><?php echo $product['price']; ?><span><?php echo $product['original_price']; ?></span></p>
+				                    	<?php }else{ ?>
+											<p><?php echo $product['price']; ?></p>
+				                    	<?php } ?>
 								</div>
 								<div class="pre_div">
+
+							<div class="num_div clearfix">
+								<span class="sub active"onclick="javascript:updateQty(this,1);"></span>
+								<input class="product_quantity" readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
+								<span class="add" onclick="javascript:updateQty(this,2);"></span>
+							</div>
+								</div>
+							</li>
+			                <?php } ?>
+
+						</ul>
+					</div>
+				
+				</div>
+				
+				<div class="total  clearfix">
+					<label for="" class="qx_label">
+						<span>All</span>
+					<input checked="checked" class="check_input" onclick="getOrder()" autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
+						<i class="check_i active"></i>
+					</label>
+					<?php foreach ($totals as $k => $total) { ?>
+                       <?php if($total['title']=='Total') { ?>
+                        <p>Total: <span ><?php echo $total['text']; ?></span></p>
+                        <?php }else{ ?>
+                        <?php } ?> 
+                    <?php }  ?>
+					<a class="tj_btn" onclick="submitCart();" > CHECK OUT</a>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="gwc_pc yd_hide clearfix">
+			<div class="text">
+				<h1><a class="fh" href="<?php echo $continueshopping?>">Continue Shopping</a> SHOPPING CART</h1>
+				
+				<div class="qx">
+						<!-- <label for="" class="qx_label" id="cart-tfoot">
+							<span>ALL</span>
+							<input checked="checked" class="check_input" onclick="getOrder()" autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
+							<i class="check_i active"></i>
+							<!-- <input autocomplete="off" id="tfoot-checkbox-select-all" type="checkbox" class="check_i" > --> 
+						<!-- </label> --> 
+
+					<label for="" class="qx_label" id="cart-tfoot">
+						<input checked="checked" class="check_input" onclick="getOrder()" autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
+						<i class="check_i active"></i>
+						<span>All</span>
+						<em class="em4">Total Prices</em>
+						<em class="em3">Quantity</em>
+						<em class="em2">Unit Price</em>
+						<em class="em1">Product Information</em>
+					</label>
+				</div>
+				
+				<ul class="shop_ul">
+					
+					
+
+
+					<?php foreach($products as $product){ ?>
+					<li class="clearfix">
+						<div class="div1 clearfix">
+
+							<label for="" class="dx_label">
+									 <input checked="checked" onclick="getOrder()" class="check_input" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
+									 <i class="check_i active"></i>
+									<!-- <input autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>" class="check_i" > -->
+							</label>
+							<?php if ($product['thumb']) { ?>
+
+							<a class="text" href="<?php echo $product['href']; ?>">
+								<img class="img1" src="<?php echo $product['thumb']; ?>" alt="" />
+							</a>
+			                <?php } ?>
+
+						</div>
+						<div class="div2 clearfix">
+							<div class="text_p">
+								<a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+								<?php if ($product['option']) { ?>                         
+			                         <?php foreach ($product['option'] as $option) { ?>						  
+			                          <p>
+			                           <?php if(!empty($option['name'])){ ?>
+			                             <?php echo $option['value']; ?>
+			                           <?php } ?> 
+			                          </p>                        
+			                         <?php } ?>                         
+			                        <?php } ?>
+							</div>
+						</div>
+						<div class="div3">
+									<?php if($product['original_price']) { ?>
+					                    <span class="price"><?php echo $product['price']; ?>
+					                    <span class="price1"><?php echo $product['original_price']; ?></span></span>
+				                    <?php }else{ ?>
+				                    	<span class="price"><?php echo $product['price']; ?></span>
+				                    <?php } ?>
+						</div>
+						<div class="div4">
+							<div class="price_input clearfix">
+								<span class="sub active"onclick="javascript:updateQty(this,1);"></span>
+								<!-- <input class="num" type="text" value="1" readonly="readonly"> -->
+								<input class="product_quantity" readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
+								<span class="add" onclick="javascript:updateQty(this,2);"></span>
+							</div>
+						</div>
+						<!-- <div class="pre_div">
 									<div class="num_div">
 										<span class="sub" onclick="javascript:updateQty(this,1);"></span>
-										<!-- <input class="num" type="text" value="1" /> -->
+										<input class="num" type="text" value="1" />
 										<input class="product_quantity" readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
 										<span class="add" onclick="javascript:updateQty(this,2);"></span>
 									</div>
-								</div>
-			
-							 <div class="close yd_hide" onclick="javascript:cart_remove('<?php echo $product['cart_id']; ?>');"></div>
-									<!--<span class="wishlist <?=$product['wishlist']==1 ?'off':'';?>" 
-									
-								 onclick="wishlist('<?php echo $product['product_id']; ?>',this);cart_removes('<?php echo $product['cart_id']; ?>')">Move to Wishlist</span> -->
-							</li>
-							<?php } ?>
-						</ul>
-					</div>	
+								</div> -->
 
-                <div class="right clearfix right_shop  bg_gif yd_hide">
-                    <div class="collapse-checkout bg_fff" id='collapse-checkout-confirm'><h2>SUMMARY</h2></div>
-                  
-                </div>		
+						<div class="div5">
+							<span class="z_price"><?php echo $product['total']; ?></span>
+						</div>
+						<div class="div6">
+							<div class="shop_close">
+								<svg t="1539766974948" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" onclick="javascript:cart_remove('<?php echo $product['cart_id']; ?>');">
+									<path d="M793.6 998.4H220.16c-51.2 0-97.28-40.96-97.28-97.28V261.12c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v645.12c0 25.6 20.48 46.08 46.08 46.08h573.44c25.6 0 46.08-20.48 46.08-46.08v-563.2c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v563.2c0 46.08-46.08 92.16-97.28 92.16z" p-id="5270" fill="#333"></path>
+									<path d="M51.2 266.24c-10.24 0-20.48-10.24-25.6-25.6 0-15.36 10.24-25.6 25.6-25.6l916.48-81.92c15.36 0 25.6 10.24 25.6 25.6s-10.24 25.6-25.6 25.6L51.2 266.24c5.12 0 0 0 0 0z" p-id="5271" fill="#333"></path>
+									<path d="M343.04 230.4c-10.24 0-20.48-10.24-25.6-25.6l-5.12-76.8C307.2 87.04 337.92 51.2 378.88 46.08l225.28-20.48c20.48 0 40.96 5.12 56.32 15.36 15.36 10.24 25.6 30.72 25.6 51.2l5.12 81.92c0 15.36-10.24 25.6-25.6 25.6s-25.6-10.24-25.6-25.6l-5.12-81.92c0-10.24-10.24-20.48-25.6-20.48l-225.28 25.6c-5.12 0-10.24 5.12-15.36 10.24-5.12 0-5.12 10.24-5.12 15.36L368.64 204.8c0 10.24-10.24 25.6-25.6 25.6 5.12 0 0 0 0 0zM435.2 768c-15.36 0-25.6-15.36-25.6-30.72V399.36c0-15.36 10.24-40.96 25.6-40.96s25.6 25.6 25.6 35.84v337.92c0 15.36-10.24 35.84-25.6 35.84zM588.8 768c-15.36 0-25.6-15.36-25.6-30.72V465.92c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v271.36c0 15.36-10.24 30.72-25.6 30.72z" p-id="5272" fill="#333"></path>
+								</svg>	
+							</div>
+						</div>
+					</li>
+			     <?php } ?>
+					
+				</ul>
 				
-				</div>
-		
-				<div class="bot clearfix">
-					<dl>
-						<dt>Delivery dates</dt>
-						<dd class="pc_dd">
-							We ship by FedEx, DHL express and local express.<br />
-							You can expect to get these items within <br />
-							5-7 days. <a href="<?=$information?>">More information&nbsp;&nbsp;>></a>
-						</dd>
-						<dd class="yd_dd">
-							Shopping on Hot Beauty Hair.com is safe and secure 
-							- guaranteed!
-						</dd>
-						
-					</dl>
-					<dl>
-						<dt>Satisfaction Guaranteed </dt>
-						<dd>
-							Hot Beauty Hair.com cares about your complete 
-							satisfaction. We offer a comprehensive return policy 
-							on all items, allowing you to shop with confidence.
-						</dd>
-					</dl>
-					<dl>
-						<dt>Privacy Policy</dt>
-						<dd class="pc_dd">
-							Hot Beauty Hair.com respects your privacy.<br />
-							We do NOT share or in any way distribute 
-							any personal, business or contact information 
-							you may provide. <a href="<?=$return?>">See Our Return Policy&nbsp;&nbsp;>></a>
-						</dd>
-						<dd class="yd_dd">
-							Hot Beauty Hair.com respects your privacy.We do NOT share 
-							or in any way distribute any personal, business or contact 
-							information you may provide.
-						</dd>
-					</dl>
-				</div>	
-
-				<div class="total clearfix">
-					<label for="" class="qx_label">
-						<span>All</span>
+			</div>
+			
+			<div class="total">
+				<div class="qx">
+					<label for="" class="qx_label"  id="cart-tfoot">
 						<input checked="checked" class="check_input" onclick="getOrder()" autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
-							<i class="check_i active"></i>
-						<!-- <i class="check_i"></i> -->
-					</label>
+						<i class="check_i active"></i>
+						<span>All</span>
 
-
-                    <?php foreach ($totals as $k => $total) { ?>
+						<!-- <a class="check_a" href="###">CHECK OUT</a> -->
+					<a class="check_a" onclick="submitCart();" > CHECK OUT</a>
+						 <?php foreach ($totals as $k => $total) { ?>
                        <?php if($total['title']=='Total') { ?>
-                        <p >Total: <span ><?php echo $total['text']; ?></span></p>
+                        <p class="p_price">Total: <span ><?php echo $total['text']; ?></span></p>
                         <?php }else{ ?>
-                            <!-- <p>Total: <span ><?php echo $total['text']; ?></span></p> -->
-                        <?php } ?>
+                        <?php } ?> 
                     <?php }  ?>
-
-
-					<!-- <p>Total: <span>$119.59</span></p> -->
-					<a class="tj_btn" onclick="submitCart();" > CHECK OUT</a>
+						
+						<em class="delete">Delete The Selected Items</em>
+						<em class="wishlist">Move To Wishlist</em>
+						
+							
+						
+					</label>
 				</div>
-
 			</div>
 		</div>
+				
+				
+			
+		<!--返回顶部-->
+		<div class="xf_right">
+			<div class="vip"><a href="<?php echo $vip?>"><span>VIP</span></a></div>
+			<div class="top"><span>TOP</span></div>
+		</div>
+
+	</body>
+</html>
+
 <script>
 	getOrder();
 	function getOrder(){
@@ -217,6 +285,51 @@ function wishlist(product_id,e) {
  }
 }
 
+		//多个收藏
+		$(".wishlist").click(function(){
+			let i =0;
+			let len = $(".dx_label .check_i").length;
+			alert(len);die
+			for (i=0;i<=len;i++) {
+
+			$(".dx_label .check_i").each(function(){
+				if($(this).hasClass("active")){
+
+					
+					$(this).parents("li").remove();
+				}else{
+					i++;
+					if(i==len){
+						tips('You haven`t select any item','gantan');
+					}
+				}
+			})
+
+			}
+			
+			
+			
+		})
+
+		//多个删除
+		$(".shopcart2 .del , .delete").click(function(){
+			let i =0;
+			let len = $(".dx_label .check_i").length;
+			// console.log(len);
+			$(".dx_label .check_i").each(function(){
+				if($(this).hasClass("active")){
+					$(this).parents("li").remove();
+				}else{
+					i++;
+					if(i==len){
+						tips('You haven`t select any item','gantan');
+					}
+				}
+			})
+			
+			
+		})
+
 
 function cart_removes(product_key){
 	   	     $.ajax({
@@ -270,7 +383,8 @@ function cart_removes(product_key){
         dataType: 'json',
  
         success: function(json) {
-            tips("Successfully Modify Shopping Cart",'');
+        // 	var win =$(window).width();
+      		// if(win<920){tips("Successfully Modify Shopping Cart",'');}
         	console.log(json);
         	getOrder();
         	// location.reload()
@@ -289,7 +403,7 @@ function cart_removes(product_key){
 	    
 	}
 	function cart_remove(product_key){
-		alert(product_key);
+
 	   if(confirm('Are you sure?')){
 
 	   	     $.ajax({
@@ -370,11 +484,35 @@ function cart_removes(product_key){
 				$(".qx_label input").prop("checked","");
 			}
 		})
+		//		数量
+		// function in_num() {
+		// 	$("input.num").each(function(){
+		// 		if($(this).val()<=1){
+		// 			$(this).siblings(".sub").addClass("active");
+		// 		}else{
+		// 			$(this).siblings(".sub").removeClass("active");
+					
+		// 		}
+		// 	})
+		// }
+		// $(".sub").click(function(){
+		// 	var num  = $(this).siblings(".num").val();
+		// 	if(num>1){
+		// 		num--;
+		// 		$(this).siblings(".num").val(num);
+		// 		in_num();
+		// 	}
+		// })
+		// $(".add").click(function(){
+		// 	var num  = $(this).siblings(".num").val();
+		// 	num++;
+		// 	$(this).siblings(".num").val(num);
+		// 	in_num();
+		// })
  		// alert(1);
  		// $(".yd_footer").addClass("hide");
 
 </script>
-<?php echo $footer; ?>
 
 <script type="text/javascript">
 $(function(){

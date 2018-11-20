@@ -98,6 +98,7 @@
 									</p>
 						
 								<?php } ?>
+								<div class="yd_hide clearfix">
 
 								<label class="num_label clearfix"  >
 									<span>Quantity:</span>
@@ -160,6 +161,74 @@
 							<button class="xyd_btn <?=$wishlist==1 ?'off':'';?>"
 							 
 			              onclick="wishlist('<?php echo $product_id; ?>',this);"><span>WISHLIST</span></button>
+						</div>
+
+						<div class="yd_show clearfix">
+								<div class="cart_attr cart_modal clearfix">
+									<ol class="clearfix">
+
+									<?php if ($options) { ?>
+								<?php foreach ($options as $option) { ?>	
+								<?php if ($option['product_option_value']) { ?>
+								<?php if ($option['type'] == 'radio') { ?> 
+								<li class="clearfix">
+					                <span class="bt_span"><?php if($option['required']) { ?>*<?php } ?><?=$option['name']?>:</span>
+					               <!--  <input type="hidden" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php if(isset($shareoption[$option['product_option_id']])){ echo $shareoption[$option['product_option_id']];}else{ echo $option['product_option_value'][0]['product_option_value_id'];} ?>" /> -->
+									<ul class="attr_ul clearfix">
+					                <?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
+								
+					                 <em class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"><?php echo $option_value['name']; ?></em>
+
+					                 <?php } ?>
+					                 </ul>
+					              </li>
+								<?php }elseif ($option['type'] == 'select') { ?>
+								<li class="clearfix" for="">
+									<span  class="bt_span"><?php if($option['required']) { ?>*<?php } ?><?=$option['name']?>:</span>
+									<ul class="attr_ul clearfix" id="input-option<?php echo $option['product_option_id']; ?>">
+									<!-- <div class="select_div" id="input-option<?php echo $option['product_option_id']; ?>"> -->
+										<!-- <input type="hidden" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php if(isset($shareoption[$option['product_option_id']])){ echo $shareoption[$option['product_option_id']];}else{ echo $option['product_option_value'][0]['product_option_value_id'];} ?>" /> -->
+										<!-- <button class="select_btn"><span></span></button> -->
+										<!-- <div class="select_ul"> -->
+											<!-- <ul> -->
+												<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
+												<em class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></em>
+											<?php } ?>
+										</ul>
+									<!-- </div> -->
+									<ul style="display: none;" class="clearfix select_ulk">
+											<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
+												<em class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></em>
+											<?php } ?>
+									</ul>
+									
+								</li>
+								<?php }} ?><?php }} ?>
+
+										<!-- <li class="clearfix">
+											<span>Color:</span>
+											<em>Black</em>
+										</li>
+										<li class="clearfix">
+											<span>Black:</span>
+											<em>10 Inch 100g</em>
+										</li>
+ -->
+									</ol>
+									<div class="price_input clearfix">
+										<p>Quantity:</p>
+										<div class="text clearfix">
+											<span class="subs"></span>
+											<input class="num" type="text" value="1" readonly="readonly">
+											<span class="adds"></span>
+										</div>
+									</div>
+									<span class="length">Select color and  length&nbsp;&nbsp;></span>
+								</div>
+							</div>
+
+
+
 						</div>
 						<div class="bot_text clear">
 							<p class="text_p text_p2"><span>Hair Material:</span> <?=$material;?></p>
@@ -316,6 +385,103 @@
 						</li>
 						<?php } ?> 
 					</ul>
+				</div>
+				
+				<div class="cart_fixed clearfix">
+					<div class="left clearfix">
+						<a class="cart_a" href="<?=$shopping_cart;?>"><span class='cart_count'><?=$text_cart_items;?></span></a>
+						<button class="sc_btn <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"></button>
+					</div>
+					<button class="cart_btn cart_modal" id="buttonon-cart" >ADD TO CART</button>
+				</div>
+					<!--购物车弹窗-->
+				<div class="cart_tc clearfix " id="products">
+
+					<input type="hidden" name="product_id" value="<?=$product_id?>">
+					<div class="text clearfix">
+						<div class="close_tc"></div>
+						<div class="img clearfix">
+							<img src="<?php echo $thumb?>" alt="" />
+							<!-- <span  id="money">$31.50</span> -->
+							<?php if ($price) { ?>
+									<span   class="money" >
+
+										<?php if(isset($special)){ ?>
+										<span><?php echo $special; ?></span><i><?php echo $price; ?></i>
+										<?php }else{ ?>
+										<span><?=$price?> </span>
+										<?php } ?>
+
+									</span>
+						
+								<?php } ?>
+						</div>
+						<ol class="attr_ol clearfix " >
+						<div class="form-product">
+						<?php if ($options) { ?>
+								<?php foreach ($options as $option) { ?>	
+								<?php if ($option['product_option_value']) { ?>
+								<?php if ($option['type'] == 'radio') { ?> 
+								<li class="clearfix">
+					                <span class="bt_span"><?php if($option['required']) { ?>*<?php } ?><?=$option['name']?>:</span>
+					                
+									<ul class="attr_ul clearfix">
+									<input class="li_1" type="hidden" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php if(isset($shareoption[$option['product_option_id']])){ echo $shareoption[$option['product_option_id']];}else{ echo $option['product_option_value'][0]['product_option_value_id'];} ?>" />
+					                <?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
+					                 <li class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"><?php echo $option_value['name']; ?></li>
+					                 <?php } ?>
+					                 </ul>
+
+					              </li>
+								<?php }elseif ($option['type'] == 'select') { ?>
+					
+
+
+
+								<li class="clearfix" for="">
+									<span  class="bt_span"><?php if($option['required']) { ?>*<?php } ?><?=$option['name']?>:</span>
+									<ul class="attr_ul clearfix" id="input-option<?php echo $option['product_option_id']; ?>">
+									<!-- <div class="select_div" id="input-option<?php echo $option['product_option_id']; ?>"> -->
+										<input class="li_2" type="hidden" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php if(isset($shareoption[$option['product_option_id']])){ echo $shareoption[$option['product_option_id']];}else{ echo $option['product_option_value'][0]['product_option_value_id'];} ?>" />
+										<!-- <button class="select_btn"><span></span></button> -->
+										<!-- <div class="select_ul"> -->
+											<!-- <ul> -->
+												<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
+												<li class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></li>
+											<?php } ?>
+											<!-- </ul> -->
+										<!-- </div> -->
+										</ul>
+									<!-- </div> -->
+									<ul style="display: none;" class="clearfix select_ulk">
+											<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
+												<li class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></li>
+											<?php } ?>
+									</ul>
+									
+								</li>
+								<?php }} ?><?php }} ?>
+								</div>
+
+							<li class="clearfix">
+								<span class="bt_span">Quantity:</span>
+								<div class="price_input clearfix">
+											<span class="sub" ></span>
+										<input class="num" name="quantity" type="text" value="1" id="nums" readonly="readonly" />
+										<span class="add"></span>
+									</div>
+								<!-- <div class="price_input clearfix">
+									<span class="sub"></span>
+									<input class="num" type="text" value="1" readonly="readonly">
+									<span class="add"></span>
+								</div> -->
+							</li>
+						</ol>
+					</div>
+					<div class="meas_img">
+						<img class=" changeimage" data-image='img/jpg/size_guid.jpg' data-mimage='img/jpg/yd_size_guid.jpg'  />
+						<div class="close"></div>
+					</div>	
 				</div>
 				
 			</div>
@@ -564,8 +730,9 @@ function productInfoImg(elm) {
 </script>
 <!-- 加入购物车 -->
 <script type="text/javascript">
-  
-    var product_id = "<?php echo $product_id; ?>";
+   var win =$(window).width();
+   if(win>920){
+var product_id = "<?php echo $product_id; ?>";
     $('#button-cart').on('click', function() {
 
         $.ajax({
@@ -577,7 +744,8 @@ function productInfoImg(elm) {
      
             success: function(json) {
             	if (json.success) {
-            		tips("Successful Shopping Cart",'');
+      				var win =$(window).width();
+      				if(win<920){tips("Successful Shopping Cart",'');}
         			$('#cart_count').html(json.total);
         			$('.cart_count').html(json.total);
         			  $(".cart_li").click();
@@ -592,6 +760,43 @@ function productInfoImg(elm) {
             }
         });
     });
+   }
+    
+    var win =$(window).width();
+    // $(".cart_tc").removeClass("active");
+    if(win<920){
+    	var product_id = "<?php echo $product_id; ?>";
+    $('#buttonon-cart').on('click', function() {
+    	if($(".cart_tc").hasClass("active")){
+    		$.ajax({
+            url: 'index.php?route=checkout/cart/add',
+            type: 'post',
+             dataType: 'json',
+            data: $('#products input[type=\'text\'], #products input[type=\'hidden\'], #products input[type=\'radio\']:checked, #products input[type=\'checkbox\']:checked, #products select, #products textarea'),
+           
+     
+            success: function(json) {
+            	if (json.success) {
+      				var win =$(window).width();
+      				if(win<920){tips("Successful Shopping Cart",'');}
+        			$('#cart_count').html(json.total);
+        			$('.cart_count').html(json.total);
+        			  $(".cart_li").click();
+
+                
+
+
+     			 }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    	}
+        
+    });
+    }
+        
     //-->
     function changeprice() {
         //console.log('first');
@@ -608,6 +813,26 @@ function productInfoImg(elm) {
             }
         });
     }
+    var win =$(window).width();
+    if(win<920){
+    	function changeprices() {
+        //console.log('first');
+//         alert($("#form-product").serialize());
+
+        $.ajax({
+            url: 'index.php?route=product/product/getprice&product_id=<?php echo $product_id; ?>',
+            type: 'post',
+            dataType: 'json',
+            data: $(".form-product input"),
+
+            success: function(json) {
+               // console.log(json);
+                $('.money').html(json['html']);
+            }
+        });
+    }
+    }
+    
 </script>
 
 <script type="text/javascript">
@@ -642,6 +867,51 @@ function productInfoImg(elm) {
                 popupwindow(shareUrl, 'Pinterest', 600, 400);
             })
        })
+   		/**收藏**/
+		$(".sc_btn").click(function(){
+			if($(this).hasClass("off")){
+				$(this).removeClass("off");
+				tips('Moved out from collection','');
+			}else{
+				$(this).addClass("off");
+				tips('Save to collection','');
+			}
+		})
+		
+		/***属性选择***/
+		$(".attr_ul>li").click(function(){
+			if(!$(this).hasClass("hui")){
+				$(this).addClass("active").siblings().removeClass("active");
+			}
+			let li_val = $(this).attr("value");
+			$(this).siblings('input').val(li_val);
+			// $(".attr_ul input.li_2").val(li_val);
+			// console.log(li_val)
+			// $(this).parents(".attr_ul").find('li').val(value);
+			// $(this).parents(".attr_ol").find(".attr_ul li").text(val);
+			changeprices();
+		})
+		/**打开属性弹窗**/
+		$(".cart_modal").click(function(){
+			$(".cart_tc").animate({top:"0%"});
+			$(".cart_tc").addClass("active");
+			$("body").css("overflow","hidden");
+		})
+		/**关闭属性弹窗**/
+		$(".close_tc").click(function(){
+			$(".cart_tc").animate({top:"100%"});
+			$(".cart_tc").removeClass("active");
+			$("body").css("overflow","");
+		})
+		$(".cart_tc").click(function(e){
+			var win = $(window).width();
+			var close = $('.cart_tc .text , .cart_tc .meas_img'); 
+		   	if(!close.is(e.target) && close.has(e.target).length === 0){
+		   		$(".cart_tc").animate({top:"100%"});
+		   		$(".cart_tc").removeClass("active");
+		   		$("body").css("overflow","");
+			}
+		})
 </script>
 
 <?php echo $footer; ?>

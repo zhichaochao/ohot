@@ -151,7 +151,8 @@
           <a href="<?php echo $cart?>">
             <img class="active" src="/catalog/view/theme/default/img/png/cart-1.png" alt="" />
             <img src="/catalog/view/theme/default/img/png/cart-2.png" alt="" />
-            <p><span class='cart_count'><?=$text_cart_items;?></span>CART</p>
+            <!-- <p><span class='cart_count'><?=$text_cart_items;?></span>CART</p> -->
+            <p>CART</p>
           </a>
         </li>
         <li class="<?=strpos($thispage,'account') !== false ?'active':'';?>">

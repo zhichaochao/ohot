@@ -1,0 +1,33 @@
+﻿/*字体*/
+@font-face {
+	font-family:uki;
+	src: url(../font/ukijjunu.ttf);
+}
+@font-face {
+	font-family:bau;
+	src: url(../font/BauerBodni.ttf);
+}
+@font-face {
+	font-family:san_b;
+	src: url(../font/san_b.ttf);
+}
+@font-face {
+	font-family:san_h;
+	src: url(../font/san_h.ttf);
+}
+@font-face {
+	font-family:san_m;
+	src: url(../font/san_m.ttf);
+}
+@font-face {
+	font-family:san_r;
+	src: url(../font/san_r.ttf);
+}
+@font-face {
+	font-family:san_t;
+	src: url(../font/san_m.ttf);
+}
+@font-face {
+	font-family:fram;
+	src: url(../font/framdcn.ttf);
+}

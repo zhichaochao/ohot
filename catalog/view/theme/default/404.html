@@ -399,19 +399,3 @@
 	</body>
 </html>
 
-<script>
-
-var windowTop=0;//初始话可视区域距离页面顶端的距离
-var p=0,t=0;
-$(window).scroll(function() {
-    p = $(this).scrollTop();//获取当前可视区域距离页面顶端的距离
-    
-    if(p<t && p!== 0){
-    	$(".yd_footer2").slideUp('fast');
-    }else{
-    	$(".yd_footer2").slideDown('fast');
-    }
-    t=p;
-    
-});
-</script>

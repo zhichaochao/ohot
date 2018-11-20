@@ -106,9 +106,12 @@
 									</div>
 									<div class="text">
 										<h2>Fuller Peruvian Virgin Hair </h2>
-		 								<p>Body Wavy</p>
 		 								<span>$15.39</span>
-		 								<p><span>x1</span></p>
+		 								<div class="price_input clearfix">
+											<span class="sub"></span>
+											<input class="num" type="text" value="1" readonly="readonly">
+											<span class="add"></span>
+										</div>
 									</div>
 								</a>
 							</li>
@@ -119,9 +122,12 @@
 									</div>
 									<div class="text">
 										<h2>Fuller Peruvian Virgin Hair  </h2>
-		 								<p>Body Wavy</p>
 		 								<span>$15.39</span>
-		 								<p><span>x1</span></p>
+		 								<div class="price_input clearfix">
+											<span class="sub"></span>
+											<input class="num" type="text" value="1" readonly="readonly">
+											<span class="add"></span>
+										</div>
 									</div>
 								</a>
 							</li>
@@ -132,9 +138,12 @@
 									</div>
 									<div class="text">
 										<h2>Fuller Peruvian Virgin Hair  </h2>
-		 								<p>Body Wavy</p>
 		 								<span>$15.39</span>
-		 								<p><span>x1</span></p>
+		 								<div class="price_input clearfix">
+											<span class="sub"></span>
+											<input class="num" type="text" value="1" readonly="readonly">
+											<span class="add"></span>
+										</div>
 									</div>
 								</a>
 							</li>
@@ -145,9 +154,12 @@
 									</div>
 									<div class="text">
 										<h2>Fuller Peruvian Virgin Hair  </h2>
-		 								<p>Body Wavy</p>
 		 								<span>$15.39</span>
-		 								<p><span>x1</span></p>
+		 								<div class="price_input clearfix">
+											<span class="sub"></span>
+											<input class="num" type="text" value="1" readonly="readonly">
+											<span class="add"></span>
+										</div>
 									</div>
 								</a>
 							</li>
@@ -224,7 +236,7 @@
 					<div class="left clearfix">
 						<div class="pro_lb_off clearfix">
 							<div class="lb_text">
-								<div class="swiper-container"id="swiper2">
+								<div class="swiper-container" id="swiper2">
 								    <div class="swiper-wrapper">
 								      	<div class="swiper-slide active">
 								      		<img src="img/jpg/pro_det1.jpg"/>
@@ -298,13 +310,14 @@
 										<span class="add"></span>
 									</div>
 								</label>
+								<span class="measurement">About Measurement</span>
 								<div class="label_div clearfix">
-								<dl class="pro_det_dl clearfix">
-									<dt>Lace Closure:</dt>
-									<dd><p>3 Parting</p></dd>
-									<dd><p>Middle Parting</p></dd>
-									<dd><p>Free Parting</p></dd>
-								</dl>
+									<dl class="pro_det_dl clearfix">
+										<dt>Lace Closure:</dt>
+										<dd><p>3 Parting</p></dd>
+										<dd><p>Middle Parting</p></dd>
+										<dd><p>Free Parting</p></dd>
+									</dl>
 									<label class="len_label" for="">
 										<span>Hair Color:</span>
 										<div class="select_div">
@@ -359,9 +372,6 @@
 										</ul>
 										
 									</label>
-									<span class="measurement">
-										About Measurement
-									</span>
 									<div class="meas_img">
 										<img class=" changeimage" data-image='img/jpg/size_guid.jpg' data-mimage='img/jpg/yd_size_guid.jpg'  />
 										<div class="close"></div>
@@ -1025,20 +1035,19 @@ var swiper3 = new Swiper('#swiper3', {
     },
     on: {
 	    slideChangeTransitionStart: function(){
-	      $(".pl_img_ol>li").eq(this.activeIndex).addClass("active").siblings("li").removeClass("active");
 	      $(".lb_text .swiper-slide").eq(this.activeIndex).addClass("active").siblings(".swiper-slide").removeClass("active");
 	    },
 	 },
 });
 
 var swiper2 = new Swiper('#swiper2', {
-	freeMode:false,
 	slidesPerView:5,
 	direction: 'vertical',
 	navigation: {
 	    nextEl: '.swiper-button-nexts',
 	    prevEl: '.swiper-button-prevs',
 	},
+		
 });
 
 
@@ -1069,16 +1078,16 @@ var swiper2 = new Swiper('#swiper2', {
 		
 //		数量
 		$(".sub").click(function(){
-			var num  = $(".num").val();
+			let num  = $(this).siblings(".num").val();
 			if(num>1){
 				num--;
-				 $(".num").val(num);
+				 $(this).siblings(".num").val(num);
 			}
 		})
 		$(".add").click(function(){
-			var num  = $(".num").val();
+			let num  = $(this).siblings(".num").val();
 			num++;
-			 $(".num").val(num);
+			 $(this).siblings(".num").val(num);
 		})
 
 		//pro_det_dl
@@ -1135,26 +1144,6 @@ var swiper2 = new Swiper('#swiper2', {
 				}
 			}
 		})
-		var win = $(window).width();
-//		$(".xyd_btn").click(function(){
-//			if(win>992){
-//				if($(this).hasClass("off")){
-//					$(this).removeClass("off");
-//					$(this).css("border","1px solid #ccc").css("background","url(img/png/shop_star.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
-//				}else{
-//					$(this).addClass("off");
-//					$(this).css("border","1px solid #d5af74").css("background","url(img/png/shop_star_.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
-//				}
-//			}else{
-//				if($(this).hasClass("off")){
-//					$(this).removeClass("off");
-//					$(this).css("border","1px solid #ccc").css("background","url(img/png/shop_star.png) no-repeat center").css("background-size","0.38rem 0.36rem");
-//				}else{
-//					$(this).addClass("off");
-//					$(this).css("border","1px solid #d5af74").css("background","url(img/png/shop_star_.png) no-repeat  center").css("background-size","0.38rem 0.36rem");
-//				}
-//			}
-//		})
 		
 		var win = $(window).innerWidth();
 		if(win>=751){
@@ -1216,6 +1205,15 @@ var swiper2 = new Swiper('#swiper2', {
 		   		$("body").css("overflow","");
 			}
 		})
+		
+		
+		
+		window.onload = function(){
+			if($(".lb_text .swiper-slide").length>5){
+				$(".pro_lb_off .swiper-button-nexts").show();
+				$(".pro_lb_off .swiper-button-prevs").show();
+			}
+		}
 		
 	})
 </script>

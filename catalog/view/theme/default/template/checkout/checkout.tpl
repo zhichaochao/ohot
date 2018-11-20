@@ -1,32 +1,11 @@
 <?php echo $header; ?>
 
 
-    <!--内容-->
-        <div class="address clearfix">
+    <!--pc内容-->
+        <div class="address yd_hide clearfix">
             <div class="content in_content address_content clearfix">
                 
                 <div class="left clearfix">
-                    <ol class="top_ol liucheng ol_1  clearfix">
-                        <li class="active">
-                            <img src="/catalog/view/theme/default/img/png/express.png" alt="" />
-                            <span></span>
-                            <p>1.Shipping</p>
-                            <em class="emr"></em>
-                        </li>
-                        <li>
-                            <img src="/catalog/view/theme/default/img/png/express.png" alt="" />
-                            <span></span>
-                            <p>2.Payment</p>
-                            <em class="eml"></em>
-                            <em class="emr"></em>
-                        </li>
-                        <li>
-                            <img src="/catalog/view/theme/default/img/png/express.png" alt="" />
-                            <span></span>
-                            <p>3.Deliver</p>
-                            <em class="eml"></em>
-                        </li>
-                    </ol>
                     
                     <div class="text clearfix" >
                         <input id="same_as_shipping" name="same_as_shipping" value="1"  type="hidden">
@@ -50,6 +29,31 @@
             
             </div>
         </div>
+<!-- yd nreirong -->
+        <!--移动内容1-->
+        <div class="content in_content zf_1 new_in_content clearfix pc_hide">
+            <div class="zf_con clearfix">
+               <!--  <div class="zfbt clearfix">
+                    <span>1</span>
+                    <h1>Shipping Address</h1>
+                </div> -->
+                
+                <ol class="zf_1_ol clearfix">
+                        <input id="same_as_shipping" name="same_as_shipping" value="1"  type="hidden">
+                        <div class="payment_next bg_gif" id="payment_next" >
+                        <div class="shipping_address bg_fff bg_gif" id="shipping_addresss">
+                            <h2>Select the shipping address</h2>
+                     
+                        </div>
+                        <div class="shipping_method bg_fff bg_gif" id="shipping_methods" style="display: none;" >
+                            <h3>Shipping Method</h3>
+                        </div>
+                        </div>
+
+                </ol>
+                
+            </div>
+        </div>
 
 <script type="text/javascript">
     $(function(){
@@ -71,6 +75,11 @@
         $(".shop_search input").focus(function(){
             $(".shop_search button").css("display","block");
         })
+        //yd选择支付地址
+        $(".zf_1 .zf_1_ol>li").click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+        })
+
     })
 </script>
         
@@ -102,6 +111,28 @@ function getShippingAddress(address_id)
     });
         // getShippingMethod();
 }
+// Get Shipping Address
+
+var win = $(window).width();
+ if(win<920){
+function getShippingAddress(address_id)
+{
+
+    $.ajax({
+        url: 'index.php?route=checkout/shipping_address&address_id='+address_id,
+        dataType: 'html',
+        success: function(html) {
+            $('#shipping_addresss').html(html);
+        $('.zf_1_ol li').removeClass('active');
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+        // getShippingMethod();
+}
+}
+
 
 // Get Shipping Method
 function getShippingMethod()
@@ -121,6 +152,27 @@ function getShippingMethod()
         }
     });
 }
+var win = $(window).width();
+ if(win<920){
+    function getShippingMethod()
+{
+     $('#shipping_methods').show();
+
+    $.ajax({
+        url: 'index.php?route=checkout/shipping_method',
+        dataType: 'html',
+        success: function(html) {
+            $('#shipping_methods').html(html);
+            getOrder();
+          
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+}
+ }
+
 
 // Get Payment Method
 function getPaymentMethod()
@@ -156,7 +208,10 @@ function getOrder(){
         }
     });
 }
-
+// var win = $(window).width();
+//  if(win>920){
+// echo $footer;
+//  }
 //--></script>
 
-<?php echo $footer; ?>
+<!-- <?php echo $footer; ?> -->
