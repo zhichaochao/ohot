@@ -4,13 +4,20 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-         <link rel="stylesheet" href="catalog/view/theme/default/css/ttf.css" />
+    <!--      <link rel="stylesheet" href="catalog/view/theme/default/css/ttf.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/common.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/index.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/swiper.min.css" />
         <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/jquery.min.js" ></script>
         <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/common.js" ></script>
-        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/swiper.js" ></script>
+        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/swiper.js" ></script> -->
+         <link rel="stylesheet" href="catalog/view/theme/default/css/ttf.css" />
+        <link rel="stylesheet" href="catalog/view/theme/default/css/common.css" />
+        <link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
+        <link rel="stylesheet" href="catalog/view/theme/default/css/swiper.min.css" />
+        <script type="text/javascript" src="catalog/view/theme/default/js/jquery.min.js" ></script>
+        <script type="text/javascript" src="catalog/view/theme/default/js/common.js" ></script>
+        <script type="text/javascript" src="catalog/view/theme/default/js/swiper.js" ></script>
         <title><?php echo $title; ?></title>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="bookmark" href="/favicon.ico" />
