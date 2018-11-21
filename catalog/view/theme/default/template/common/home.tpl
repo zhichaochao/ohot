@@ -6,7 +6,7 @@
         <div class="content">
             <div class="index_text index_text1">
                 <div class="bt">
-                    <img src="/catalog/view/theme/default/img/png/bt1.png"  />
+                    <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bt1.png"  />
                     <h1>THE SELECTION OF GOOD</h1>
                 </div>
                 
@@ -126,7 +126,7 @@
             <?php if(isset($homes[3])){ ?>    
             <div class="index_text index_text2">
                 <div class="bt">
-                    <img src="/catalog/view/theme/default/img/png/bt2.png" alt="" />
+                    <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bt2.png" alt="" />
                     <h1><?=$homes[3]['category']['name'];?></h1>
                 </div>
                 
@@ -159,7 +159,7 @@
               <?php  }?>
             <div class="index_text3">
                 <div class="bt">
-                    <img src="/catalog/view/theme/default/img/png/bt2.png" alt="CUSTOMER SHARE" />
+                    <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bt2.png" alt="CUSTOMER SHARE" />
                     <h1># CUSTOMER SHARE</h1>
                     <p>Customers share pictures and immediately buy the same</p>
                 </div>
@@ -265,26 +265,26 @@ var login_time = setTimeout(gg_show,1000);
         //替换手机端图片
         var win = $(window).width();
             if(win<=750){
-              $(".video_div .video").attr("poster","/catalog/view/theme/default/img/jpg/yd_video_bg.jpg");
+              $(".video_div .video").attr("poster","<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_video_bg.jpg");
             }else{
-              $(".video_div .video").attr("poster","/catalog/view/theme/default/img/jpg/video_bg.jpg");
+              $(".video_div .video").attr("poster","<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/video_bg.jpg");
             }
             // if(win<=992){
-            //     $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/yd_modal.jpg) no-repeat ").css("background-size","4rem 4.5rem");
+            //     $(".img_modal .text").css("background"," url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_modal.jpg) no-repeat ").css("background-size","4rem 4.5rem");
             // }else{
-            //         $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/pc_modal.jpg) no-repeat ");
+            //         $(".img_modal .text").css("background"," url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pc_modal.jpg) no-repeat ");
             // }
         $(window).resize(function() {
             var win = $(window).width();
             if(win<=750){
-              $(".video_div .video").attr("poster","/catalog/view/theme/default/img/jpg/yd_video_bg.jpg");
+              $(".video_div .video").attr("poster","<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_video_bg.jpg");
             }else{
-              $(".video_div .video").attr("poster","/catalog/view/theme/default/img/jpg/video_bg.jpg");
+              $(".video_div .video").attr("poster","<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/video_bg.jpg");
             }
             // if(win<=992){
-            //     $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/yd_modal.jpg) no-repeat ").css("background-size","4rem 4.5rem");
+            //     $(".img_modal .text").css("background"," url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_modal.jpg) no-repeat ").css("background-size","4rem 4.5rem");
             // }else{
-            //         $(".img_modal .text").css("background"," url(/catalog/view/theme/default/img/jpg/pc_modal.jpg) no-repeat ");
+            //         $(".img_modal .text").css("background"," url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pc_modal.jpg) no-repeat ");
             // }
         })
         

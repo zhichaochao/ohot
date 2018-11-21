@@ -12,7 +12,7 @@
     <?php } ?>
 
     <div class="sellfrom">
-      <p class="teimg"><img src="/catalog/view/theme/default/images/tzx/service/sell_from3.jpg" width="1022" height="348"></p>
+      <p class="teimg"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/service/sell_from3.jpg" width="1022" height="348"></p>
       <h2>Gain more traffic to your website and more orders placed.
 No worries about inventory.</h2>
       <p class="pp">You want more customers to visit your website and stay longer and place orders.But the
@@ -29,23 +29,23 @@ need to keep full inventory to hold your customers.And product quality, delivery
       <h2>With Ted Hair's solutions you will get:</h2>
       <ul class="sellform_ul sellform_ul2 cf">
         <li>
-          <p class="p1"><img src="/catalog/view/theme/default/images/tzx/service/advantage_1_hov.png" width="91" height="91"></p>
+          <p class="p1"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/service/advantage_1_hov.png" width="91" height="91"></p>
           <p class="p2">100% virgin human hair with cuticle intact</p>
         </li>
         <li>
-          <p class="p1"><img src="/catalog/view/theme/default/images/tzx/service/advantage_5_hov.png" width="91" height="91"></p>
+          <p class="p1"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/service/advantage_5_hov.png" width="91" height="91"></p>
           <p class="p2">Wholesale prices</p>
         </li>
         <li>
-          <p class="p1"><img src="/catalog/view/theme/default/images/tzx/service/advantage_2_hov.png" width="91" height="91"></p>
+          <p class="p1"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/service/advantage_2_hov.png" width="91" height="91"></p>
           <p class="p2">Flexible online ordering and fast shipping </p>
         </li>
         <li>
-          <p class="p1"><img src="/catalog/view/theme/default/images/tzx/service/advantage_6_hov.png" width="91" height="91"></p>
+          <p class="p1"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/service/advantage_6_hov.png" width="91" height="91"></p>
           <p class="p2">7-Day return and exchange guarantee</p>
         </li>
           <li>
-          <p class="p1"><img src="/catalog/view/theme/default/images/tzx/service/advantage_7_hov.png" width="91" height="91"></p>
+          <p class="p1"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/service/advantage_7_hov.png" width="91" height="91"></p>
           <p class="p2">Educational opportunities</p>
         </li>
       </ul>

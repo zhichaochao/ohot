@@ -427,18 +427,18 @@ function cart_removes(product_key){
 			if(win>992){
 				if($(this).hasClass("off")){
 					$(this).removeClass("off");
-					// $(this).css("background","url(/catalog/view/theme/default/img/png/shop_star.png) no-repeat left center").css("background-size","0.83vw 0.83vw").css("color","#666");
+					// $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/shop_star.png) no-repeat left center").css("background-size","0.83vw 0.83vw").css("color","#666");
 				}else{
 					$(this).addClass("off");
-					// $(this).css("background","url(/catalog/view/theme/default/img/png/shop_star_.png) no-repeat left center").css("background-size","0.83vw 0.83vw").css("color","#d5af74");
+					// $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/shop_star_.png) no-repeat left center").css("background-size","0.83vw 0.83vw").css("color","#d5af74");
 				}
 			}else{
 				if($(this).hasClass("off")){
 					$(this).removeClass("off");
-					// $(this).css("background","url(/catalog/view/theme/default/img/png/shop_star.png) no-repeat left center").css("background-size","0.16rem 0.16rem").css("color","#666");
+					// $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/shop_star.png) no-repeat left center").css("background-size","0.16rem 0.16rem").css("color","#666");
 				}else{
 					$(this).addClass("off");
-					// $(this).css("background","url(/catalog/view/theme/default/img/png/shop_star_.png) no-repeat left center").css("background-size","0.16rem 0.16rem").css("color","#d5af74");
+					// $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/shop_star_.png) no-repeat left center").css("background-size","0.16rem 0.16rem").css("color","#d5af74");
 				}
 			}
 			

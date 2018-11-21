@@ -1,6 +1,6 @@
 
- <link rel="stylesheet" href="/catalog/view/theme/default/js/select2/css/select2.css" />
-        <script type="text/javascript" src="/catalog/view/theme/default/js/select2/js/select2.js" ></script>
+ <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/css/select2.css" />
+        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/js/select2.js" ></script>
   <div class="bg_fff yd_hide" id="shipping-existing" style="display: <?php echo ($eaddress||empty($addresses) ? 'none' : 'block'); ?>;">
 
                  <h2><span>1</span>Select the shipping address</h2>

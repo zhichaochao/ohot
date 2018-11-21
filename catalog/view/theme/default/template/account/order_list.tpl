@@ -94,7 +94,7 @@
             <?php } else { ?>
           <div class="m_account clearfix">
           
-          <img src="/catalog/view/theme/default/img/png/order.png"/>
+          <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/order.png"/>
           <p> You have placed no orders</p>
           <a class="a_btn" href="<?php echo $goshopping?>">GO SHOPPING &nbsp;&nbsp;&nbsp;></a>
           

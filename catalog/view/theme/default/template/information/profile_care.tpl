@@ -15,11 +15,11 @@
             </div>
             <div class="right fr clearfix">
               <ul>
-               <li><a id="share_button_facebook"><img src="/catalog/view/theme/default/img/png/hc_1.png"/></a></li>
-                <li><a id="share_button_twitter"><img src="/catalog/view/theme/default/img/png/hc_2.png"/></a></li>
-                <li><a id="share_button_google"><img src="/catalog/view/theme/default/img/png/hc_3.png"/></a></li>
-                <li><a id="share_button_pinterest"><img src="/catalog/view/theme/default/img/png/hc_4.png"/></a></li>
-                <li><a id="share_button_linked"><img src="/catalog/view/theme/default/img/png/hc_5.png"/></a></li>
+               <li><a id="share_button_facebook"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/hc_1.png"/></a></li>
+                <li><a id="share_button_twitter"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/hc_2.png"/></a></li>
+                <li><a id="share_button_google"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/hc_3.png"/></a></li>
+                <li><a id="share_button_pinterest"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/hc_4.png"/></a></li>
+                <li><a id="share_button_linked"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/hc_5.png"/></a></li>
               </ul>
             </div>
           </div>
@@ -30,7 +30,7 @@
             <?php   foreach ($videos as $key => $value) {?>
               <li>
                 <video src="<?=$value['video'];?>" poster="<?=$value['image'];?>"></video>
-                <img class="bf" src="/catalog/view/theme/default/img/png/bf.png">
+                <img class="bf" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bf.png">
               </li>
             <?php } ?>
             </ul></div>

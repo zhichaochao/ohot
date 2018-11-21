@@ -6,7 +6,7 @@
 <input type="hidden" name="sort" value='<?=$sort;?>' id='sort'/>
 <input type="hidden" name="order" value='<?=$order;?>' id='order'/>
 <input type="hidden" name="limit" value='<?=$limit;?>' id='limit'/>
-      <img class="changeimage img_bnr" data-image='/catalog/view/theme/default/img/jpg/promotion.jpg' data-mimage='/catalog/view/theme/default/img/jpg/yd_promotion.jpg'  />
+      <img class="changeimage img_bnr" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotion.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_promotion.jpg'  />
       
       <h1>DISCOUNTED GOODS</h1>
       
@@ -108,18 +108,18 @@
       if(win>750){
         if($(this).hasClass("off")){
           $(this).removeClass("off");
-          $(this).css("background","url(/catalog/view/theme/default/img/png/pro_star.png) no-repeat").css("background-size","1.87vw 1.87vw");
+          $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/pro_star.png) no-repeat").css("background-size","1.87vw 1.87vw");
         }else{
           $(this).addClass("off");
-          $(this).css("background","url(/catalog/view/theme/default/img/png/pro_star_.png) no-repeat").css("background-size","1.87vw 1.87vw");
+          $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/pro_star_.png) no-repeat").css("background-size","1.87vw 1.87vw");
         }
       }else{
         if($(this).hasClass("off")){
           $(this).removeClass("off");
-          $(this).css("background","url(/catalog/view/theme/default/img/png/pro_star.png) no-repeat").css("background-size","0.5rem 0.5rem");
+          $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/pro_star.png) no-repeat").css("background-size","0.5rem 0.5rem");
         }else{
           $(this).addClass("off");
-          $(this).css("background","url(/catalog/view/theme/default/img/png/pro_star_.png) no-repeat").css("background-size","0.5rem 0.5rem");
+          $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/pro_star_.png) no-repeat").css("background-size","0.5rem 0.5rem");
         }
       }
     })

@@ -95,7 +95,7 @@
               </form>
 
                 <div  class="zzc_li  hidden">
-                <img src="/catalog/view/theme/default/img/loading.gif"/>
+                <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/loading.gif"/>
                 <p>Sending an email, it may take a few seconds, please wait</p>
               </div>
               <!-- </div> -->

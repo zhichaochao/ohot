@@ -11,12 +11,12 @@
 		</div>
 
 		
-<!-- 	<link rel="stylesheet" type="text/css" href="/catalog/view/theme/default/stylesheet/common/success.css"/>
+<!-- 	<link rel="stylesheet" type="text/css" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/stylesheet/common/success.css"/>
 
 <section class="content-wrap">
 	<div class="cgConter">
 
-		<img class="img1" alt="" src="/catalog/view/theme/default/images/tzx/common/cg.jpg">
+		<img class="img1" alt="" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/common/cg.jpg">
 		<div class="conterRight">
 			<div class="page-title">
 

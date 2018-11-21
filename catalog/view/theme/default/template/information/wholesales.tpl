@@ -12,7 +12,7 @@
     <?php } ?>
   
     <div class="sellfrom">
-      <p class="teimg"><img src="/catalog/view/theme/default/images/tzx/service/sell_from5.jpg" width="876" height="308"></p>
+      <p class="teimg"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/service/sell_from5.jpg" width="876" height="308"></p>
       
       <h2>Have difficulties finding a reliable hair vendor for wholesale?</h2>
       
