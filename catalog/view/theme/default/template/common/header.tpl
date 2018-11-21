@@ -4,13 +4,13 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="/catalog/view/theme/default/css/common.css" />
-        <link rel="stylesheet" href="/catalog/view/theme/default/css/index.css" />
-        <link rel="stylesheet" href="/catalog/view/theme/default/css/swiper.min.css" />
-        <script type="text/javascript" src="/catalog/view/theme/default/js/jquery.min.js" ></script>
-        <script type="text/javascript" src="/catalog/view/theme/default/js/common.js" ></script>
-        <script type="text/javascript" src="/catalog/view/theme/default/js/swiper.js" ></script>
-        <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+         <link rel="stylesheet" href="catalog/view/theme/default/css/ttf.css" />
+        <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/common.css" />
+        <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/index.css" />
+        <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/swiper.min.css" />
+        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/jquery.min.js" ></script>
+        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/common.js" ></script>
+        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/swiper.js" ></script>
         <title><?php echo $title; ?></title>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="bookmark" href="/favicon.ico" />
@@ -93,12 +93,12 @@ $(".img_ol .cart_li").click(function(){
                 <div class="logo">
                     <!-- href="<?php echo $root_home; ?>" -->
                     <a href="<?=HTTPS_SERVER;?>" >
-                        <img class="changeimage" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" data-image="/catalog/view/theme/default/img/png/logo.png" data-mimage="/catalog/view/theme/default/img/png/yd_logo.png"  src='/catalog/view/theme/default/img/png/logo.png'  />
+                        <img class="changeimage" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" data-image="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/logo.png" data-mimage="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_logo.png"  src='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/logo.png'  />
                     </a>
                 </div>  
                 
                 <!--whatApp-->
-                <p class="whatapp"><a  target="_blank"  href="https://api.whatsapp.com/send?phone=<?=$whatappphone;?>"><img src="/catalog/view/theme/default/img/png/phone.png"/>WhatsApp:+<?=$whatappphone;?></a></p>
+                <p class="whatapp"><a  target="_blank"  href="https://api.whatsapp.com/send?phone=<?=$whatappphone;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/phone.png"/>WhatsApp:+<?=$whatappphone;?></a></p>
                 
                 <!--pc导航-->
                 <ul class="nav_ul clearfix">
@@ -135,7 +135,7 @@ $(".img_ol .cart_li").click(function(){
                     <div class="lg_hover clearfix">
                         <div class="text clearfix">
                           <em></em>
-                          <i><img src="/catalog/view/theme/default/img/png/vip1.png"/></i>
+                          <i><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/vip1.png"/></i>
                           <p><a href="<?=$vip;?>"><?=$account_vip;?></a></p>
                          <a href="<?=$logout;?>"> <button>Logout</button></a>
                         </div>
@@ -151,7 +151,7 @@ $(".img_ol .cart_li").click(function(){
              </form>
              <!-- <form class="search fl">
               <input id="header-search" value="" type="" name="new_search" placeholder="Search">
-                <img class="close" src="/catalog/view/theme/default/img/png/close2.png"/>
+                <img class="close" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/close2.png"/>
               </form>
  -->                
                 <!--导航购物车-->
@@ -167,14 +167,14 @@ $(".img_ol .cart_li").click(function(){
                 <!--移动导航-->
                 <div class="yd_nav">
                     <div class="top">
-                        <img class="menu" src="/catalog/view/theme/default/img/png/menu.png"  />
-                        <img class="close" src="/catalog/view/theme/default/img/png/close2.png"/>
+                        <img class="menu" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/menu.png"  />
+                        <img class="close" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/close2.png"/>
                     </div>
                     
                     <ul>
                     <?php if($navs){ foreach ($navs as $k => $nav) { ?>
                         <li class="clearfix">
-                            <a  href="<?php echo $nav['url']; ?>"  <?=$nav['is_target']==1?'target="_blank"':''; ?> ><?=$nav['name'];?>   </a><?php if($nav['child']){?><img class="slide_img" src="/catalog/view/theme/default/img/png/jiahao.png" data-img='/catalog/view/theme/default/img/png/jiahao.png' data-imgs='/catalog/view/theme/default/img/png/jianhao.png'/>  <?php } ?>
+                            <a  href="<?php echo $nav['url']; ?>"  <?=$nav['is_target']==1?'target="_blank"':''; ?> ><?=$nav['name'];?>   </a><?php if($nav['child']){?><img class="slide_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao.png" data-img='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao.png' data-imgs='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao.png'/>  <?php } ?>
                             <?php if($nav['child']){?>
                             <ol class="yd_nav_ol clearfix">
                     
@@ -190,13 +190,13 @@ $(".img_ol .cart_li").click(function(){
                 </div>
                 
             </div>
-            <div class="new_nav pc_hide clearfix">
+           <!--  <div class="new_nav pc_hide clearfix">
                 <a class="fh" href="###"></a>
                 <p>PRODUCT DETAILS</p>
             </div>
-        
+         -->
         </div>
-        <script src="/catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script src="<?=HTTPS_SERVERS;?>catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
  <script>
         $(document).ready(function() {
             /* Search */

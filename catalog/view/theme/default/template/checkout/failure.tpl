@@ -1,9 +1,9 @@
 <?php echo $header; ?>
-<link rel="stylesheet" type="text/css" href="/catalog/view/theme/default/stylesheet/common/failure.css"/>
+<link rel="stylesheet" type="text/css" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/stylesheet/common/failure.css"/>
 <section class="content-wrap">
 	<div class="fa-content-main fixclea">
 		<div class="fa-content-main-left">
-			<img src="/catalog/view/theme/default/images/tzx/common/sb.png"/>
+			<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/common/sb.png"/>
 		</div>
 		<div class="fa-content-main-right">
 			<h3>An Error Occured In The Process Of Payment</h3>

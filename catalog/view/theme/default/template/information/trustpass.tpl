@@ -9,7 +9,7 @@
       <div class="company_right_mian cf">
         <h2 class="company_right_h2">Onsite Check</h2>
         <div class="compny_trustpp">
-        <img class="f_fl" src="/catalog/view/theme/default/images/tzx/company/tuss_img.png">
+        <img class="f_fl" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/company/tuss_img.png">
           <p>Onsite Check is a new verification process launched by Alibaba.com for Gold Supplier members in China (Mainland). The business license and contact person information for each member is verified by a third party verification agency. In addition, member premises have also been visited by Alibaba.com employees.</p> 
         </div>
       </div>

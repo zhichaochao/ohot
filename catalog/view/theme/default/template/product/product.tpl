@@ -149,7 +149,7 @@
 									About Measurement
 								</span>
 								<div class="meas_img">
-									<img class=" changeimage" data-image='/catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='/catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
+									<img class=" changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
 									<div class="close"></div>
 								</div>
 							</div>
@@ -272,7 +272,7 @@
 							<div class="xxk_text">
 								<div class="ul_top clearfix">
 									<div class="left">
-										<img src="/catalog/view/theme/default/img/jpg/map.jpg"/>
+										<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/map.jpg"/>
 									</div>
 									<div class="right clearfix">
 										<ul class="ul_text clearfix">
@@ -316,11 +316,11 @@
 										<span>Our express</span>
 										<ol class="clearfix">
 											<li>
-												<img src="/catalog/view/theme/default/img/jpg/pro_det2.jpg"/>
+												<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_det2.jpg"/>
 												<p>FedEx</p>
 											</li>
 											<li>
-												<img src="/catalog/view/theme/default/img/jpg/pro_det3.jpg"/>
+												<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_det3.jpg"/>
 												<p>DHL</p>
 											</li>
 										</ol>
@@ -329,13 +329,13 @@
 										<span>Package</span>
 										<ol class="clearfix">
 											<li>
-											<img class="changeimage" data-image='/catalog/view/theme/default/img/jpg/proo.jpg' data-mimage='/catalog/view/theme/default/img/jpg/yd_pro.jpg'  />
-												<!-- <img src="/catalog/view/theme/default/img/jpg/pro.jpg" style="height:263px;width: 298px;" /> -->
+											<img class="changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/proo.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_pro.jpg'  />
+												<!-- <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro.jpg" style="height:263px;width: 298px;" /> -->
 												<p>Product Packaging</p>
 											</li>
 											<li>
-											<img class="changeimage" data-image='/catalog/view/theme/default/img/jpg/pro_dett.jpg' data-mimage='/catalog/view/theme/default/img/jpg/ydpro_det.jpg'  />
-												<!-- <img src="/catalog/view/theme/default/img/jpg/pro_det.jpg" style="height:263px;width: 298px;"/> -->
+											<img class="changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_dett.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/ydpro_det.jpg'  />
+												<!-- <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_det.jpg" style="height:263px;width: 298px;"/> -->
 												<p>The Outer Packing</p>
 											</li>
 										</ol>
@@ -627,14 +627,14 @@ $(function(){
 		$(".xxk_h1").click(function(){
 			if($(this).hasClass("off")){
 				$(this).removeClass("off");
-				// $(this).css("background","url(/catalog/view/theme/default/img/png/jiahao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
+				// $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
 				$(this).siblings(".xxk_text").slideUp();
 			}else{
 				$(".xxk_h1").removeClass("off");
-				// $(".xxk_h1").css("background","url(/catalog/view/theme/default/img/png/jiahao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
+				// $(".xxk_h1").css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
 				$('.xxk_text').slideUp();
 				$(this).addClass("off");
-				// $(this).css("background","url(/catalog/view/theme/default/img/png/jianhao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
+				// $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao.png) no-repeat right center").css("background-size","0.38rem 0.38rem");
 				$(this).siblings(".xxk_text").slideDown();
 			}
 		})
@@ -674,18 +674,18 @@ $(function(){
 			if(win>992){
 				if($(this).hasClass("off")){
 					$(this).removeClass("off");
-					// $(this).css("border","1px solid #ccc").css("background","url(/catalog/view/theme/default/img/png/shop_star.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
+					// $(this).css("border","1px solid #ccc").css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/shop_star.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
 				}else{
 					$(this).addClass("off");
-					// $(this).css("border","1px solid #d5af74").css("background","url(/catalog/view/theme/default/img/png/shop_star_.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
+					// $(this).css("border","1px solid #d5af74").css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/shop_star_.png) no-repeat right 0.83vw center").css("background-size","0.83vw");
 				}
 			}else{
 				if($(this).hasClass("off")){
 					$(this).removeClass("off");
-					// $(this).css("border","1px solid #ccc").css("background","url(/catalog/view/theme/default/img/png/shop_star.png) no-repeat center").css("background-size","0.38rem 0.36rem");
+					// $(this).css("border","1px solid #ccc").css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/shop_star.png) no-repeat center").css("background-size","0.38rem 0.36rem");
 				}else{
 					$(this).addClass("off");
-					// $(this).css("border","1px solid #d5af74").css("background","url(/catalog/view/theme/default/img/png/shop_star_.png) no-repeat  center").css("background-size","0.38rem 0.36rem");
+					// $(this).css("border","1px solid #d5af74").css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/shop_star_.png) no-repeat  center").css("background-size","0.38rem 0.36rem");
 				}
 			}
 		})

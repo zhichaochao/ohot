@@ -105,38 +105,38 @@
 </style>
 <article class="lace-main">
    <section class="lace-banner">
-		<a href="/360-lace-frontal/"><img src="/catalog/view/theme/default/images/tzx/lace/pin_01.jpg" alt=""/></a>
+		<a href="/360-lace-frontal/"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_01.jpg" alt=""/></a>
 	</section>
 	<div class="lace-cont-01">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_02.jpg" alt=""/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_02.jpg" alt=""/>
 	</div>
 	<div class="lace-cont-02">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_03.jpg" alt=""/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_03.jpg" alt=""/>
 	</div>
 	<div class="lace-cont-03">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_04.jpg" alt="" usemap="#Maplow50"/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_04.jpg" alt="" usemap="#Maplow50"/>
 		<map name="Maplow50" id="Maplow50">
 		    <area shape="rect" coords="521,171,681,261" href="javascript:;" class="lace-video-area"/>
 		</map>
 	</div>
 	<div class="lace-cont-04">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_05.jpg" alt="" usemap="#Maplow51"/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_05.jpg" alt="" usemap="#Maplow51"/>
 		<map name="Maplow51" id="Maplow51">
 		    <area shape="rect" coords="654,276,812,366" href="javascript:;" class="lace-video-area"/>
 		</map>
 	</div>
 	<div class="lace-cont-05">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_06.jpg" alt=""/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_06.jpg" alt=""/>
 		
 	</div>
 	<div class="lace-cont-06">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_07.jpg" alt="" usemap="#Maplow52"/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_07.jpg" alt="" usemap="#Maplow52"/>
 		<map name="Maplow52" id="Maplow52">
 		    <area shape="rect" coords="357,42,518,130" href="javascript:;" class="lace-video-area"/>
 		</map>
 	</div>
 	<div class="lace-cont-07">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_08.jpg" alt="" usemap="#Maplow53"/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_08.jpg" alt="" usemap="#Maplow53"/>
 		<map name="Maplow53" id="Maplow53">
 		    <area shape="rect" coords="357,190,517,280" href="javascript:;" class="lace-video-area"/>
 		</map>
@@ -148,14 +148,14 @@
         </div>
 	</div>
 	<div class="lace-cont-09">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_11.jpg" alt=""/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_11.jpg" alt=""/>
 	</div>
 	
 	<div class="lace-cont-10">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_15.jpg" alt=""/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_15.jpg" alt=""/>
 	</div>
 	<div class="lace-cont-11">
-		<img src="/catalog/view/theme/default/images/tzx/lace/pin_19.jpg" alt=""/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/lace/pin_19.jpg" alt=""/>
 	</div>
 	<section class="lace-inquiry">
 		<h4 class="lace-inquiry-title">Send your inquiry to Hot Beauty Hair(We will reply you in 24 hours):</h4>
@@ -210,7 +210,7 @@
 </article>
 <div id="pop-video-wrap">
 	<div id="pop-video-box">
-		<img src="/catalog/view/theme/default/images/tzx/close.png" id="lace-video-close"/>
+		<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/close.png" id="lace-video-close"/>
 		<iframe id="lace-iframe" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
 	</div>
 </div>

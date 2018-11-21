@@ -16,11 +16,11 @@
     <div class="company_right">
       <div class="company_right_mian cf">
         <h2 class="company_right_h2">Trade Capacity</h2>
-        <div> <img src="/catalog/view/theme/default/images/tzx/company/company_1.png"> </div>
+        <div> <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/company/company_1.png"> </div>
       </div>
       <div class="company_right_mian cf">
         <h2 class="company_right_h2">Trade Markets Distribution</h2>
-        <div> <img src="/catalog/view/theme/default/images/tzx/company/company_2.jpg"> </div>
+        <div> <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/company/company_2.jpg"> </div>
       </div>
       
       <div class="company_right_mian cf">
