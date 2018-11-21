@@ -128,7 +128,7 @@ class ControllerCommonHome extends Controller {
 
                 $childs[] = array(
                     'product_id' =>$val['product_id'] , 
-                    'image' =>$this->model_tool_image->resize($val['image'],480, 560),
+                    'image' =>$this->model_tool_image->resize($val['image'],400, 400),
                     'price'       => $price,
                     'name'        => utf8_substr(strip_tags($val['name']),0,40).'...',
                     'special'     => isset($special) ? $special : '',

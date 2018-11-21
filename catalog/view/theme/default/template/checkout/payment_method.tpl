@@ -4,12 +4,11 @@
 <?php if ($payment_methods) { ?>
 
   <div class="bg_fff" id='collapse-payment-method'>
-              <h2>3.Select a payment method</h2>
+            <h2><span>3</span>Select a payment method</h2>
                 <input type="hidden" name="is_paypal_creditcard" id="is_paypal_creditcard" value="<?php echo $is_paypal_creditcard; ?>"/>
-                <p class="ts" style="display: block;">Click “save and continue” to make paypal payments</p>
-                <p class="jg" id="ts_jg"><span>i</span>Please choose the payment method</p>
-              <ol class="pay_ol">
-
+              <!--   <p class="ts" style="display: block;">Click “save and continue” to make paypal payments</p>
+                <p class="jg" id="ts_jg"><span>i</span>Please choose the payment method</p> -->
+             <ul class="pay_ul clearfix">
                  <?php foreach ($payment_methods as $payment_method) { ?>
        
                 <li class="clearfix">
@@ -37,7 +36,7 @@
                 </li>
                     <?php } ?>
               <?php } ?>
-              </ol>
+              </ul>
             </div>
             
             <a class="btn240" onclick="checkout()" >SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
@@ -46,7 +45,7 @@
 
  
 <?php } ?>
- <a  href="<?=$checkout;?>" class="step">Previous Step&nbsp;&nbsp;&nbsp;></a>
+ <!-- <a  href="<?=$checkout;?>" class="step">Previous Step&nbsp;&nbsp;&nbsp;></a> -->
 <script>
 $(function( ){
   //单选

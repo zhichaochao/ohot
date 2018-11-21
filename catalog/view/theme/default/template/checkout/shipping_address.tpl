@@ -49,7 +49,7 @@
    
 
   </div>
-    <div class="bg_fff pc_hide" id="shipping-existings" style="display: <?php echo ($eaddress||empty($addresses) ? 'none' : 'block'); ?>;">
+    <div class="bg_fff pc_hide" id="shipping-existing" style="display: <?php echo ($eaddress||empty($addresses) ? 'none' : 'block'); ?>;">
 
                 
                    <div class="zfbt clearfix"><span>1</span><h1>Shipping Address</h1></div>

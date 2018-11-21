@@ -12,9 +12,9 @@
             <?php echo $account_left; ?>
           </ol>
         </div>
+          <?php if ($addresses) { ?>
         <div class="right m_add clearfix">        
           <ul class="clearfix">
-          <?php if ($addresses) { ?>
          
            <?php foreach ($addresses as $result) { ?>
           <?php if($result['isshowdelete']==1){ ?>
@@ -37,10 +37,20 @@
             </li>
 
             <?php } }?>
-            <?php }?>
           </ul>
           <a class="a_btn clearfix" href="<?php echo $add; ?>">Add New Address</a>
-        </div>        
+        </div> 
+
+            <?php }else{?>  
+            <div class="right m_account clearfix">
+          
+              <img src="catalog/view/theme/default/img/png/address.png"/>
+              <p>You currently have no addresses saved </p>
+              <a class="a_btn" href="<?php echo $add; ?>">ADD ADDRESS &nbsp;&nbsp;&nbsp;></a>
+              
+            </div>
+
+            <?php } ?>
       </div>  
     </div>
 <script>
