@@ -5,4 +5,12 @@ class ModelExtensionExtension extends Model {
 
 		return $query->rows;
 	}
+	function getSearch() {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "keywords k WHERE customer_id = '" . (int)$this->customer->getId() . "'ORDER BY k.id DESC");
+		return $query->rows;
+	}
+	public function deleteSearch($id) {
+		$query=$this->db->query("DELETE FROM `" . DB_PREFIX . "keywords` WHERE customer_id = '" . $id. "'");	
+		return $query;
+	}
 }

@@ -72,7 +72,7 @@
         <?php } ?>
        
                     <li>
-                      <h4>COMPANY INFO<div class="pic_img"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png" data-img='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png' data-imgs='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao_white.png'/></div></h4>
+                      <h4>CONTACT<div class="pic_img"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png" data-img='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png' data-imgs='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao_white.png'/></div></h4>
                       <div class="slide_div">
                         <ol>
                       <li><a target="_blank" href="https://tel://<?=$telephone;?>"><span>Call Us:</span><?=$telephone;?></li></a>  
@@ -107,31 +107,35 @@
         <?php if($sername =='/'){ ?>   
         <li class="active">
             <a href="<?php echo $home?>">
-              <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/home-1.png" alt="" />
-              <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/home-2.png" alt="" />
+              <!-- <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/home-1.png" alt="" />
+              <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/home-2.png" alt="" /> -->
+              <span class="img"></span>
               <p>HOME</p>
             </a>
           </li>
        <?php }else{ ?>
           <li class="<?=strpos($thispage,'common' ) !== false ?'active':'';?>">
           <a href="<?php echo $home?>">
-            <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/home-1.png" alt="" />
-            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/home-2.png" alt="" />
+         <!--    <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/home-1.png" alt="" />
+            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/home-2.png" alt="" /> -->
+            <span class="img"></span>
             <p>HOME</p>
           </a>
         </li>
         <?php }?>
         <li class="<?=strpos($thispage,'product') !== false ?'active':'';?>">
           <a href="<?php echo $contac?>">
-            <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fenlei-1.png" alt="" />
-            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fenlei-2.png" alt="" />
+      <!--       <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fenlei-1.png" alt="" />
+            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fenlei-2.png" alt="" /> -->
+            <span class="img"></span>
             <p>ALL HAIR</p>
           </a>
         </li>
         <li>
           <a class="contact" href="javascript:0;"  onclick="return false">
-            <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/contact-1.png" alt="" />
-            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/contact-2.png" alt="" />
+           <!--  <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/contact-1.png" alt="" />
+            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/contact-2.png" alt="" /> -->
+            <span class="img"></span>
             <p>CONTACT</p>
           </a>
           <div class="a_text">
@@ -149,16 +153,18 @@
         </li> -->
         <li class="<?=strpos($thispage,'checkout') !== false ?'active':'';?>">
           <a href="<?php echo $cart?>">
-            <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-1.png" alt="" />
-            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-2.png" alt="" />
+           <!--  <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-1.png" alt="" />
+            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-2.png" alt="" /> -->
+            <span class="img"></span>
             <!-- <p><span class='cart_count'><?=$text_cart_items;?></span>CART</p> -->
             <p>CART</p>
           </a>
         </li>
         <li class="<?=strpos($thispage,'account') !== false ?'active':'';?>">
           <a href="<?php echo $account_left?>">
-            <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/account-1.png" alt="" />
-            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/account-2.png" alt="" />
+           <!--  <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/account-1.png" alt="" />
+            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/account-2.png" alt="" /> -->
+            <span class="img"></span>
             <p>ACCOUNT</p>
           </a>
         </li>

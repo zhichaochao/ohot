@@ -9,8 +9,11 @@ class ControllerProductSearch extends Controller {
 
 		$this->load->model('tool/image');
 
-		if (isset($this->request->get['search'])) {
-			$search = $this->request->get['search'];
+		if (isset($this->request->post['search'])) {
+			$this->request->get['search'] =$this->encrypt($this->request->post['search']);
+		} 
+		if (isset($this->request->post['search'])) {
+			$search = $this->request->post['search'];
 		} else {
 			$search = '';
 		}
@@ -213,6 +216,17 @@ class ControllerProductSearch extends Controller {
 			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
 
 			$results = $this->model_catalog_product->getProducts($filter_data);
+
+			if($results){
+				if(!empty($search)){
+				$datekey = array(
+					'datekey'=>$search,
+					'ip'=>$this->request->server['REMOTE_ADDR']
+					);
+				// print_r($datekey);exit;
+				$searchname = $this->model_catalog_product->addSearch($datekey);
+				}
+			}
 
 			foreach ($results as $result) {
 				if ($result['image']) {
@@ -1049,4 +1063,8 @@ class ControllerProductSearch extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($data));
 	}
+	function encrypt($string){   
+    
+        return str_replace('html1html',' ',$string);   
+		} 
 }

@@ -91,7 +91,8 @@ $(".img_ol .cart_li").click(function(){
 <body>
 <!--头部-->
         <div class="big_nav">
-            <div class="nav yd_hide content clearfix">
+            <!-- <div class="nav yd_hide content clearfix"> -->
+            <div class="nav  content clearfix">
 
                 <?php echo $currency; ?>
                 
@@ -197,32 +198,104 @@ $(".img_ol .cart_li").click(function(){
                 </div>
                 
             </div>
-           <!--  <div class="new_nav pc_hide clearfix">
+          <!--   <div class="new_nav pc_hide clearfix">
                 <a class="fh" href="###"></a>
                 <p>PRODUCT DETAILS</p>
+            </div> -->
+        
+        </div>
+
+        <!--pc搜索弹窗-->
+        <div class="ss_modal clearfix">
+            <div class="bg_f clearfix">
+                <div class="text clearfix">
+                    <div class="close"><img src="catalog/view/theme/default/img/png/close2.png" alt="" /></div>
+                    <form method='post' action='<?php echo $search_url;?>' >
+                    <label class="clearfix" for="">
+                        <span class="ss_img">
+                            <input type="submit"/> 
+                        </span>
+                        <input class="in_text" type="text" placeholder="Search  keyword" name="search"/>
+                        <img class="in_close" src="catalog/view/theme/default/img/png/close5.png" alt="" />
+                    </label>
+                     </form>
+                    
+                    <div class="con clearfix">
+                        <h1>Trending Searches</h1>
+                        <ol>
+                         <?php if(isset($hotsearched)){?>
+                            <?php foreach($hotsearched as $key => $hotsearstory) { ?>
+                              <li class="active">
+                                <a  onclick="javascript:selsearch('<?php echo $hotsearstory['url']; ?>');"><?php echo $hotsearstory['content']; ?></a>
+                                
+                              </li>
+                              <?php } ?>
+                              <?php } ?>
+                        </ol>
+                    </div>
+                    
+                    <div class="con clearfix">
+                        <h1>Your Recent Searches
+                            <i class="del">
+                                <svg t="1539766974948" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" onclick="del('<?php echo $customer_id; ?>')">
+                                    <path d="M793.6 998.4H220.16c-51.2 0-97.28-40.96-97.28-97.28V261.12c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v645.12c0 25.6 20.48 46.08 46.08 46.08h573.44c25.6 0 46.08-20.48 46.08-46.08v-563.2c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v563.2c0 46.08-46.08 92.16-97.28 92.16z" p-id="5270" fill="#999999"></path>
+                                    <path d="M51.2 266.24c-10.24 0-20.48-10.24-25.6-25.6 0-15.36 10.24-25.6 25.6-25.6l916.48-81.92c15.36 0 25.6 10.24 25.6 25.6s-10.24 25.6-25.6 25.6L51.2 266.24c5.12 0 0 0 0 0z" p-id="5271" fill="#999999"></path>
+                                    <path d="M343.04 230.4c-10.24 0-20.48-10.24-25.6-25.6l-5.12-76.8C307.2 87.04 337.92 51.2 378.88 46.08l225.28-20.48c20.48 0 40.96 5.12 56.32 15.36 15.36 10.24 25.6 30.72 25.6 51.2l5.12 81.92c0 15.36-10.24 25.6-25.6 25.6s-25.6-10.24-25.6-25.6l-5.12-81.92c0-10.24-10.24-20.48-25.6-20.48l-225.28 25.6c-5.12 0-10.24 5.12-15.36 10.24-5.12 0-5.12 10.24-5.12 15.36L368.64 204.8c0 10.24-10.24 25.6-25.6 25.6 5.12 0 0 0 0 0zM435.2 768c-15.36 0-25.6-15.36-25.6-30.72V399.36c0-15.36 10.24-40.96 25.6-40.96s25.6 25.6 25.6 35.84v337.92c0 15.36-10.24 35.84-25.6 35.84zM588.8 768c-15.36 0-25.6-15.36-25.6-30.72V465.92c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v271.36c0 15.36-10.24 30.72-25.6 30.72z" p-id="5272" fill="#999999"></path>
+                                </svg>  
+                            </i>
+                        </h1>
+                        <ul class="ls_ul clearfix">
+                        <?php if(isset($searchhistory)){?>
+                            <?php foreach($searchhistory as $key => $searstory) { ?>
+                              <li id="count">
+                                <a onclick="javascript:selsearch('<?php echo $searstory['url']; ?>');"><?php echo $searstory['keywords']; ?></a>
+                              </li>
+                              <?php } ?>
+                              <?php } ?>
+                        </ul>
+                    </div>
+                </div>
             </div>
-         -->
         </div>
         <script src="<?=HTTPS_SERVERS;?>catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
  <script>
-        $(document).ready(function() {
-            /* Search */
-            $('.search_li ').click(function() {
-               // alert(1111);die;
-               if ($(this).hasClass('on')) {
-                url = '<?php echo $search_url; ?>';
-                var value = $("input[name='new_search']").val();
-
+ function del(id){
+                     $.ajax({
+                      url: '<?php echo $searchdel; ?>',
+                      type: 'post',
+                      data: {id:id},
+                      dataType: 'json',
+                      success: function(json) {
+                        $('#count').html('');
+                      }
+                  })   
+          }
+ function selsearch(value) {
+          // alert(value);die;
+          url = '<?php echo $search_url; ?>';
                 if (value) {
-                    url += '?search=' + encodeURIComponent(value);
+                    url += '&search=' + encodeURIComponent(value);
                 }
                 location = url;
-            }else{
-                $(this).addClass('on');
-                $('input[name="new_search"]').focus();
+        }
+        $(document).ready(function() {
+            /* Search */
+            // $('.search_li ').click(function() {
+            //    // alert(1111);die;
+            //    if ($(this).hasClass('on')) {
+            //     url = '<?php echo $search_url; ?>';
+            //     var value = $("input[name='new_search']").val();
 
-            }
-            });
+            //     if (value) {
+            //         url += '?search=' + encodeURIComponent(value);
+            //     }
+            //     location = url;
+            // }else{
+            //     $(this).addClass('on');
+            //     $('input[name="new_search"]').focus();
+
+            // }
+            // });
 
             $('#header-search').keydown(function(e){
                 if(e.keyCode==13){

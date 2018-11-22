@@ -10,10 +10,10 @@
             <?php echo $account_left; ?>
           </ol>
         </div>
-        
-        <div class="right m_or_det clearfix" >
+        <?php if ($orders) { ?>
+        <div class="right m_or_det clearfix yd_hide" >
           <ul class="order_ul clearfix">
-          <?php if ($orders) { ?>
+          
           <?php foreach ($orders as $order) { ?>
           
 
@@ -91,21 +91,23 @@
             </li>
              
             <?php } ?>
-            <?php } else { ?>
-          <div class="m_account clearfix">
-          
-          <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/order.png"/>
-          <p> You have placed no orders</p>
-          <a class="a_btn" href="<?php echo $goshopping?>">GO SHOPPING &nbsp;&nbsp;&nbsp;></a>
-          
-        </div>
-          <?php } ?>
+            
 
             
             
           </ul>
         
         </div>
+        <?php } else { ?>
+        <div class="right  or_null clearfix">
+          
+          <!-- <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/img/png/new_5_.png"/> -->
+          <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/img/png/new_5_.png"/>
+          <p> You haven't placed order yet, start now~</p>
+          <a class="a_btn" href="<?php echo $goshopping?>">GO SHOPPING &nbsp;&nbsp;&nbsp;></a>
+          
+        </div>
+          <?php } ?>
         
       </div>
       

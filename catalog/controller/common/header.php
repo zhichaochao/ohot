@@ -97,10 +97,35 @@ class ControllerCommonHeader extends Controller {
 		$data['telephone'] = $this->config->get('config_telephone');
 		$data['login_li'] = $this->url->link('account/order', '', true);
 		$data['search_url'] = $this->url->link('product/search');
+
+		$data['searchdel'] = $this->url->link('common/header/delete');
 			// print_r($_SERVER['REQUEST_URI']);exit();
      	$data['navs']=$this->get_navs();
      	$data['is_home']=$_SERVER['REQUEST_URI'];
      	// print_r(	$data['is_home']);exit();
+     	// 搜索历史
+     	$searchres = $this->model_extension_extension->getSearch();
+		// print_r($searchres);exit;
+		if(!empty($searchres)){
+			foreach ($searchres as $searres) {
+			$data['searchhistory'][] = array(
+						'id'=>$searres['id'],
+						'keywords'=>$searres['keywords'],
+						'url'=>$this->encrypt($searres['keywords'])
+				);
+			}
+		}
+		$data['customer_id']=$this->customer->getId();
+		// 热门搜索
+			$str=$this->config->get('config_meta_keywords');
+
+			$hotsearched =explode(",",$str);
+			$data['hotsearched']=array();
+			foreach ($hotsearched as $key => $value) {
+				$data['hotsearched'][$key]['content']=  $value;   
+				$data['hotsearched'][$key]['url']= $this->encrypt($value);   
+			}
+			// print_r($data['hotsearched']);exit;
 		// Menu
 		$this->load->model('catalog/category');
 
@@ -242,4 +267,17 @@ class ControllerCommonHeader extends Controller {
 			return $path."_".$category_id;
 		}
 	}
+	public function delete() {
+		$id=$this->request->post['id'];
+		$json = array();
+				$this->load->model('extension/extension');
+				$this->model_extension_extension->deleteSearch($id);
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+	//加密函数  
+	function encrypt($string){   
+    
+        return str_replace(' ','html1html',$string);   
+    }  
 }

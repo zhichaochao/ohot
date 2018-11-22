@@ -256,6 +256,7 @@ class ControllerProductCategory extends Controller {
 					//'name'        => $result['name'],
 					'max_name'	  => $result['name'],
 					'is_new'	  => $result['is_new'],
+					'is_sale'	  => $result['is_sale'],
 					'name'        => utf8_substr(strip_tags($result['name']),0,40).'...',
 					'color_name'  => $color_name,
                     'texture'     => $texture,

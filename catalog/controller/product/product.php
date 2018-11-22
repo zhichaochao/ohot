@@ -402,11 +402,11 @@ class ControllerProductProduct extends Controller {
 
             $data['options'] = array();
             $options=$this->model_catalog_product->getProductOptions($this->request->get['product_id']);
-           // var_dump($options);exit;
+           // print_r($options);exit;
             foreach ( $options as $option) {
                 $product_option_value_data = array();
                 foreach ($option['product_option_value'] as $option_value) {
-                    if (!$option_value['subtract'] || ($option_value['quantity'] > 0)) {
+                    if (!$option_value['subtract'] || ($option_value['quantity'] >= 0)) {
                         if ((($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) && (float)$option_value['price']) {
                             $price = $this->currency->format($this->tax->calculate($option_value['price'], $product_info['tax_class_id'], $this->config->get('config_tax') ? 'P' : false), $this->session->data['currency']);
                         } else {
@@ -417,6 +417,7 @@ class ControllerProductProduct extends Controller {
                             'product_option_value_id' => $option_value['product_option_value_id'],
                             'option_value_id'         => $option_value['option_value_id'],
                             'name'                    => $option_value['name'],
+                            'quantity'                    => $option_value['quantity'],
                             'image'                   => $this->model_tool_image->resize($option_value['image'], 50, 50),
                             'price'                   => $price,
                             'price_prefix'            => $option_value['price_prefix']
@@ -435,7 +436,7 @@ class ControllerProductProduct extends Controller {
                     'required'             => $option['required']
                 );
             }
-//var_dump($data['options']);exit;
+//print_r($data['options']);exit;
 
             if ($product_info['minimum']) {
                 $data['minimum'] = $product_info['minimum'];

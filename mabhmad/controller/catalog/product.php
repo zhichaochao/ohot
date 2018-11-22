@@ -1175,6 +1175,15 @@ class ControllerCatalogProduct extends Controller {
 			$data['is_new'] = true;
 		}
 
+		//是否促销  dyl add
+		if (isset($this->request->post['is_sale'])) {
+			$data['is_sale'] = $this->request->post['is_sale'];
+		} elseif (!empty($product_info)) {
+			$data['is_sale'] = $product_info['is_sale'];
+		} else {
+			$data['is_sale'] = true;
+		}
+// print_r($data['is_sale']);exit;
         //是否首页显示
         if (isset($this->request->post['is_home'])) {
             $data['is_home'] = $this->request->post['is_home'];

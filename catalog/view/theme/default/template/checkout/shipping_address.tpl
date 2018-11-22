@@ -36,11 +36,11 @@
                               </div>
                             </li>
                            <?php } ?>
-                           
-                        </ul>
-                        <li class="clearfix">
+                           <li class="clearfix">
                         <a class="add_a" id='show-shipping-new'><span>Add new address</span></a>
                       </li>
+                        </ul>
+                        
 
 
     

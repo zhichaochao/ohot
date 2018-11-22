@@ -85,6 +85,7 @@ class ModelCatalogProduct extends Model {
 				'viewed'           => $query->row['viewed'],
                 'video'            => $query->row['video'],
                 'is_new'            => $query->row['is_new'],
+                'is_sale'            => $query->row['is_sale'],
                 'video_link'       => $query->row['video_link'],
 
                 //新增读取的产品属性
@@ -1436,4 +1437,25 @@ class ModelCatalogProduct extends Model {
 
 	    return $query->rows;
     }
+    public function addSearch($data = array())
+	{
+		$querys=$this->db->query("SELECT * FROM " . DB_PREFIX . "keywords WHERE keywords = '" . $this->db->escape($data['datekey']) . "'  ");
+		// print_r($query);exit;
+		$row=$querys->row;
+		if(!empty($row)){
+			if($row['keywords']==$data['datekey']){
+				$this->db->query("UPDATE " . DB_PREFIX . "keywords SET count = ".($row['count']+1)." WHERE id= '" . $row['id'] . "'  ");
+				$query=$this->db->query("SELECT * FROM " . DB_PREFIX . "keywords WHERE customer_id = '" . (int)$this->customer->getId() . "' AND keywords = '" . $this->db->escape($data['datekey']) . "'  ");
+				$rows=$query->row;
+					if(empty($rows)){
+				$this->db->query("INSERT INTO " . DB_PREFIX . "keywords SET customer_id = '" . (int)$this->customer->getId() . "', keywords = '" . $this->db->escape($data['datekey']) . "', ip = '" . $this->db->escape($data['ip']) . "'");
+					}
+			}else{
+			$this->db->query("INSERT INTO " . DB_PREFIX . "keywords SET customer_id = '" . (int)$this->customer->getId() . "', keywords = '" . $this->db->escape($data['datekey']) . "', ip = '" . $this->db->escape($data['ip']) . "'");
+			}
+		}else{
+			$this->db->query("INSERT INTO " . DB_PREFIX . "keywords SET customer_id = '" . (int)$this->customer->getId() . "', keywords = '" . $this->db->escape($data['datekey']) . "', ip = '" . $this->db->escape($data['ip']) . "'");
+		}
+		return ;
+	}
 }

@@ -103,6 +103,17 @@
                   <?php } ?>
                 </div>
               </div>
+
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-telephone">热门搜索<span style="color: red;">英文逗号</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_meta_keywords" value="<?php echo $config_meta_keywords; ?>" placeholder="<?php echo $config_meta_keywords; ?>" id="input-telephone" class="form-control" />
+                  <?php if ($error_telephone) { ?>
+                  <div class="text-danger"><?php echo $error_telephone; ?></div>
+                  <?php } ?>
+                </div>
+              </div>
+
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-owner"><?php echo $entry_owner; ?></label>
                 <div class="col-sm-10">

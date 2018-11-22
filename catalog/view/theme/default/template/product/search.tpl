@@ -5,11 +5,10 @@
         <input type="hidden" name="allpage" value='<?=$allpage;?>' id='allpage'/>
       <input type="hidden" name="page" value='1' id='page'/>
       <input type="hidden" name="searchs" value='<?=$search;?>' id='searchs'/>
-      <h1><?php echo $heading_title; ?></h1>
         <div class="form_sr clearfix">
-          <p class="p_sr"><?php echo $entry_search; ?>(<?=$total?> results) </p>
-          <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_keyword; ?>" id="input-search" class="input_sr" />
-           <select name="category_id" class="form-control">
+          <input type="text" name="search" value="<?php echo $search; ?>" placeholder="<?php echo $text_keyword; ?>" id="input-search" disabled="disabled"  class="input_sr" />
+          <p class="search_items"><?=$total?> items</p>
+          <!--  <select name="category_id" class="form-control">
             <option value="0"><?php echo $text_category; ?></option>
             <?php foreach ($categories as $category_1) { ?>
             <?php if ($category_1['category_id'] == $category_id) { ?>
@@ -32,9 +31,9 @@
             <?php } ?>
             <?php } ?>
             <?php } ?>
-          </select>
+          </select> -->
 
-           <div class="sr_div sr_div1">
+         <!--   <div class="sr_div sr_div1">
             <?php if ($sub_category) { ?>
             <input type="checkbox" name="sub_category" value="1" checked="checked" />
             <?php } else { ?>
@@ -51,14 +50,13 @@
           <input type="checkbox" name="description" value="1" id="description" />
           <?php } ?>
           <p><?php echo $entry_description; ?></p>
-       </div>
+       </div> -->
        
-          <button class="clearfix" value="<?php echo $button_search; ?>" id="button-search">Search</button>
+          <!-- <button class="clearfix" value="<?php echo $button_search; ?>" id="button-search">Search</button> -->
         </div>
       <div class="ser_bot clearfix">
-        <h1><?php echo $text_search; ?></h1>
         <?php if ($products) { ?>
-        <label for="">
+       <!--  <label for="">
           <span>Sort By:</span>
            <select id="input-sort" class="form-control" onchange="location = this.value;">
               <?php foreach ($sorts as $sorts) { ?>
@@ -69,7 +67,7 @@
               <?php } ?>
               <?php } ?>
             </select>
-        </label>
+        </label> -->
         
         <ul class="pro_ul clearfix prolist">
         <?php foreach ($products as $product) { ?>

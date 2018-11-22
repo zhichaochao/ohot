@@ -359,6 +359,23 @@
               </div>
               <!--/是否为新品-->
 
+                <!--是否为促销-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-is-sale">是否为促销</label>
+                <div class="col-sm-10">
+                  <select name="is_sale" id="input-is-sale" class="form-control">
+                    <?php if ($is_sale) { ?>
+                    <option value="1" selected="selected">Yes</option>
+                    <option value="0">No</option>
+                    <?php } else { ?>
+                    <option value="1">Yes</option>
+                    <option value="0" selected="selected">No</option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              <!--/是否为新品-->
+
               <!--是否为首页显示-->
           
               <!--/是否为首页显示-->

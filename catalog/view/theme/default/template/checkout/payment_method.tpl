@@ -16,7 +16,7 @@
 
               <?php if($payment_method['code'] == 'pp_express'){ ?>
                 <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/paypal_img.gif" />
-
+                  <span >PayPal</span>
                 <?php } else { ?>
                   <?php if (isset($payment_method['image']) && !empty($payment_method['image'])) { ?>
                     <img src="<?php echo $payment_method['image']; ?>"/>     <span>   <?php echo $payment_method['title']; ?></span>
@@ -31,8 +31,7 @@
                   <input class="pay_dx"    type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" 
  onclick="changePayment(1, this)" />
                  <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/ppguest_1.gif" />
-                  <span>Processed by 
-          <span style="color:#000;font-weight:700;">PayPal</span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <span>Processed by</span>
                 </li>
                     <?php } ?>
               <?php } ?>

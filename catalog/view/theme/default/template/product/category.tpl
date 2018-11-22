@@ -40,7 +40,10 @@
                      <em class="price-single"><?php echo $product['price']; ?>
 
                      <?php if($product['is_new']==0) { ?>
-                     <span class="new">new</span>
+                     <span class="new">NEW</span>
+                      <?php } ?>
+                      <?php if($product['is_sale']==1) { ?>
+                     <span class="sale">SALE</span>
                       <?php } ?>
 
                      </em>

@@ -1,10 +1,13 @@
-<?php echo $header; ?>
+<div class="yd_hide"><?php echo $header; ?> </div>
+<div class="new_nav pc_hide clearfix">
+                <a class="fh" href="###"></a>
+                <p>PRODUCT DETAILS</p>
+            </div>
 
 
 <div class="content product_det in_content new_in_content">
 
 			<div class="pro_det_content clearfix">
-				<div class="ts_ps"></div>
 				<div class="top clearfix">
 					<div class="left clearfix">
 
@@ -108,6 +111,9 @@
 										<span class="add"></span>
 									</div>
 								</label>
+								<span class="measurement">
+									About Measurement
+								</span>
 							<div class="label_div clearfix" id="form-product">
 								<?php if ($options) { ?>
 								<?php foreach ($options as $option) { ?>	
@@ -145,9 +151,7 @@
 								</label>
 								<?php }} ?><?php }} ?>
 							
-								<span class="measurement">
-									About Measurement
-								</span>
+								
 								<div class="meas_img">
 									<img class=" changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
 									<div class="close"></div>
@@ -232,10 +236,9 @@
 						</div>
 						<div class="bot_text clear">
 							<p class="text_p text_p2"><span>Hair Material:</span> <?=$material;?></p>
-							<div class="share_l" style="max-width: 560px;">
-									<?=$m_description;?>
-								
-							</div>
+							<dl>
+								<?=$m_description;?>
+							</dl>
 							<div class="share clearfix">
 								<span>Share: </span>
 								<ul class="share_ul">
@@ -369,6 +372,7 @@
 									<img src="<?php echo $product['image']; ?>"  />
 								</div>
 								<div class="text">
+								<p class="p2"><?php echo $product['name']; ?> </p>
 								<span class="price">
 					                  <?php if($product['special']) { ?>
 					                     <span><?php echo $product['special']['special']; ?></span>
@@ -378,8 +382,8 @@
 					                  <?php } ?>
 					                </span>
 									<!-- <span>$37.01</span> -->
-									 <p class="p1"><?php echo $product['meta_title']; ?></p>
-									<p class="p2"><?php echo $product['name']; ?> </p>
+									 <!-- <p class="p1"><?php echo $product['meta_title']; ?></p> -->
+									
 								</div>
 							</a>
 						</li>
@@ -416,12 +420,38 @@
 						
 								<?php } ?>
 						</div>
-						<ol class="attr_ol clearfix " >
-						<div class="form-product">
+						<ol class="attr_ol clearfix form-product" >
+						<!-- <div class=""> -->
 						<?php if ($options) { ?>
 								<?php foreach ($options as $option) { ?>	
 								<?php if ($option['product_option_value']) { ?>
-								<?php if ($option['type'] == 'radio') { ?> 
+								<?php if ($option['type'] == 'select') { ?> 
+								<li class="clearfix size" for="">
+									<span  class="bt_span"><?php if($option['required']) { ?>*<?php } ?><?=$option['name']?>:</span>
+									<ul class="attr_ul clearfix" id="input-option<?php echo $option['product_option_id']; ?>">
+									<!-- <div class="select_div" id="input-option<?php echo $option['product_option_id']; ?>"> -->
+										<input class="li_2" type="hidden" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php if(isset($shareoption[$option['product_option_id']])){ echo $shareoption[$option['product_option_id']];}else{ echo $option['product_option_value'][0]['product_option_value_id'];} ?>" />
+										<!-- <button class="select_btn"><span></span></button> -->
+										<!-- <div class="select_ul"> -->
+											<!-- <ul> -->
+												<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
+												<li class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?> " value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></li>
+											<?php } ?>
+											<!-- </ul> -->
+										<!-- </div> -->
+										</ul>
+									<!-- </div> -->
+									<ul style="display: none;" class="clearfix select_ulk">
+											<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
+												<li class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?> " value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></li>
+											<?php } ?>
+									</ul>
+									<span class="measurement">Length Guide&nbsp;&nbsp;></span>
+								</li>
+
+
+								
+								<?php }elseif ($option['type'] == 'radio') { ?>
 								<li class="clearfix">
 					                <span class="bt_span"><?php if($option['required']) { ?>*<?php } ?><?=$option['name']?>:</span>
 					                
@@ -432,36 +462,15 @@
 					                 <?php } ?>
 					                 </ul>
 
+
 					              </li>
-								<?php }elseif ($option['type'] == 'select') { ?>
 					
 
 
 
-								<li class="clearfix" for="">
-									<span  class="bt_span"><?php if($option['required']) { ?>*<?php } ?><?=$option['name']?>:</span>
-									<ul class="attr_ul clearfix" id="input-option<?php echo $option['product_option_id']; ?>">
-									<!-- <div class="select_div" id="input-option<?php echo $option['product_option_id']; ?>"> -->
-										<input class="li_2" type="hidden" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php if(isset($shareoption[$option['product_option_id']])){ echo $shareoption[$option['product_option_id']];}else{ echo $option['product_option_value'][0]['product_option_value_id'];} ?>" />
-										<!-- <button class="select_btn"><span></span></button> -->
-										<!-- <div class="select_ul"> -->
-											<!-- <ul> -->
-												<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
-												<li class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></li>
-											<?php } ?>
-											<!-- </ul> -->
-										<!-- </div> -->
-										</ul>
-									<!-- </div> -->
-									<ul style="display: none;" class="clearfix select_ulk">
-											<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
-												<li class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></li>
-											<?php } ?>
-									</ul>
-									
-								</li>
+								
 								<?php }} ?><?php }} ?>
-								</div>
+								<!-- </div> -->
 
 							<li class="clearfix">
 								<span class="bt_span">Quantity:</span>
@@ -479,7 +488,7 @@
 						</ol>
 					</div>
 					<div class="meas_img">
-						<img class=" changeimage" data-image='img/jpg/size_guid.jpg' data-mimage='img/jpg/yd_size_guid.jpg'  />
+						<img class=" changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
 						<div class="close"></div>
 					</div>	
 				</div>
@@ -798,25 +807,29 @@ var product_id = "<?php echo $product_id; ?>";
     }
         
     //-->
-    function changeprice() {
-        //console.log('first');
-//         alert($("#form-product").serialize());
-        $.ajax({
-            url: 'index.php?route=product/product/getprice&product_id=<?php echo $product_id; ?>',
-            type: 'post',
-            dataType: 'json',
-            data: $("#form-product input"),
+   var win =$(window).width();
+    if(win>920){
+		function changeprice() {
+		        //console.log('first');
+		//         alert($("#form-product").serialize());
+		        $.ajax({
+		            url: 'index.php?route=product/product/getprice&product_id=<?php echo $product_id; ?>',
+		            type: 'post',
+		            // dataType: 'json',
+		            data: $("#form-product input"),
 
-            success: function(json) {
-               // console.log(json);
-                $('#money').html(json['html']);
-            }
-        });
+		            success: function(json) {
+		                $('#money').html(json['html']);
+		            }
+		        });
+		    }
     }
+    
+
     var win =$(window).width();
     if(win<920){
     	function changeprices() {
-        //console.log('first');
+        // console.log($);
 //         alert($("#form-product").serialize());
 
         $.ajax({
