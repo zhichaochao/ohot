@@ -405,7 +405,7 @@ position: absolute;top: 50%;left: 50%;margin-top: -0.16rem;margin-left: -0.16rem
 	.login_modal {display: none;}
 	.in_content{margin-top:1.2rem;}
 	.new_in_content{margin-top:0.88rem;}
-	.new_nav{height: 0.88rem;background: #fff;border-bottom: 1px solid #e5e5e5;position: relative;}
+	.new_nav{height: 0.88rem;background: #fff;border-bottom: 1px solid #e5e5e5;position: fixed;top: 0;left: 0;width: 100%;z-index: 99;}
 	.new_nav p{font-size: 0.28rem;font-family: helvetica;font-weight: bold; text-align: center;display: block;line-height: 0.88rem;}
 	.new_nav a.fh{width: 0.77rem;height: 0.88rem;display: block;position: absolute;left: 0;top: 0;
 	background: url(../img/png/new_4.png) no-repeat center/0.17rem 0.32rem;}

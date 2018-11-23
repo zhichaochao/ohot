@@ -2010,7 +2010,7 @@
 	.new_order .zt_ul .text .price{position: absolute;bottom: 0.25rem;right: 0;font-size: 0.28rem;font-family: helvetica;color: #333;}
 	.new_order .zt_ol{overflow: hidden;}
 	.new_order .zt_ol>li{border-bottom: 1px solid #e5e5e5;padding: 0.25rem 0;position: relative;}
-	.new_order .zt_ol>li>a{display: block;height: 100%;width: 100%;float: left;}
+	.new_order .zt_ol>li>a{display: block;width: 100%;float: left;}
 	.new_order .p_slide{font-size: 0.22rem;font-family: helvetica;color: #666;line-height: 0.72rem;text-align: center;display: none;}
 	.new_order .p_slide.off{display: block;border-bottom: 1px solid #e5e5e5;}
 	.new_order .p_slide i{display: inline-block;width: 0.12rem;height: 0.12rem;border: 0.06rem solid #666;transition: .5s;

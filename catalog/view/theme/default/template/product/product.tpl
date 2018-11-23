@@ -435,7 +435,7 @@
 										<!-- <div class="select_ul"> -->
 											<!-- <ul> -->
 												<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
-												<li class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?> " value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></li>
+												<li class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?> <?php echo $option_value['quantity']==0 ?'hui':''?>" value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></li>
 											<?php } ?>
 											<!-- </ul> -->
 										<!-- </div> -->

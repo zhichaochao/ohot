@@ -1,6 +1,10 @@
-<?php echo $header; ?>
+ <div class="yd_hide"><?php echo $header; ?></div>
+ <div class="new_nav pc_hide clearfix">
+                <a class="fh" href="###"></a>
+                <p>ORDERS DETAILS</p>
+            </div>
 <!--内容-->
-    <div class="view_order">
+    <div class="view_order yd_hide">
       <div class="content in_content clearfix">
         <div class="text_con clearfix">
           <h1>Order Information</h1>
@@ -143,6 +147,81 @@
        
       </div>
     </div>
+    <!-- yd -->
+    <!--内容-->
+    <div class="content in_content new_order new_in_content clearfix pc_hide">
+      <div class="nav_t clearfix">
+      </div>
+      
+      <div class="text clearfix">
+        <ul class="zt_ul">
+          <li class="clearfix">
+            <p class="top_p clearfix"><em>Product information</em> <span><?php echo $order_status; ?></span></p>
+            <ol class="zt_ol">
+
+       
+            <?php foreach ($products as $product) { ?>
+              <li class="clearfix">
+                <a href="<?php echo $product['href']; ?>">
+                  <div class="pic_img"><img src="<?php echo $product['order_image']; ?>"/></div>
+                  <div class="text">
+                    <p><?php echo $product['name']; ?></p>
+                     <?php foreach ($product['option'] as $option) { ?>
+                   <em> <?php echo $option['value']; ?></em>
+                  <?php } ?>
+                   <!--  <em>#1B Natural Black</em>
+                    <em>10inch 100g</em>
+                    <em>Free Parting</em> -->
+                    <span class="num">x<?php echo $product['quantity']; ?></span>
+                    <span class="price"><?php echo $product['price']; ?></span>
+                  </div>
+                </a>
+              </li>
+              <?php }  ?>
+            </ol>
+            <p class="p_slide">Total <?php echo $count?> Pieces <i></i></p>
+            <div class="totals">
+              <span>Total: <em><?php echo $total; ?></em></span>
+              <p>Shipping <em><?php echo $shipping_total; ?></em></p>
+
+              <!-- <p>Discounts <em>-$10.00</em></p> -->
+            </div>
+          </li>
+          <li class="clearfix">
+            <p class="top_p clearfix"><em>Shipping Address:</em></p>
+            <div class="address clearfix">
+              <?php if ($shipping_address) { ?>
+                <p><?php echo $shipping_address; ?></p>
+                <?php } ?> 
+            </div>
+          </li>
+          <li class="clearfix">
+            <div class="order_num clearfix">
+              <p>Order Number: <span><?php echo $order_no; ?></span></p>
+              <p>Payment Date: <span><?php echo $date_added; ?></span></p>
+              <hr />
+              <p>Shipping Method: <span><?php echo $shipping_method; ?></span></p>
+            </div>
+          </li>
+          <li class="clearfix" style="padding: 0;">
+            <ol class="btn_ol ol_details clearfix">
+
+              <?php if($order_status == 'Pending'){ ?>
+               <?php if($payment_code == 'pp_standard' || $payment_code == 'pp_express') { ?>
+              <li><a class="pay" href="<?php echo $repay;?>">Pay</a></li>
+              <?php } ?> 
+              <li><button class="Cancel" onclick="cancel_order('<?=$cancel_href?>')" type="button">Cancel</button></li>
+               <?php } ?> 
+            </ol>
+          </li>
+          
+        </ul>
+      </div>
+      
+      
+      
+    </div>
+    <!-- end -->
     
     <div class="edit_add_md" <?=!$address_error?"":"style='display:block'";?>>
       <div class="text">
@@ -242,7 +321,7 @@
     
 
 
-<?php echo $footer; ?>
+ <div class="yd_hide"><?php echo $footer; ?> </div>
 <script>
   function cancel_order(url){
   if(confirm('Are You Sure?')){
@@ -326,3 +405,30 @@ $('select[name=\'country_id\']').trigger('change');
 alert('<?php echo $success; ?>');
 </script>
 <?php }?>
+<script>
+  $(function(){
+    
+    window.onload = function(){
+      var li_hei = $(".zt_ol>li").eq(0).outerHeight(true);
+      $(".zt_ol").each(function(){
+        if($(this).find("li").length>=3){
+           $(this).height(li_hei*3);
+           $(this).siblings(".p_slide").addClass("off");
+        }
+      })
+      
+      //查看更多订单items
+      $(".p_slide").click(function(){
+        if($(this).hasClass("active")){
+          $(this).siblings(".zt_ol").animate({height: li_hei*3+"px"},300);
+          $(this).removeClass("active");
+        }else{
+          $(this).addClass("active");
+          let len = $(this).siblings(".zt_ol").find("li").length;
+          $(this).siblings(".zt_ol").animate({height: len*li_hei+"px"},500);
+        }
+      });
+      
+    }
+  });
+</script>

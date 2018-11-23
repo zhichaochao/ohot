@@ -78,6 +78,7 @@ class ControllerAccountOrder extends Controller {
 				'order_id'   => $result['order_id'],
 				'products'   => $order_products,
 				'order_no'   => $result['order_no'],
+				'count'       =>count($order_products),
 			
 				'status'     => $result['status'],
 				'date_added' => $result['date_added'],
@@ -232,9 +233,10 @@ class ControllerAccountOrder extends Controller {
 			$limit=10;
 			$results = $this->model_account_order->getOrders(($page - 1) * $limit, $limit);
 			//print_r($results);exit;
-			$data['payment_code']=$results[0]['payment_code'];
-			//print_r($payment_code);exit;
+			$data['payment_code']=$order_info['payment_code'];
+			// print_r($data['payment_code']);exit;
 			$data['repay']	      = $this->url->link('account/order/repay', 'order_id=' . $order_id, true);
+			// print_r($data['repay']);exit;
 			$data['repay_receipt']	      = $this->url->link('account/order/repay_receipt', 'order_id=' . $order_id, true);
 			$data['cancel_href'] = $this->url->link('account/order/cancel', 'order_id=' . $order_id, true);
 			//订单状态 dyl add
@@ -380,6 +382,7 @@ class ControllerAccountOrder extends Controller {
 					'model'    => $product['model'],
 					'option'   => $option_data,
 					'quantity' => $product['quantity'],
+					'href' => $this->url->link('product/product', 'product_id=' . $product['product_id'], true),
 					'price'    => $this->currency->format($product['price'] , $order_info['currency_code'], $order_info['currency_value']),
 					'total'    => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
 		
@@ -389,7 +392,8 @@ class ControllerAccountOrder extends Controller {
 				);
 			
 			}
- //var_dump($data['products']);exit;
+			$data['count']=count($products);
+ // print_r($data['products']);exit;
 			// Voucher
 			$data['vouchers'] = array();
 			$vouchers = $this->model_account_order->getOrderVouchers($this->request->get['order_id']);
