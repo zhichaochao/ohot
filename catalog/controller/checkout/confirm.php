@@ -589,7 +589,8 @@ class ControllerCheckoutConfirm extends Controller {
 	    if(!$order || $order['order_status'] != 'Pending') 
 	        $this->response->redirect($this->url->link('account/order'));
 
-		$payment_code = $this->session->data['payment_code'];
+		// $payment_code = $this->session->data['payment_code'];
+		$payment_code = $order['payment_code'];
 		$data['payment_method_code'] = $payment_code;
 
 		if(isset($payment_code) && $payment_code != 'pp_express') {
@@ -641,7 +642,7 @@ class ControllerCheckoutConfirm extends Controller {
 	    if(!$order || $order['order_status'] != 'Pending') 
 	        $this->response->redirect($this->url->link('account/order'));
 
-		$payment_code = $this->session->data['payment_code'];
+		$payment_code = $order['payment_code'];
 		$data['payment_method_code'] = $payment_code;
 
 		if(isset($payment_code) && $payment_code != 'pp_express') {
@@ -693,7 +694,7 @@ class ControllerCheckoutConfirm extends Controller {
 	    if(!$order || $order['order_status'] != 'Pending') 
 	        $this->response->redirect($this->url->link('account/order'));
 
-		$payment_code = $this->session->data['payment_code'];
+		$payment_code = $order['payment_code'];
 		$data['payment_method_code'] = $payment_code;
 
 		if(isset($payment_code) && $payment_code != 'pp_express') {

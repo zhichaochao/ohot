@@ -28,7 +28,7 @@ class ControllerAccountOrder extends Controller {
 
 		$data['button_view'] = $this->language->get('button_view');
 		$data['button_continue'] = $this->language->get('button_continue');
-
+		$data['sortorders'] = $this->url->link('account/order');
 		$url = '';
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
@@ -47,8 +47,20 @@ class ControllerAccountOrder extends Controller {
 		$this->load->model('account/order');
 		$this->load->model('tool/image');
 
+		if (($this->request->server['REQUEST_METHOD'] == 'GET')) {
+
+			if(isset($this->request->get['status'])){
+				$status=$this->request->get['status'];
+			}else{
+				$status='';
+			}
+		}else{
+			$status='';
+		}
+		$data['status'] =$status;
+
 		$order_total = $this->model_account_order->getTotalOrders();
-		$results = $this->model_account_order->getOrders(($page - 1) * $limit, $limit);
+		$results = $this->model_account_order->getOrders(($page - 1) * $limit, $limit,$status);
 		//print_r($results);exit;
 		foreach ($results as $result) {
 			//$product_total = $this->model_account_order->getTotalOrderProductsByOrderId($result['order_id']);
@@ -93,6 +105,11 @@ class ControllerAccountOrder extends Controller {
 				'shipping_total'  	=> $shipping_total
 			);
 			
+		}
+		if(isset($_SERVER['HTTP_REFERER'])){
+			$data['home'] =$_SERVER['HTTP_REFERER'];
+		}else{
+			$data['home'] =$this->url->link('common/home');
 		}
 		// print_r(	$data['orders']);exit;
 		$pagination = new Pagination();
@@ -196,6 +213,9 @@ class ControllerAccountOrder extends Controller {
 			$data['button_return'] = $this->language->get('button_return');
 			$data['button_continue'] = $this->language->get('button_continue');
 
+			$data['whatappphone'] =$this->config->get('config_telephone');
+			$data['skype'] =$this->config->get('config_skype');
+
 			if (isset($this->session->data['error'])) {
 				$data['error_warning'] = $this->session->data['error'];
 
@@ -231,7 +251,8 @@ class ControllerAccountOrder extends Controller {
 				$page = 1;
 			}
 			$limit=10;
-			$results = $this->model_account_order->getOrders(($page - 1) * $limit, $limit);
+			$status=$order_info['order_status_id'];
+			$results = $this->model_account_order->getOrders(($page - 1) * $limit, $limit,$status);
 			//print_r($results);exit;
 			$data['payment_code']=$order_info['payment_code'];
 			// print_r($data['payment_code']);exit;
@@ -286,7 +307,7 @@ class ControllerAccountOrder extends Controller {
 			$data['payment_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 			$data['payment_method'] = $order_info['payment_method'];
-
+// print_r($data['success']);exit;
 // 			if ($order_info['shipping_address_format']) {
 // 				$format = $order_info['shipping_address_format'];
 // 			} else {
