@@ -1,6 +1,6 @@
  <div class="yd_hide"><?php echo $header; ?></div>
 <div class="new_nav pc_hide clearfix">
-                <a class="fh" href="###"></a>
+                <a class="fh" href="<?php echo $home?>"></a>
                 <p>MY ORDERS</p>
             </div>
 
@@ -125,11 +125,11 @@
         <div class="content in_content new_order new_in_content clearfix pc_hide">
       <div class="nav_t clearfix">
         <ol class="clearfix">
-          <li class="active"><a href="###">All</a></li>
-          <li><a href="###">Pending</a></li>
-          <li><a href="###">Processing</a></li>
-          <li><a href="###">Shipped</a></li>
-          <li><a href="###">Completedl</a></li>
+          <li class="<?=$status=='' ?'active':'';?>"><a href="<?php echo $sortorders?>">All</a></li>
+          <li class="<?=$status==1 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=1">Pending</a></li>
+          <li class="<?=$status==2 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=2">Processing</a></li>
+          <li class="<?=$status==3 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=3">Shipped</a></li>
+          <li class="<?=$status==5 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=5">Completedl</a></li>
         </ol>
       </div>
        <?php if ($orders) { ?>

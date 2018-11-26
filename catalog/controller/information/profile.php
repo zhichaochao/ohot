@@ -53,7 +53,17 @@ class ControllerInformationProfile extends Controller {
 						}
 				}
 			   $profile_video['videos']=$videos;
-//var_dump($profile_video['videos']);exit;
+
+
+			   $outsidevideos=$this->model_catalog_profile->getOutsideVideos(array('start'=>0,'limit'=>3));
+			   if ($outsidevideos) {
+			   	foreach ($outsidevideos as $key => $value) {
+			   		$videos[$key]['out_id']=$value['out_id'];
+			   		$videos[$key]['out_url']=$value['out_url'];
+			   	}
+
+			   }
+			    $outside_video['outsidevideos']=$outsidevideos;
 				$data['breadcrumbs'] = array();
 
 				$data['breadcrumbs'][] = array(
@@ -63,7 +73,9 @@ class ControllerInformationProfile extends Controller {
 				$data['profile_care']=$profile_care;
 				$data['profile_know']=$profile_know;
 				$data['profile_video']=$profile_video;
+				$data['outside_video']=$outside_video;
 				$data['videohome'] = $this->url->link('information/profile/hairclub', '', true);
+				$data['videohomes'] = $this->url->link('information/profile/hairclubs', '', true);
 				$data['column_left'] = $this->load->controller('common/column_left');
 				//$data['column_right'] = $this->load->controller('common/column_right');
 				$data['account_left'] = $this->load->controller('account/left');      //新左侧栏
@@ -144,6 +156,74 @@ class ControllerInformationProfile extends Controller {
 				$data['header'] = $this->load->controller('common/header');
 	
 			$this->response->setOutput($this->load->view('information/hairhome', $data));
+		}
+		public function hairclubs()
+		{
+				$this->load->language('information/profile');
+				$this->document->setTitle('Video Channel');
+				$this->load->model('catalog/profile');
+					$this->load->model('tool/image');
+			  $url = '';
+			   if (isset($this->request->get['page'])) {
+				$page = $this->request->get['page'];
+			} else {
+				$page = 1;
+			}
+			if (isset($this->request->get['limit'])) {
+			$limit = (int)$this->request->get['limit'];
+			} else {
+				$limit = 9;
+			}
+			if (isset($this->request->get['limit'])) {
+				$url .= '&limit=' . $this->request->get['limit'];
+			}
+			$product_total = $this->model_catalog_profile->getOutsideVideoCount();
+			// print_r($product_total);exit();
+			$pagination = new Pagination();
+			$pagination->total = $product_total;
+			$pagination->page = $page;
+			$pagination->limit = $limit;
+			$pagination->url = $this->url->link('information/profile/hairclubs',  $url . '&page={page}');
+			//print_r($pagination->limit);exit();
+			$data['pagination'] = $pagination->render();
+			$filter_data = array(
+				'start'              => ($page - 1) * $limit,
+				'limit'              => $limit
+			);
+				 $outsidevideos=$this->model_catalog_profile->getOutsideVideos($filter_data);
+			   if ($outsidevideos) {
+			   	foreach ($outsidevideos as $key => $value) {
+			   		$videos[$key]['out_id']=$value['out_id'];
+			   		$videos[$key]['out_url']=$value['out_url'];
+			   	}
+
+			   }
+			// $data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
+			// print_r($data['results']);exit();
+			if ($page == 1) {
+			    $this->document->addLink($this->url->link('information/profile/hairclubs', '', true), 'canonical');
+			} elseif ($page == 2) {
+			    $this->document->addLink($this->url->link('information/profile/hairclubs', '', true), 'prev');
+			} else {
+			    $this->document->addLink($this->url->link('information/profile/hairclubs', $url . '&page='. ($page - 1), true), 'prev');
+			}
+
+			if ($limit && ceil($product_total / $limit) > $page) {
+			    $this->document->addLink($this->url->link('information/profile/hairclubs', $url . '&page='. ($page + 1), true), 'next');
+			}
+			$data['allpage']=ceil($product_total / $limit);
+ 			 $profile_video['outsidevideos']=$outsidevideos;
+			   $data['outsidevideos']=$profile_video;
+
+			$data['column_left'] = $this->load->controller('common/column_left');
+				//$data['column_right'] = $this->load->controller('common/column_right');
+				$data['account_left'] = $this->load->controller('account/left');      //新左侧栏
+				$data['content_top'] = $this->load->controller('common/content_top');
+				//$data['content_bottom'] = $this->load->controller('common/content_bottom');
+				$data['footer'] = $this->load->controller('common/footer');
+				$data['header'] = $this->load->controller('common/header');
+	
+			$this->response->setOutput($this->load->view('information/hairhomes', $data));
 		}
 		public function infocare()
 		{
@@ -273,5 +353,68 @@ class ControllerInformationProfile extends Controller {
 	
 			$this->response->addHeader('Content-Type: application/json');
 			$this->response->setOutput(json_encode($data));
+		}
+
+
+		public function loadpages()
+		{
+				$this->load->language('information/profile');
+				$this->document->setTitle('Video Channel');
+				$this->load->model('catalog/profile');
+					$this->load->model('tool/image');
+			  $url = '';
+			   if (isset($this->request->get['page'])) {
+				$page = $this->request->get['page'];
+			} else {
+				$page = 1;
+			}
+			if (isset($this->request->get['limit'])) {
+			$limit = (int)$this->request->get['limit'];
+			} else {
+				$limit = 9;
+			}
+			if (isset($this->request->get['limit'])) {
+				$url .= '&limit=' . $this->request->get['limit'];
+			}
+			$product_total = $this->model_catalog_profile->getOutsideVideoCount();
+			// print_r($product_total);exit();
+			$pagination = new Pagination();
+			$pagination->total = $product_total;
+			$pagination->page = $page;
+			$pagination->limit = $limit;
+			$pagination->url = $this->url->link('information/profile/hairclubs',  $url . '&page={page}');
+			//print_r($pagination->limit);exit();
+			$data['pagination'] = $pagination->render();
+			$filter_data = array(
+				'start'              => ($page - 1) * $limit,
+				'limit'              => $limit
+			);
+				 $outsidevideos=$this->model_catalog_profile->getOutsideVideos($filter_data);
+			   if ($outsidevideos) {
+			   	foreach ($outsidevideos as $key => $value) {
+			   		$videos[$key]['out_id']=$value['out_id'];
+			   		$videos[$key]['out_url']=$value['out_url'];
+			   	}
+
+			   }
+			// $data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
+			// print_r($data['results']);exit();
+			if ($page == 1) {
+			    $this->document->addLink($this->url->link('information/profile/hairclubs', '', true), 'canonical');
+			} elseif ($page == 2) {
+			    $this->document->addLink($this->url->link('information/profile/hairclubs', '', true), 'prev');
+			} else {
+			    $this->document->addLink($this->url->link('information/profile/hairclubs', $url . '&page='. ($page - 1), true), 'prev');
+			}
+
+			if ($limit && ceil($product_total / $limit) > $page) {
+			    $this->document->addLink($this->url->link('information/profile/hairclubs', $url . '&page='. ($page + 1), true), 'next');
+			}
+			// $data['allpage']=ceil($product_total / $limit);
+ 			 $profile_video['outsidevideos']=$outsidevideos;
+			   $data['outsidevideos']=$profile_video;
+			$this->response->addHeader('Content-Type: application/json');
+			$this->response->setOutput(json_encode($data));
+	
 		}
 }

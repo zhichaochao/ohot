@@ -68,6 +68,21 @@
 				
 				
 				<a class="view_a" href="<?php echo $videohome?>">VIEW MORE&nbsp;&nbsp;&nbsp;></a>
+
+						<h1>Video Channel</h1>
+				<p>“Newest hair product launch and fantanstic video public.”</p>
+				
+				<ul class="video_ul clearfix">
+				<?php foreach ($outside_video['outsidevideos'] as $key => $child) {?>
+				<li>
+				<iframe width="100%" height="100%" src="<?=$child['out_url'];?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</li>
+				<?php } ?>
+				</ul>
+
+				
+				
+				<a class="view_a" href="<?php echo $videohomes?>">VIEW MORE&nbsp;&nbsp;&nbsp;></a>
 				
 			</div>
 		</div>

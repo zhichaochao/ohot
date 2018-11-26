@@ -1,6 +1,6 @@
  <div class="yd_hide"><?php echo $header; ?></div>
  <div class="new_nav pc_hide clearfix">
-                <a class="fh" href="###"></a>
+                <a class="fh" href="<?php echo $continue?>"></a>
                 <p>ORDERS DETAILS</p>
             </div>
 <!--内容-->
@@ -203,6 +203,34 @@
               <p>Shipping Method: <span><?php echo $shipping_method; ?></span></p>
             </div>
           </li>
+        <?php if($bank_receipt) { ?>
+          <li class="clearfix" style="padding: 0;">
+            <div class="zf_img clearfix">
+              <!-- <a class="zf_a" href="###">Re Submit Receipt</a> -->
+              <img src="<?=$bank_receipt;?>" alt="" />             
+            </div>
+          </li>
+        <?php } ?> 
+      <?php if ($histories) { ?>
+        <li class="clearfix">
+            <div class="table clearfix">
+              <p>Order History</p>
+              <table>
+                <tr>
+                  <td>Dateline</td>
+                  <td>Status</td>
+                </tr>
+              <?php foreach ($histories as $history) { ?>
+                <tr>
+                  <td><?php echo $history['date_added']; ?></td>
+                  <td><?php echo $history['status']; ?></td>
+                </tr>
+                <?php } ?> 
+              </table>
+            </div>
+            
+          </li>
+          <?php } ?> 
           <li class="clearfix" style="padding: 0;">
             <ol class="btn_ol ol_details clearfix">
 
@@ -210,8 +238,32 @@
                <?php if($payment_code == 'pp_standard' || $payment_code == 'pp_express') { ?>
               <li><a class="pay" href="<?php echo $repay;?>">Pay</a></li>
               <?php } ?> 
+
+              <?php if($payment_code == 'tt_bank_transfer') { ?>
+               <li><a class="pay" href="<?php echo $repay_receipt;?>">ReSubmit Receipt</a></li>
+               <?php } ?> 
+
               <li><button class="Cancel" onclick="cancel_order('<?=$cancel_href?>')" type="button">Cancel</button></li>
                <?php } ?> 
+
+               <?php if($order_status == 'Processing'){ ?>
+                  <li><button class="" type="button">Remind Seller to Ship</button></li>
+                <?php } ?> 
+
+               <?php if($order_status == 'Shipped'){ ?>
+                <li><button class="contact" type="button">Contact Us</button></li>
+               <?php } ?> 
+               <?php if($order_status == 'Completed'){ ?>
+                <li><button class="contact" type="button">Contact Us</button></li>
+               <?php } ?> 
+               <?php if($order_status == 'Processing'){ ?>
+                <li><button class="contact" type="button">Contact Us</button></li>
+               <?php } ?> 
+
+               <?php if($order_status == 'Canceled' || $order_status == 'Completed' ){ ?>
+               <li><button class="del" type="button" onclick="javascript:order_removes('<?php echo $order_id;?>');">Delete</button></li>
+               <?php } ?> 
+               
             </ol>
           </li>
           
@@ -220,6 +272,18 @@
       
       
       
+    </div>
+
+    <div class="new_lxwm_tc clearfix">
+      <div class="text clearfix">
+        <div class="close"></div>
+        <p>Please choose the following ways to contact us</p>
+        
+        <div class="btn clearfix">
+          <a class="wh_a" href="whatsapp://send?phone=<?=$whatappphone;?>"><span>WhatsApp</span></a>
+          <a class="sk_a" href="skype:<?=$skype;?>?chat"><span>Skype</span></a> 
+        </div>
+      </div>
     </div>
     <!-- end -->
     
@@ -406,7 +470,45 @@ alert('<?php echo $success; ?>');
 </script>
 <?php }?>
 <script>
+function order_removes(order_id){
+// tips(order_id);
+// if(confirm('Are you sure?')){
+
+           $.ajax({
+            url: 'index.php?route=account/order/delete',
+            type: 'post',
+            data: {order_id:order_id},
+            dataType: 'json',
+     
+            success: function(json) {
+              // alert(json);
+              // if (json['link']) { }
+               // location.href('<?php echo $continue?>');
+               window.location.href="<?php echo $continue?>";
+            }
+        })
+      
+    // }
+}
   $(function(){
+    //联系
+      $(".contact").click(function(){
+        $(".new_lxwm_tc").fadeIn();
+        $("body").css("overflow","hidden");
+      })
+      
+      //关闭弹窗
+      $(".new_lxwm_tc .close").click(function(){
+        $(".new_lxwm_tc").fadeOut();
+        $("body").css("overflow","");
+      })
+      $(".new_lxwm_tc").click(function(e){
+        var close = $('.new_lxwm_tc .text'); 
+          if(!close.is(e.target) && close.has(e.target).length === 0){
+            $(".new_lxwm_tc").fadeOut();
+            $("body").css("overflow","");
+        }
+      })
     
     window.onload = function(){
       var li_hei = $(".zt_ol>li").eq(0).outerHeight(true);
