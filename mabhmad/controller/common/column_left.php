@@ -121,6 +121,14 @@ class ControllerCommonColumnLeft extends Controller {
                 );
 			}
 
+			if ($this->user->hasPermission('access', 'catalog/gallerys')) {
+				$hairclub[] = array(
+			        'name'      => $this->language->get('text_gallerys'),
+                    'href'      => $this->url->link('catalog/gallerys', 'token=' . $this->session->data['token'], true),
+                    'children'  => array()
+                );
+			}
+
 			if ($hairclub) {
 				$catalog[] = array(
 					'name'	   => $this->language->get('text_hairclub'),

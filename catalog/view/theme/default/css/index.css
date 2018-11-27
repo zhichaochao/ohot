@@ -1150,7 +1150,7 @@
 	.view_order .text_con h1{font-size: 24px;color: #333;line-height: 80px;margin-top: 10px;}
 	.view_order .text_con .top{border: 1px solid #eee;margin-bottom: 40px;}
 	.view_order .hui_div{height: 56px;background: #f5f5f5;padding-left: 10px;border-bottom: 1px solid #eee;}
-	.view_order .hui_div p{display: inline-block;float: left;line-height: 56px;margin-right: 6.8vw;font-size: 16px;}
+	.view_order .hui_div p{display: inline-block;float: left;line-height: 56px;margin-right: 6vw;font-size: 16px;}
 	
 	.view_order .ship .left {display: block;float: left;max-width: 480px;width: 40%; margin:0 80px 20px 20px;}
 	.view_order .ship .right{display: block;float: left;max-width: 360px;width: 36%;}
@@ -1991,7 +1991,7 @@
 	/****新订单列表****/
 	.new_order{background: #f5f5f5;}
 	.new_order .nav_t{background: #fff;padding:0 0.3rem;margin-bottom: 0.2rem;}
-	.new_order .nav_t li{display: inline-block;float: left;margin-right: 0.38rem;}
+	.new_order .nav_t li{display: inline-block;float: left;margin-right: 0.24rem;}
 	.new_order .nav_t li:last-child{margin-right: 0;}
 	.new_order .nav_t li a{display: inline-block;color: #555;font-size: 0.26rem;font-family: helvetica;padding: 0 0.1rem;
 	line-height: 0.77rem;height: 0.8rem;border-bottom: 0.05rem solid transparent;box-sizing: border-box;}
