@@ -116,7 +116,7 @@
 
           </div>
            <?php if($comment){?>
-          <p>Comment  : <?php echo $comment; ?></p>
+          <p class="comment" style="font-size: 18px;">Comment  : <span><?php echo $comment; ?></span></p>
            <?php }?>
           
           <!-- <a class="a_btn" href="###">Continue to pay</a>

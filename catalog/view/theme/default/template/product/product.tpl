@@ -1,4 +1,7 @@
-<div class="yd_hide"><?php echo $header; ?> </div>
+
+
+	<?php echo $header; ?>
+
 <div class="new_nav pc_hide clearfix">
                 <a class="fh" href="<?php echo $home?>"></a>
                 <p>PRODUCT DETAILS</p>
@@ -849,7 +852,9 @@ var product_id = "<?php echo $product_id; ?>";
 </script>
 
 <script type="text/javascript">
-	
+	if($(window).width()<=920){
+		$(".big_nav").hide();
+	}	
 	    function popupwindow(url, title, w, h) {
             wLeft = window.screenLeft ? window.screenLeft : window.screenX;
             wTop = window.screenTop ? window.screenTop : window.screenY;

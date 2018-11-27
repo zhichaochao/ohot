@@ -101,26 +101,14 @@
       }
     })
     
-    //收藏
+  //收藏
     $(".pro_content .pro_ul .sc_div").click(function(){
-      var win = $(window).width()
-      
-      if(win>750){
-        if($(this).hasClass("off")){
-          $(this).removeClass("off");
-          $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/pro_star.png) no-repeat").css("background-size","1.87vw 1.87vw");
-        }else{
-          $(this).addClass("off");
-          $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/pro_star_.png) no-repeat").css("background-size","1.87vw 1.87vw");
-        }
+      if($(this).hasClass("off")){
+        $(this).removeClass("off");
+        tips('Moved out from collection','');
       }else{
-        if($(this).hasClass("off")){
-          $(this).removeClass("off");
-          $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/pro_star.png) no-repeat").css("background-size","0.5rem 0.5rem");
-        }else{
-          $(this).addClass("off");
-          $(this).css("background","url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/pro_star_.png) no-repeat").css("background-size","0.5rem 0.5rem");
-        }
+        $(this).addClass("off");
+        tips('Save to collection','');
       }
     })
   })

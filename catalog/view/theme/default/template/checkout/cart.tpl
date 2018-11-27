@@ -11,8 +11,8 @@
 		<title>SHOPCART2</title>
 		
 	</head>
-	<body><!--内容-->
-		<div class="shopcart2 pc_hide clearfix">
+	<body style="background: #f5f5f5;"><!--内容-->
+		<div class="shopcart2 pc_hide clearfix new_in_content">
 			<div class="content  shop2_content clearfix">
 				<div class="shop2_text  clearfix">
 					<div class="left">
