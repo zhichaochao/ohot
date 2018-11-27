@@ -889,10 +889,10 @@ var product_id = "<?php echo $product_id; ?>";
 		$(".sc_btn").click(function(){
 			if($(this).hasClass("off")){
 				$(this).removeClass("off");
-				tips('Moved out from collection','');
+				// tips('Moved out from collection','');
 			}else{
 				$(this).addClass("off");
-				tips('Save to collection','');
+				// tips('Save to collection','');
 			}
 		})
 		
