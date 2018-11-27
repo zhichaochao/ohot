@@ -82,29 +82,29 @@ class ControllerCatalogGallerys extends Controller
 
             $url = '';
 
-            if (isset($this->request->get['filter_gallerys_title'])) {
-                $url .= '&filter_gallerys_title=' . urlencode(html_entity_decode($this->request->get['filter_gallerys_title'], ENT_QUOTES, 'UTF-8'));
-            }
+            // if (isset($this->request->get['filter_gallerys_title'])) {
+            //     $url .= '&filter_gallerys_title=' . urlencode(html_entity_decode($this->request->get['filter_gallerys_title'], ENT_QUOTES, 'UTF-8'));
+            // }
 
-            if (isset($this->request->get['filter_product_name'])) {
-                $url .= '&filter_product_name=' . $this->request->get['filter_product_name'];
-            }
+            // if (isset($this->request->get['filter_product_name'])) {
+            //     $url .= '&filter_product_name=' . $this->request->get['filter_product_name'];
+            // }
 
-            if (isset($this->request->get['filter_author'])) {
-                $url .= '&filter_author=' . $this->request->get['filter_author'];
-            }
+            // if (isset($this->request->get['filter_author'])) {
+            //     $url .= '&filter_author=' . $this->request->get['filter_author'];
+            // }
 
-            if (isset($this->request->get['sort'])) {
-                $url .= '&sort=' . $this->request->get['sort'];
-            }
+            // if (isset($this->request->get['sort'])) {
+            //     $url .= '&sort=' . $this->request->get['sort'];
+            // }
 
-            if (isset($this->request->get['order'])) {
-                $url .= '&order=' . $this->request->get['order'];
-            }
+            // if (isset($this->request->get['order'])) {
+            //     $url .= '&order=' . $this->request->get['order'];
+            // }
 
-            if (isset($this->request->get['page'])) {
-                $url .= '&page=' . $this->request->get['page'];
-            }
+            // if (isset($this->request->get['page'])) {
+            //     $url .= '&page=' . $this->request->get['page'];
+            // }
 
             $this->response->redirect($this->url->link('catalog/gallerys', 'token=' . $this->session->data['token'] . $url, true));
         }
