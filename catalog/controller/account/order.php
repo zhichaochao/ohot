@@ -430,7 +430,7 @@ class ControllerAccountOrder extends Controller {
 			$totals = $this->model_account_order->getOrderTotals($this->request->get['order_id']);
 			foreach ($totals as $total) {
 				$data['totals'][] = array(
-					'title' => $total['title'],
+					'code' => $total['code'],
 					'text'  => $this->currency->format($total['value'], $order_info['currency_code'], $order_info['currency_value']),
 				);
 				if ($total['code']=='total') {
@@ -440,7 +440,7 @@ class ControllerAccountOrder extends Controller {
 					$data['shipping_total']= $this->currency->format($total['value'], $order_info['currency_code'], $order_info['currency_value']);
 				}
 			}
-
+// print_r($data['totals']);exit;
 			$data['comment'] = nl2br($order_info['comment']);
 
 			// History

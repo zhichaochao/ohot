@@ -1,6 +1,6 @@
 <div class="yd_hide"><?php echo $header; ?> </div>
 <div class="new_nav pc_hide clearfix">
-                <a class="fh" href="###"></a>
+                <a class="fh" href="<?php echo $home?>"></a>
                 <p>PRODUCT DETAILS</p>
             </div>
 
@@ -926,6 +926,5 @@ var product_id = "<?php echo $product_id; ?>";
 			}
 		})
 </script>
-
-<?php echo $footer; ?>
+<div class="yd_hide"><?php echo $footer; ?></div>
 

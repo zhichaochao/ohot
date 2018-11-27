@@ -12,26 +12,31 @@
                  <?php foreach ($payment_methods as $payment_method) { ?>
        
                 <li class="clearfix">
+                 <label class="gx clearfix" for="">
                   <input class="pay_dx"   type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" onclick="changePayment(0, this)" />
 
               <?php if($payment_method['code'] == 'pp_express'){ ?>
-                <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/paypal_img.gif" />
-                  <span >PayPal</span>
+                <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/paypal_img.gif" style="width: 150px;height:50px;"/></div> 
+                  <p >PayPal</p>
                 <?php } else { ?>
                   <?php if (isset($payment_method['image']) && !empty($payment_method['image'])) { ?>
-                    <img src="<?php echo $payment_method['image']; ?>"/>     <span>   <?php echo $payment_method['title']; ?></span>
+                  <div class="img"><img src="<?php echo $payment_method['image']; ?>"  style="width: 150px;height:50px;"/></div> 
+                    <p>   <?php echo $payment_method['title']; ?></p>
                   <?php } else { ?>
-                 <i>   <?php echo $payment_method['title']; ?></i>
+                 <p>   <?php echo $payment_method['title']; ?></p>
                   <?php } ?>
                 <?php } ?>
-           
+                   </label>
                 </li>
+
                   <?php if($payment_method['code'] == 'pp_express'){ ?>
                   <li class="clearfix">
+                  <label class="gx clearfix" for="">
                   <input class="pay_dx"    type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" 
  onclick="changePayment(1, this)" />
-                 <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/ppguest_1.gif" />
-                  <span>Processed by</span>
+                 <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/ppguest_1.gif" style="width: 150px;height:50px;" /></div> 
+                  <p>Processed by</p>
+                  </label>
                 </li>
                     <?php } ?>
               <?php } ?>
@@ -63,6 +68,11 @@ $(function( ){
 
 </script>
 <script type="text/javascript"><!--
+  // 支付方式选择
+    $(".pay_ul>li").click(function(){
+      $(this).addClass("active").siblings().removeClass("active");
+      $(".pay_ul>li .ts_p").hide();
+    })
 
 function changePayment(flag, e){
     $('#is_paypal_creditcard').val(flag);

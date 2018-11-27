@@ -45,9 +45,10 @@
                     <?php foreach ($order['products'] as $product) { ?>
                     <li class="clearfix">
                       <div class="pic_img">
-                       <a href="<?=$product['href'];?>"> <img src="<?php echo $product['image']; ?>"  /></a>
+                       <a href="<?php echo $order['view']; ?>"> <img src="<?php echo $product['image']; ?>"  /></a>
                       </div>
-                      <p><a href="<?=$product['href'];?>"><?php echo $product['name']; ?></a></p>
+                      <p><a href="<?=$order['view'];?>"><?php echo $product['name']; ?></a></p>
+                      <a href="<?=$order['view'];?>">
                       <div class="type">
                         <p>Quantity:<?php echo $product['quantity']; ?></p>    
                     <?php if ($product['options']) { ?>
@@ -56,6 +57,7 @@
 
                     <?php } }?>  
                       </div>
+                      </a>
                       <p class="price"><?php echo $product['price']; ?></p>
                     </li>
                         <?php } }?>

@@ -29,9 +29,19 @@
             <p class="p2"><?php echo $user_name; ?></p>
           </div>
           
-          <div class="text_1 clearfix">
+          <!-- <div class="text_1 clearfix">
             <h1 class="vip_h1">VIP SYSTEM</h1>
             <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/vip1.jpg"/>
+          </div> -->
+          <div class="text_1 clearfix">
+            <h1 class="vip_h1">VIP SYSTEM</h1>
+            <div class="pic clearfix" style="position: relative;">
+              <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/vip1.jpg"/>
+              <span class="span1">$0</span>
+              <span class="span2">$20000</span>
+              <span class="span3">$50000</span>
+              <span class="span4">$100000</span>
+            </div>
           </div>
           
           <div class="text_2 clearfix">

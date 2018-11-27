@@ -71,6 +71,7 @@
               <ul class="order_ul clearfix">
               <?php foreach ($products as $product) { ?>
                 <li class="clearfix">
+                <a href="<?php echo $product['href']; ?>">
                   <div class="pic_img">
                     <img src="<?php echo $product['order_image']; ?>" alt="" />                   
                   </div>
@@ -86,15 +87,37 @@
                   </span>
                     <span class="z_price"><?php echo $product['price']; ?></span>
                 </li>
+               </a>
                <?php } ?>
               </ul>
               <div class="total clearfix">
                 <p class="clearfix"><span class="fl">Shipping </span><span class="fr"><?php echo $shipping_total; ?></span></p>
+                <?php if($totals){?>
+                 <?php if($totals[2]['code']=='poundage'){?>
+                <p class="clearfix">
+                <span class="fl">Poundage </span>
+                <span class="fr"><?php echo $totals[2]['text']; ?></span>
+                </p>
+                <?php }elseif($totals[2]['code']=='coupon'){?>
+                <p class="clearfix">
+                <span class="fl">Poundage </span>
+                <span class="fr"><?php echo $totals[3]['text']; ?></span>
+                </p>
+                <p class="clearfix">
+                <span class="fl">Discounts </span>
+                <span class="fr"><?php echo $totals[2]['text']; ?></span>
+                </p>
+                <?php }?>
+                <?php }?>
+
                 <p class="clearfix"><span class="p_span fl">Total </span><span class="fr"><?php echo $total; ?></span></p>
               </div>
             </div>
 
           </div>
+           <?php if($comment){?>
+          <p>Comment  : <?php echo $comment; ?></p>
+           <?php }?>
           
           <!-- <a class="a_btn" href="###">Continue to pay</a>
           <a class="qx_btn" href="###">Cancel</a> -->
@@ -184,6 +207,15 @@
               <span>Total: <em><?php echo $total; ?></em></span>
               <p>Shipping <em><?php echo $shipping_total; ?></em></p>
 
+               <?php if($totals){?>
+                 <?php if($totals[2]['code']=='poundage'){?>
+                 <p>Poundage <em><?php echo $totals[2]['text']; ?></em></p>
+                <?php }elseif($totals[2]['code']=='coupon'){?>
+                  <p>Poundage <em><?php echo $totals[3]['text']; ?></em></p>
+                    <p>Discounts <em><?php echo $totals[2]['text']; ?></em></p>
+                <?php }?>
+                <?php }?>
+
               <!-- <p>Discounts <em>-$10.00</em></p> -->
             </div>
           </li>
@@ -201,6 +233,9 @@
               <p>Payment Date: <span><?php echo $date_added; ?></span></p>
               <hr />
               <p>Shipping Method: <span><?php echo $shipping_method; ?></span></p>
+               <?php if($comment){?>
+              <p>Comment : <span><?php echo $comment; ?></span></p>
+               <?php }?>
             </div>
           </li>
         <?php if($bank_receipt) { ?>

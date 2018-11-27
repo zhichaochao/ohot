@@ -225,6 +225,12 @@ class ControllerProductProduct extends Controller {
             $data['heading_title'] = $product_info['name'];
             $data['wishlist']= $this->model_catalog_product->wishlistornot($product_info['product_id']);
 
+            if(isset($_SERVER['HTTP_REFERER'])){
+            $data['home'] =$_SERVER['HTTP_REFERER'];
+            }else{
+                $data['home'] =$this->url->link('common/home');
+            }
+
             $data['text_select'] = $this->language->get('text_select');
             $data['text_manufacturer'] = $this->language->get('text_manufacturer');
             $data['text_model'] = $this->language->get('text_model');

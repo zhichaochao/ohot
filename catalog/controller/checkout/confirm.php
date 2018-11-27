@@ -606,6 +606,11 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['payment_method_image'] = $this->model_tool_image->resize($this->config->get($payment_code . '_image'), 474, 154);
 			}
 		}
+		if(isset($_SERVER['HTTP_REFERER'])){
+			$data['home'] =$_SERVER['HTTP_REFERER'];
+		}else{
+			$data['home'] =$this->url->link('common/home');
+		}
 		$data['payment'] = $this->url->link('checkout/payment', '', true);
 		$data['submit_bank_receipt'] = $this->url->link('account/order/receipts', 'order_id='.$order_id, true);
         $this->load->model('checkout/order_total');
@@ -658,6 +663,11 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['payment_method_image'] = $this->model_tool_image->resize($this->config->get($payment_code . '_image'), 474, 154);
 			}
 		}
+		if(isset($_SERVER['HTTP_REFERER'])){
+			$data['home'] =$_SERVER['HTTP_REFERER'];
+		}else{
+			$data['home'] =$this->url->link('common/home');
+		}
 		$data['payment'] = $this->url->link('checkout/payment', '', true);
 		$data['submit_bank_receipt'] = $this->url->link('account/order/receipts', 'order_id='.$order_id, true);
         $this->load->model('checkout/order_total');
@@ -709,6 +719,11 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['payment_method_attributes'] = $payment_method_attributes;
 				$data['payment_method_image'] = $this->model_tool_image->resize($this->config->get($payment_code . '_image'), 474, 154);
 			}
+		}
+		if(isset($_SERVER['HTTP_REFERER'])){
+			$data['home'] =$_SERVER['HTTP_REFERER'];
+		}else{
+			$data['home'] =$this->url->link('common/home');
 		}
 		$data['payment'] = $this->url->link('checkout/payment', '', true);
 		$data['submit_bank_receipt'] = $this->url->link('account/order/receipts', 'order_id='.$order_id, true);

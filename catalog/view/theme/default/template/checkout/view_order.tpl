@@ -1,4 +1,8 @@
-<?php echo $header; ?>
+<div class="yd_hide" ><?php echo $header; ?></div>
+<div class="new_nav pc_hide clearfix">
+                <a class="fh" href="<?php echo $home?>"></a>
+                <p>ORDER AMOUNT</p>
+            </div>
 <!--内容-->
         <div class="content in_content pay new_in_content">
             <div class="pay_text clearfix">
@@ -23,7 +27,7 @@
 
 <!--内容-->
         
-        <div class="pay">
+        <!-- <div class="pay">
             <div class="content in_content clearfix">
                 <div class="pay_text clearfix">
                     <h1>your order has been placed successfully, please make payment now.</h1>
@@ -103,8 +107,8 @@
                         <?php } ?>
                 </div>
             </div>
-        </div>
-<?php echo $footer; ?>
+        </div> -->
+<div class="yd_hide"><?php echo $footer; ?></div>
 <script>
         //调取上传框
         function getphoto(node) {

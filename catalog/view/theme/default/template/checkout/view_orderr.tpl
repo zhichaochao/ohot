@@ -1,4 +1,8 @@
-<?php echo $header; ?>
+<div class="yd_hide" ><?php echo $header; ?></div>
+<div class="new_nav pc_hide clearfix">
+                <a class="fh" href="<?php echo $home?>"></a>
+                <p>UPLOAD THE BANK ALERT</p>
+            </div>
 
 <div class="content in_content pay new_in_content">
             <div class="pay_text clearfix">
@@ -20,7 +24,7 @@
                 </form>
             </div>
         </div>
-<?php echo $footer; ?>
+<div class="yd_hide"><?php echo $footer; ?></div>
 <script>
         window.onload = function(){
             $("button.a_btn").click(function(){
