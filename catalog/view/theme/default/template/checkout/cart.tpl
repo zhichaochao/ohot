@@ -152,10 +152,10 @@
 						</div>
 						<div class="div3">
 									<?php if($product['original_price']) { ?>
-					                    <span class="price"><?php echo $product['price']; ?>
-					                    <span class="price1"><?php echo $product['original_price']; ?></span></span>
+					                    <span class="price"><i><?php echo $product['price']; ?></i>
+					                    <em><?php echo $product['original_price']; ?></em></span>
 				                    <?php }else{ ?>
-				                    	<span class="price"><?php echo $product['price']; ?></span>
+				                    	<span class="price"><i><?php echo $product['price']; ?></i></span>
 				                    <?php } ?>
 						</div>
 						<div class="div4">

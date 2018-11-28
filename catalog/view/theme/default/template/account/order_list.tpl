@@ -197,7 +197,7 @@
           <div class="right  or_null clearfix pc_hide">
               <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/new_5_.png"/>
               <p> You haven't placed order yet, start now~</p>
-              <a class="a_btn" href="###">GO SHOPPING &nbsp;&nbsp;&nbsp;></a>
+              <a class="a_btn" href="<?php echo $goshopping?>">GO SHOPPING &nbsp;&nbsp;&nbsp;></a>
             </div>
         <?php }?>
     </div>

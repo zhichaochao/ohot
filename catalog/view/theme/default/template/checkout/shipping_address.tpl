@@ -14,7 +14,7 @@
                                   }
                               }
                           ?>
-                            <li aid="<?=$address['address_id']?>" class=" <?php if ($address['address_id'] == $address_id) echo 'active'; ?> clearfix">
+                            <li aid="<?=$address['address_id']?>" class=" <?php if ($address['address_id'] == $address_id) echo ''; ?> clearfix">
                                 <div class="text_li">
                                 <span> <?php echo $address['firstname'] .' '. $address['lastname']; ?> </span>
                                 <p><?php echo $address['telephone']; ?>  <?php 
@@ -189,6 +189,7 @@ $('#shipping-existing').on('mouseleave','tr',function(){
 });
 $('.address_ul li').on('click', function() {
    $(this).addClass('active').siblings().removeClass('active');
+   $('.addrres').css('display','none');
     $.ajax({
         url: 'index.php?route=checkout/shipping_address/changeAddress&address_id='+$(this).attr('aid'),
         dataType: 'json',

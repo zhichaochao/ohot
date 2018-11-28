@@ -13,7 +13,7 @@
        
                 <li class="clearfix">
                  <label class="gx clearfix" for="">
-                  <input class="pay_dx"   type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" onclick="changePayment(0, this)" />
+                  <input class="pay_dx"   type="hidden" name="payment_method" value="<?php echo $payment_method['code']; ?>" onclick="changePayment(0, this)" />
 
               <?php if($payment_method['code'] == 'pp_express'){ ?>
                 <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/paypal_img.gif" style="width: 150px;height:50px;"/></div> 
@@ -32,7 +32,7 @@
                   <?php if($payment_method['code'] == 'pp_express'){ ?>
                   <li class="clearfix">
                   <label class="gx clearfix" for="">
-                  <input class="pay_dx"    type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" 
+                  <input class="pay_dx"    type="hidden" name="payment_method" value="<?php echo $payment_method['code']; ?>" 
  onclick="changePayment(1, this)" />
                  <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/ppguest_1.gif" style="width: 150px;height:50px;" /></div> 
                   <p>Processed by</p>
@@ -88,6 +88,7 @@ function savePaymentMethod(e) {
         dataType: 'json',
  
         success: function(json) {
+          // alert(json);die;
             $('#collapse-payment-method .alert, #collapse-payment-method .text-danger').remove();
 
             if (json['redirect']) {

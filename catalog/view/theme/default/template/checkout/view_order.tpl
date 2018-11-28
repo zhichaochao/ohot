@@ -15,7 +15,7 @@
                             </tr>
                         <?php } ?>
                 </table>
-                <?php if ($payment_method_code == 'pp_express') { ?>
+                <?php if ($payment_method_code == 'pp_express' || $payment_method_code == 'pp_standard') { ?>
                 <a class="a_btn" href="<?php echo $payment; ?>">CONTINUE</a>
                 
                 <?php }else{ ?>

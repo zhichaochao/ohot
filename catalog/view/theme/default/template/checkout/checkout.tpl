@@ -14,12 +14,13 @@
                             <h2>Select the shipping address</h2>
                      
                         </div>
+                         <a class="btn240 addrres" onclick="toselectAddress()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
                         <div class="shipping_method bg_fff bg_gif" id="shipping_method" style="display: none;" >
                             <h3>Shipping Method</h3>
                         </div>
                         </div>
                     </div>
-                    
+                   
                 </div>
             
                 <div class="right clearfix right_shop ">
@@ -56,6 +57,12 @@
         </div>
 
 <script type="text/javascript">
+function toselectAddress(){
+
+tips('Please Select Shipping Address','gantan');
+ // $('.addrres').css('display','none');
+
+}
     $(function(){
         //单选
         $(".dx_label input").click(function(){
