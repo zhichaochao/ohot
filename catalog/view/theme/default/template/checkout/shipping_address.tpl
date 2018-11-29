@@ -79,7 +79,9 @@
                                 <p><?php echo $address['country']; ?></p>
                                 <!-- <a class="a_btn" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a> -->
                                 <span class="<?php if ($address['address_id'] == $address_id) echo 'def'; ?>">Default</span>
-                               <a class="edit" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a>
+                               <!-- <a class="edit" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a> -->
+                               
+                                <a class="edit" href="index.php?route=checkout/shipping_address/wap&address_id=<?php echo $address['address_id']; ?>">Edit</a>
                                 <!-- <a class="go_btn"  onclick="setDefault('<?php echo $address['address_id']; ?>', this)" >sent to this address&nbsp;&nbsp;&nbsp;></a> -->
                               <!-- </div> -->
                             </li>
@@ -224,7 +226,8 @@ $('.zf_1_ol li').on('click', function() {
          
                 alert(json['error']);
             } else {
-                getShippingMethod();
+                // getShippingMethod();
+                location ='index.php?route=checkout/shipping_method/wap';
             }
         },
         error: function(xhr, ajaxOptions, thrownError) {

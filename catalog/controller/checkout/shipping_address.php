@@ -97,6 +97,106 @@ class ControllerCheckoutShippingAddress extends Controller {
 // print_r($data);exit();
 		$this->response->setOutput($this->load->view('checkout/shipping_address', $data));
 	}
+	public function wap() {
+		// if (!$this->load->controller('common/common/isMobile')) {
+		// 		$this->response->redirect($this->url->link('checkout/checkout'));
+		// }
+
+	    $this->load->language('account/edit');
+		$this->load->language('checkout/checkout');
+
+		$data['text_address_existing'] = $this->language->get('text_address_existing');
+		$data['text_address_new'] = $this->language->get('text_address_new');
+		$data['text_select'] = $this->language->get('text_select');
+		$data['text_none'] = $this->language->get('text_none');
+		$data['text_loading'] = $this->language->get('text_loading');
+
+		$data['entry_firstname'] = $this->language->get('entry_firstname');
+		$data['entry_lastname'] = $this->language->get('entry_lastname');
+		$data['entry_company'] = $this->language->get('entry_company');
+		$data['entry_address_1'] = $this->language->get('entry_address_1');
+		$data['entry_address_2'] = $this->language->get('entry_address_2');
+		$data['entry_postcode'] = $this->language->get('entry_postcode');
+		$data['entry_city'] = $this->language->get('entry_city');
+		$data['entry_country'] = $this->language->get('entry_country');
+		$data['entry_zone'] = $this->language->get('entry_zone');
+		$data['entry_telephone'] = $this->language->get('entry_telephone');
+
+		$data['button_continue'] = $this->language->get('button_continue');
+		$data['button_upload'] = $this->language->get('button_upload');
+		
+		$address_id = isset($this->request->get['address_id'])?(int)$this->request->get['address_id']:0;
+
+		$this->load->model('account/address');
+		$data['addresses'] = $this->model_account_address->getAddresses();
+		$data['eaddress'] = '';
+		if($address_id){
+		    $data['eaddress'] = $this->model_account_address->getAddress($address_id);
+		}elseif(!$this->customer->isLogged()){
+		    if(isset($this->session->data['shipping_address'])){
+		        $data['eaddress'] = $this->session->data['shipping_address'];
+		    }elseif(isset($this->session->data['payment_address'])){
+		        $data['eaddress'] = $this->session->data['payment_address'];
+		        $this->session->data['shipping_address'] = $this->session->data['payment_address'];
+		    }
+		}
+		
+		if (isset($this->session->data['shipping_address']['address_id'])) {
+			$data['address_id'] = $this->session->data['shipping_address']['address_id'];
+		} elseif($this->customer->getAddressId() && !empty($data['addresses'])) {
+		    $address = $this->model_account_address->getAddress($this->customer->getAddressId());
+		    if(empty($address)) $address = current($data['addresses']);
+			$data['address_id'] = $address['address_id'];
+			$this->session->data['shipping_address'] = $address;
+		} elseif (!empty($data['addresses'])){
+		    $this->session->data['shipping_address'] = current($data['addresses']);
+		    $data['address_id'] = $this->session->data['shipping_address']['address_id'];
+	    } else {
+		    $data['address_id'] = '';
+		}
+
+		if(!empty($this->session->data['shipping_address']) && !empty($this->session->data['same_as_shipping']))
+	        $this->session->data['payment_address'] = $this->session->data['shipping_address'];//默认账单地址与发货地址一致
+
+		if (isset($this->session->data['shipping_address']['postcode'])) {
+			$data['postcode'] = $this->session->data['shipping_address']['postcode'];
+		} else {
+			$data['postcode'] = '';
+		}
+
+		if (isset($this->session->data['shipping_address']['country_id'])) {
+			$data['country_id'] = $this->session->data['shipping_address']['country_id'];
+		} else {
+			$data['country_id'] = $this->config->get('config_country_id');
+		}
+
+	    if (isset($this->session->data['shipping_address']['zone_id'])) {
+			$data['zone_id'] = $this->session->data['shipping_address']['zone_id'];
+		} else {
+			$data['zone_id'] = '';
+		}
+
+		$this->load->model('localisation/country');
+
+		$data['countries'] = $this->model_localisation_country->getCountries();
+
+		// Custom Fields
+		$this->load->model('account/custom_field');
+
+		$data['custom_fields'] = $this->model_account_custom_field->getCustomFields($this->config->get('config_customer_group_id'));
+
+		if (isset($this->session->data['shipping_address']['custom_field'])) {
+			$data['shipping_address_custom_field'] = $this->session->data['shipping_address']['custom_field'];
+		} else {
+			$data['shipping_address_custom_field'] = array();
+		}
+		$data['payment_address'] = isset($this->session->data['payment_address'])?$this->session->data['payment_address']:'';
+		$data['shipping_address'] = isset($this->session->data['shipping_address'])?$this->session->data['shipping_address']:'';
+		$data['payment_type'] = isset($this->session->data['payment_type'])?$this->session->data['payment_type']:'';
+		
+// print_r($data);exit();
+		$this->response->setOutput($this->load->view('checkout/shipping_address', $data));
+	}
 
 	public function save() {
 	    
