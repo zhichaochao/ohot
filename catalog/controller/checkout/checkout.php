@@ -63,7 +63,8 @@ class ControllerCheckoutCheckout extends Controller {
 		);
 
 		$data['heading_title'] = $this->language->get('heading_title');
-
+		$data['currentpage']=$_SERVER['REQUEST_URI'];
+// print_r($_SERVER['']);exit();
 		$data['text_checkout_option'] = sprintf($this->language->get('text_checkout_option'), 1);
 		$data['text_checkout_account'] = sprintf($this->language->get('text_checkout_account'), 2);
 		$data['text_checkout_payment_address'] = sprintf($this->language->get('text_checkout_payment_address'), 2);
