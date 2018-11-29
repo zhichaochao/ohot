@@ -89,7 +89,7 @@
                            
                         </ul>
                         <li class="clearfix">
-                        <a class="add_a" id='show-shipping-new'><span>Add new address</span></a>
+                        <a class="add_a" href="<?=$address_add?>"><span>Add new address</span></a>
                       </li>
 
 
