@@ -4,17 +4,24 @@
     <link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
     <script type="text/javascript" src="catalog/view/theme/default/js/jquery.min.js" ></script>
     <script type="text/javascript" src="catalog/view/theme/default/js/common.js" ></script>
+     <?php if(!empty($eaddress)){?>
     <div class="new_nav pc_hide clearfix">
         <a class="fh" href="<?php echo $home?>"></a>
         <p>EDIT SHIPPING ADDRESS</p>
       </div>
+<?php }else{?>
+<div class="new_nav pc_hide clearfix">
+        <a class="fh" href="<?php echo $home?>"></a>
+        <p>ADD SHIPPING ADDRESS</p>
+      </div>
+<?php }?>
 <div class="content in_content zf_13  new_in_content">
       
       <div class="zf_con clearfix">
         <div class="zfbt clearfix">
           <span>1</span>
           <h1>Shipping Address</h1>
-          <?php if(!empty($address_id)){?>
+          <?php if(!empty($eaddress)){?>
 
           <div class="del clearfix">
             <svg t="1539766974948" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" onclick="delAddress('<?=$address_id?>',this)">
