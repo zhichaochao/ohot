@@ -63,7 +63,7 @@
                                   }
                               }
                           ?>
-                            <li aid="<?=$address['address_id']?>" class=" <?php if ($address['address_id'] == $address_id) echo 'active'; ?>">
+                            <li aid="<?=$address['address_id']?>" class=" <?php if ($address['address_id'] == $address_id) echo ''; ?>">
                                 <!-- <div class="text_li"> -->
                                 <p> <?php echo $address['firstname'] .' '. $address['lastname']; ?> </p>
                                 <p><?php echo $address['telephone']; ?>  <?php 
@@ -78,7 +78,7 @@
                                 <p><?php echo $address['postcode']; ?></p>
                                 <p><?php echo $address['country']; ?></p>
                                 <!-- <a class="a_btn" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a> -->
-                                <span class="<?php if ($address['address_id'] == $address_id) echo 'def'; ?>">Default</span>
+                                <span class="<?php if ($address['address_id'] == $address_id) echo ''; ?>">Default</span>
                                <!-- <a class="edit" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a> -->
                                
                                 <a class="edit" href="index.php?route=checkout/shipping_address/wap&address_id=<?php echo $address['address_id']; ?>">Edit</a>
@@ -91,6 +91,7 @@
                         <li class="clearfix">
                         <a class="add_a" href="<?=$address_add?>"><span>Add new address</span></a>
                       </li>
+                       <a class="btn240 addrres" onclick="toselectAddress()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
 
 
     

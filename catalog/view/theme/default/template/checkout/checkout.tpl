@@ -225,5 +225,5 @@ function getOrder(){
 // echo $footer;
 //  }
 //--></script>
-
-<!-- <?php echo $footer; ?> -->
+<div class="yd_hide">
+<?php echo $footer; ?></div>
