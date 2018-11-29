@@ -207,12 +207,11 @@
 				
 			</div>
 		
-			<div class="new_nav pc_hide clearfix">
+			<!--<div class="new_nav pc_hide clearfix">
 				<a class="fh" href="###"></a>
 				<p>SELECT SHIPPING ADDRESS</p>
-			</div>
+			</div>-->
 		</div>
-		<!--内容-->
 		<!--pc内容-->
 		<div class="address yd_hide clearfix">
 			<div class="content in_content address_content clearfix">
@@ -405,135 +404,8 @@
 			</div>
 		</div>
 		
-		<!--移动内容1-->
-		<div class="content in_content zf_1 new_in_content clearfix pc_hide">
-			<div class="zf_con clearfix">
-				<div class="zfbt clearfix">
-					<span>1</span>
-					<h1>Shipping Address</h1>
-				</div>
-				
-				<ol class="zf_1_ol clearfix">
-					<li class="active">
-						<p>Xiaoxiao</p>
-						<p>Jiangxia, baiyun district, guangzhou, guangdong province.</p>
-						<p>guangzhou 510000</p>
-						<p>Guangdong</p>
-						<p>China</p>
-						<p>+2345601634559</p>
-						<span class="def">Default</span>
-						<a class="edit" href="###">Edit</a>
-					</li>
-					<li>
-						<p>Xiaoxiao</p>
-						<p>Jiangxia, baiyun district, guangzhou, guangdong province.</p>
-						<p>guangzhou 510000</p>
-						<p>Guangdong</p>
-						<p>China</p>
-						<p>+2345601634559</p>
-						<a class="edit" href="###">Edit</a>
-					</li>
-					<li>
-						<p>Xiaoxiao</p>
-						<p>Jiangxia, baiyun district, guangzhou, guangdong province.</p>
-						<p>guangzhou 510000</p>
-						<p>Guangdong</p>
-						<p>China</p>
-						<p>+2345601634559</p>
-						<a class="edit" href="###">Edit</a>
-					</li>
-				</ol>
-				<a class="add_a" href="###">+  Add New Address</a>
-				
-				<a class="tj_a" href="###">SAVE & CONTINUE</a>
-				
-			</div>
-		</div>
-		<!--移动内容2-->
-		<div class="content in_content zf_21  new_in_content clearfix pc_hide ">
-			<div class="zf_con clearfix">
-				<div class="zfbt clearfix">
-					<span>2</span>
-					<h1>Shipping Method</h1>
-				</div>
-				
-				<ul class="pay_ul clearfix">
-					<li class=" clearfix">
-						<span>Shipping Method</span>
-						<label class="gx clearfix" for="">
-							<img src="img/png/new_9.png" alt="" />
-							<p>FEDEX EXPRESS 6  (Weight: 320.00g) </p>
-						</label>
-						<p class="ts_p">Please Select Shipping Method</p>
-						<hr />
-						<span>Expected delivery time</span>
-						<label class="clearfix" for="">
-							<p>2-3 Working Days (48-72 Hours)</p>
-						</label>
-						<hr />
-						<span>Shipping Cost</span>
-						<label class="red clearfix" for="">
-							<p>$24.00</p>
-						</label>
-					</li>
-					<li class="clearfix">
-						<span>Shipping Method</span>
-						<label class="gx clearfix" for="">
-							<img src="img/jpg/new.jpg" alt="" />
-							<p>DHL EXPRESS 6  (Weight: 320.00g) </p>
-						</label>
-						<p class="ts_p">Please Select Shipping Method</p>
-						<hr />
-						<span>Expected delivery time</span>
-						<label class="clearfix" for="">
-							<p>2-3 Working Days (48-72 Hours)</p>
-						</label>
-						<hr />
-						<span>Shipping Cost</span>
-						<label class="red clearfix" for="">
-							<p>$24.00</p>
-						</label>
-					</li>
-				</ul>
-				
-				<a class="tj_a" href="###">SAVE & CONTINUE</a>
-				
-			</div>
-		</div>
-		<!--移动内容3-->
-		<div class="content in_content zf_22  new_in_content clearfix pc_hide">
-			<div class="zf_con clearfix">
-				<div class="zfbt clearfix">
-					<span>2</span>
-					<h1>Shipping Method</h1>
-				</div>
-				
-				<ul class="pay_ul clearfix">
-					<li class="active clearfix">
-						<hr />
-						<span>Shipping Method</span>
-						<label class="gx clearfix" for="">
-							<p>Nigeria Local Express  (Weight: 320.00g)  </p>
-						</label>
-						<hr />
-						<span>Expected delivery time</span>
-						<label class="clearfix" for="">
-							<p>2 to 4 working days</p>
-						</label>
-						<hr />
-						<span>Shipping Cost</span>
-						<label class=" clearfix" for="">
-							<p>Shipping cost will be paid by buyer when collect goods from shipping agent.</p>
-						</label>
-						<hr />
-					</li>
-				</ul>
-				
-				<a class="tj_a" href="###">SAVE & CONTINUE</a>
-				
-			</div>
-		</div>
 		
+			
 		
 		
 		<!--返回顶部-->
@@ -717,7 +589,21 @@
 	</body>
 </html>
 <script type="text/javascript">
+	//浏览器窗口从pc/yd改变的时候刷新页面
+	var old_w = $(window).width();
+	$(window).resize(function(){
+		var new_w = $(window).width();
+		(old_w>920) ? (new_w <=920)?location.reload():0 : (new_w >920)?location.reload():0 ;
+	})
+	
+	
+	
 	$(function(){
+//		支付方式选择
+		$(".pay_ul>li").click(function(){
+			$(this).addClass("active").siblings().removeClass("active");
+			$(".pay_ul>li .ts_p").hide();
+		})
 //		yd选择支付地址
 		$(".zf_1 .zf_1_ol>li").click(function(){
 			$(this).addClass("active").siblings().removeClass("active");
