@@ -282,7 +282,7 @@
                <?php } ?> 
 
                <?php if($order_status == 'Processing'){ ?>
-                  <li><button class="" type="button">Remind Seller to Ship</button></li>
+                  <li><button class="" type="button" onclick="addemail('<?php echo $order_id?>');">Remind Seller to Ship</button></li>
                 <?php } ?> 
 
                <?php if($order_status == 'Shipped'){ ?>
@@ -422,6 +422,19 @@
 
  <div class="yd_hide"><?php echo $footer; ?> </div>
 <script>
+function addemail(order_id) { 
+   $.ajax({
+            url: 'index.php?route=account/order/addemail',
+            type: 'post',
+            data: {order_id:order_id},
+            dataType: 'json',
+     
+            success: function(json) {
+              tips('Remind Success',''); 
+            }
+        })
+  // body...
+}
   function cancel_order(url){
   if(confirm('Are You Sure?')){
     location.href=url;
