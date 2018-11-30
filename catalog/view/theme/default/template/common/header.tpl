@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+         <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c"></meta>
     <!--      <link rel="stylesheet" href="catalog/view/theme/default/css/ttf.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/common.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/index.css" />
@@ -86,6 +87,11 @@ $(".img_ol .cart_li").click(function(){
 });
 
 </script>
+ <script type="text/javascript">
+function googleTranslateElementInit() {
+new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"> </script>
     </head>
 
 <body>
@@ -96,7 +102,7 @@ $(".img_ol .cart_li").click(function(){
 
                 <?php echo $currency; ?>
                 
-               
+               <div id="google_translate_element" class="fanyi"></div>
                 <!--logo-->
                 <div class="logo">
                     <!-- href="<?php echo $root_home; ?>" -->
