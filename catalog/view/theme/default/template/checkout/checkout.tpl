@@ -91,7 +91,12 @@ tips('Please Select Shipping Address','gantan');
 </script>
         
 <script type="text/javascript"><!--
-
+//浏览器窗口从pc/yd改变的时候刷新页面
+  var old_w = $(window).width();
+  $(window).resize(function(){
+    var new_w = $(window).width();
+    (old_w>920) ? (new_w <=920)?location.href="<?=$currentpage?>":0 : (new_w >920)?location.href="<?=$currentpage?>":0 ;
+  })
 
 $(document).ready(function() {
     getShippingAddress();
@@ -220,5 +225,5 @@ function getOrder(){
 // echo $footer;
 //  }
 //--></script>
-
-<!-- <?php echo $footer; ?> -->
+<div class="yd_hide">
+<?php echo $footer; ?></div>

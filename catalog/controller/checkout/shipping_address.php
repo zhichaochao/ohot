@@ -55,6 +55,14 @@ class ControllerCheckoutShippingAddress extends Controller {
 		    $data['address_id'] = '';
 		}
 
+		$data['address_add'] = $this->url->link('checkout/shipping_address/wap');
+
+		if(isset($_SERVER['HTTP_REFERER'])){
+			$data['home'] =$_SERVER['HTTP_REFERER'];
+		}else{
+			$data['home'] =$this->url->link('common/home');
+		}
+
 		if(!empty($this->session->data['shipping_address']) && !empty($this->session->data['same_as_shipping']))
 	        $this->session->data['payment_address'] = $this->session->data['shipping_address'];//默认账单地址与发货地址一致
 
@@ -63,6 +71,7 @@ class ControllerCheckoutShippingAddress extends Controller {
 		} else {
 			$data['postcode'] = '';
 		}
+
 
 		if (isset($this->session->data['shipping_address']['country_id'])) {
 			$data['country_id'] = $this->session->data['shipping_address']['country_id'];
@@ -101,10 +110,14 @@ class ControllerCheckoutShippingAddress extends Controller {
 		// if (!$this->load->controller('common/common/isMobile')) {
 		// 		$this->response->redirect($this->url->link('checkout/checkout'));
 		// }
-
+		if(isset($_SERVER['HTTP_REFERER'])){
+			$data['home'] =$_SERVER['HTTP_REFERER'];
+		}else{
+			$data['home'] =$this->url->link('common/home');
+		}
 	    $this->load->language('account/edit');
 		$this->load->language('checkout/checkout');
-
+     $data['checkout']=$this->url->link('checkout/checkout');
 		$data['text_address_existing'] = $this->language->get('text_address_existing');
 		$data['text_address_new'] = $this->language->get('text_address_new');
 		$data['text_select'] = $this->language->get('text_select');
@@ -194,8 +207,8 @@ class ControllerCheckoutShippingAddress extends Controller {
 		$data['shipping_address'] = isset($this->session->data['shipping_address'])?$this->session->data['shipping_address']:'';
 		$data['payment_type'] = isset($this->session->data['payment_type'])?$this->session->data['payment_type']:'';
 		
-// print_r($data);exit();
-		$this->response->setOutput($this->load->view('checkout/shipping_address', $data));
+// print_r($data['zone_id']);exit();
+		$this->response->setOutput($this->load->view('checkout/shipping_address_wap', $data));
 	}
 
 	public function save() {
