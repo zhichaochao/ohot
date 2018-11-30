@@ -43,15 +43,15 @@
                              <?php } ?>
                         </ul>
 
-<a class="btn240" onclick="toselectPayment()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;&gt;</a>
+<a class="btn240" onclick="saveMethod()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;&gt;</a>
    </div>
 
-   <div class="bg_fff pc_hide">
+<!--    <div class="bg_fff pc_hide">
  <!-- <h3>Shipping Method</h3> -->
- <p class="no_sel" style="color: #f00;"></p>
+ <!-- <p class="no_sel" style="color: #f00;"></p>
                         <ul class="pay_ul clearfix" id='collapse-shipping-methods'>
                         <h2>2.Select the Shipping Method</h2>
-                             <?php foreach ($shipping_methods as $quote) { ?>
+                             <?php foreach ($shipping_methods as $quote) { ?> -->
 
 
 
@@ -61,12 +61,12 @@
                                             <input class="check_input"  name="shipping_method" type="checkbox" value="<?php echo $quote['code']; ?>" <?php if ($quote['code'] == $code) { ?>checked="checked"<?php } ?> class="s_method_expedited" onclick="saveMethod(this)" />
                                             <i class="check_i"></i>
                                             </label> -->
-                             <li class="clearfix " value="<?php echo $quote['code']; ?>" name="shipping_method" <?php if ($quote['code'] == $code) { ?>checked="checked"<?php } ?> class="s_method_expedited" onclick="saveMethods(this)">
+                            <!--  <li class="clearfix " value="<?php echo $quote['code']; ?>" name="shipping_method" <?php if ($quote['code'] == $code) { ?>checked="checked"<?php } ?> class="s_method_expedited" onclick="saveMethods(this)"> -->
                            <!--   <label  class="dx_label">
                                             <input class="check_input"  name="shipping_method" type="checkbox" value="<?php echo $quote['code']; ?>" <?php if ($quote['code'] == $code) { ?>checked="checked"<?php } ?> class="s_method_expedited" onclick="saveMethod(this)" />
                                             <i class="check_i"></i>
                                             </label> -->
-                                <span>Shipping Method</span>
+                               <!--  <span>Shipping Method</span>
                                             
 
                                 <label class="gx clearfix" for="" >
@@ -74,11 +74,11 @@
                                           <img src="https://devb.besthairbuy.com/skin/frontend/default/theme560-desktop-new/images/dh/sfr_method.jpg">
                                           <?php } ?>
                                     <!-- <img src="img/png/new_9.png" alt="" /> -->
-                                    <p><?php echo $quote['title']; ?> </p>
-                                </label>
+                                  <!--   <p><?php echo $quote['title']; ?> </p>
+                                </label> -->
 
                                 <!-- <p class="ts_p"></p> -->
-                                <hr />
+                               <!--  <hr />
                                 <span>Expected delivery time</span>
                                 <label class="clearfix" for="">
                                     <p><?php echo @$quote['desc']; ?></p>
@@ -91,17 +91,17 @@
                                           Shipping cost will be paid by buyer when collect goods from shipping agent.
                                          <?php }else{ ?>
                                         <?php echo $quote['text']; ?>
-                                     <?php } ?>
+                                     <?php } ?> -->
                                     <!-- $24.00 -->
-                                    </p>
+                                   <!--  </p>
                                 </label>
                             </li>
 
                              <?php } ?>
                         </ul>
 
-<a class="tj_a" onclick="toselectPayment()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;&gt;</a>
-   </div>
+<a class="tj_a" onclick="saveMethod()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;&gt;</a>
+   </div> --> 
 
 <?php }else{?>
 <div class="bg_fff" style="min-height: 300px;">
@@ -112,6 +112,13 @@
 <?php } ?>
 
 <script type="text/javascript"><!--
+//第二步操作的单选
+    $(".dx_label input").click(function(){
+      $(".dx_label input").prop("checked","")
+      $(".dx_label .check_i").removeClass("active");
+      $(this).siblings(".check_i").addClass("active");
+      $(this).prop("checked","checked");
+    })
         //    支付方式选择
     $(".pay_ul>li").click(function(){
       $(this).addClass("active").siblings().removeClass("active");
@@ -142,7 +149,7 @@ function saveMethod(e) {
         dataType: 'json',
         success: function(json) {
                 getOrder();
-                getPaymentMethod();
+                // getPaymentMethod();
                
         },
         error: function(xhr, ajaxOptions, thrownError) {
