@@ -12,7 +12,7 @@
                                 <dl>
                                     <dt>Shipping Method</dt>
                                     <label  class="dx_label">
-                                            <input class="check_input"  name="shipping_method" type="checkbox" value="<?php echo $quote['code']; ?>" <?php if ($quote['code'] == $code) { ?>checked="checked"<?php } ?> class="s_method_expedited" onclick="saveMethod(this)" />
+                                            <input class="check_input"  name="shipping_method" type="checkbox" value="<?php echo $quote['code']; ?>" <?php if ($quote['code'] == $code) { ?>checked="checked"<?php } ?> class="s_method_expedited"  />
                                             <i class="check_i"></i>
                                         </label>
                                     <dd>
