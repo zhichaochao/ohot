@@ -1,6 +1,6 @@
  <div class="yd_hide"><?php echo $header; ?></div>
  <div class="new_nav pc_hide clearfix">
-                <a class="fh" href="<?php echo $continue?>"></a>
+                <a class="fh" href="<?php echo $home?>"></a>
                 <p>ORDERS DETAILS</p>
             </div>
 <!--内容-->

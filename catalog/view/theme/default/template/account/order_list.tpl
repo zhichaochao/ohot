@@ -129,9 +129,9 @@
         <ol class="clearfix">
           <li class="<?=$status=='' ?'active':'';?>"><a href="<?php echo $sortorders?>">All</a></li>
           <li class="<?=$status==1 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=1">Pending</a></li>
-          <li class="<?=$status==2 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=2">Processing</a></li>
+          <li class="<?=$status==2 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=2">Paid</a></li>
           <li class="<?=$status==3 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=3">Shipped</a></li>
-          <li class="<?=$status==5 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=5">Completedl</a></li>
+          <li class="<?=$status==5 ?'active':'';?>"><a href="<?php echo $sortorders?>&status=5">Complete</a></li>
         </ol>
       </div>
        <?php if ($orders) { ?>
@@ -150,7 +150,7 @@
                     <p><?=$product['name'];?></p>
                      <?php if ($product['options']) { ?>
                     <?php foreach ($product['options'] as $option) { ?>     
-                      <em><?php echo $option['name']; ?>:<?php echo $option['value']; ?></em>    
+                      <em><?php echo $option['value']; ?></em>    
                     <?php } }?> 
                     <span class="num">x<?php echo $product['quantity']; ?></span>
                     <span class="price"><?php echo $product['price']; ?></span>
@@ -177,7 +177,7 @@
                  
                 <?php } ?>
 
-                <?php if($order['status'] == 'Processing'){ ?> 
+                <?php if($order['status'] == 'Paid'){ ?> 
                 <li><button class="" type="button" onclick="addemail('<?php echo $order['order_id']; ?>');">Remind Seller to Ship</button></li>
               <!-- <li><a class="tk_order" href="###">Tracking Order</a></li> -->
               <?php } ?>
@@ -209,6 +209,7 @@
         <div class="btn clearfix">
           <a class="wh_a" target="_blank" href="whatsapp://send?phone=<?=$whatappphone;?>"><span>WhatsApp</span></a>
           <a class="sk_a" target="_blank" href="skype:<?=$skype;?>?chat"><span>Skype</span></a> 
+           <a class="em_a" target="_blank"  href="skype:<?=$skype;?>?chat"><span>Email</span></a> 
         </div>
       </div>
     </div>
