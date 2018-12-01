@@ -955,6 +955,14 @@ class ControllerSaleOrder extends Controller {
 				$data['store_url'] = $order_info['store_url'];
 			}
 
+			$this->load->model('tool/image');
+
+			if (!empty($order_info['bank_receipt'])) {
+				$data['bank_receipt'] = $this->model_tool_image->resize($order_info['bank_receipt'], 500, 500);
+			} else {
+				$data['bank_receipt'] = $this->model_tool_image->resize('no_image.png', 500, 500);
+			}
+
 			if ($order_info['invoice_no']) {
 				$data['invoice_no'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];
 			} else {
@@ -1119,13 +1127,11 @@ class ControllerSaleOrder extends Controller {
 						}
 					}
 				}
-
 				if($product['original_price'] == 0){
 					$original_price = false;
 				}else{
 					$original_price = $this->currency->format($product['original_price'], $this->session->data['currency']);
 				}
-				
 				$data['products'][] = array(
 					'order_product_id' => $product['order_product_id'],
 					'product_id'       => $product['product_id'],
@@ -1138,8 +1144,10 @@ class ControllerSaleOrder extends Controller {
 					'total'    		   => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'href'     		   => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], true)
 				);
+				$zquantity+= $product['quantity'];	
 			}
-
+// 			$data['zquantitys']=$zquantity;
+// print_r($data['zquantitys']);exit;
 			$data['vouchers'] = array();
 
 			$vouchers = $this->model_sale_order->getOrderVouchers($this->request->get['order_id']);

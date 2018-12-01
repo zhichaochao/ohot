@@ -993,6 +993,22 @@ public function delete() {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+	public function addemail() {
+		$order_id=$this->request->post['order_id'];
+		$this->load->model('account/order');
+		$this->load->model('checkout/order');
+		$product_info = $this->model_account_order->getOrder($order_id);
+		$order_status_id=$product_info['order_status_id'];
+
+		$product_email = $this->model_checkout_order->sendEmails($order_id,$order_status_id);
+		print_r($product_email);exit;
+		// if($product_email){
+		// 	print_r('success');
+		// }
+		// print_r($order_status_id);exit;
+		// $this->response->addHeader('Content-Type: application/json');
+		// $this->response->setOutput(json_encode($json));
+	}
   	private	function validateForm()
 	{
 		$error=array();

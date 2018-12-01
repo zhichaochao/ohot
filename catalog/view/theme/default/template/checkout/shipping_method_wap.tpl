@@ -1,0 +1,149 @@
+ <link rel="stylesheet" href="catalog/view/theme/default/js/select2/css/select2.css" />
+        <script type="text/javascript" src="catalog/view/theme/default/js/select2/js/select2.js" ></script>
+        <link rel="stylesheet" href="catalog/view/theme/default/css/common.css" />
+    <link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
+    <script type="text/javascript" src="catalog/view/theme/default/js/jquery.min.js" ></script>
+    <script type="text/javascript" src="catalog/view/theme/default/js/common.js" ></script>
+
+<div class="new_nav pc_hide clearfix">
+        <a class="fh" href="<?php echo $home?>"></a>
+        <p>SHIPPING METHOD</p>
+      </div>
+<?php if ($shipping_methods) { ?>
+   <div class="content in_content zf_21  new_in_content clearfix pc_hide ">
+ <!-- <h3>Shipping Method</h3> -->
+ <div class="zf_con clearfix">
+ <p class="no_sel" style="color: #f00;"></p>
+                        <ul class="pay_ul clearfix" id='collapse-shipping-method'>
+                        <div class="zfbt clearfix">
+                        <span>2</span><h1>Shipping Method</h1></div>
+                             <?php foreach ($shipping_methods as $quote) { ?>
+                             <li class="clearfix " value="<?php echo $quote['code']; ?>" name="shipping_method" <?php if ($quote['code'] == $code) { ?>checked="checked"<?php } ?> class="s_method_expedited" >
+                                <span>Shipping Method</span>
+                                <label class="gx clearfix" for="" >
+                                        <?php if($quote['code'] == 'DHL'){ ?>
+                                          <img src="https://devb.besthairbuy.com/skin/frontend/default/theme560-desktop-new/images/dh/sfr_method.jpg">
+                                          <?php } ?>
+                                    <!-- <img src="img/png/new_9.png" alt="" /> -->
+                                    <p><?php echo $quote['title']; ?> </p>
+                                </label>
+                                <!-- <p class="ts_p"></p> -->
+                                <hr />
+                                <span>Expected delivery time</span>
+                                <label class="clearfix" for="">
+                                    <p><?php echo @$quote['desc']; ?></p>
+                                </label>
+                                <hr />
+                                <span>Shipping Cost</span>
+                                <label class="red clearfix" for="">
+                                    <p>
+                                    <?php if($quote['code'] == 'weight.weight_10'){  ?>
+                                          Shipping cost will be paid by buyer when collect goods from shipping agent.
+                                         <?php }else{ ?>
+                                        <?php echo $quote['text']; ?>
+                                     <?php } ?>
+                                    <!-- $24.00 -->
+                                    </p>
+                                </label>
+                            </li>
+                             <?php } ?>
+                        </ul>
+
+<a class="tj_a" onclick="saveMethods()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;&gt;</a>
+</div>
+   </div>
+
+<?php }else{?>
+<div class="bg_fff" style="min-height: 300px;">
+ <h3>Shipping Method</h3>
+
+ <p>Please Select Address</p>
+</div>
+<?php } ?>
+
+<script type="text/javascript"><!--
+        //    支付方式选择
+    $(".pay_ul>li").click(function(){
+      $(this).addClass("active").siblings().removeClass("active");
+      $(".pay_ul>li .ts_p").hide();
+      // var e=$(this);
+   
+      // saveMethods(e);
+    })
+// function toselectPayment(){
+
+// tips('Please Select Shipping Method','gantan');
+//  $('#no_sel').html('Please Select Shipping Method');
+
+// }
+function toselectPayment(){
+
+tips('Please Select Shipping Method','gantan');
+ $('.ts_p').html('Please Select Shipping Method');
+
+}
+
+var win = $(window).width();
+ if(win<920){
+  function saveMethods() {
+
+    // console.log(e)
+    // var address_id=$('#shipping-existings ul li.active').attr('aid');
+    // console.log(address_id);
+    // if (address_id>0) {
+        
+      $.ajax({
+          url: 'index.php?route=checkout/shipping_method/save',
+          type: 'post',
+          data: $('#collapse-shipping-method>li').hasClass("active"),
+          dataType: 'json',
+          success: function(json) {
+            // console.log(json);
+                  getOrder();
+                  getPaymentMethod();
+                 
+          },
+          error: function(xhr, ajaxOptions, thrownError) {
+              alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          }
+      });
+    // }else{
+    //      $('#no_sel').html('Please Select Shipping Address');
+    //      alert('Please Select Shipping Address');
+    // }
+}
+ }
+ function getOrder(){
+//    console.log();
+    $.ajax({
+        url: 'index.php?route=checkout/confirm&cart_ids=' + "<?php echo $cart_ids ?>",
+        dataType: 'html',
+        success: function(html) {
+//            console.log(html);die;
+            $('#collapse-checkout-confirm').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+}
+// Get Payment Method
+function getPaymentMethod()
+{
+     $('#payment_next').html('<h2>3.Select a payment method</h2>');
+    $.ajax({
+        url: 'index.php?route=checkout/payment_method',
+        dataType: 'html',
+        success: function(html) {
+            $('#payment_next').html(html);
+            $('.liucheng').removeClass('ol_2').addClass('ol_2');
+            $('.address').addClass('pay');
+            getOrder();
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+}
+
+//--></script>

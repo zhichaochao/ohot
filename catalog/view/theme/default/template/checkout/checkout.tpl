@@ -1,5 +1,9 @@
-<?php echo $header; ?>
 
+<div class="yd_hide"><?php echo $header; ?> </div>
+<div class="new_nav pc_hide clearfix">
+        <a class="fh" href="<?php echo $home?>"></a>
+        <p>SHIPPING METHOD</p>
+      </div>
 
     <!--pc内容-->
         <div class="address yd_hide clearfix">

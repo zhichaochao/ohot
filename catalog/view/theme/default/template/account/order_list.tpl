@@ -178,7 +178,7 @@
                 <?php } ?>
 
                 <?php if($order['status'] == 'Processing'){ ?> 
-                <li><button class="" type="button">Remind Seller to Ship</button></li>
+                <li><button class="" type="button" onclick="addemail('<?php echo $order['order_id']; ?>');">Remind Seller to Ship</button></li>
               <!-- <li><a class="tk_order" href="###">Tracking Order</a></li> -->
               <?php } ?>
 
@@ -287,6 +287,19 @@ if(confirm('Are you sure?')){
         })
       
     }
+}
+function addemail(order_id) { 
+   $.ajax({
+            url: 'index.php?route=account/order/addemail',
+            type: 'post',
+            data: {order_id:order_id},
+            dataType: 'json',
+     
+            success: function(json) {
+              tips('Remind Success',''); 
+            }
+        })
+  // body...
 }
 function order_removes(order_id){
 // tips(order_id);

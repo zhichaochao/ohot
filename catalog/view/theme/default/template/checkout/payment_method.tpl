@@ -13,7 +13,7 @@
        
                 <li class="clearfix">
                  <label class="gx clearfix" for="">
-                  <input class="pay_dx"   type="hidden" name="payment_method" value="<?php echo $payment_method['code']; ?>" onclick="changePayment(0, this)" />
+                  <input class="pay_dx"   type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" aid='0'   />
 
               <?php if($payment_method['code'] == 'pp_express'){ ?>
                 <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/paypal_img.gif" style="width: 150px;height:50px;"/></div> 
@@ -32,8 +32,7 @@
                   <?php if($payment_method['code'] == 'pp_express'){ ?>
                   <li class="clearfix">
                   <label class="gx clearfix" for="">
-                  <input class="pay_dx"    type="hidden" name="payment_method" value="<?php echo $payment_method['code']; ?>" 
- onclick="changePayment(1, this)" />
+                  <input class="pay_dx"    type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>"  aid='1'  />
                  <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/ppguest_1.gif" style="width: 150px;height:50px;" /></div> 
                   <p>Processed by</p>
                   </label>
@@ -72,9 +71,18 @@ $(function( ){
     $(".pay_ul>li").click(function(){
       $(this).addClass("active").siblings().removeClass("active");
       $(".pay_ul>li .ts_p").hide();
+      //  var in_this = $(this);
+      //  var in_id = $(this).find(".pay_dx").attr("aid");
+
+      // changePayment(in_id,in_this);
+
+
     })
 
 function changePayment(flag, e){
+    // console.log(e);
+    // console.log(flag)
+    
     $('#is_paypal_creditcard').val(flag);
     savePaymentMethod(e);
 }
