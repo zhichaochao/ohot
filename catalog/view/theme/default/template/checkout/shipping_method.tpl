@@ -137,19 +137,19 @@ tips('Please Select Shipping Method','gantan');
 
 }
 // Save Shipping Method
-function saveMethod(e) {
-
+function saveMethod() {
+    
     var address_id=$('#shipping-existing ul li.active').attr('aid');
     if (address_id>0) {
         // console.log(address_id);
     $.ajax({
         url: 'index.php?route=checkout/shipping_method/save',
         type: 'post',
-        data: $('#collapse-shipping-method input[type=\'radio\']:checked'),
+        data: $('#collapse-shipping-method input[type=\'checkbox\']:checked'),
         dataType: 'json',
         success: function(json) {
                 getOrder();
-                // getPaymentMethod();
+                getPaymentMethod();
                
         },
         error: function(xhr, ajaxOptions, thrownError) {

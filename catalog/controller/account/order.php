@@ -151,6 +151,12 @@ class ControllerAccountOrder extends Controller {
 			$this->session->data['redirect'] = $this->url->link('account/order/info', 'order_id=' . $order_id, true);
 			$this->response->redirect($this->url->link('account/login', '', true));
 		}
+		
+		if(isset($_SERVER['HTTP_REFERER'])){
+			$data['home'] =$_SERVER['HTTP_REFERER'];
+		}else{
+			$data['home'] =$this->url->link('common/home');
+		}
 
 		$this->load->model('account/order');
 			$data['address_error']=0;
@@ -945,7 +951,7 @@ class ControllerAccountOrder extends Controller {
 	private function checkOrderStatus($orderStatusId){
 	   switch($orderStatusId){
 	   	  case 1:  $orderStatus='Pending'; break;
-	   	  case 2:  $orderStatus='Processing'; break;
+	   	  case 2:  $orderStatus='Paid'; break;
 	   	  case 3:  $orderStatus='Shipped'; break;
 	   	  case 5:  $orderStatus='Completed'; break;
           case 7:  $orderStatus='Canceled'; break;

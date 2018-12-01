@@ -36,9 +36,9 @@
                               </div>
                             </li>
                            <?php } ?>
-                           <li class="clearfix">
+                           <span class="clearfix">
                         <a class="add_a" id='show-shipping-new'><span>Add new address</span></a>
-                      </li>
+                      </span>
                         </ul>
                         
 
@@ -105,7 +105,7 @@
 
   <div id="shipping-new" class="bg_fff" style="display: <?php echo ($eaddress||empty($addresses) ? 'block' : 'none'); ?>;">
 
-  <p class="form_p">* Required fields111</p>
+  <p class="form_p">* Required fields</p>
             <form class="add_form clearfix" id="collapse-shipping-address">
               <label for="input-shipping-firstname">
                 <span><?php echo $entry_firstname; ?> *</span>
@@ -177,6 +177,7 @@ $('#show-shipping-new').on('click', function() {
     $('#btnSaveAddress').attr('aid', 0);
 		$('#shipping-existing').hide();
 		$('#shipping-new').show();
+    $('.addrres').css('display','none');
 });
 $('#show-shipping-existing').on('click', function() {
   
