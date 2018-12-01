@@ -67,6 +67,8 @@ class ControllerCheckoutCheckout extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('checkout/checkout', '', true)
 		);
+		$this->load->model('account/address');
+		$data['addresses'] = $this->model_account_address->getAddresses();
 
 		$data['heading_title'] = $this->language->get('heading_title');
 		$data['currentpage']=$_SERVER['REQUEST_URI'];

@@ -18,7 +18,9 @@
                             <h2>Select the shipping address</h2>
                      
                         </div>
+                        <?php if(!empty($addresses)){?>
                          <a class="btn240 addrres butbtn" onclick="toselectAddress()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
+                         <?php } ?>
                         <div class="shipping_method bg_fff bg_gif" id="shipping_method" style="display: none;" >
                             <h3>Shipping Method</h3>
                         </div>
