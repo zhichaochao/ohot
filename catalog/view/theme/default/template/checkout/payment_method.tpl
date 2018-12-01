@@ -43,7 +43,7 @@
               </ul>
             </div>
             
-            <a class="btn240" onclick="savePaymentMethod()" >SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
+            <a class="btn240" onclick="checkout()" >SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
 
 
 
@@ -88,11 +88,11 @@ function changePayment(flag, e){
     // console.log(flag)
     
     $('#is_paypal_creditcard').val(flag);
-    // savePaymentMethod(e);
+    savePaymentMethod(e);
 }
 
 // Save savePayment Method
-function savePaymentMethod() {
+function savePaymentMethod(e) {
 
     $.ajax({
         url: 'index.php?route=checkout/payment_method/save',

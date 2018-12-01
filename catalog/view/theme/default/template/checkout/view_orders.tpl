@@ -1,11 +1,43 @@
 <div class="yd_hide" ><?php echo $header; ?></div>
-<div class="new_nav pc_hide clearfix">
+
+<?php  if($order['payment_code']=='tt_bank_transfer'){ ?>
+            <div class="new_nav pc_hide clearfix">
                 <a class="fh" href="<?php echo $home?>"></a>
-                <p>ORDER AMOUNT</p>
+                <p>BANK ACCOUNT</p>
             </div>
+             <!-- <p class="p1">Please transfer to the following bank account</p> -->
+                <?php }elseif($order['payment_code']=='money_gram'){?>
+                <div class="new_nav pc_hide clearfix">
+                <a class="fh" href="<?php echo $home?>"></a>
+                <p>MONEY GRAM</p>
+                </div>
+               <!-- <p class="p1">Please transfer to the following names</p>  -->
+               <?php }elseif($order['payment_code']=='western_union'){?>  
+                <div class="new_nav pc_hide clearfix">
+                <a class="fh" href="<?php echo $home?>"></a>
+                <p>WESTERN UNION</p>
+                </div>
+               <!-- <p class="p1">Please transfer to the following names</p>   -->
+            <?php }?>
+
+            
         <div class="content in_content pay new_in_content">
             <div class="pay_text clearfix">
-                <p class="p1">Please transfer to the following <?php  if($order['payment_code']=='naria_account'){?>NAIRA<?php } ?> bank account</p>
+            <?php  if($order['payment_code']=='tt_bank_transfer'){ ?>
+             <p class="p1">Please transfer to the following bank account</p>
+                <?php }elseif($order['payment_code']=='money_gram'){?>
+               <p class="p1">Please transfer to the following names</p> 
+               <?php }elseif($order['payment_code']=='western_union'){?>  
+               <p class="p1">Please transfer to the following names</p>  
+            <?php }?>
+                <!-- <p class="p1">Please transfer to the following <?php  if($order['payment_code']=='naria_account'){?>NAIRA<?php } ?> bank account</p> -->
+                <?php  if($order['payment_code']=='tt_bank_transfer'){ ?>
+                <p class="p3">Our Bank Account</p>
+                <?php }elseif($order['payment_code']=='money_gram'){?>
+                <p class="p3">Our MoneyGram Information</p>
+                <?php }elseif($order['payment_code']=='western_union'){?> 
+                <p class="p3">Our WesternUnion Information</p>
+                <?php }?>
 
                 <table class="pay_tb1 pay_tb2">
                     <?php foreach($payment_method_attributes as $attribute) { ?>     

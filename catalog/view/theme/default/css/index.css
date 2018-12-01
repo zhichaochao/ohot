@@ -1458,8 +1458,10 @@
 	/*******new_pay******/
 	.pay.content{padding: 0 !important;}
 	.pay .pay_text {padding-top: 0.8rem;max-width: inherit;min-height: 7rem;position: relative;padding:0.8rem 0.3rem 2rem 0.3rem;}
-	.pay .pay_text p.p1{font-family: helvetica;font-size: 0.3rem;color: #333;text-align: center;margin-bottom: 0.6rem;}
+	.pay .pay_text p.p1{font-family: helvetica;font-size: 0.3rem;color: #333;text-align: center;margin-bottom: 0.2rem;}
 	.pay .pay_text p.p1>span{font-size: 0.24rem;font-family: helvetica;color: #666;}
+	.pay .pay_text p.p3{font-family: helvetica;font-size: 0.22rem;color: #333;text-align: center;margin-bottom: 0.3rem;}
+	
 	.pay .pay_text .pay_tb1{margin: 0 auto ;}
 	.pay .pay_text p.p2{font-family: helvetica;font-size: 0.24rem;color: #666;margin: 0.35rem auto 0 auto;line-height: 0.3rem;max-width: 7.5rem;}
 	.pay .pay_text .a_btn{width: 6rem;height: 0.6rem;display: block;text-align: center;line-height: 0.6rem;border-radius: 50px;color: #fff;
@@ -2910,8 +2912,10 @@
 	/*******new_pay******/
 	.pay.content{padding: 0 !important;}
 	.pay .pay_text {padding-top: 0.8rem;max-width: inherit;min-height: 10rem;position: relative;padding:0.8rem 0.3rem 1rem 0.3rem;}
-	.pay .pay_text p.p1{font-family: helvetica;font-size: 0.3rem;color: #333;text-align: center;margin-bottom: 0.6rem;}
+	.pay .pay_text p.p1{font-family: helvetica;font-size: 0.3rem;color: #333;text-align: center;margin-bottom: 0.2rem;}
 	.pay .pay_text p.p1>span{font-size: 0.24rem;font-family: helvetica;color: #666;}
+	.pay .pay_text p.p3{font-family: helvetica;font-size: 0.22rem;color: #333;text-align: center;margin-bottom: 0.3rem;}
+	
 	.pay .pay_text .pay_tb1{margin: 0 auto ;}
 	.pay .pay_text p.p2{font-family: helvetica;font-size: 0.24rem;color: #666;margin-top: 0.35rem;line-height: 0.3rem;}
 	.pay .pay_text .a_btn{width: 6rem;height: 0.8rem;display: block;text-align: center;line-height: 0.8rem;border-radius: 50px;color: #fff;
