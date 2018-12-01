@@ -281,7 +281,7 @@
               <li><button class="Cancel" onclick="cancel_order('<?=$cancel_href?>')" type="button">Cancel</button></li>
                <?php } ?> 
 
-               <?php if($order_status == 'Processing'){ ?>
+               <?php if($order_status == 'Paid'){ ?>
                   <li><button class="" type="button" onclick="addemail('<?php echo $order_id?>');">Remind Seller to Ship</button></li>
                 <?php } ?> 
 
@@ -291,7 +291,7 @@
                <?php if($order_status == 'Completed'){ ?>
                 <li><button class="contact" type="button">Contact Us</button></li>
                <?php } ?> 
-               <?php if($order_status == 'Processing'){ ?>
+               <?php if($order_status == 'Paid'){ ?>
                 <li><button class="contact" type="button">Contact Us</button></li>
                <?php } ?> 
 
@@ -317,6 +317,7 @@
         <div class="btn clearfix">
           <a class="wh_a" href="whatsapp://send?phone=<?=$whatappphone;?>"><span>WhatsApp</span></a>
           <a class="sk_a" href="skype:<?=$skype;?>?chat"><span>Skype</span></a> 
+           <a class="em_a" target="_blank"  href="mailto:<?php echo $email; ?>"><span>Email</span></a> 
         </div>
       </div>
     </div>

@@ -3,9 +3,10 @@
 <?php } ?>
 <?php if ($payment_methods) { ?>
 
-  <div class="bg_fff" id='collapse-payment-method'>
+  <div class="bg_fff" id='collapse-payment-methoda'>
             <h2><span>3</span>Select a payment method</h2>
                 <input type="hidden" name="is_paypal_creditcard" id="is_paypal_creditcard" value="<?php echo $is_paypal_creditcard; ?>"/>
+                <input type="hidden" name="payment_method" id="is_payment_method" value=""/>
               <!--   <p class="ts" style="display: block;">Click “save and continue” to make paypal payments</p>
                 <p class="jg" id="ts_jg"><span>i</span>Please choose the payment method</p> -->
              <ul class="pay_ul clearfix">
@@ -13,7 +14,7 @@
        
                 <li class="clearfix">
                  <label class="gx clearfix" for="">
-                  <input class="pay_dx"   type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" aid='0'   />
+                  <input class="pay_dx"   type="checkbox"  value="<?php echo $payment_method['code']; ?>" aid='0'   />
 
               <?php if($payment_method['code'] == 'pp_express'){ ?>
                 <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/paypal_img.gif" style="width: 150px;height:50px;"/></div> 
@@ -32,7 +33,7 @@
                   <?php if($payment_method['code'] == 'pp_express'){ ?>
                   <li class="clearfix">
                   <label class="gx clearfix" for="">
-                  <input class="pay_dx"    type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>"  aid='1'  />
+                  <input class="pay_dx"    type="checkbox" value="<?php echo $payment_method['code']; ?>"  aid='1'  />
                  <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/ppguest_1.gif" style="width: 150px;height:50px;" /></div> 
                   <p>Processed by</p>
                   </label>
@@ -42,7 +43,7 @@
               </ul>
             </div>
             
-            <a class="btn240" onclick="checkout()" >SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
+            <a class="btn240" onclick="savePaymentMethod()" >SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
 
 
 
@@ -71,10 +72,13 @@ $(function( ){
     $(".pay_ul>li").click(function(){
       $(this).addClass("active").siblings().removeClass("active");
       $(".pay_ul>li .ts_p").hide();
-      //  var in_this = $(this);
-      //  var in_id = $(this).find(".pay_dx").attr("aid");
-
-      // changePayment(in_id,in_this);
+      $(".pay_ul input").removeAttr("checked");
+      $(this).find("input").attr("checked","checked");
+      var val=$(this).find("input").val();
+      $('#is_payment_method').val(val);
+       var in_this = $(this);
+       var in_id = $(this).find(".pay_dx").attr("aid");
+      changePayment(in_id,in_this);
 
 
     })
@@ -84,15 +88,16 @@ function changePayment(flag, e){
     // console.log(flag)
     
     $('#is_paypal_creditcard').val(flag);
-    savePaymentMethod(e);
+    // savePaymentMethod(e);
 }
 
 // Save savePayment Method
-function savePaymentMethod(e) {
+function savePaymentMethod() {
+
     $.ajax({
         url: 'index.php?route=checkout/payment_method/save',
         type: 'post',
-        data: $('#collapse-payment-method input[type=\'radio\']:checked, #collapse-payment-method input[type=\'hidden\']'),
+        data: $('#collapse-payment-methoda input[type=\'hidden\']'),
         dataType: 'json',
  
         success: function(json) {

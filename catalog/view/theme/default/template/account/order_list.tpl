@@ -209,7 +209,7 @@
         <div class="btn clearfix">
           <a class="wh_a" target="_blank" href="whatsapp://send?phone=<?=$whatappphone;?>"><span>WhatsApp</span></a>
           <a class="sk_a" target="_blank" href="skype:<?=$skype;?>?chat"><span>Skype</span></a> 
-           <a class="em_a" target="_blank"  href="skype:<?=$skype;?>?chat"><span>Email</span></a> 
+           <a class="em_a" target="_blank"  href="mailto:<?php echo $email; ?>"><span>Email</span></a> 
         </div>
       </div>
     </div>

@@ -18,7 +18,8 @@
                         <div class="zfbt clearfix">
                         <span>2</span><h1>Shipping Method</h1></div>
                              <?php foreach ($shipping_methods as $quote) { ?>
-                             <li class="clearfix " value="<?php echo $quote['code']; ?>" name="shipping_method" <?php if ($quote['code'] == $code) { ?>checked="checked"<?php } ?> class="s_method_expedited" >
+                             <li class="clearfix ">
+                             <input class="check_input"  name="shipping_method" type="checkbox" value="<?php echo $quote['code']; ?>" <?php if ($quote['code'] == $code) { ?><?php } ?> class="s_method_expedited"  />
                                 <span>Shipping Method</span>
                                 <label class="gx clearfix" for="" >
                                         <?php if($quote['code'] == 'DHL'){ ?>
@@ -65,7 +66,10 @@
         //    支付方式选择
     $(".pay_ul>li").click(function(){
       $(this).addClass("active").siblings().removeClass("active");
+      $(".pay_ul input").removeAttr("checked");
       $(".pay_ul>li .ts_p").hide();
+      $(this).find("input").attr("checked","checked");
+      // $(this);
       // var e=$(this);
    
       // saveMethods(e);
@@ -95,7 +99,7 @@ var win = $(window).width();
       $.ajax({
           url: 'index.php?route=checkout/shipping_method/save',
           type: 'post',
-          data: $('#collapse-shipping-method>li').hasClass("active"),
+          data: $('#collapse-shipping-method input[type=\'checkbox\']:checked'),
           dataType: 'json',
           success: function(json) {
             // console.log(json);

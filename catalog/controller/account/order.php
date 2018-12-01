@@ -125,6 +125,7 @@ class ControllerAccountOrder extends Controller {
 		$data['continue'] = $this->url->link('account/account', '', true);
 		$data['whatappphone'] =$this->config->get('config_telephone');
 		$data['skype'] =$this->config->get('config_skype');
+		$data['email'] = $this->config->get('config_email');
 		// $data['column_left'] = $this->load->controller('common/column_left');
 		//$data['column_right'] = $this->load->controller('common/column_right');
 		$data['account_left'] = $this->load->controller('account/left');
@@ -221,6 +222,7 @@ class ControllerAccountOrder extends Controller {
 
 			$data['whatappphone'] =$this->config->get('config_telephone');
 			$data['skype'] =$this->config->get('config_skype');
+			$data['email'] = $this->config->get('config_email');
 
 			if (isset($this->session->data['error'])) {
 				$data['error_warning'] = $this->session->data['error'];
