@@ -135,6 +135,10 @@ class ControllerCheckoutPaymentMethod extends Controller {
 
 	public function wap() {
 		$this->load->language('checkout/checkout');
+		if ((!$this->cart->hasProducts() && empty($this->session->data['payment_address'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
+			$this->response->redirect($this->url->link('checkout/checkout'));
+		}
+	
 
 		if (isset($this->session->data['payment_address'])) {
 			// Totals
@@ -303,9 +307,66 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		   // $totals;
 		   $data['total']= $this->currency->format($total, $this->session->data['currency']);
 
-
+	$data['shipping_method_url'] = $this->url->link('checkout/shipping_method/wap', '', true);
+$data['comment'] = isset($this->session->data['comment'])?$this->session->data['comment']:'';
 
 		$this->response->setOutput($this->load->view('checkout/payment_method_wap', $data));
+	}
+
+
+	public function total() {
+		$this->load->language('checkout/checkout');
+
+		$json = array();
+				 $total = 0;
+		    
+		    $total_data = array(
+		        'totals' => &$totals,
+		        'taxes'  => &$taxes,
+		        'total'  => &$total
+		    );
+		    // print_r($total_data);exit();
+		    $this->load->model('extension/extension');
+		    $sort_order = array();
+		    $results = $this->model_extension_extension->getExtensions('total');
+		    
+		    foreach ($results as $key => $value) {
+		        $sort_order[$key] = $this->config->get($value['code'] . '_sort_order');
+		    }
+
+		    array_multisort($sort_order, SORT_ASC, $results);
+		       // print_r($results);exit();
+		    foreach ($results as $result) {
+		        if ($this->config->get($result['code'] . '_status')) {
+		            $this->load->model('extension/total/' . $result['code']);
+		            // We have to put the totals in an array so that they pass by reference.
+
+		            $this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
+		        }
+		    }
+		    $total=0;
+		    // $sort_order = array();
+		    foreach ($totals as $key => $value) {
+		        $sort_order[$key] = $value['sort_order'];
+		        if ($value['code']=='total') {
+		        	$total=$value['value'];
+		        }
+		    }
+		    // print_r($totals);exit();
+		    // array_multisort($sort_order, SORT_ASC, $totals);
+		   // $totals;
+		   $json['total']= $this->currency->format($total, $this->session->data['currency']);
+		   $payment_type = isset($this->session->data['payment_type'])?$this->session->data['payment_type']:'';
+		   $cart_ids=isset($this->session->data['cart_ids'])?$this->session->data['cart_ids']:'';
+		
+		   if ($payment_type=='Express') {
+		   		$json['url']='index.php?route=extension/payment/pp_express/expressComplete&cart_ids='.$cart_ids;
+		   }else{
+		   	 	$json['url']='index.php?route=checkout/confirm/save&cart_ids='.$cart_ids;
+		   }
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+
 	}
 
 

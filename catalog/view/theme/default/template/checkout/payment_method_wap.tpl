@@ -17,7 +17,7 @@
 		
 		
 	<div class="new_nav pc_hide clearfix">
-				<a class="fh" href="###"></a>
+				<a class="fh" href="<?=$shipping_method_url;?>"></a>
 				<p>PAYMENT METHOD</p>
 		</div>
 		<!--内容-->
@@ -67,8 +67,9 @@
 				</div>
 				
 				<div class="total clearfix">
-					<p>Total: <span><?=$total;?></span></p>
-					<span id="span"><a class="tj_btn" >SELECT PAYMENT METHMOD</a></span>
+					<p>Total: <span id="total"><?=$total;?></span></p>
+					<span id="span"><a class="tj_btn" >SUBMIT THE ORDER</a></span>
+					<input type="hidden" name="url" id="url"/>
 				</div>
 				
 			</div>
@@ -80,11 +81,42 @@
 	</body>
 </html>
 <script type="text/javascript">
+	 
 	$(function(){
 //		支付方式选择
 		$(".pay_ul>li").click(function(){
 			$(this).addClass("active").siblings().removeClass("active");
-			$(".pay_ul>li .ts_p").hide();
+				var value= $(this).find('input').val();
+					console.log(value);
+					var is_paypal_creditcard="<?php echo $is_paypal_creditcard; ?>";
+ $.ajax({
+        url: 'index.php?route=checkout/payment_method/save',
+        type: 'post',
+        data: {payment_method:value,is_paypal_creditcard:is_paypal_creditcard},
+        dataType: 'json',
+ 
+        success: function(json) {
+
+            if (json['redirect']) {
+                location = json['redirect'];
+            } else if (json['error']) {
+                if (json['error']['warning']) {
+                  tips(json['error']['warning'] );
+                }
+                // Highlight any found errors
+             
+            } else {
+
+              getTotal();
+            }
+      
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+
+		$(".pay_ul>li .ts_p").hide();
 		})
 		
 		$(".bot input").focus(function(){
@@ -94,19 +126,64 @@
 		
 		//提交
 		$(".total .tj_btn").click(function(){
-			var i=0;
-			var len = $(".pay_ul>li").length;
-			$(".pay_ul>li").each(function(){
-				if($(this).hasClass("active")){
-					
 
-				}else{
-					i++;
-					if(i==len){
+				var value=$(".pay_ul>li.active").find('input').val();
+					console.log(value);
+					if (value) {
+						// console.log(1);
+						checkout();
+					}else{
+			
 						tips('Please Select Shipping Method','gantan')
 					}
-				}
-			})
+				
+		
 		})
 	})
+
+	function getTotal() {
+		$.ajax({
+        url: 'index.php?route=checkout/payment_method/total',
+       
+        dataType: 'json',
+ 
+        success: function(json) {
+        	$('#total').html(json['total']);
+        	$('#url').val(json['url']);
+
+        }
+    })
+		
+	}
+function checkout() {
+   var url = $('#url').val();
+     	console.log(url);
+   if(url){
+
+    $.ajax({
+        url: url,
+         type: 'post',
+        data: {comment:'<?=$comment;?>'},
+        dataType: 'json',
+       
+        success: function(json) {
+       
+
+            if (json['redirect']) {
+                location = json['redirect'];
+            } else if (json['error']) {
+                if (json['error']['warning']) {
+                   tips(json['error']['warning']);
+                }
+            
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+	}
+}
+
+
 </script>

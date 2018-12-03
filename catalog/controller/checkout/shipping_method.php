@@ -133,7 +133,8 @@ class ControllerCheckoutShippingMethod extends Controller {
 		} else {
 			$data['code'] = '';
 		}
-$data['cart_ids'] = $this->session->data['cart_ids'];
+		$data['cart_ids'] = $this->session->data['cart_ids'];
+			$data['payment_method_url'] = $this->url->link('checkout/payment_method/wap', '', true);
 		$this->response->setOutput($this->load->view('checkout/shipping_method_wap', $data));
 	}
 

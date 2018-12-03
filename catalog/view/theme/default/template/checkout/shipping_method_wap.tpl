@@ -103,8 +103,9 @@ var win = $(window).width();
           dataType: 'json',
           success: function(json) {
             // console.log(json);
-                  getOrder();
-                  getPaymentMethod();
+                  // getOrder();
+                  // getPaymentMethod();
+                  location='<?=$payment_method_url;?>';
                  
           },
           error: function(xhr, ajaxOptions, thrownError) {
