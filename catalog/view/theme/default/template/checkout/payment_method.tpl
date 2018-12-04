@@ -17,11 +17,11 @@
                   <input class="pay_dx"   type="checkbox"  value="<?php echo $payment_method['code']; ?>" aid='0'   />
 
               <?php if($payment_method['code'] == 'pp_express'){ ?>
-                <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/paypal_img.gif" style="width: 150px;height:50px;"/></div> 
+                <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/paypal_img.gif" /></div> 
                   <p >PayPal</p>
                 <?php } else { ?>
                   <?php if (isset($payment_method['image']) && !empty($payment_method['image'])) { ?>
-                  <div class="img"><img src="<?php echo $payment_method['image']; ?>"  style="width: 150px;height:50px;"/></div> 
+                  <div class="img"><img src="<?php echo $payment_method['image']; ?>"  /></div> 
                     <p>   <?php echo $payment_method['title']; ?></p>
                   <?php } else { ?>
                  <p>   <?php echo $payment_method['title']; ?></p>
@@ -34,7 +34,7 @@
                   <li class="clearfix">
                   <label class="gx clearfix" for="">
                   <input class="pay_dx"    type="checkbox" value="<?php echo $payment_method['code']; ?>"  aid='1'  />
-                 <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/ppguest_1.gif" style="width: 150px;height:50px;" /></div> 
+                 <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/ppguest_1.gif"  /></div> 
                   <p>Processed by</p>
                   </label>
                 </li>

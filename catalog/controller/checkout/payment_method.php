@@ -138,8 +138,9 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		if ((!$this->cart->hasProducts() && empty($this->session->data['payment_address'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$this->response->redirect($this->url->link('checkout/checkout'));
 		}
-	
-
+		$this->session->data['shipping_address']['cart_ids']=$this->session->data['cart_ids'];
+         $data['cart_ids']= $this->session->data['cart_ids'];
+        // print_r($this->session->data['cart_ids']);exit;
 		if (isset($this->session->data['payment_address'])) {
 			// Totals
 			$totals = array();

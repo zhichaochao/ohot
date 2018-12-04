@@ -1,6 +1,4 @@
 
- <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/css/select2.css" />
-        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/js/select2.js" ></script>
   <div class="bg_fff yd_hide" id="shipping-existing" style="display: <?php echo ($eaddress||empty($addresses) ? 'none' : 'block'); ?>;">
 
                  <h2><span>1</span>Select the shipping address</h2>
@@ -230,7 +228,7 @@ $('.zf_1_ol li').on('click', function() {
                 alert(json['error']);
             } else {
                 // getShippingMethod();
-                location ='index.php?route=checkout/shipping_method/wap';
+                location ='index.php?route=checkout/shipping_method/wap&cart_ids='+'<?php echo $cart_ids?>';
             }
         },
         error: function(xhr, ajaxOptions, thrownError) {
@@ -399,14 +397,12 @@ $(document).ready(function() {
 
 
 });
-//为国家地区下拉列表添加二级搜索框
-$(document).ready(function(){
-  $("#input-shipping-country").select2();
-  $("#input-shipping-zone").select2();
-});
 
 
 //--></script>
+
+ <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/css/select2.css" />
+        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/js/select2.js" ></script>
 <script type="text/javascript">
   $(function(){
 //    yd选择支付地址
@@ -440,4 +436,9 @@ $(document).ready(function(){
     })
     
   })
+
+  $(document).ready(function(){
+  $("#input-shipping-country").select2();
+  $("#input-shipping-zone").select2();
+});
 </script>

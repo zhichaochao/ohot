@@ -60,8 +60,9 @@
 				<div class="bot clearfix">
 					<p>If you have coupons, please put  the code in. If not, please submit the order directly.</p>
 					<label class="clearfix" for="">
-						<input type="text" placeholder="Coupon Code" />
-						<button class="qd_btn">CONFIRM</button>
+					 <input type="text"  id="coupon_code" name="coupon" value="<?php echo @$coupon; ?>" placeholder="coupon code"/>
+						<!-- <input type="text" placeholder="Coupon Code" /> -->
+						<button class="qd_btn"  onclick="coupon_code(this)" >CONFIRM</button>
 					</label>
 					
 				</div>
@@ -81,6 +82,47 @@
 	</body>
 </html>
 <script type="text/javascript">
+function coupon_code(e) {
+    $.ajax({
+        url: 'index.php?route=extension/total/coupon/jcoupon',
+        type: 'post',
+        data: $('input#coupon_code'),
+        dataType: 'json',
+      
+        success: function(json) {
+       
+
+            if (json['redirect']) {
+                location = json['redirect'];
+            } else if (json['error']) {
+                if (json['error']) {
+                    $('#new-checkout-bot-code').html( json['error']);
+                }
+               
+            } else {
+                getOrder();
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+}
+function getOrder(){
+//    console.log();
+    $.ajax({
+        url: 'index.php?route=checkout/confirm&cart_ids='+"<?php echo $cart_ids ?>",
+        dataType: 'html',
+        success: function(html) {
+        	 getTotal();
+           console.log(html);die;
+            // $('#collapse-checkout-confirm').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
+}
 	 
 	$(function(){
 //		支付方式选择
