@@ -99,6 +99,7 @@ class ControllerCheckoutShippingAddress extends Controller {
 		} else {
 			$data['shipping_address_custom_field'] = array();
 		}
+		$data['cart_ids']=$this->session->data['cart_ids'];
 		$data['payment_address'] = isset($this->session->data['payment_address'])?$this->session->data['payment_address']:'';
 		$data['shipping_address'] = isset($this->session->data['shipping_address'])?$this->session->data['shipping_address']:'';
 		$data['payment_type'] = isset($this->session->data['payment_type'])?$this->session->data['payment_type']:'';

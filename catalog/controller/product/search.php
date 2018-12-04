@@ -521,7 +521,7 @@ class ControllerProductSearch extends Controller {
 			$data['delewishlist'] = $this->url->link('account/wishlist/delete', '', true);
 
 		$data['search_url'] = HTTP_SERVER.'index.php?route=product/search';
-		$data['search'] = $search;
+		$data['search'] = $this->request->get['search'];
 		$data['description'] = $description;
 		$data['category_id'] = $category_id;
 		$data['sub_category'] = $sub_category;

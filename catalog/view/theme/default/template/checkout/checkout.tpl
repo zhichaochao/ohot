@@ -4,7 +4,8 @@
         <a class="fh" href="<?php echo $home?>"></a>
         <p>SHIPPING METHOD</p>
       </div>
-
+ <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/css/select2.css" />
+        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/js/select2.js" ></script>
     <!--pc内容-->
         <div class="address yd_hide clearfix">
             <div class="content in_content address_content clearfix">
