@@ -63,6 +63,18 @@
 <?php } ?>
 
 <script type="text/javascript"><!--
+//浏览器窗口从pc/yd改变的时候刷新页面
+  var old_w = $(window).width();
+  $(window).resize(function(){
+    var new_w = $(window).width();
+    (old_w>920) ? (new_w <=920)?location.href="<?=$checkoutdas?>":0 : (new_w >920)?location.href="<?=$checkoutdas?>":0 ;
+  })
+
+// $(document).ready(function() {
+//     getShippingAddress();
+    
+  
+// });
         //    支付方式选择
     $(".pay_ul>li").click(function(){
       $(this).addClass("active").siblings().removeClass("active");

@@ -307,7 +307,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		    // array_multisort($sort_order, SORT_ASC, $totals);
 		   // $totals;
 		   $data['total']= $this->currency->format($total, $this->session->data['currency']);
-
+$data['checkoutdas']=$this->url->link('checkout/checkout', '',true);
 	$data['shipping_method_url'] = $this->url->link('checkout/shipping_method/wap', '', true);
 $data['comment'] = isset($this->session->data['comment'])?$this->session->data['comment']:'';
 

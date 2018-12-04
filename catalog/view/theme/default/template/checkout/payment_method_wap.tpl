@@ -58,7 +58,7 @@
 				</ul>
 				
 				<div class="bot clearfix">
-					<p>If you have coupons, please put  the code in. If not, please submit the order directly.</p>
+					<p>If you have coupons, please put in the code. If not, please submit the order directly.</p>
 					<label class="clearfix" for="">
 					 <input type="text"  id="coupon_code" name="coupon" value="<?php echo @$coupon; ?>" placeholder="coupon code"/>
 						<!-- <input type="text" placeholder="Coupon Code" /> -->
@@ -82,6 +82,12 @@
 	</body>
 </html>
 <script type="text/javascript">
+//浏览器窗口从pc/yd改变的时候刷新页面
+  var old_w = $(window).width();
+  $(window).resize(function(){
+    var new_w = $(window).width();
+    (old_w>920) ? (new_w <=920)?location.href="<?=$checkoutdas?>":0 : (new_w >920)?location.href="<?=$checkoutdas?>":0 ;
+  })
 function coupon_code(e) {
     $.ajax({
         url: 'index.php?route=extension/total/coupon/jcoupon',

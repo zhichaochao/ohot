@@ -132,6 +132,18 @@
                   <?php } ?>
                 </select>
               </label>
+<!-- 
+              <label for="">
+                  <span>State *</span>
+                  <select name="">
+                    <option value="">Select State</option>
+                    <option value="">Select State</option>
+                    <option value="">Select State</option>
+                    <option value="">Select State</option>
+                  </select>
+                  <p class="ts_ps">This field is required</p>
+                </label> -->
+                
               <label  for="input-shipping-postcode">
                 <span><?php echo $entry_postcode; ?> *</span>
                 <input  type="text" name="postcode" value="<?php echo $eaddress ? $eaddress['postcode'] : $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-shipping-postcode" class="form-control" />
@@ -401,8 +413,7 @@ $(document).ready(function() {
 
 //--></script>
 
- <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/css/select2.css" />
-        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/js/select2.js" ></script>
+
 <script type="text/javascript">
   $(function(){
 //    yd选择支付地址

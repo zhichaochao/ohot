@@ -1101,7 +1101,7 @@ class ControllerSaleOrder extends Controller {
 			$data['products'] = array();
 
 			$products = $this->model_sale_order->getOrderProducts($this->request->get['order_id']);
-
+			$a=0;
 			foreach ($products as $product) {
 				$option_data = array();
 
@@ -1140,14 +1140,22 @@ class ControllerSaleOrder extends Controller {
 					'option'   		   => $option_data,
 					'quantity'		   => $product['quantity'],
 					'price'    		   => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'price_usd'    		   => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0),"USD"),
 					'original_price'   => $original_price,
 					'total'    		   => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+
+					'total_usd'    		   => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0),"USD"),
+
 					'href'     		   => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], true)
 				);
-				$zquantity+= $product['quantity'];	
+				
+				$a+=$product['quantity'];
 			}
-// 			$data['zquantitys']=$zquantity;
-// print_r($data['zquantitys']);exit;
+			// $data['zquantitys']+= $product['quantity'];	
+			$data['zquantitys']=$a;
+			// 
+			$data['currency_code'] = $order_info['currency_code'];
+// print_r($data['currency_code']);exit;
 			$data['vouchers'] = array();
 
 			$vouchers = $this->model_sale_order->getOrderVouchers($this->request->get['order_id']);
@@ -1167,7 +1175,8 @@ class ControllerSaleOrder extends Controller {
 			foreach ($totals as $total) {
 				$data['totals'][] = array(
 					'title' => $total['title'],
-					'text'  => $this->currency->format($total['value'], $order_info['currency_code'], $order_info['currency_value'])
+					'text'  => $this->currency->format($total['value'], $order_info['currency_code'], $order_info['currency_value']),
+					'text_usd'  => $this->currency->format($total['value'], 'USD')
 				);
 			}
 

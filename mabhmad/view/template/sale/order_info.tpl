@@ -159,7 +159,13 @@
               <td class="text-left"><?php echo $column_model; ?></td>
               <td class="text-right"><?php echo $column_quantity; ?></td>
               <td class="text-right"><?php echo $column_price; ?></td>
+              <?php if ($currency_code !== 'USD') { ?>
+              <td class="text-right">美元<?php echo $column_price; ?></td> 
+                <?php } ?> 
               <td class="text-right"><?php echo $column_total; ?></td>
+           <?php if ($currency_code !== 'USD') { ?>
+              <td class="text-right">美元<?php echo $column_total; ?></td>
+                <?php } ?> 
             </tr>
           </thead>
           <tbody>
@@ -188,9 +194,28 @@
                   <?php } ?>
                 <?php } ?>
               </td>
-              <td class="text-right"><?php echo $product['total']; ?></td>
+             <?php if ($currency_code !== 'USD') { ?>
+              <td class="text-right"><?php echo $product['price_usd']; ?></td>
+              <?php } ?>
+              <td class="text-right"><?php echo $product['total']; ?>
+
+             <?php if ($currency_code !== 'USD') { ?>
+              <td class="text-right"><?php echo $product['total_usd']; ?>
+              <?php } ?>
+              </td>
             </tr>
             <?php } ?>
+             <tr>
+          <td class="text-left"></td>
+          <td class="text-left"></td>
+          <td class="text-right"> Total Quantity: <?php echo $zquantitys?></td>
+          <td class="text-right"></td>
+          <td class="text-left"></td>
+          <?php if ($currency_code !== 'USD') { ?>
+          <td class="text-left"></td>
+          <td class="text-left"></td>
+            <?php } ?>
+            </tr>
             <?php foreach ($vouchers as $voucher) { ?>
             <tr>
               <td class="text-left"><a href="<?php echo $voucher['href']; ?>"><?php echo $voucher['description']; ?></a></td>
@@ -202,8 +227,16 @@
             <?php } ?>
             <?php foreach ($totals as $total) { ?>
             <tr>
+             <?php if ($currency_code !== 'USD') { ?>
+              <td ></td>
+              <?php } ?>
               <td colspan="4" class="text-right"><?php echo $total['title']; ?></td>
-              <td class="text-right"><?php echo $total['text']; ?></td>
+              <td class="text-right"><?php echo $total['text']; ?>
+             
+              </td>
+             <?php if ($currency_code !== 'USD') { ?>
+              <td class="text-right"><?php echo $total['text_usd']; ?></td>
+              <?php } ?>
             </tr>
             <?php } ?>
           </tbody>
