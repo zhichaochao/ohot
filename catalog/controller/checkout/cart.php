@@ -91,9 +91,11 @@ class ControllerCheckoutCart extends Controller {
 //            var_dump($products);
             $products = $this->cart->getProducts();
          // print_r($products);die;
+            $cart_total=0;
         
             foreach ($products as $product) {
                 $product_total = 0;
+                $cart_total+= $product['total'];
 
                 foreach ($products as $product_2) {
                     if ($product_2['product_id'] == $product['product_id']) {
@@ -278,7 +280,8 @@ class ControllerCheckoutCart extends Controller {
                     'text'  => $this->currency->format($total['value'], $this->session->data['currency'])
                 );
             }
-            // print_r( $data['totals']);exit;
+            // print_r($products);exit;
+            $data['cart_total']=$this->currency->format($cart_total, $this->session->data['currency']);
 
             $data['paypal_checkout'] = HTTP_SERVER.'index.php?route=extension/payment/pp_express/express';
             $data['step_cart'] = $this->language->get('step_cart');
@@ -466,12 +469,8 @@ class ControllerCheckoutCart extends Controller {
 
         // Update
         if (!empty($this->request->post['num'])&&!empty($this->request->post['cart_id'])) {
-           
-                $this->cart->update($this->request->post['cart_id'], $this->request->post['num']);
-          
-
+            $this->cart->update($this->request->post['cart_id'], $this->request->post['num']);
             $this->session->data['success'] = $this->language->get('text_remove');
-
             unset($this->session->data['shipping_method']);
             unset($this->session->data['shipping_methods']);
             unset($this->session->data['payment_method']);
@@ -479,6 +478,52 @@ class ControllerCheckoutCart extends Controller {
             unset($this->session->data['reward']);
 
         }
+            $products = $this->cart->getProducts();
+            $total=array();
+            $total['total']=0;
+            $k=0;
+            foreach ($products as $key => $value) {
+               $total[$k]['value']=$this->currency->format($value['total'], $this->session->data['currency']);
+                $total[$k]['cart_id']=$value['cart_id'];
+               $total['total']+=$value['total'];
+               $k++;
+            }
+            $json['total']=$this->currency->format($total['total'], $this->session->data['currency']);
+            unset($total['total']);
+             $json['products']=$total;
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
+    public function change_cart_id() {
+        $this->load->language('checkout/cart');
+
+        $json = array();
+
+        // Update
+        if (!empty($this->request->post['cart_id'])) {
+           $json['cart_id']=$this->request->post['cart_id'];
+           $this->session->data['cart_ids']=implode(',', $json['cart_id']);
+            unset($this->session->data['shipping_method']);
+            unset($this->session->data['shipping_methods']);
+            unset($this->session->data['payment_method']);
+            unset($this->session->data['payment_methods']);
+            unset($this->session->data['reward']);
+
+        }
+            $products = $this->cart->getProducts( $this->session->data['cart_ids']);
+            $total=array();
+            $total['total']=0;
+            $k=0;
+            foreach ($products as $key => $value) {
+               $total[$k]['value']=$this->currency->format($value['total'], $this->session->data['currency']);
+                $total[$k]['cart_id']=$value['cart_id'];
+               $total['total']+=$value['total'];
+            }
+            $json['total']=$this->currency->format($total['total'], $this->session->data['currency']);
+            unset($total['total']);
+             $json['products']=$total;
+            
 
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($json));

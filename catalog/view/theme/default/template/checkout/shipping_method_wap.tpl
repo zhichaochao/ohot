@@ -1,10 +1,10 @@
- <link rel="stylesheet" href="catalog/view/theme/default/js/select2/css/select2.css" />
-        <script type="text/javascript" src="catalog/view/theme/default/js/select2/js/select2.js" ></script>
+
         <link rel="stylesheet" href="catalog/view/theme/default/css/common.css" />
     <link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
     <script type="text/javascript" src="catalog/view/theme/default/js/jquery.min.js" ></script>
     <script type="text/javascript" src="catalog/view/theme/default/js/common.js" ></script>
-
+ <link rel="stylesheet" href="catalog/view/theme/default/js/select2/css/select2.css" />
+        <script type="text/javascript" src="catalog/view/theme/default/js/select2/js/select2.js" ></script>
 <div class="new_nav pc_hide clearfix">
         <a class="fh" href="<?php echo $home?>"></a>
         <p>SHIPPING METHOD</p>

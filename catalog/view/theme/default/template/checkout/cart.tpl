@@ -37,7 +37,7 @@
 						<?php foreach($products as $product){ ?>
 							<li class="clearfix">
 							<label for="" class="dx_label">
-									 <input checked="checked" onclick="getOrder()" class="check_input" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
+									 <input checked="checked"  pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
 									 <i class="check_i active"></i>
 							</label>
 								<div class="pic_img">
@@ -66,7 +66,7 @@
 
 							<div class="num_div clearfix">
 								<span class="sub active"onclick="javascript:updateQty(this,1);"></span>
-								<input class="product_quantity" readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
+								<input class="product_quantity input_<?php echo $product['cart_id']; ?>"  readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
 								<span class="add" onclick="javascript:updateQty(this,2);"></span>
 							</div>
 								</div>
@@ -81,15 +81,12 @@
 				<div class="total  clearfix">
 					<label for="" class="qx_label">
 						<span>All</span>
-					<input checked="checked" class="check_input" onclick="getOrder()" autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
+					<input checked="checked" class="check_input"  autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
 						<i class="check_i active"></i>
 					</label>
-					<?php foreach ($totals as $k => $total) { ?>
-                       <?php if($total['title']=='Total') { ?>
-                        <p>Total: <span ><?php echo $total['text']; ?></span></p>
-                        <?php }else{ ?>
-                        <?php } ?> 
-                    <?php }  ?>
+				
+                        <p>Total: <span class="total_price"><?php echo $cart_total; ?></span></p>
+                  
 					<a class="tj_btn" onclick="submitCart();" > CHECK OUT</a>
 				</div>
 			</div>
@@ -129,7 +126,7 @@
 						<div class="div1 clearfix">
 
 							<label for="" class="dx_label">
-									 <input checked="checked" onclick="getOrder()" class="check_input" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
+									 <input checked="checked"   pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
 									 <i class="check_i active"></i>
 									<!-- <input autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>" class="check_i" > -->
 							</label>
@@ -167,7 +164,7 @@
 							<div class="price_input clearfix">
 								<span class="sub active"onclick="javascript:updateQty(this,1);"></span>
 								<!-- <input class="num" type="text" value="1" readonly="readonly"> -->
-								<input class="product_quantity" readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
+								<input class="product_quantity input_<?php echo $product['cart_id']; ?>" readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
 								<span class="add" onclick="javascript:updateQty(this,2);"></span>
 							</div>
 						</div>
@@ -181,7 +178,7 @@
 								</div> -->
 
 						<div class="div5">
-							<span class="z_price"><?php echo $product['total']; ?></span>
+							<span class="z_price price_<?php echo $product['cart_id']; ?>" ><?php echo $product['total']; ?></span>
 						</div>
 						<div class="div6">
 							<div class="shop_close">
@@ -202,18 +199,15 @@
 			<div class="total">
 				<div class="qx">
 					<label for="" class="qx_label"  id="cart-tfoot">
-						<input checked="checked" class="check_input" onclick="getOrder()" autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
+						<input checked="checked" class="check_input"  autocomplete="off" id="lang-checkbox-select-all" type="checkbox">
 						<i class="check_i active"></i>
 						<span>All</span>
 
 						<!-- <a class="check_a" href="###">CHECK OUT</a> -->
 					<a class="check_a" onclick="submitCart();" > CHECK OUT</a>
-						 <?php foreach ($totals as $k => $total) { ?>
-                       <?php if($total['title']=='Total') { ?>
-                        <p class="p_price">Total: <span ><?php echo $total['text']; ?></span></p>
-                        <?php }else{ ?>
-                        <?php } ?> 
-                    <?php }  ?>
+				
+                        <p class="p_price">Total: <span  class ="total_price"><?php echo $cart_total; ?></span></p>
+                  
 						
 						<em class="delete">Delete The Selected Items</em>
 						<em class="wishlist">Move To Wishlist</em>
@@ -237,69 +231,56 @@
 </html>
 
 <script>
-	getOrder();
-	function getOrder(){
-//    console.log();
-        var chk_value = '';
-        $("input:checkbox[name='product']:checked").each(function() { // 遍历name=test的多选框
-            chk_value += $(this).val() + ',';  // 每一个被选中项的值
-        });
-        chk_value = chk_value.substring(0,chk_value.length-1);
-        if (chk_value) {var url='index.php?route=checkout/confirm&cart=1&cart_ids=' + chk_value;}else {var url='index.php?route=checkout/confirm&cart=1&cart_ids=';}
-    $.ajax({
-        url: url,
-        dataType: 'html',
-        success: function(html) {
-//            console.log(html);die;
-            $('#collapse-checkout-confirm').html(html);
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
-}
-function wishlist(product_id,e) {
-  if ($(e).hasClass('off')) {
-       $.ajax({
-    url:'<?php echo $delewishlist ;?>',
-    type:'post',
-    data:{'product_id':product_id},
-    dataType: 'json',
-    success:function(data){
-      if (data.success) {
-        $('#wishlist_count').html(data.total);
-      }
-               // location.reload(); 
-    }
-   })
+// 	getOrder();
+// 	function getOrder(){
+// //    console.log();
+//         var chk_value = '';
+//         $("input:checkbox[name='product']:checked").each(function() { // 遍历name=test的多选框
+//             chk_value += $(this).val() + ',';  // 每一个被选中项的值
+//         });
+//         chk_value = chk_value.substring(0,chk_value.length-1);
+//         if (chk_value) {var url='index.php?route=checkout/confirm&cart=1&cart_ids=' + chk_value;}else {var url='index.php?route=checkout/confirm&cart=1&cart_ids=';}
+//     $.ajax({
+//         url: url,
+//         dataType: 'html',
+//         success: function(html) {
+// //            console.log(html);die;
+//             $('#collapse-checkout-confirm').html(html);
+//         },
+//         error: function(xhr, ajaxOptions, thrownError) {
+//             alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+//         }
+//     });
+// }
+function wishlist(product_id) {
 
-  }else{
-  //alert(product_id);die;
    $.ajax({
     url:'<?php echo $wishlist_add ;?>',
     type:'post',
     data:{'product_id':product_id},
     dataType: 'json',
     success:function(data){
-      if (data.success) {
-        $('#wishlist_count').html(data.total);
-      }
+  		 console.log(data);
+    
                // location.reload(); 
     }
    })
- }
+ 
 }
 
 		//多个收藏
 		$(".wishlist").click(function(){
 			let i =0;
 			let len = $(".dx_label .check_i").length;
-			alert(len);die
+			// alert(len);die
 			for (i=0;i<=len;i++) {
 
 			$(".dx_label .check_i").each(function(){
 				if($(this).hasClass("active")){
-
+				if ($(this).parents("li").find('.check_input').val()>0&&$(this).parents("li").find('.check_input').attr("checked")) {
+					wishlist($(this).parents("li").find('.check_input').attr('pid'));
+						cart_removes($(this).parents("li").find('.check_input').val());
+					}
 					
 					$(this).parents("li").remove();
 				}else{
@@ -323,6 +304,9 @@ function wishlist(product_id,e) {
 			// console.log(len);
 			$(".dx_label .check_i").each(function(){
 				if($(this).hasClass("active")){
+					if ($(this).parents("li").find('.check_input').val()>0&&$(this).parents("li").find('.check_input').attr("checked")) {
+					cart_removes($(this).parents("li").find('.check_input').val());
+					}
 					$(this).parents("li").remove();
 				}else{
 					i++;
@@ -345,7 +329,7 @@ function cart_removes(product_key){
 		 
 		        success: function(json) {
 		        	console.log(json);
-		        	if (json['link']) { location.reload();}
+		        	// if (json['link']) { location.reload();}
 		        }
 		    }) 	  
 	}
@@ -371,12 +355,17 @@ function cart_removes(product_key){
 	        case 1:
 	            qty = $(obj).next('input[type="text"]').val() - 1;
 	            if(qty == 0){tips('At least 1 product','gantan'); return false;};
-	            $(obj).next('input[type="text"]').val(qty);
+	          
+	            $('.input_'+cart_id).val(qty);
+	            console.log(cart_id);
 	          // document.getElementById('cart-form').submit();
 	            break;
 	        case 2:
 	            qty = parseInt($(obj).prev('input[type="text"]').val()) + 1;
-	            $(obj).prev('input[type="text"]').val(qty);
+	            // $(obj).prev('input[type="text"]').val(qty);
+	       
+	            $('.input_'+cart_id).val(qty);
+	               console.log(cart_id);
 	        //document.getElementById('cart-form').submit();
 	            break;
 	    }
@@ -391,7 +380,11 @@ function cart_removes(product_key){
         // 	var win =$(window).width();
       		// if(win<920){tips("Successfully Modify Shopping Cart",'');}
         	console.log(json);
-        	getOrder();
+        	$('.total_price').html(json['total']);
+        	for (var i = json['products'].length - 1; i >= 0; i--) {
+        		$('.price_'+json['products'][i].cart_id).html(json['products'][i].value);
+        	}
+        	// getOrder();
         	// location.reload()
         }
     })
@@ -407,6 +400,7 @@ function cart_removes(product_key){
 
 	    
 	}
+
 	function cart_remove(product_key){
 
 	   if(confirm('Are you sure?')){
@@ -418,7 +412,7 @@ function cart_removes(product_key){
 		        dataType: 'json',
 		 
 		        success: function(json) {
-		        	console.log(json);
+		        	// console.log(json);
 		        	if (json['link']) { location.reload();}
 		        }
 		    })
@@ -449,73 +443,87 @@ function cart_removes(product_key){
 			
 		})
 	
+		
 		//全选
-		$(".qx_label input").click(function(cart_id){
-			if($(this).prop("checked")){
-					$(this).siblings(".check_i").removeClass("active");
-				$(".dx_label input").each(function(){
-					$(this).prop("checked","");
-					$(this).siblings(".check_i").removeClass("active");
-				})				
-			}else{
-				$(this).siblings(".check_i").addClass("active");
-				$(".dx_label input").each(function(){
-					$(this).prop("checked",true);
-					$(this).siblings(".check_i").addClass("active");
-				})
-			}
-		})
-		//单选
-		$(".dx_label input").click(function(cart_id){
-			//alert($cart_id);
-			if($(this).prop("checked")){
-				$(this).siblings(".check_i").addClass("active");
-				var len = $(".dx_label .check_i").length;
-				var i=0;
-				$(".dx_label .check_i").each(function(){
-					if($(this).hasClass("active")){
-						i++
-					}
-					return i;
-				})
-				if(i>=len){
-					$(".qx_label input").prop("checked",true);
-					$(".qx_label .check_i").addClass("active");
-				}
-				
-			}else{
-				$(this).siblings(".check_i").removeClass("active");
-				$(".qx_label .check_i").removeClass("active");
-				$(".qx_label input").prop("checked","");
-			}
-		})
-		//		数量
-		// function in_num() {
-		// 	$("input.num").each(function(){
-		// 		if($(this).val()<=1){
-		// 			$(this).siblings(".sub").addClass("active");
-		// 		}else{
-		// 			$(this).siblings(".sub").removeClass("active");
-					
-		// 		}
-		// 	})
-		// }
-		// $(".sub").click(function(){
-		// 	var num  = $(this).siblings(".num").val();
-		// 	if(num>1){
-		// 		num--;
-		// 		$(this).siblings(".num").val(num);
-		// 		in_num();
-		// 	}
-		// })
-		// $(".add").click(function(){
-		// 	var num  = $(this).siblings(".num").val();
-		// 	num++;
-		// 	$(this).siblings(".num").val(num);
-		// 	in_num();
-		// })
- 		// alert(1);
- 		// $(".yd_footer").addClass("hide");
+    $(".qx_label input").click(function(){
+      if($(this).prop("checked")){
+        $(".qx_label input").siblings(".check_i").addClass("active");
+        $(".qx_label input").prop("checked",true);
+        $(".dx_label input").each(function(){
+          $(this).prop("checked",true);
+          $(this).siblings(".check_i").addClass("active");
+        })
+      }else{
+        $(".qx_label input").siblings(".check_i").removeClass("active");
+        $(".qx_label input").prop("checked",false);
+        $(".dx_label input").each(function(){
+          $(this).prop("checked","");
+          $(this).siblings(".check_i").removeClass("active");
+        })
+      }
+      select_cart();
+    })
+    //单选
+    $(".dx_label input").click(function(){
+      const this_index = $(this).parents("li").index();
+      
+      if($(this).prop("checked")){
+        $(".shop_ul>li").eq(this_index).find(".check_i").addClass("active");
+        $(".shop2_ul>li").eq(this_index).find(".check_i").addClass("active");
+        $(".shop_ul>li").eq(this_index).find("input").prop("checked",true);
+        $(".shop2_ul>li").eq(this_index).find("input").prop("checked",true);
+        
+        var len = $(".dx_label .check_i").length;
+        var i=0;
+        $(".dx_label .check_i").each(function(){
+          if($(this).hasClass("active")){
+            i++;
+            // console.log($(this).siblings("input").val())
+          }
+          return i;
+        })
+        if(i>=len){
+          $(".qx_label input").prop("checked",true);
+          $(".qx_label .check_i").addClass("active");
+        }
+        
+      }else{
+        $(".shop_ul>li").eq(this_index).find(".check_i").removeClass("active");
+        $(".shop2_ul>li").eq(this_index).find(".check_i").removeClass("active");
+        $(".shop_ul>li").eq(this_index).find("input").prop("checked",false);
+        $(".shop2_ul>li").eq(this_index).find("input").prop("checked",false);
+        
+        $(".qx_label .check_i").removeClass("active");
+        $(".qx_label input").prop("checked","");
+      }
+      select_cart();
+    })
+
+
+		function select_cart() {
+			var a = new Array();
+			$(".shop_ul input.check_input").each(function(){
+    			if($(this).attr("checked")){
+    				a.push($(this).val());
+
+    		}
+    		
+    		});
+    	$.ajax({
+		        url: 'index.php?route=checkout/cart/change_cart_id',
+		        type: 'post',
+		        data: {cart_id:a},
+		        dataType: 'json',
+		 
+		        success: function(json) {
+		        	// console.log(json);
+		        	$('.total_price').html(json['total']);
+		        	
+		        }
+		    })
+
+			// console.log(a);
+		}
 
 </script>
 
