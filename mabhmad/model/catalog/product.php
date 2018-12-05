@@ -111,10 +111,14 @@ class ModelCatalogProduct extends Model {
                         $this->querysql("INSERT INTO " . DB_PREFIX . "product_option SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', required = '" . (int)$product_option['required'] . "'");
 
                         $product_option_id = $this->db->getLastId();
-
+                        $quantity=0;
                         foreach ($product_option['product_option_value'] as $product_option_value) {
                             $this->querysql("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_id = '" . (int)$product_option_id . "', product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', option_value_id = '" . (int)$product_option_value['option_value_id'] . "', quantity = '" . (int)$product_option_value['quantity'] . "', subtract = '" . (int)$product_option_value['subtract'] . "', price = '" . (float)$product_option_value['price'] . "', price1 = '" . (float)$product_option_value['price1'] . "', price2 = '" . (float)$product_option_value['price2'] . "', price3 = '" . (float)$product_option_value['price3'] . "', price4 = '" . (float)$product_option_value['price4'] . "', price5 = '" . (float)$product_option_value['price5'] . "', price6 = '" . (float)$product_option_value['price6'] . "', price7 = '" . (float)$product_option_value['price7'] . "', price_prefix = '" . $this->db->escape($product_option_value['price_prefix']) . "', points = '" . (int)$product_option_value['points'] . "', points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");
+                            // if($product_option['type'] == 'select'  ){
+                            $quantity+=$product_option_value['quantity'];
+                        // }
 
+                             $this->querysql("UPDATE  " . DB_PREFIX . "product SET quantity= '" .$quantity . "'WHERE product_id='".(int)$product_id."'");
                         }
                     }
                 } else {
@@ -307,7 +311,7 @@ class ModelCatalogProduct extends Model {
 
                         if (isset($product_option['required']) && !empty($product_option['required'])) {
                             $this->querysql("UPDATE " . DB_PREFIX . "product_option SET required = '" . (int)$product_option['required'] . "' WHERE product_option_id = '" . (int)$product_option['product_option_id'] . "'");
-
+							$quantity=0;
                             foreach ($product_option['product_option_value'] as $product_option_value) {
 
                                 if ($product_option_value['product_option_value_id']) {
@@ -317,6 +321,11 @@ class ModelCatalogProduct extends Model {
                                         $this->querysql("UPDATE " . DB_PREFIX . "product_option_value SET  price = '" . (float)$product_option_value['price'] . "',price1 = '" . (float)$product_option_value['price1'] . "',option_value_id = '" . (int)$product_option_value['option_value_id'] . "', quantity = '" . (int)$product_option_value['quantity'] . "', subtract = '" . (int)$product_option_value['subtract'] . "', points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "',  weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "' WHERE product_option_value_id = '" . $product_option_value['product_option_value_id'] . "'");
 
                                         $this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET  price2 = '" . (float)$product_option_value['price2'] . "',price3 = '" . (float)$product_option_value['price3'] . "',price4 = '" . (float)$product_option_value['price4'] . "',price5 = '" . (float)$product_option_value['price5'] . "',price6 = '" . (float)$product_option_value['price6'] . "',price7 = '" . (float)$product_option_value['price7'] . "', price_prefix = '" . $this->db->escape($product_option_value['price_prefix']) . "', points = '" . (int)$product_option_value['points'] . "',  points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "' WHERE product_option_value_id = '" . $product_option_value['product_option_value_id'] . "'");
+                                       // if($product_option['type'] == 'select'){
+                            $quantity+=$product_option_value['quantity'];
+                        // }
+
+                             $this->querysql("UPDATE  " . DB_PREFIX . "product SET quantity= '" .$quantity . "'WHERE product_id='".(int)$product_id."'");
                                     }
 
                                     else {
@@ -339,6 +348,11 @@ class ModelCatalogProduct extends Model {
                             points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', 
                      
                             weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");
+                                     // if($product_option['type'] == 'select' ){
+                            $quantity+=$product_option_value['quantity'];
+                        // }
+
+                             $this->querysql("UPDATE  " . DB_PREFIX . "product SET quantity= '" .$quantity . "'WHERE product_id='".(int)$product_id."'");
 
                                 }
                             }
@@ -358,7 +372,7 @@ class ModelCatalogProduct extends Model {
                             product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', required = '" . (int)$product_option['required'] . "'");
 
                             $product_option_id = $this->db->getLastId();
-
+							$quantity=0;
                             foreach ($product_option['product_option_value'] as $product_option_value) {
 
                                 $this->querysql("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "',
@@ -374,6 +388,11 @@ class ModelCatalogProduct extends Model {
                                 points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', 
                              
                                 weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");
+                               // if($product_option['type'] == 'select' ){
+                            $quantity+=$product_option_value['quantity'];
+                        // }
+
+                             $this->querysql("UPDATE  " . DB_PREFIX . "product SET quantity= '" .$quantity . "'WHERE product_id='".(int)$product_id."'");
                             }
                         }
                     }

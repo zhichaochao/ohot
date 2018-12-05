@@ -67,7 +67,8 @@ class ModelCheckoutOrder extends Model {
 		if($order_id){
            //$order_no = $data['invoice_prefix'] . $order_id;
            //$order_no = $data['invoice_prefix'] .substr(str_replace('.','',microtime(true)),0,13).rand(10,99);
-           $order_no = $data['invoice_prefix'] . time(). rand(10,99);
+           $p=explode('.',$_SERVER['HTTP_HOST']);
+           $order_no = $data['invoice_prefix'] .$p[0]. date('Ymd',time()). rand(1000,9999);
            $this->querysql("UPDATE " . DB_PREFIX . "order SET order_no = '" . $order_no . "' WHERE order_id = '" . (int)$order_id . "'");
         }
         //订单号,end

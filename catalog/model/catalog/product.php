@@ -188,10 +188,11 @@ class ModelCatalogProduct extends Model {
     			$share.=','.$key.':'.$value;
     		}
     		$k++;
-    		$query = $this->db->query("SELECT  price".$price_type." as price,product_option_value_id,product_option_id FROM " . DB_PREFIX . "product_option_value   WHERE product_id='".$product_id."' AND  product_option_id ='".$key."' AND product_option_value_id='".$value."'");
+    		$query = $this->db->query("SELECT  price".$price_type." as price,product_option_value_id,quantity,product_option_id FROM " . DB_PREFIX . "product_option_value   WHERE product_id='".$product_id."' AND  product_option_id ='".$key."' AND product_option_value_id='".$value."'");
     		// print_r("SELECT  price".$price_type." as price,product_option_value_id,product_option_id FROM " . DB_PREFIX . "product_option_value   WHERE product_id='".$product_id."' AND  product_option_id ='".$key."' AND product_option_value_id='".$value."'");;exit;
     		$tem_price=$query->row;
     		$price+= $tem_price['price'];
+    		$quantity= $tem_price['quantity'];
 			$ids.=','.$value;
     	
     		 // print_r($tem_price);
@@ -215,7 +216,7 @@ class ModelCatalogProduct extends Model {
     	 }
     	 	// print_r(1);exit;
 
-    	 return   array('price'=>$price,'share'=>$share,'special'=>$special);
+    	 return   array('price'=>$price,'share'=>$share,'quantity'=>$quantity,'special'=>$special);
 
     	
     }
