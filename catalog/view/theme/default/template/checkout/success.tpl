@@ -6,7 +6,7 @@
 			<p>Payment is made successfully</p>
 			<div class="btn clearfix">
 				<a class="a_btn1" href="<?php echo $order_list; ?>">ORDER REVIEW</a>
-				<a class="a_btn2" href="<?php echo $continue; ?>">CONTINYE SHOPPING</a>
+				<a class="a_btn2" href="<?php echo $continue; ?>">CONTINUE SHOPPING</a>
 			</div>
 		</div>
 

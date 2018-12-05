@@ -215,6 +215,7 @@
 	.pro_big_img .swiper-button-next,.pro_big_img  .swiper-container-rtl .swiper-button-prev{right: 20px;width: 50px;height: 50px;border-radius: 100%;
 	background: rgba(0,0,0,.05) url(../img/png/lb_right.png) no-repeat left 18px center/14px 26px;}
 	.pro_det_content .top .right{float: left;padding-left: 3.64vw;}
+	.pro_det_content .top .right .top_text{max-width: 27.8vw;}
 	.pro_det_content .top .right a{font-size: 1.66vw;color: #333;line-height: 2vw;display: block;width: 28vw;margin: 0.7vw 0;}
 	@media only screen and (min-width: 921px) and (max-width: 1200px) {
 		.pro_det_content .top .right a{width: 36vw;}
@@ -712,9 +713,11 @@
     -webkit-column-count: 2; column-count: 2;-moz-column-gap: 0px;-webkit-column-gap: 0px;   column-gap: 0px;}
 	.address_content .address_ul li{display: inline-block;width: 100%; padding: 0 0.1rem;break-inside:avoid;
 	margin-bottom:0.2rem;cursor: pointer;}
+	
 	.address_content .address_ul li .text_li{display: block;width: 100%;border: 1px solid #dddddd;background: #f;padding:0.3rem 0.2rem; position: relative;}
 	.address_content .address_ul li.active .text_li{ border: 1px solid #d5af74;background: #fff9f9;}
 	.address_content .address_ul li span{font-size: 0.16rem;line-height: 0.3rem;display: block;}
+	.address_content .address_ul>span{display: block;overflow: hidden;margin: 0 0.1rem;}
 	.address_content .add_a{width: 100%;display: block;height: 2rem;line-height: 2rem;border: 1px solid #eee;box-sizing: border-box;font-size: 16px;color: #333;
 	background:  #f5f5f5;text-align: center;}	
 	.address_content .add_a>span{background: url(../img/png/file.png) no-repeat left center/0.3rem 0.3rem;display: inline-block !important;padding-left: 0.4rem;line-height: 2rem !important;}
@@ -725,7 +728,7 @@
 	.address_content .address_ul li p{font-size: 0.16rem;line-height: 0.3rem;display: block;}
 	.address_content .address_ul li a.a_btn{display: inline-block;position: absolute;right: 0.2rem;bottom: 0.3rem;font-size:0.18rem;border-bottom: 1px solid #333;}
 	
-	.address_content .express_ul>li{border-top: 1px solid #dddddd;padding: 1.56vw 0;}
+	.address_content .express_ul>li{border-top: 1px solid #dddddd;padding: 1.56vw 0;cursor:pointer;}
 	.address_content .express_ul dl{float: left;display:block;}
 	.address_content .express_ul dl:nth-child(1){width: 48%;}
 	.address_content .express_ul dl:nth-child(2){width: 32%;}
@@ -759,7 +762,7 @@
 	.right_shop .shop_search label{width: 100%;position: relative;display: block;margin: 1.04vw 0 0.25vw 0;}
 	.right_shop .shop_search input{border: 1px solid #e4e4e4;color: #333;padding: 0 0.52vw;height: 40px;line-height: 40px;font-size: 16px;}
 	.right_shop .shop_search button{position: absolute;top: 0;right:0;width: 96px;height: 40px;color: #fff;background: #333;border: none;
-	border-left: 1px solid #e4e4e4;font-size: 16px;display: block;}
+	border-left: 1px solid #e4e4e4;font-size: 16px;display: none;}
 	.right_shop .shop_search button:hover{background: #666;}
 	.right_shop .btn{padding-top: 2.08vw;}
 	.right_shop a.a_btn{width: 100%;background: #333;text-align: center;display: block;height: 40px;line-height: 40px;border-radius: 4px;
@@ -772,13 +775,17 @@
 	.del_address .del.pc{width: 0.32rem;height: 0.32rem;float: right;display: inline-block;position: absolute;right: 0.2rem;top: 0;cursor: pointer;}
 	.add_form {width: 90%;max-width: 6.6rem;}
 	.add_form label{width: 47%;display: block;float: left;margin-right: 3%;margin-bottom: 24px;}
-	.add_form label span{font-size: 14px;color: #444;line-height: 14px;margin-bottom: 8px;display: block;}
+	.add_form label>span{font-size: 14px;color: #444;line-height: 14px;padding-bottom: 8px;display: block;}
 	.add_form label input{width: 100%; height: 40px;line-height: 40px;border: 1px solid #ccc;border-radius: 4px;padding: 0 10px;}
 	.add_form label select{width: 100%; height: 40px;line-height: 40px;border: 1px solid #ccc;border-radius: 4px;padding: 0 10px;cursor: pointer;background-color: #fff;}
 	.add_form label.add_label{width: 97%;}
 	.add_form label.add_label input{margin-bottom: 16px;}
 	.add_form button.qx_btn{float: left;clear: both;font-size: 16px;color: #333;background: transparent;border: none;border-bottom: 1px solid #333;margin-bottom: 2.08vw;}
 	.add_form button.bc_btn{display: none;}
+	/*slelect插件span*/
+	.add_form label .select2{padding-bottom: 0 !important;}
+	.add_form label .select2 .select2-selection {border: 1px solid #ccc !important;height: 40px !important;}
+	.add_form label .select2 .select2-selection__rendered{line-height: 40px !important;}
 	
 	/******支付方式******/
 	.right_shop .btn{padding: 2.08vw 2.08vw 0 2.08vw;}
@@ -1577,8 +1584,8 @@
 	.address .pay_ul>li.active label.gx{background: url(../img/png/new_6_.png) no-repeat left center/0.3rem;}
 	.address .pay_ul li.active .gx{background: url(../img/png/new_6_.png) no-repeat left center/0.3rem;} 
 	
-	.address .pay_ul>li label .img{width: 2.4rem;height: 0.5rem;display: inline-block;float: left;}
-	.address .pay_ul>li label img{display: inline-block;float: left;/*width: 1.32rem;height: 0.4rem;*/margin: 0 0.15rem 0 0rem;}
+	.address .pay_ul>li label .img{width: 2.4rem;height: 0.5rem;display: inline-block;float: left;line-height: 0.5rem;text-align: left}
+	.address .pay_ul>li label img{display: inline-block;margin: 0 0.15rem 0 0rem;max-height: 0.5rem;vertical-align: middle;}
 	.address .pay_ul>li label p{display: inline-block;float: left;font-family: helvetica;font-size: 0.22rem;color: #333;line-height: 0.4rem;cursor: pointer;}
 	.address .pay_ul>li p.ts_p{color: #f33030;height: 0.32rem;line-height: 0.32rem;padding-left: 0.45rem;background: url(../img/png/new_7.png) no-repeat left center/0.32rem;
 	display: block;clear: both;margin:0.15rem 0 0.3rem 0;}
@@ -2911,7 +2918,7 @@
 	
 	/*******new_pay******/
 	.pay.content{padding: 0 !important;}
-	.pay .pay_text {padding-top: 0.8rem;max-width: inherit;min-height: 10rem;position: relative;padding:0.8rem 0.3rem 1rem 0.3rem;}
+	.pay .pay_text {padding-top: 0.8rem;max-width: inherit;min-height: 10rem;position: relative;padding:0.8rem 0.3rem 1rem 0.3rem;margin-bottom: 1.8rem;}
 	.pay .pay_text p.p1{font-family: helvetica;font-size: 0.3rem;color: #333;text-align: center;margin-bottom: 0.2rem;}
 	.pay .pay_text p.p1>span{font-size: 0.24rem;font-family: helvetica;color: #666;}
 	.pay .pay_text p.p3{font-family: helvetica;font-size: 0.22rem;color: #333;text-align: center;margin-bottom: 0.3rem;}
@@ -2919,7 +2926,7 @@
 	.pay .pay_text .pay_tb1{margin: 0 auto ;}
 	.pay .pay_text p.p2{font-family: helvetica;font-size: 0.24rem;color: #666;margin-top: 0.35rem;line-height: 0.3rem;}
 	.pay .pay_text .a_btn{width: 6rem;height: 0.8rem;display: block;text-align: center;line-height: 0.8rem;border-radius: 50px;color: #fff;
-	font-size: 0.3rem;font-family: helvetica;position: absolute;bottom: 0;left: 50%;margin-left: -3rem;
+	font-size: 0.3rem;font-family: helvetica;position: absolute;bottom: 0;left: 50%;margin-left: -3rem;border: none;
 	  background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);
 	}
@@ -2982,7 +2989,7 @@
 	.search_div .pro_ul li{background: #fff;}
 	
 	/***********zf_1**********************/
-	.zf_con{padding: 0 0.3rem !important;}
+	.zf_con{padding: 0 0.3rem !important;margin-bottom: 1.8rem;}
 	.zf_con .zfbt{padding: 0.4rem 0;}
 	.zf_con .zfbt span{font-size: 0.3rem;font-family: helvetica; width: 0.4rem;height: 0.4rem;text-align: center;
 	line-height: 0.4rem;display: block;float: left;color: #fff;background: #333;border-radius: 50%;}
@@ -3054,8 +3061,8 @@
 	.pay_ul>li label{display: block;width: 100%;box-sizing: border-box;}
 	.pay_ul>li label.gx{background: url(../img/png/new_6.png) no-repeat left center/0.3rem;padding-left: 0.52rem;}
 	.pay_ul>li.active label.gx{background: url(../img/png/new_6_.png) no-repeat left center/0.3rem;}
-	.pay_ul>li label .img{display: inline-block;width: 2.4rem;height: 0.5rem;float: left;}
-	.pay_ul>li label img{display: inline-block;float: left;margin: 0 0.15rem 0 0rem;height: auto;}
+	.pay_ul>li label .img{display: inline-block;width: 2.4rem;height: 0.5rem;float: left;text-align: left;line-height: 0.5rem;}
+	.pay_ul>li label img{display: inline-block;margin: 0 0.15rem 0 0rem;height: auto;max-height: 0.5rem;vertical-align: middle;}
 	.pay_ul>li label p{display: inline-block;float: left;font-family: helvetica;font-size: 0.24rem;color: #333;line-height: 0.4rem;}
 	.pay_ul>li p.ts_p{color: #f33030;height: 0.32rem;line-height: 0.32rem;padding-left: 0.45rem;background: url(../img/png/new_7.png) no-repeat left center/0.32rem;
 	display: block;clear: both;margin:0.15rem 0 0.3rem 0;}

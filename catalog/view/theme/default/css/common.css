@@ -157,14 +157,14 @@ border-bottom:2px solid transparent ;position: relative;}
 
 
 .nav .right{float: right;position: relative;z-index: 10;top: -17px;}
-.nav .img_ol li{min-width: 28px;padding-top: 30px; display: inline-block;float: left;font-family: georgia;color: #444;font-size: 14px;
+.nav .img_ol li{min-width: 30px;padding-top: 30px; display: inline-block;float: left;font-family: georgia;color: #444;font-size: 14px;
 text-align: center;margin-right: 20px;cursor: pointer;position: relative;}
 .nav .img_ol li a{display: block;width: 100%;height: 100%;position: absolute;top: 0;left: 0;}
 .nav .img_ol li span{font-family: tahoma; font-size: 12px;color: #ff2054;line-height: 18px;display: block;
 position: absolute;top:-8px;right: -12px;}
 .nav .img_ol li:nth-child(1){background: url(../img/png/searchs.png) no-repeat center top;background-size: 28px ;}
 .nav .img_ol li:nth-child(2){background: url(../img/png/mime.png) no-repeat center top;}
-.nav .img_ol li:nth-child(3){background: url(../img/png/xingxing.png) no-repeat center top;}
+.nav .img_ol li:nth-child(3){background: url(../img/png/new_2s.png) no-repeat center top/29px 28px;}
 .nav .img_ol li:nth-child(4){background: url(../img/png/carts.png) no-repeat center top;margin-right: 0;}
 .nav .lg_hover{display: none;position: absolute;top:98%;left: 60px;padding-top: 10px;}
 .nav .lg_hover .text{border: 1px solid #ddd;padding:10px 20px;background: #fff;position: relative;}
@@ -373,12 +373,12 @@ position: absolute;top: 50%;left: 50%;margin-top: -0.16rem;margin-left: -0.16rem
 	.ss_modal .bg_f .close:hover{transform: rotate(180deg);}
 	.ss_modal .text{background: #fff;width: 800px;display: block;margin: auto;padding-top: 42px;padding-bottom: 100px;}
 	.ss_modal .text label{width: 100%;display: block;line-height: 70px;border-radius:50px;position: relative;background: #f5f5f5;}
-	.ss_modal .text label .ss_img{display: block;float: left;width: 35px;height: 36px;background: url(../img/png/in_search_.png) no-repeat center center;
-	position: relative;top: 17px;left: 20px;}
+	.ss_modal .text label .ss_img{display: block;float: right;width: 35px;height: 36px;background: url(../img/png/in_search_.png) no-repeat center center;
+	position: relative;top: 17px;resize: 30px;}
 	.ss_modal .text label .ss_img input{width: 100%;height: 100%;cursor: pointer;position: absolute;top: 0;left: 0;opacity: 0;}
 	.ss_modal .text label .in_text{line-height: 70px;font-size:30px;color: #333;width: 80%;display: block;
 	float: left;background: transparent;padding-left: 40px;}
-	.ss_modal .text label img.in_close{position: absolute;width: 30px;height: 30px;right: 20px;top: 20px;cursor: pointer;}
+	.ss_modal .text label img.in_close{position: absolute;width: 30px;height: 30px;right: 100px;top: 20px;cursor: pointer;}
 	.ss_modal .con{border-top: 1px solid #ddd;margin: 40px 0 0px 0;}
 	.ss_modal .con h1{font-size: 24px;color: #333;font-weight: normal;margin: 60px 0 40px 0;}
 	.ss_modal .con h1 i.del{display: block;width: 0.24rem;height: 0.24rem;float: right;cursor: pointer;}
@@ -465,10 +465,10 @@ position: absolute;top: 50%;left: 50%;margin-top: -0.16rem;margin-left: -0.16rem
 	.ss_modal label{width: 6.4rem;height: 0.7rem;border-radius: 50px;background: #f5f5f5; display: block;position: relative;}
 	.ss_modal label .in_text{height: 0.7rem;line-height: 0.7rem;width: 4.5rem;font-size: 0.3rem;color: #333;display: block;float: left;background: transparent;
 	padding-left: 0.4rem;}
-	.ss_modal .text label .ss_img{width: 0.35rem;height: 0.36rem;display: block;float: left;position: relative;top: 0.17rem;left: 0.2rem;
+	.ss_modal .text label .ss_img{width: 0.36rem;height: 0.36rem;display: block;float: right;position: relative;top: 0.17rem;resize: 0.2rem;
 	background: url(../img/png/in_search_.png) no-repeat center;background-size: 0.35rem 0.36rem;}
 	.ss_modal .text label .ss_img input{width: 100%;height: 100%;cursor: pointer;position: absolute;top: 0;left: 0;opacity: 0;}
-	.ss_modal .text label img.in_close{position: absolute;width: 0.3rem;height: 0.3rem;right: 0.2rem;top: 0.2rem;}
+	.ss_modal .text label img.in_close{position: absolute;width: 0.3rem;height: 0.3rem;right: 1rem;top: 0.2rem;}
 	.ss_modal .con{border-top: 1px solid #ddd;margin: 0.4rem 0 0 0;}
 	.ss_modal .con h1{font-size: 0.24rem;color: #999;margin: 0.6rem 0 0.4rem 0;font-weight: normal;}
 	.ss_modal .con h1 i.del{display: block;width: 0.32rem;height: 0.32rem;float: right;cursor: pointer;}

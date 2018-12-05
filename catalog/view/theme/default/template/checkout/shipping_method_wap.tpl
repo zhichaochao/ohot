@@ -61,6 +61,13 @@
  <p>Please Select Address</p>
 </div>
 <?php } ?>
+<style type="text/css">
+    @media (max-width:920px) {
+        .yd_footer{display: none !important;}
+        .yd_footer2{display: block !important;}
+    }
+    
+</style> 
 
 <script type="text/javascript"><!--
 //浏览器窗口从pc/yd改变的时候刷新页面
@@ -164,3 +171,4 @@ function getPaymentMethod()
 }
 
 //--></script>
+<?php echo $footer; ?>

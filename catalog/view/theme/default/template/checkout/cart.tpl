@@ -1,22 +1,24 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
 		    <!--      <link rel="stylesheet" href="catalog/view/theme/default/css/ttf.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/common.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/index.css" />
         <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/jquery.min.js" ></script>
         <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/common.js" ></script> -->
-		<link rel="stylesheet" href="catalog/view/theme/default/css/common.css" />
+	<!-- 	<link rel="stylesheet" href="catalog/view/theme/default/css/common.css" />
 		<link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
 		<script type="text/javascript" src="catalog/view/theme/default/js/jquery.min.js" ></script>
 		<script type="text/javascript" src="catalog/view/theme/default/js/common.js" ></script>
 		<title>SHOPCART2</title>
 		
-	</head>
-	<body style="background: #f5f5f5;"><!--内容-->
+	</head> -->
+	<div class="yd_hide">
+	<?php echo $header; ?></div>
+	<body style="background: #f5f5f5;min-height: inherit !important; "><!--内容-->
 		<div class="shopcart2 pc_hide clearfix new_in_content">
 			<div class="content  shop2_content clearfix">
 				<div class="shop2_text  clearfix">
@@ -93,7 +95,7 @@
 		</div>
 		
 		
-		<div class="gwc_pc yd_hide clearfix">
+		<div class="gwc_pc yd_hide clearfix in_content">
 			<div class="text">
 				<h1><a class="fh" href="<?php echo $continueshopping?>">Continue Shopping</a> SHOPPING CART</h1>
 				

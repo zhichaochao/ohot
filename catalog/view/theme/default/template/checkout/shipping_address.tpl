@@ -29,7 +29,7 @@
                                 <a class="a_btn" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a>
                               
 
-                              <a class="def" href="">Default</a>
+                              <a class="def" >Default</a>
                                 <!-- <a class="go_btn"  onclick="setDefault('<?php echo $address['address_id']; ?>', this)" >sent to this address&nbsp;&nbsp;&nbsp;></a> -->
                               </div>
                             </li>
@@ -162,7 +162,7 @@
                 <span><?php echo $entry_telephone; ?> *</span>
                 <input type="text" name="telephone" value="<?php echo (isset($eaddress['telephone']) ? $eaddress['telephone'] : ''); ?>" placeholder="<?php echo $entry_telephone; ?>" id="input-shipping-telephone" class="form-control clear">
               </label>
-            <?php if(!empty($addresses)){ ?>  <button class="qx_btn" type="reset"  id='show-shipping-existing'>cancel</button>   <?php } ?>
+            <?php if(!empty($addresses)){ ?>  <button class="qx_btn" type="reset"  id='show-shipping-existing'>Cancel</button>   <?php } ?>
               
         
                  <a class="btn240 clearfix clear" id="btnSaveAddress" aid="<?php echo ($eaddress ? $eaddress['address_id'] : 0); ?>" onclick="saveAddress(this);">SAVE ADDRESS   ></a>

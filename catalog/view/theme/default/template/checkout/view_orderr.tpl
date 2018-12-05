@@ -24,7 +24,16 @@
                 </form>
             </div>
         </div>
-<div class="yd_hide"><?php echo $footer; ?></div>
+        <style type="text/css">
+    @media (max-width:920px) {
+        .yd_footer{display: none !important;}
+        .yd_footer2{display: block !important;}
+    }
+    
+</style> 
+<!-- <div class="yd_hide"> -->
+<?php echo $footer; ?>
+<!-- </div> -->
 <script>
         window.onload = function(){
             $("button.a_btn").click(function(){

@@ -113,11 +113,11 @@
 
 <script type="text/javascript"><!--
 //第二步操作的单选
-    $(".dx_label input").click(function(){
+   $(".express_ul>li").click(function(){
       $(".dx_label input").prop("checked","")
       $(".dx_label .check_i").removeClass("active");
-      $(this).siblings(".check_i").addClass("active");
-      $(this).prop("checked","checked");
+      $(this).find(".check_i").addClass("active");
+      $(this).find("input").prop("checked","checked");
     })
         //    支付方式选择
     $(".pay_ul>li").click(function(){

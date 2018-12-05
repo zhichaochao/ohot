@@ -108,7 +108,16 @@
                 </div>
             </div>
         </div> -->
-<div class="yd_hide"><?php echo $footer; ?></div>
+        <style type="text/css">
+    @media (max-width:920px) {
+        .yd_footer{display: none !important;}
+        .yd_footer2{display: block !important;}
+    }
+    
+</style> 
+<!-- <div class="yd_hide"> -->
+<?php echo $footer; ?>
+<!-- </div> -->
 <script>
         //调取上传框
         function getphoto(node) {
