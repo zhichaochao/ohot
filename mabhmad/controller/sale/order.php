@@ -101,6 +101,8 @@ class ControllerSaleOrder extends Controller {
 		$filter_order_status = isset($this->request->get['filter_order_status']) ? $this->request->get['filter_order_status'] : null;
 
 		$filter_total = isset($this->request->get['filter_total']) ? $this->request->get['filter_total'] : null;
+
+		$email = isset($this->request->get['email']) ? $this->request->get['email'] : null;
 		//添加的开始时间
 		$filter_date_added = isset($this->request->get['filter_date_added']) ? $this->request->get['filter_date_added'] : null;
 		//修改的开始时间
@@ -131,6 +133,9 @@ class ControllerSaleOrder extends Controller {
 		}
 		if (isset($this->request->get['filter_total'])) {
 			$url .= '&filter_total=' . $this->request->get['filter_total'];
+		}
+		if (isset($this->request->get['email'])) {
+			$url .= '&email=' . $this->request->get['email'];
 		}
 		//添加的开始时间
 		if (isset($this->request->get['filter_date_added'])) {
@@ -199,6 +204,7 @@ class ControllerSaleOrder extends Controller {
 			'filter_customer'	   => $filter_customer,
 			'filter_order_status'  => $filter_order_status,
 			'filter_total'         => $filter_total,
+			'email'         => $email,
 			'filter_date_added'    => $filter_date_added,
 			'filter_date_modified' => $filter_date_modified,
 			'filter_date_added_endtime'    => $filter_date_added_endtime,
@@ -393,6 +399,7 @@ class ControllerSaleOrder extends Controller {
 		$data['filter_customer'] = $filter_customer;
 		$data['filter_order_status'] = $filter_order_status;
 		$data['filter_total'] = $filter_total;
+		$data['email'] = $email;
 		$data['filter_date_added'] = $filter_date_added;
 		$data['filter_date_modified'] = $filter_date_modified;
 		$data['filter_date_added_endtime'] = $filter_date_added_endtime;

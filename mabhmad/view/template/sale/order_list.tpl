@@ -74,6 +74,10 @@
                   </span></div>
               </div>
               <div class="form-group">
+                <label class="control-label" for="input-email">邮箱</label>
+                <input type="text" name="email" value="<?php echo $email; ?>" placeholder="邮箱" id="input-email" class="form-control" />
+              </div>
+              <div class="form-group">
                 <label class="control-label" for="input-date-modified"><?php echo $entry_date_modified; ?></label>
                 <div class="input-group date">
                   <input type="text" name="filter_date_modified" value="<?php echo $filter_date_modified; ?>" placeholder="<?php echo $entry_date_modified; ?>" data-date-format="YYYY-MM-DD" id="input-date-modified" class="form-control" />
@@ -122,11 +126,13 @@
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
               </div>
-            
+             
               <div class="form-group">
                 <label class="control-label" for="input-total"><?php echo $entry_total; ?></label>
                 <input type="text" name="filter_total" value="<?php echo $filter_total; ?>" placeholder="<?php echo $entry_total; ?>" id="input-total" class="form-control" />
               </div>
+
+             
               
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
             </div>
@@ -244,6 +250,11 @@ $('#button-filter').on('click', function() {
 	if (filter_total) {
 		url += '&filter_total=' + encodeURIComponent(filter_total);
 	}
+
+  var email = $('input[name=\'email\']').val();
+  if (email) {
+    url += '&email=' + encodeURIComponent(email);
+  }
 
 	var filter_date_added = $('input[name=\'filter_date_added\']').val();
 	if (filter_date_added) {
