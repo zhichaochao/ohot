@@ -162,7 +162,9 @@
             </div>
             <div class="text clearfix">
  <div class="bank_receipt" style="text-align: center; background: #fff; margin-top: 20px;">
-        <img style="margin:0 auto;max-width: 100%;" src="<?=$bank_receipt;?>" />
+          <?php foreach ($bank_receipt as $k=>$bankvalue) { ?>
+        <img style="margin:0 auto;max-width: 100%;" src="<?php echo $bankvalue['bank_receipt'];?>" />
+        <?php } ?>
       </div>
     </div>
   </div>         <?php } ?>
@@ -242,7 +244,10 @@
           <li class="clearfix" style="padding: 0;">
             <div class="zf_img clearfix">
               <!-- <a class="zf_a" href="###">Re Submit Receipt</a> -->
-              <img src="<?=$bank_receipt;?>" alt="" />             
+              <img src="<?=$bank_receipt;?>" alt="" />  
+               <?php foreach ($bank_receipt as $k=>$bankvalue) { ?>
+              <img src="<?php echo $bankvalue['bank_receipt'];?>" alt="" /> 
+              <?php } ?>           
             </div>
           </li>
         <?php } ?> 
@@ -419,9 +424,19 @@
 
 
     
+<style type="text/css">
+    @media (max-width:920px) {
+        .yd_footer{display: none !important;}
+        .yd_footer2{display: block !important;}
+        body{margin-bottom: 1rem;}
+    }
+    
+</style> 
 
 
- <div class="yd_hide"><?php echo $footer; ?> </div>
+ <!-- <div class="yd_hide"> -->
+ <?php echo $footer; ?> 
+ <!-- </div> -->
 <script>
 function addemail(order_id) { 
    $.ajax({

@@ -652,7 +652,13 @@ class ControllerAccountOrder extends Controller {
 			$data['default'] = false;
 		}
 			//结束
-		$data['bank_receipt'] =$order_info['bank_receipt'];
+			$resreceipt=explode(",",$order_info['bank_receipt']);
+			foreach ($resreceipt as $k=> $value) {
+				$data['bank_receipt'][]=array(
+						'bank_receipt'=>$value
+					);
+			}
+		// print_r($data['bank_receipt']);exit;
 			$data['continue'] = $this->url->link('account/order', '', true);
 
 			$data['column_left'] = $this->load->controller('common/column_left');
@@ -920,16 +926,93 @@ class ControllerAccountOrder extends Controller {
 	    } else {
 	        $order_id = 0;
 	    }
-	   
-	    $img = date("YmdHis").substr(md5(mt_rand(0,1000)),0,2).strtolower(strrchr($_FILES['bank_receipt']['name'],"."));
-		$souceName = DIR_IMAGE.'/bank_receipt/'.$img;
-		$imgk='../image/bank_receipt/'.$img;
-		$moveRes=move_uploaded_file($_FILES['bank_receipt']['tmp_name'],$souceName);
-		if ($moveRes) {
+// print_r($_FILES);exit;
+	    if($_FILES){
+                $path = array();
+                foreach($_FILES['bank_receipt']['name'] as $key=>$row){
+                    // if($_FILES['bank_receipt']['error'][$key]==4){
+                    //     continue;
+                    // }
+                    if($_FILES['bank_receipt']['error'][$key]==0){
+                        if(($_FILES['bank_receipt']['type'][$key]=='image/gif' || $_FILES['bank_receipt']['type'][$key]=='image/jpeg' || $_FILES['bank_receipt']['type'][$key]=='image/pjpeg' || $_FILES['bank_receipt']['type'][$key]=='image/png')){
+
+                            $extend = pathinfo($row); //获取文件名数组
+
+                            $extend = strtolower($extend["extension"]);                //获取文件的扩展名
+								// 
+                            $filename = date("YmdHis").substr(md5(mt_rand(0,1000)),0,2).".".$extend;              //文件的新名称
+                           
+                            $directory = DIR_IMAGE . 'bank_receipt/';
+                             
+                            $path[] = '../image/bank_receipt/' . $filename;
+							// 
+                           $moveRes= move_uploaded_file($_FILES['bank_receipt']['tmp_name'][$key],$directory.$filename);
+                        }
+                    }
+                }
+            }
+            // print_r($path);exit;
+            if ($moveRes) {
 			$this->load->model('account/order');
-			$this->model_account_order->submitOrderBankReceipt($order_id,$imgk);
+			$this->model_account_order->submitOrderBankReceipt($order_id,$path);
 			
 		}
+
+
+
+
+	 //    $file = $_FILES['bank_receipt'];  
+
+		// $name = $file['name'];      
+	 //   // print_r($file);exit;
+		// // $path = array();
+		// foreach ($name as $k=>$names){
+		// 	// $extend = pathinfo($names); 
+		// 	// print_r($extend);exit;
+  //  //       $extend = strtolower($extend["extension"]);
+		// 	// print_r();exit;
+	 //    $img = date("YmdHis").substr(md5(mt_rand(0,1000)),0,2).strtolower(strrchr($names,"."));
+		
+		// $souceName = DIR_IMAGE.'bank_receipt/'.$img;
+
+
+		// $imgk='../image/bank_receipt/'.$img.',';
+
+		
+		// $moveRes=move_uploaded_file($file['tmp_name'][$k],$souceName);	
+		// print_r($imgk);exit;
+		// if ($moveRes) {
+		// 	$this->load->model('account/order');
+		// 	$this->model_account_order->submitOrderBankReceipt($order_id,$imgk);
+			
+		// }
+		// }
+
+
+
+
+
+	     // if($_FILES){
+	     // 	$path = array();
+	     // 	 foreach($_FILES['bank_receipt']['name'] as $key=>$row){
+	     // 	 	$extend = pathinfo($row); //获取文件名数组
+      //           $extend = strtolower($extend["extension"]);
+      //           $img = date("YmdHis").substr(md5(mt_rand(0,1000)),0,2).$extend;
+      //           $souceName = DIR_IMAGE.'/bank_receipt/'.$img;
+      //           $imgk='../image/bank_receipt/'.$img;
+      //           $moveRes=move_uploaded_file($_FILES['bank_receipt']['tmp_name'],$souceName);
+	     // 	 }
+	     // }
+	 //    $img = date("YmdHis").substr(md5(mt_rand(0,1000)),0,2).strtolower(strrchr($_FILES['bank_receipt']['name'],"."));
+		// $souceName = DIR_IMAGE.'/bank_receipt/'.$img;
+		// $imgk='../image/bank_receipt/'.$img;
+		// $moveRes=move_uploaded_file($_FILES['bank_receipt']['tmp_name'],$souceName);
+		// print_r($_FILES['bank_receipt']);exit;
+		// if ($moveRes) {
+		// 	$this->load->model('account/order');
+		// 	$this->model_account_order->submitOrderBankReceipt($order_id,$imgk);
+			
+		// }
 		$data['vieworder'] = $this->url->link('account/order/info', 'order_id='.$order_id, true);
 		$data['shopping'] = $this->url->link('product/category');
 		$data['column_left'] = $this->load->controller('common/column_left');

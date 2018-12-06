@@ -10,13 +10,14 @@
                 <div class="text3 clearfix">
                     <div class="pd_div clearfix">
                         <div class="file_div">
-                            <input type="file" name="bank_receipt" id="file" value="" title="上传照片" onchange="getphoto(this)" class="flie_in"/>
-                                <img class="file_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/file.png"/>
+                            <img class="file_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/file.png"/>
+                            <input type="file" name="bank_receipt[]" id="file" multiple value="" title="上传照片" onchange="getphoto(this)" class="flie_in"/>
+                              
                         </div>
-                        <div class="text_div">
+                        <!-- <div class="text_div">
                             <img src="" alt="" />
                             <div class="close" onclick="del_img($(this))"></div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- <a class="a_btn" href="javascript:;">CONTINUE</a> -->
@@ -45,6 +46,7 @@
             })
         }
         //调取上传框
+      
         function getphoto(node) {
             var imgURL = "";
             try{
@@ -69,20 +71,28 @@
                 }
             }
             creatImg(imgRUL);
-            $(".text_div").css("display","inline-block");
-            $(".file_div").css("display","none");
+            // $(".text_div").css("display","inline-block");
+            // $(".file_div").css("display","none");
+            var html = node.outerHTML;
+            $(node).hide();
+            $(".file_div").append(html);
+            // $(".flie_in:last-child").remove()
             return imgURL;
         }
      
         //上传选中的图片 显示页面
-        function creatImg(imgRUL){
-            $(".text_div img").attr("src",imgRUL);
-        }
+       function creatImg(imgRUL){
+        const img = '<img src="'+imgRUL+'" alt="">';
+        $(".pd_div").before(img);
+
+
+
+      }
         
         //删除选中的图片
-        function del_img(obj){
-            obj.siblings("img").attr("src","");
-            obj.parent().css("display","none");
-            $(".file_div").css("display","block");
-        }
+        // function del_img(obj){
+        //     obj.siblings("img").attr("src","");
+        //     obj.parent().css("display","none");
+        //     $(".file_div").css("display","block");
+        // }
 </script>

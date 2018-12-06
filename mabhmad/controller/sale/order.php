@@ -958,11 +958,18 @@ class ControllerSaleOrder extends Controller {
 			$this->load->model('tool/image');
 
 			if (!empty($order_info['bank_receipt'])) {
-				$data['bank_receipt'] = $this->model_tool_image->resize($order_info['bank_receipt'], 500, 500);
-			} else {
-				$data['bank_receipt'] = $this->model_tool_image->resize('no_image.png', 500, 500);
-			}
 
+				$resreceipt=explode(",",$order_info['bank_receipt']);
+			foreach ($resreceipt as $k=> $value) {
+				$data['bank_receipt'][]=array(
+						'bank_receipt'=>$this->model_tool_image->resize($value, 500, 500)
+					);
+			}
+				// $data['bank_receipt'] = $this->model_tool_image->resize($order_info['bank_receipt'], 500, 500);
+			} else {
+				$data['bank_receipts'] = $this->model_tool_image->resize('no_image.png', 500, 500);
+			}
+// print_r($data['bank_receipt']);exit;
 			if ($order_info['invoice_no']) {
 				$data['invoice_no'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];
 			} else {

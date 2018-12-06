@@ -73,7 +73,7 @@
                   <!-- <a class="return" href="###">Return</a>
                   <a class="" href="###">View</a> -->
                   <a href="<?php echo $order['view']; ?>" data-toggle="tooltip" title="<?php echo $button_view; ?>" class="btn btn-primary btn-view">
-                view
+                View
                 </a>
                 
                 <?php if($order['status'] == 'Pending'){ ?>
@@ -225,7 +225,15 @@
       </div>
     </div>
 
-
+<style type="text/css">
+    @media (max-width:920px) {
+        .yd_footer{display: none !important;}
+        .yd_footer2{display: block !important;}
+        body{margin-bottom: 1rem;}
+    }
+    
+</style> 
+ <?php echo $footer; ?> 
 <script>
 function cancel_order(url){
 	if(confirm('Are You Sure?')){

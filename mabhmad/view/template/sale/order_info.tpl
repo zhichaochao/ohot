@@ -328,17 +328,33 @@
                     <input type="checkbox" name="notify" value="1" id="input-notify" checked="checked" />
                   </div>
                 </div>
+               <?php if(!isset($bank_receipts)){ ?>
 
+
+              <?php foreach ($bank_receipt as $k=>$bankvalue) { ?>
                 <div class="form-group">
                 <label class="col-sm-2 control-label">凭证</label>
                 <div class="col-sm-10 img-thumbnail scpz_div" style="width: 100px;height:100px;display: block;padding: 0;">
                   
-                    <img  src="<?php echo $bank_receipt; ?>" alt="" title="" data-placeholder=""  style="display: block;width: 100%;"/>
+                    <img  src="<?php echo $bankvalue['bank_receipt'];?>" alt="" title="" data-placeholder=""  style="display: block;width: 100%;"/>
                     
                 </div>
                   
 
               </div>
+               <?php } ?>
+               <?php }else{ ?>
+               <div class="form-group">
+                <label class="col-sm-2 control-label">凭证</label>
+                <div class="col-sm-10 img-thumbnail scpz_div" style="width: 100px;height:100px;display: block;padding: 0;">
+                  
+                    <img  src="<?php echo $bank_receipts;?>" alt="" title="" data-placeholder=""  style="display: block;width: 100%;"/>
+                    
+                </div>
+                  
+
+              </div>
+              <?php } ?>
                                 
                 <div class="form-group <?php if($order_status_id==7 || $order_status_id==11){ ?>required<?php } ?>" id="comment">
                   <label class="col-sm-2 control-label" for="input-comment"><?php echo $entry_comment; ?></label>
@@ -451,14 +467,14 @@
   <!-- 放大凭证 -->
   <div class="pz_modal" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;z-index: 999;background: rgba(0,0,0,.8);text-align: center;line-height: 800px;display: none;">
     <div class="text" style="display: inline-block;vertical-align: middle;">
-      <img src="<?php echo $bank_receipt; ?>" alt=""  style="">
+      <img src="" alt=""  style="">
     </div>
   </div>
   <script type="text/javascript"><!--
     $(".scpz_div").click(function(){
-    $(".pz_modal").fadeIn();
-
-  })
+      $(".pz_modal").fadeIn();
+      $(".pz_modal .text img").attr("src", $(this).find("img").attr("src"));
+    })
 
   $(".pz_modal").click(function(e){
    
