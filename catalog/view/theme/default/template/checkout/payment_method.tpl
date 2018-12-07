@@ -17,7 +17,7 @@
                   <input class="pay_dx"   type="checkbox"  value="<?php echo $payment_method['code']; ?>" aid='0'   />
 
               <?php if($payment_method['code'] == 'pp_express'){ ?>
-                <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/paypal_img.gif" /></div> 
+                <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/new_10_2.png" /></div> 
                   <p >PayPal</p>
                 <?php } else { ?>
                   <?php if (isset($payment_method['image']) && !empty($payment_method['image'])) { ?>
@@ -34,7 +34,7 @@
                   <li class="clearfix">
                   <label class="gx clearfix" for="">
                   <input class="pay_dx"    type="checkbox" value="<?php echo $payment_method['code']; ?>"  aid='1'  />
-                 <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/image/ppguest_1.gif"  /></div> 
+                 <div class="img" ><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/new_10_3.png"  /></div> 
                   <p>Processed by</p>
                   </label>
                 </li>

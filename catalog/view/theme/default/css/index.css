@@ -250,8 +250,8 @@
 	.pro_det_content .price_input input{display: inline-block;width: 2.08vw;height: 2.08vw;line-height: 2.08vw; float: left;
 	border-right: 1px solid#ccc;border-left: 1px solid#ccc;text-align: center;font-size: 0.83vw;}
 	.pro_det_content .select_div{background: #fff;text-align: center;position: relative;}
-	.pro_det_content .select_div button{ margin: auto;display: inline-block; border: 1px solid #ccc;height: 3.125vw;
-	font-size: 0.83vw;line-height: 2.08vw;background: #fff;box-sizing: content-box;padding: 0 1.04vw;}
+	.pro_det_content .select_div button{ margin: auto;display: inline-block; border: 1px solid #ccc;height: 2.5vw;
+	font-size: 0.83vw;line-height: 2.5vw;background: #fff;box-sizing: content-box;padding: 0 1.04vw;}
 	.pro_det_content .select_div button:hover{background: #f5f5f5;cursor: pointer;}
 	.pro_det_content .select_div button span{background: url(../img/png/down.png) no-repeat right center;background-size: 0.72vw;padding-right: 1.7vw;}
 	.pro_det_content .select_div .select_ul{position: absolute;width: 100%;background: #fff;left:0;border-left: 1px solid #ccc;border-bottom: 1px solid #ccc;
