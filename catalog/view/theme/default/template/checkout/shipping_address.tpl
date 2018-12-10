@@ -216,6 +216,9 @@ $('.address_ul li').on('click', function() {
          
                 alert(json['error']);
             } else {
+               $('html,body').animate({
+                scrollTop: 580
+            }, 500);
                 getShippingMethod();
             }
         },
