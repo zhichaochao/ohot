@@ -17,7 +17,7 @@
 
 
 @media only screen and (min-width:921px ) {
-	.fanyi{position: absolute;left: 130px;top: 20px;
+	.fanyi{position: absolute;left: 130px;top: 20px;width: 149px;
 	height: 24px;line-height:24px;display: inline-block;overflow: hidden;}
 	.fanyi select{float: left;padding: 0;margin: 0 !important;height: 24px;line-height: 24px; border: 1px solid #ddd; }
 	
@@ -214,7 +214,7 @@
 	background:rgba(0,0,0,.05) url(../img/png/lb_left.png) no-repeat left 18px center/14px 26px;}
 	.pro_big_img .swiper-button-next,.pro_big_img  .swiper-container-rtl .swiper-button-prev{right: 20px;width: 50px;height: 50px;border-radius: 100%;
 	background: rgba(0,0,0,.05) url(../img/png/lb_right.png) no-repeat left 18px center/14px 26px;}
-	.pro_det_content .top .right{float: left;padding-left: 3.64vw;}
+	.pro_det_content .top .right{float: left;padding-left: 3.64vw;max-width: 31.44vw;}
 	.pro_det_content .top .right .top_text{max-width: 27.8vw;}
 	.pro_det_content .top .right a{font-size: 1.66vw;color: #333;line-height: 2vw;display: block;width: 28vw;margin: 0.7vw 0;}
 	@media only screen and (min-width: 921px) and (max-width: 1200px) {
@@ -377,6 +377,7 @@
 	.shop_content .shop_ul .two_a:hover{ background: -webkit-linear-gradient(left, #fa4940 , #fa4940);background: -o-linear-gradient(right, #fa4940, #fa4940);
 	  background: -moz-linear-gradient(right, #fa4940, #fa4940); background: linear-gradient(to right, #fa4940 , #fa4940); }
 	
+	.gwc_pc {background: #fff;}
 	.gwc_pc .text{max-width: 1200px;margin: auto;padding: 0 0.2rem;}
 	.gwc_pc h1{text-align: center;display: block;font-size: 0.3rem;margin: 0.4rem 0;}  
 	.gwc_pc h1 a.fh{display: inline-block;float: left;font-weight: normal;font-size: 0.24rem;padding-left: 0.27rem;
@@ -709,15 +710,16 @@
 	.address_content .left .text h2{font-size: 0.24rem;color: #333;margin-bottom: 0.3rem;}
 	.address_content .left .text h2 span{font-size: 0.24rem;color: #fff;width: 0.3rem;height: 0.3rem;text-align: center;line-height: 0.3rem;
 	background: #333;border-radius: 50%;display: inline-block;font-weight: normal;margin-right: 0.12rem;}
-	.address_content .address_ul{background: #fff;-moz-column-count: 2;margin-bottom: 0.4rem;
-    -webkit-column-count: 2; column-count: 2;-moz-column-gap: 0px;-webkit-column-gap: 0px;   column-gap: 0px;}
-	.address_content .address_ul li{display: inline-block;width: 100%; padding: 0 0.1rem;break-inside:avoid;
+	.address_content .address_ul{background: #fff;margin-bottom: 0.4rem;
+		/*-moz-column-count: 2; -webkit-column-count: 2; column-count: 2;-moz-column-gap: 0px;-webkit-column-gap: 0px;   column-gap: 0px;*/
+    }
+	.address_content .address_ul li{display: inline-block;width: 50%; padding: 0 0.1rem;break-inside:avoid;float: left;
 	margin-bottom:0.2rem;cursor: pointer;}
 	
-	.address_content .address_ul li .text_li{display: block;width: 100%;border: 1px solid #dddddd;background: #f;padding:0.3rem 0.2rem; position: relative;}
+	.address_content .address_ul li .text_li{display: block;width: 100%;border: 1px solid #dddddd;background: #f;padding:0.2rem; position: relative;height: 200px;}
 	.address_content .address_ul li.active .text_li{ border: 1px solid #d5af74;background: #fff9f9;}
-	.address_content .address_ul li span{font-size: 0.16rem;line-height: 0.3rem;display: block;}
-	.address_content .address_ul>span{display: block;overflow: hidden;margin: 0 0.1rem;}
+	.address_content .address_ul li span{font-size: 0.16rem;line-height: 0.24rem;display: block;}
+	.address_content .address_ul>span{display: block;overflow: hidden;margin: 0 0.1rem;float: left;width: 50%;}
 	.address_content .add_a{width: 100%;display: block;height: 2rem;line-height: 2rem;border: 1px solid #eee;box-sizing: border-box;font-size: 16px;color: #333;
 	background:  #f5f5f5;text-align: center;}	
 	.address_content .add_a>span{background: url(../img/png/file.png) no-repeat left center/0.3rem 0.3rem;display: inline-block !important;padding-left: 0.4rem;line-height: 2rem !important;}
@@ -1473,7 +1475,7 @@
 	.pay .pay_text .pay_tb1{margin: 0 auto ;}
 	.pay .pay_text p.p2{font-family: helvetica;font-size: 0.24rem;color: #666;margin: 0.35rem auto 0 auto;line-height: 0.3rem;max-width: 7.5rem;}
 	.pay .pay_text .a_btn{width: 6rem;height: 0.6rem;display: block;text-align: center;line-height: 0.6rem;border-radius: 50px;color: #fff;
-	font-size: 0.24rem;font-family: helvetica;position: absolute;bottom: 0;left: 50%;margin-left: -3rem;margin-bottom: 0.8rem;
+	font-size: 0.24rem;font-family: helvetica;position: absolute;bottom: 0;left: 50%;margin-left: -3rem;margin-bottom: 0.8rem;border: none;
 	  background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);
 	}

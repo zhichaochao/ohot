@@ -285,9 +285,9 @@
                       
                        <?php
                          if(($order_status_id==2) || ($order_status_id==3)){
-                            $orderstatus=array("Pending","Processing","Shipped","Complete","Canceled","Refunded");  
+                            $orderstatus=array("Pending","Paid","Shipped","Complete","Canceled","Refunded");  
                          }else{                   
-                            $orderstatus=array("Pending","Processing","Complete","Canceled","Refunded");
+                            $orderstatus=array("Pending","Paid","Complete","Canceled","Refunded");
                          }
                          if( in_array($order_statuses['name'],$orderstatus) ){    
                        ?>

@@ -426,6 +426,9 @@ $(document).ready(function() {
       let li_len = $(".address_ul>li").length;
       if($(this).index()+1 != li_len){
         $(this).addClass("active").siblings("li").removeClass("active");
+        $('html,body').animate({
+          scrollTop: 580
+      }, 500);
       }
     })
     

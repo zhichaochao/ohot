@@ -103,6 +103,8 @@ class ControllerSaleOrder extends Controller {
 		$filter_total = isset($this->request->get['filter_total']) ? $this->request->get['filter_total'] : null;
 
 		$email = isset($this->request->get['email']) ? $this->request->get['email'] : null;
+
+		$telephone = isset($this->request->get['telephone']) ? $this->request->get['telephone'] : null;
 		//添加的开始时间
 		$filter_date_added = isset($this->request->get['filter_date_added']) ? $this->request->get['filter_date_added'] : null;
 		//修改的开始时间
@@ -136,6 +138,9 @@ class ControllerSaleOrder extends Controller {
 		}
 		if (isset($this->request->get['email'])) {
 			$url .= '&email=' . $this->request->get['email'];
+		}
+		if (isset($this->request->get['telephone'])) {
+			$url .= '&telephone=' . $this->request->get['telephone'];
 		}
 		//添加的开始时间
 		if (isset($this->request->get['filter_date_added'])) {
@@ -205,6 +210,7 @@ class ControllerSaleOrder extends Controller {
 			'filter_order_status'  => $filter_order_status,
 			'filter_total'         => $filter_total,
 			'email'         => $email,
+			'telephone'         => $telephone,
 			'filter_date_added'    => $filter_date_added,
 			'filter_date_modified' => $filter_date_modified,
 			'filter_date_added_endtime'    => $filter_date_added_endtime,
@@ -400,6 +406,7 @@ class ControllerSaleOrder extends Controller {
 		$data['filter_order_status'] = $filter_order_status;
 		$data['filter_total'] = $filter_total;
 		$data['email'] = $email;
+		$data['telephone'] = $telephone;
 		$data['filter_date_added'] = $filter_date_added;
 		$data['filter_date_modified'] = $filter_date_modified;
 		$data['filter_date_added_endtime'] = $filter_date_added_endtime;
@@ -419,7 +426,7 @@ class ControllerSaleOrder extends Controller {
 		$this->load->model('localisation/order_status');
 
 		$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
-
+// print_r($data['order_statuses']);exit;
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

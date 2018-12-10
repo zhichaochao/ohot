@@ -11,7 +11,8 @@
                     <div class="pd_div clearfix">
                         <div class="file_div">
                             <img class="file_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/file.png"/>
-                            <input type="file" name="bank_receipt[]" id="file" multiple value="" title="上传照片" onchange="getphoto(this)" class="flie_in"/>
+                            <span class="file_span">Add More</span>
+                            <input type="file" name="bank_receipt[]" id="file" multiple value="" title="Upload bank receipt" onchange="getphoto(this)" class="flie_in"/>
                               
                         </div>
                         <!-- <div class="text_div">
@@ -26,6 +27,15 @@
             </div>
         </div>
         <style type="text/css">
+        .file_span{
+            display: none;
+            position: relative;
+            width: 100px;
+            margin-left: -60px;
+            font-size: 18px;
+            line-height: 30px;
+            left:31px;
+        }
     @media (max-width:920px) {
         .yd_footer{display: none !important;}
         .yd_footer2{display: block !important;}
@@ -76,6 +86,7 @@
             var html = node.outerHTML;
             $(node).hide();
             $(".file_div").append(html);
+            $(".file_span").css("display","inline-block");
             // $(".flie_in:last-child").remove()
             return imgURL;
         }

@@ -6,7 +6,7 @@
  <!-- <h3>Shipping Method</h3> -->
  <p id="no_sel" style="color: #f00;"></p>
                         <ul class="express_ul" id='collapse-shipping-method'>
-                        <h2>2.Select the Shipping Method</h2>
+                        <h2><span>2</span>Select the Shipping Method</h2>
                              <?php foreach ($shipping_methods as $quote) { ?>
                             <li class="clearfix">
                                 <dl>

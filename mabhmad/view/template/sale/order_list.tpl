@@ -73,10 +73,7 @@
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
               </div>
-              <div class="form-group">
-                <label class="control-label" for="input-email">邮箱</label>
-                <input type="text" name="email" value="<?php echo $email; ?>" placeholder="邮箱" id="input-email" class="form-control" />
-              </div>
+              
               <div class="form-group">
                 <label class="control-label" for="input-date-modified"><?php echo $entry_date_modified; ?></label>
                 <div class="input-group date">
@@ -84,7 +81,12 @@
                   <span class="input-group-btn">
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
-              </div>                        
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="input-total"><?php echo $entry_total; ?></label>
+                <input type="text" name="filter_total" value="<?php echo $filter_total; ?>" placeholder="<?php echo $entry_total; ?>" id="input-total" class="form-control" />
+              </div>
+                                     
               <div class="form-group">
                 <label class="control-label" for="input-order-status"><?php echo $entry_order_status; ?></label>
                 <select name="filter_order_status" id="input-order-status" class="form-control">
@@ -92,7 +94,7 @@
                   <?php foreach ($order_statuses as $order_status) { ?>
                   
                   <?php
-                      $orderstatus=array("Pending","Processing","Shipped","Complete","Canceled","Refunded");  
+                      $orderstatus=array("Pending","Paid","Shipped","Complete","Canceled","Refunded");  
                       if( in_array($order_status['name'],$orderstatus) ){    
                   ?>
                   
@@ -109,28 +111,32 @@
             </div>
             
             <div class="col-sm-4">
-              <div class="form-group">
+            <div class="form-group">
+                <label class="control-label" for="input-telephone">手机号</label>
+                <input type="text" name="telephone" value="<?php echo $telephone; ?>" placeholder="手机号" id="input-telephone" class="form-control" />
+              </div>
+             <!--  <div class="form-group">
                 <label class="control-label" for="input-date-added-endtime"><?php echo $entry_date_added_endtime; ?></label>
                 <div class="input-group date">
                   <input type="text" name="filter_date_added_endtime" value="<?php echo $filter_date_added_endtime; ?>" placeholder="<?php echo $entry_date_added_endtime; ?>" data-date-format="YYYY-MM-DD" id="input-date-added-endtime" class="form-control" />
                   <span class="input-group-btn">
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
-              </div>
+              </div> -->
               
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label class="control-label" for="input-date-modified-endtime"><?php echo $entry_date_modified_endtime; ?></label>
                 <div class="input-group date">
                   <input type="text" name="filter_date_modified_endtime" value="<?php echo $filter_date_modified_endtime; ?>" placeholder="<?php echo $entry_date_modified_endtime; ?>" data-date-format="YYYY-MM-DD" id="input-date-modified-endtime" class="form-control" />
                   <span class="input-group-btn">
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
-              </div>
+              </div> -->
              
               <div class="form-group">
-                <label class="control-label" for="input-total"><?php echo $entry_total; ?></label>
-                <input type="text" name="filter_total" value="<?php echo $filter_total; ?>" placeholder="<?php echo $entry_total; ?>" id="input-total" class="form-control" />
-              </div>
+                <label class="control-label" for="input-email">邮箱</label>
+                <input type="text" name="email" value="<?php echo $email; ?>" placeholder="邮箱" id="input-email" class="form-control" />
+              </div> 
 
              
               
@@ -254,6 +260,10 @@ $('#button-filter').on('click', function() {
   var email = $('input[name=\'email\']').val();
   if (email) {
     url += '&email=' + encodeURIComponent(email);
+  }
+  var telephone = $('input[name=\'telephone\']').val();
+  if (telephone) {
+    url += '&telephone=' + encodeURIComponent(telephone);
   }
 
 	var filter_date_added = $('input[name=\'filter_date_added\']').val();

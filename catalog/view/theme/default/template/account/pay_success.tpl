@@ -9,7 +9,7 @@
       </p>
       <div class="btn clearfix">
         <a class="a_btn1" href="<?php echo  $vieworder?>">ORDER REVIEW</a>
-        <a class="a_btn2" href="<?php echo  $shopping?>">CONTINYE SHOPPING</a>
+        <a class="a_btn2" href="<?php echo  $shopping?>">CONTINUE SHOPPING</a>
       </div>
     </div>
 <?php echo $footer; ?>
