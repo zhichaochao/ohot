@@ -2954,7 +2954,7 @@
 	.pay .pay_text .pay_tb1{margin: 0 auto ;}
 	.pay .pay_text p.p2{font-family: helvetica;font-size: 0.24rem;color: #666;margin-top: 0.35rem;line-height: 0.3rem;}
 	.pay .pay_text .a_btn{width: 6rem;height: 0.8rem;display: block;text-align: center;line-height: 0.8rem;border-radius: 50px;color: #fff;
-	font-size: 0.3rem;font-family: helvetica;position: absolute;bottom: 1.8rem;left: 50%;margin-left: -3rem;border: none;
+	font-size: 0.3rem;font-family: helvetica;position: absolute;bottom: 1rem;left: 50%;margin-left: -3rem;border: none;
 	  background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);
 	}
