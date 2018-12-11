@@ -66,7 +66,7 @@
 							<?php } ?>
 						</label>
 						<!-- <button type="submit" value="<?php echo $button_continue; ?>" class="btn btn-primary" /> -->
-						<button type="submit">UPDATA</button>
+						<button type="submit">UPDATE</button>
 						</div>
 					</form>
 
@@ -103,7 +103,7 @@
 									</div>
 									<?php } ?>
 						</label>
-						<button type="submit">UPDATA</button>
+						<button type="submit">UPDATE</button>
 						</div>
 					</form>
 				</div>

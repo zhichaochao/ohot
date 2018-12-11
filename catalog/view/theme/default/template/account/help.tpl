@@ -26,7 +26,7 @@
 					</div>
 					<?php } ?>
 					<!-- <a class="a_btn" type="submit" >SUBMIT&nbsp;&nbsp;&nbsp;></a> -->
-					<input type="submit" value="SUBMIT&nbsp;&nbsp;&nbsp;>" class="a_btn" style="width: 240px;height: 40px;line-height: 40px;text-align: center;border-radius: 4px;color: #fff;background: #333;font-size: 16px;display: block;float: right;margin: 15px 10% 25px 0;">
+					<input type="submit" value="SUBMIT&nbsp;&nbsp;&nbsp;>" class="a_btn" >
 					</form>
 				</div>
 				

@@ -81,6 +81,7 @@ $(function( ){
       changePayment(in_id,in_this);
 
 
+
     })
 
 function changePayment(flag, e){
@@ -114,6 +115,9 @@ function savePaymentMethod(e) {
              
             } else {
               getOrder();
+              var h = $(document).height()-$(window).height();
+             $(document).scrollTop(h);
+
             }
       
         },

@@ -198,6 +198,8 @@ function getOrder(){
         success: function(json) {
         	$('#total').html(json['total']);
         	$('#url').val(json['url']);
+        	var h = $(document).height()-$(window).height();
+            $(document).scrollTop(h);
 
         }
     })
