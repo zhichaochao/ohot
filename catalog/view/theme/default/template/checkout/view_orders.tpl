@@ -23,6 +23,11 @@
                 <a class="fh" href="<?php echo $home?>"></a>
                 <p>HANG SENG BANK</p>
                 </div>
+            <?php }elseif($order['payment_code']=='naria_account'){?>
+                <div class="new_nav pc_hide clearfix">
+                <a class="fh" href="<?php echo $home?>"></a>
+                <p>Naira Account Information</p>
+                </div>
             <?php }?>
 
             
@@ -36,7 +41,9 @@
                <p class="p1">Please transfer to the following names</p>  
             <?php }elseif($order['payment_code']=='tt_bank'){ ?>
                <p class="p1">Please transfer to the following names</p>  
-            <?php } ?>
+            <?php }elseif($order['payment_code']=='naria_account'){ ?>
+               <p class="p1">Please transfer to the following bank account</p>  
+            <?php }?>
                 <!-- <p class="p1">Please transfer to the following <?php  if($order['payment_code']=='naria_account'){?>NAIRA<?php } ?> bank account</p> -->
                 <?php  if($order['payment_code']=='tt_bank_transfer'){ ?>
                 <p class="p3">Our Bank Account</p>
@@ -46,7 +53,9 @@
                 <p class="p3">Our WesternUnion Information</p>
                 <?php }elseif($order['payment_code']=='tt_bank'){ ?>
                 <p class="p3">Our HangSeng Bank</p>
-                <?php } ?>
+                <?php }elseif($order['payment_code']=='naria_account'){ ?>
+                <p class="p3">Our Naira Bank Account</p>
+                <?php }?>
 
                 <table class="pay_tb1 pay_tb2">
                     <?php foreach($payment_method_attributes as $attribute) { ?>     

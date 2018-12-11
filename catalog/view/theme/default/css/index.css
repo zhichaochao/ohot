@@ -871,12 +871,12 @@
 	.peo_center .m_account{text-align: center;}
 	.peo_center .m_account img{margin-top:66px;width: 36px;}
 	.peo_center .m_account p{font-size: 18px;color: #666;line-height: 48px;}
-	.peo_center .m_account a.a_btn{width: 240px;height: 40px;line-height: 40px;text-align: center;font-size: 16px;color: #fff;border-radius: 4px;
+	.peo_center .m_account .a_btn{width: 240px;height: 40px;line-height: 40px;text-align: center;font-size: 16px;color: #fff;border-radius: 4px;
 	display: block;margin:10px auto 80px auto;
 	 background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500); 
 	}
-	.peo_center .m_account a.a_btn:hover{
+	.peo_center .m_account .a_btn:hover{
 		 background: -webkit-linear-gradient(left, #fa4940 , #fa4940);background: -o-linear-gradient(right, #fa4940, #fa4940);
 	  background: -moz-linear-gradient(right, #fa4940, #fa4940); background: linear-gradient(to right, #fa4940 , #fa4940);
 	}
@@ -941,7 +941,7 @@
 	background: url(../img/png/close3.png) no-repeat;background-size: 32px 32px;cursor: pointer;}
 	.peo_center .m_add ul li a.a_img{background: url(../img/png/edit.png) no-repeat;display: block;width: 20px;height: 20px;background-size: 20px 20px;
 	position: absolute;right: 15px;bottom: 10px;}
-	.peo_center .m_add a.a_btn{background: #f5f5f5 url(../img/png/adds.png) no-repeat left 15px center;background-size: 13px 13px;padding-left: 38px;
+	.peo_center .m_add .a_btn{background: #f5f5f5 url(../img/png/adds.png) no-repeat left 15px center;background-size: 13px 13px;padding-left: 38px;
 	font-size: 16px;line-height: 76px;height: 72px;display: block;clear: both;float: left;width: 100%;margin-bottom: 20px;max-width: 998px;
 	box-sizing: border-box;}
 	
@@ -951,12 +951,12 @@
 	.peo_center .m_call p img{width: 40px;height: 40px;display: block;float: left;margin-right: 15px;}
 	.peo_center .m_call span{font-size: 18px;float: left;color: #333;margin-bottom: 20px;}
 	.peo_center .m_call textarea{clear: both;float: left;width: 80%;margin: auto 10%; height: 200px; box-sizing: border-box;padding: 15px;}
-	.peo_center .m_call a.a_btn{width: 240px;height: 40px;line-height: 40px;text-align: center;border-radius:4px ;color: #fff;
+	.peo_center .m_call .a_btn{width: 240px;height: 40px;line-height: 40px;text-align: center;border-radius:4px ;color: #fff;
 	font-size: 16px;display: block;float: right;margin: 15px 10% 25px 0;
 	background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);
 	}
-	.peo_center .m_call a.a_btn:hover{
+	.peo_center .m_call .a_btn:hover{
 		 background: -webkit-linear-gradient(left, #fa4940 , #fa4940);background: -o-linear-gradient(right, #fa4940, #fa4940);
 	  background: -moz-linear-gradient(right, #fa4940, #fa4940); background: linear-gradient(to right, #fa4940 , #fa4940);
 	}
@@ -965,12 +965,12 @@
 	.peo_center .m_coupon p{font-size: 0.83vw;color: #666;line-height: 1.04vw;margin-top: 24px;}
 	.peo_center .m_coupon input{width: 18.75vw;font-size: 0.83vw;border: 1px solid #ccc;padding: 0 15px;display: block;float: left;height: 40px;line-height: 40px;
 	margin: 1.3vw 15px 3.35vw 0;}
-	.peo_center .m_coupon a.a_btn{width: 18.75vw;font-size: 0.83vw;display: block;float: left;height: 40px;line-height: 40px;border-radius: 4px;
+	.peo_center .m_coupon .a_btn{width: 18.75vw;font-size: 0.83vw;display: block;float: left;height: 40px;line-height: 40px;border-radius: 4px;
 	color: #fff;margin: 1.3vw 15px 3.35vw 0;text-align: center;
 	 background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);
 	  }
-	.peo_center .m_coupon a.a_btn:hover{
+	.peo_center .m_coupon .a_btn:hover{
 		 background: -webkit-linear-gradient(left, #fa4940 , #fa4940);background: -o-linear-gradient(right, #fa4940, #fa4940);
 	  background: -moz-linear-gradient(right, #fa4940, #fa4940); background: linear-gradient(to right, #fa4940 , #fa4940);
 	}
@@ -1024,9 +1024,18 @@
 	.del_modal .text h1{font-size: 24px;font-weight: bold;}
 	.del_modal .text p{font-size: 16px;line-height: 22px;margin: 80px 0;text-align: center;}
 	.del_modal .text button{width: 44%;display: block;height: 40px;line-height: 40px;float: left;border-radius: 5px;margin: 0 3%;font-size: 16px;margin-bottom: 60px;}
-	.del_modal .text button.qd_btn{background: #333;border: 1px solid #333;color: #fff;}
-	.del_modal .text button.qx_btn{background: #eee;border: 1px solid #666;color: #333;}
-	.del_modal .text button:hover{background: #666;border: 1px solid #666;color: #fff;}
+	.del_modal .text button.qd_btn{
+		background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
+	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500); 
+		order: 1px solid lightgray;color: #fff;}
+	.del_modal .text button.qx_btn{
+		background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
+	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500); 
+		border: 1px solid transparent;color: #333;}
+	.del_modal .text button:hover{
+		 background: -webkit-linear-gradient(left, #fa4940 , #fa4940);background: -o-linear-gradient(right, #fa4940, #fa4940);
+	  background: -moz-linear-gradient(right, #fa4940, #fa4940); background: linear-gradient(to right, #fa4940 , #fa4940); 
+		border: 1px solid transparent;color: #fff;}
 	.del_modal .close{width: 46px;height: 46px;position: absolute;top: 15px;right: 12px;display: block;cursor: pointer;
 	background: url(../img/png/close2.png) no-repeat center;background-size: 26px;transition: all .5s;}
 	.del_modal .close:hover{transform: rotate(90deg);}
@@ -1236,10 +1245,19 @@
 	margin-bottom: 15px;width: 100%;cursor: pointer;}
 	.edit_add_md .form_div label.add{ width: 100%;padding-right: 24px; max-width: 688px;}
 	.edit_add_md .form_div button.bc_btn{width: 240px;height: 40px;text-align: center;font-size: 16px;color: #fff;border-radius: 4px;
-	background: #333;border: none;clear: both;float: left;margin:20px 10px 10px 85px;}
-	.edit_add_md .form_div button.qx_btn{width: 240px;height: 40px;text-align: center;font-size: 16px;color: #333;border-radius: 4px;
-	background: #eee;border: 1px solid #666;float: right;margin:20px 85px 10px 10px;}
-	.edit_add_md .form_div button:hover{background: #666;color: #fff;}
+	border: none;clear: both;float: left;margin:20px 10px 10px 85px;
+	  background: -webkit-linear-gradient(left, #fa4940 , #fa4940);background: -o-linear-gradient(right, #fa4940, #fa4940);
+	  background: -moz-linear-gradient(right, #fa4940, #fa4940); background: linear-gradient(to right, #fa4940 , #fa4940); 
+	}
+	.edit_add_md .form_div button.qx_btn{width: 240px;height: 40px;text-align: center;font-size: 16px;color: #fff;border-radius: 4px;
+	border: 1px solid transparent;float: right;margin:20px 85px 10px 10px;
+	  background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
+	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500); 
+	}
+	.edit_add_md .form_div button:hover{color: #fff;
+	 background: -webkit-linear-gradient(left, #fa4940 , #fa4940);background: -o-linear-gradient(right, #fa4940, #fa4940);
+	  background: -moz-linear-gradient(right, #fa4940, #fa4940); background: linear-gradient(to right, #fa4940 , #fa4940); 
+	}
 	
 	/***haircare***/
 	.haircare{background: #f5f5f5;}
@@ -2512,8 +2530,14 @@
 	.del_modal .text h1{font-size: 0.3rem;font-weight: bold;}
 	.del_modal .text p{font-size: 0.2rem;line-height: 0.26rem;margin: 0.8rem 0;text-align: center;}
 	.del_modal .text button{width: 44%;display: block;height: 0.5rem;line-height: 0.5rem;float: left;border-radius: 5px;margin: 0 3%;font-size: 0.2rem;margin-bottom: 0.6rem;}
-	.del_modal .text button.qd_btn{background: #333;border: 1px solid #333;color: #fff;}
-	.del_modal .text button.qx_btn{background: #eee;border: 1px solid #666;color: #333;}
+	.del_modal .text button.qd_btn{
+		background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
+	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500); 
+		border: 1px solid transparent;color: #fff;}
+	.del_modal .text button.qx_btn{
+		background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
+	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500); 
+		border: 1px solid transparent;color: #fff;}
 	.del_modal .text button:hover{background: #666;border: 1px solid #666;color: #fff;}
 	.del_modal .close{width: 0.5rem;height: 0.5rem;position: absolute;top: 15px;right: 12px;display: block;cursor: pointer;
 	background: url(../img/png/close2.png) no-repeat center;background-size: 0.3rem;transition: all .5s;}
@@ -2702,9 +2726,15 @@
 	margin-bottom: 0.1rem;width: 100%;cursor: pointer;}
 	.edit_add_md .form_div label.add{ width: 100%;}
 	.edit_add_md .form_div button.bc_btn{width: 2.4rem;height: 0.6rem;text-align: center;font-size: 0.2rem;color: #fff;border-radius: 4px;
-	background: #333;border: 1px solid #333;clear: both;float: left;margin:0.2rem 0.1rem 0.1rem 0.65rem;}
+	border: 1px solid #333;clear: both;float: left;margin:0.2rem 0.1rem 0.1rem 0.65rem;
+	background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
+	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);
+	}
 	.edit_add_md .form_div button.qx_btn{width: 2.4rem;height: 0.6rem;text-align: center;font-size: 0.2rem;color: #333;border-radius: 4px;
-	background: #eee;border: 1px solid #666;float: right;margin:0.2rem 0.65rem 0.1rem 0.1rem;}
+	border: 1px solid transparent;float: right;margin:0.2rem 0.65rem 0.1rem 0.1rem;
+	background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
+	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);
+	}
 	
 	/***haircare***/
 	.haircare{background: #f5f5f5;}
@@ -2946,7 +2976,7 @@
 	
 	/*******new_pay******/
 	.pay.content{padding: 0 !important;}
-	.pay .pay_text {padding-top: 0.8rem;max-width: inherit;min-height: 10rem;position: relative;padding:0.8rem 0.3rem 1rem 0.3rem;margin-bottom: 0rem;}
+	.pay .pay_text {padding-top: 0.8rem;max-width: inherit;min-height: 82.9%;position: relative;padding:0.8rem 0.3rem 1rem 0.3rem;margin-bottom: 0rem;}
 	.pay .pay_text p.p1{font-family: helvetica;font-size: 0.3rem;color: #333;text-align: center;margin-bottom: 0.2rem;}
 	.pay .pay_text p.p1>span{font-size: 0.28rem;font-family: helvetica;color: #333;}
 	.pay .pay_text p.p3{font-family: helvetica;font-size: 0.22rem;color: #333;text-align: center;margin-bottom: 0.3rem;}

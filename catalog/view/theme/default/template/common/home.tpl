@@ -38,19 +38,24 @@
                     <?php } ?>
                     
                 </ul>
-                
-                <?php if(isset($homes[0])){ ?>   
-                <div class="top clearfix">  
+                <div class="bt2 pc_hide">
+                    <h1>One Donor Raw Brazilian Hair</h1>
+                </div>
+
+                <?php if(isset($homes[0])){ ?>  
+                <div class="top video_top clearfix">
+                     <div class="bt2 yd_hide">
+                        <h1>One Donor <?=$homes[0]['category']['name'];?></h1>
+                        <a href="<?=$homes[0]['category_url'];?>" class="a_btn mr_b_no">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
+                    </div> 
                     <div class="video_div">
                         <video id="video" class="video" poster="<?=$homes[0]['image'];?>" src="<?=$video;?>" ></video>
                         <div class="bg_div"></div>
                     </div>
-                    <div class="bt2">
-                        <h1>One Donor <?=$homes[0]['category']['name'];?></h1>
-                        <a href="<?=$homes[0]['category_url'];?>" class="a_btn mr_b_no">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
-                    </div>
+                    
                 </div>
              <?php if(isset($homes[0]['child'])){ ?>
+             <div class="div clearfix">
                 <ol class="ol_img2 ol_img clearfix">
                     <?php   foreach ($homes[0]['child'] as $k => $val) { if($k < 3){ ?>
                     <li>
@@ -68,17 +73,27 @@
                     <?php } }?>
                
                 </ol>
-                <?php } }?>
-                  <?php if(isset($homes[1])){ ?>   
-                <div class="top top2 clearfix">
-                    <div class="bt2">
-                        <h1><?=$homes[1]['title'];?></h1>
-                        <a href="<?=$homes[1]['category_url'];?>" class="a_btn">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
+                <div class="bot_btn pc_hide">
+                        <a href="<?=$homes[0]['category_url'];?>" class="a_btn">VIEW MORE</a>
                     </div>
-                    <img class="top2_img changeimage" data-image="<?=$homes[1]['image'];?>"  data-mimage="<?=$homes[1]['mimage'];?>"  />
-                    
+
                 </div>
+                <?php } }?>
+                  <?php if(isset($homes[1])){ ?> 
+                  <div class="div clearfix">  
+                  <div class="top top2 clearfix">
+                        <div class="bt2">
+                            <h1><?=$homes[1]['title'];?></h1>
+                            <div class="bt2 yd_hide" style="width: 100%;padding: 0;margin:0 0 5.62vw 0;background: transparent;">
+                                <a href="<?=$homes[1]['category_url'];?>" class="a_btn" style="margin: 2.8vw auto 0 auto;">VIEW MORE &nbsp;&nbsp;&gt;<span class="triangle"><em></em></span></a>
+                            </div>
+                        </div>
+                    <img class="top2_img changeimage" data-image="<?=$homes[1]['image'];?>"  data-mimage="<?=$homes[1]['mimage'];?>"  />
+                    </div>
+
+                
                     <?php if(isset($homes[1]['child'])){ ?>
+                    
                 <ol class="ol_img3 ol_img clearfix">
                      <?php   foreach ($homes[1]['child'] as $k => $val) { if($k < 4){ ?>
                     <li>
@@ -95,15 +110,27 @@
                     </li>
                           <?php } }?>
                 </ol>
-                    <?php } }?>
-               <?php if(isset($homes[2])){ ?>   
-                <div class="top top3 clearfix">
-                    <div class="bt2">
-                        <h1><?=$homes[2]['title'];?></h1>
-                        <a href="<?=$homes[2]['category_url'];?>" class="a_btn">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
+                <div class="bot_btn pc_hide">
+                        <a href="<?=$homes[1]['category_url'];?>" class="a_btn">VIEW MORE</a>
                     </div>
+
+                    </div>
+                    <?php } }?>
+               <?php if(isset($homes[2])){ ?> 
+               <div class="div clearfix">  
+                <div class="top top3 clearfix">
+
+                <div class="bt2">
+                            <h1><?=$homes[2]['title'];?></h1>
+                            <div class="bt2 yd_hide" style="width: 100%;padding: 0;background: transparent;">
+                                <a href="<?=$homes[2]['category_url'];?>" class="a_btn" style="margin: 2.8vw auto 0 auto;">VIEW MORE &nbsp;&nbsp;&gt;<span class="triangle"><em></em></span></a>
+                            </div>
+                        </div>
+
+                   
                     <img class="top3_img changeimage" data-image="<?=$homes[2]['image'];?>"  data-mimage="<?=$homes[2]['mimage'];?>"  />
                 </div>
+
                     <?php if(isset($homes[2]['child'])){ ?>
                 <ol class="ol_img4 ol_img clearfix">
                       <?php   foreach ($homes[2]['child'] as $k => $val) { if($k < 4){ ?>
@@ -121,19 +148,22 @@
                     </li>
                           <?php } }?>
                 </ol>
+                <div class="bot_btn pc_hide">
+                            <a href="<?=$homes[2]['category_url'];?>" class="a_btn">VIEW MORE</a>
+                        </div>
+                 </div>
                  <?php } }?>
             </div>
             <?php if(isset($homes[3])){ ?>    
             <div class="index_text index_text2">
-                <div class="bt">
+            <div class="div clearfix">
+                <div class="bt" >
                     <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bt2.png" alt="" />
                     <h1><?=$homes[3]['category']['name'];?></h1>
                 </div>
                 
                 <div class="top top4">
-                    <div class="bt2">
-                        <a href="<?=$homes[3]['category_url'];?>" class="a_btn">VIEW MORE &nbsp;&nbsp;><span class="triangle"><em></em></span></a>
-                    </div>
+                    
                     <img class="top4_img changeimage" data-image="<?=$homes[3]['image'];?>" " data-mimage="<?=$homes[3]['mimage'];?>"  />
                 </div>
                    <?php if(isset($homes[3]['child'])){ ?>
@@ -154,11 +184,20 @@
                     </li>
                        <?php  }} ?>
                 </ol>
+
+                <div class="bot_btn pc_hide">
+                        <a href="<?=$homes[3]['category_url'];?>" class="a_btn">VIEW MORE</a>
+                    </div>  
+                    <div class="bt2 yd_hide" style="width: 100%;padding: 0;background: transparent;">
+                        <a href="<?=$homes[3]['category_url'];?>" class="a_btn" style="margin: 2.8vw auto 0 auto;">VIEW MORE &nbsp;&nbsp;&gt;<span class="triangle"><em></em></span></a>
+                    </div>
+
                     <?php  }?>
             </div>
+             </div>
               <?php  }?>
             <div class="index_text3">
-                <div class="bt">
+                <div class="bt" style="margin:0.3rem 0;">
                     <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bt2.png" alt="CUSTOMER SHARE" />
                     <h1># CUSTOMER SHARE</h1>
                     <p>Customers share pictures and immediately buy the same</p>
