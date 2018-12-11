@@ -1,16 +1,21 @@
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="catalog/view/theme/default/css/common.css" />
     <link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
     <script type="text/javascript" src="catalog/view/theme/default/js/jquery.min.js" ></script>
     <script type="text/javascript" src="catalog/view/theme/default/js/common.js" ></script>
  <link rel="stylesheet" href="catalog/view/theme/default/js/select2/css/select2.css" />
         <script type="text/javascript" src="catalog/view/theme/default/js/select2/js/select2.js" ></script>
-<div class="new_nav  clearfix">
+<div class="new_nav pc_hide  clearfix">
         <a class="fh" href="<?php echo $home?>"></a>
         <p>SHIPPING METHOD</p>
       </div>
 <?php if ($shipping_methods) { ?>
-   <div class="content in_content zf_21  new_in_content clearfix " style="margin-top: 90px;">
+   <div class="content in_content zf_21  new_in_content clearfix pc_hide" >
  <!-- <h3>Shipping Method</h3> -->
  <div class="zf_con clearfix">
  <p class="no_sel" style="color: #f00;"></p>
@@ -71,11 +76,11 @@
 
 <script type="text/javascript"><!--
 // //浏览器窗口从pc/yd改变的时候刷新页面
-//   var old_w = $(window).width();
-//   $(window).resize(function(){
-//     var new_w = $(window).width();
-//     (old_w>920) ? (new_w <=920)?location.href="<?=$checkoutdas?>":0 : (new_w >920)?location.href="<?=$checkoutdas?>":0 ;
-//   })
+  var old_w = $(window).width();
+  $(window).resize(function(){
+    var new_w = $(window).width();
+    (old_w>920) ? (new_w <=920)?location.href="<?=$checkoutdas?>":0 : (new_w >920)?location.href="<?=$checkoutdas?>":0 ;
+  })
 
 // $(document).ready(function() {
 //     getShippingAddress();
@@ -107,7 +112,7 @@ tips('Please Select Shipping Method','gantan');
 }
 
 var win = $(window).width();
- // if(win<920){
+ if(win<920){
   function saveMethods() {
 
     // console.log(e)
@@ -135,7 +140,7 @@ var win = $(window).width();
     //      $('#no_sel').html('Please Select Shipping Address');
     //      alert('Please Select Shipping Address');
     // }
-// }
+}
  }
  function getOrder(){
 //    console.log();

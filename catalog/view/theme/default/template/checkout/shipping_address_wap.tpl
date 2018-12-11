@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="catalog/view/theme/default/css/common.css" />
     <link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
     <script type="text/javascript" src="catalog/view/theme/default/js/jquery.min.js" ></script>
