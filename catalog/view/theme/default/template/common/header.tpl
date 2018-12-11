@@ -190,7 +190,15 @@ $("body").css("top","auto").css("min-height","inherit").css("position","inherit"
                     <ul>
                     <?php if($navs){ foreach ($navs as $k => $nav) { ?>
                         <li class="clearfix">
-                            <a  href="<?php echo $nav['url']; ?>"  <?=$nav['is_target']==1?'target="_blank"':''; ?> ><?=$nav['name'];?>   </a><?php if($nav['child']){?><img class="slide_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao.png" data-img='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao.png' data-imgs='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao.png'/>  <?php } ?>
+                            <a  href="<?php echo $nav['url']; ?>"  <?=$nav['is_target']==1?'target="_blank"':''; ?> ><?=$nav['name'];?>   </a><?php if($nav['child']){?>
+
+                            <div class="slide_img">
+                            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao.png"/>
+                          </div>
+                  
+                            <!-- <img class="slide_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao.png" data-img='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao.png' data-imgs='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao.png'/> -->
+
+                              <?php } ?>
                             <?php if($nav['child']){?>
                             <ol class="yd_nav_ol clearfix">
                     
