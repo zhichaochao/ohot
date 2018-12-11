@@ -106,7 +106,7 @@
               </div>
 
               <button class="qx_btn" type="reset">cancel</button>
-            <button type="submit" class="tj_btn">UPDATA</button>
+            <button type="submit" class="tj_btn">UPDATE</button>
             </div>
           </form>
         </div>

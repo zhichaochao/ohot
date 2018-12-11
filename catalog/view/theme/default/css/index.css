@@ -2151,7 +2151,7 @@
 	.shop2_content .price p{font-size: 0.3rem;font-family: helvetica;color: #f23030;text-align: left;}
 	.shop2_content .price p span{text-decoration: line-through;color: #999;margin-left: 0.08rem;}
 	.shop2_content .pre_div{position: absolute;bottom: 0.40rem;right: 0.3rem;width: 1.5rem;}
-	.shop2_content .shanchu {background: #f5f5f5;width: 0.72rem;position: absolute;right: -0.72rem;height: 100%;top: 0;}
+	.shop2_content .shanchu {background: #ff003b;width: 0.72rem;position: absolute;right: -0.72rem;height: 100%;top: 0;}
 	.shop2_content .shanchu .del{width: 0.72rem;height: 0.72rem;display: block;position: absolute; top: 50%;right: 0;
 	margin-top: -0.36rem;z-index: 99;padding: 0.2rem;}
 	.shop2_content .num_div {float: left;height: 0.5rem;width: 1.5rem;position: relative;}
@@ -2948,7 +2948,7 @@
 	.pay.content{padding: 0 !important;}
 	.pay .pay_text {padding-top: 0.8rem;max-width: inherit;min-height: 10rem;position: relative;padding:0.8rem 0.3rem 1rem 0.3rem;margin-bottom: 0rem;}
 	.pay .pay_text p.p1{font-family: helvetica;font-size: 0.3rem;color: #333;text-align: center;margin-bottom: 0.2rem;}
-	.pay .pay_text p.p1>span{font-size: 0.24rem;font-family: helvetica;color: #666;}
+	.pay .pay_text p.p1>span{font-size: 0.28rem;font-family: helvetica;color: #333;}
 	.pay .pay_text p.p3{font-family: helvetica;font-size: 0.22rem;color: #333;text-align: center;margin-bottom: 0.3rem;}
 	
 	.pay .pay_text .pay_tb1{margin: 0 auto ;}

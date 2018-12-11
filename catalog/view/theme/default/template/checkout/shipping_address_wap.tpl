@@ -4,11 +4,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="catalog/view/theme/default/css/common.css" />
-    <link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
-    <script type="text/javascript" src="catalog/view/theme/default/js/jquery.min.js" ></script>
-    <script type="text/javascript" src="catalog/view/theme/default/js/common.js" ></script>
-
+        <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/common.css" />
+    <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/index.css" />
+    <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/jquery.min.js" ></script>
+    <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/common.js" ></script>
+     <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/css/select2.css" />
+        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/select2/js/select2.js" ></script>
      <?php if(!empty($eaddress)){?>
     <div class="new_nav pc_hide clearfix">
         <a class="fh" href="<?php echo $home?>"></a>
@@ -65,7 +66,7 @@
                 <!-- <input  type="text" name="address_2" value="<?php echo ($eaddress ? $eaddress['address_2'] : ''); ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-shipping-address-2" class="form-control clear"/> -->
               </label>
 
-               <label class="add_label" for="input-shipping-address-2" class="clearfix" >
+               <label class="add_label" for="input-shipping-address-1" class="clearfix" >
                 <!-- <span><?php echo $entry_address_1; ?> *</span> -->
                
                 <input  type="text" name="address_2" value="<?php echo ($eaddress ? $eaddress['address_2'] : ''); ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-shipping-address-2" class="form-control clear"/>
