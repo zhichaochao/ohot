@@ -95,6 +95,7 @@ function changePayment(flag, e){
 // Save savePayment Method
 function savePaymentMethod(e) {
 
+
     $.ajax({
         url: 'index.php?route=checkout/payment_method/save',
         type: 'post',
@@ -115,8 +116,8 @@ function savePaymentMethod(e) {
              
             } else {
               getOrder();
-              var h = $(document).height()-$(window).height();
-             $(document).scrollTop(h);
+
+             $(document).scrollTop(600);
 
             }
       
@@ -125,6 +126,7 @@ function savePaymentMethod(e) {
             alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
+            
 }
 
 //--></script>
