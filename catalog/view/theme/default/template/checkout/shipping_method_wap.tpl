@@ -23,8 +23,8 @@
                         <div class="zfbt clearfix">
                         <span>2</span><h1>Shipping Method</h1></div>
                              <?php foreach ($shipping_methods as $quote) { ?>
-                             <li class="clearfix ">
-                             <input class="check_input"  name="shipping_method" type="checkbox" value="<?php echo $quote['code']; ?>" <?php if ($quote['code'] == $code) { ?><?php } ?> class="s_method_expedited"  />
+                             <li class="clearfix " data='<?php echo $quote['code']; ?>'>
+                      <!--        <input class="check_input"  name="shipping_method" type="checkbox" value="<?php echo $quote['code']; ?>" <?php if ($quote['code'] == $code) { ?><?php } ?> class="s_method_expedited"  /> -->
                                 <span>Shipping Method</span>
                                 <label class="gx clearfix" for="" >
                                         <?php if($quote['code'] == 'DHL'){ ?>
@@ -114,6 +114,7 @@ tips('Please Select Shipping Method','gantan');
 var win = $(window).width();
  if(win<920){
   function saveMethods() {
+    var payment_method=$('#collapse-shipping-method li.active').attr('data');
 
     // console.log(e)
     // var address_id=$('#shipping-existings ul li.active').attr('aid');
@@ -123,7 +124,7 @@ var win = $(window).width();
       $.ajax({
           url: 'index.php?route=checkout/shipping_method/save',
           type: 'post',
-          data: $('#collapse-shipping-method input[type=\'checkbox\']:checked'),
+          data:{payment_method:payment_method},
           dataType: 'json',
           success: function(json) {
             // console.log(json);
