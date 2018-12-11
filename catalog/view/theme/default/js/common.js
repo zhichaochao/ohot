@@ -188,14 +188,14 @@ $(function(){
 	$(".yd_nav .slide_img").click(function(){
 		if($(this).hasClass("off")){
 			$(this).siblings(".yd_nav_ol").stop().slideUp();
-			var src = $(this).attr("data-img");
-			$(this).attr("src",src);
+//			var src = $(this).attr("data-img");
+//			$(this).attr("src",src);
 			$(this).removeClass("off");
 		}else{
-			var src = $(this).attr("data-img");
-			var srcs = $(this).attr("data-imgs");
+//			var src = $(this).attr("data-img");
+//			var srcs = $(this).attr("data-imgs");
 			$(this).siblings(".yd_nav_ol").stop().slideDown();
-			$(this).attr("src",srcs);
+//			$(this).attr("src",srcs);
 			$(this).addClass("off");
 		}
 		
