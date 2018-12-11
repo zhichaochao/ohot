@@ -32,7 +32,7 @@
                     <p>Order Number: <?php echo $order['order_no']; ?></p>
                   </li>
                   <li>
-                    <p>Order Status: <?php echo $order['status']; ?></p>
+                    <p>Order Status: <span style="color:red;"><?php echo $order['status']; ?></span></p>
                   </li>
                 </ol>
                 <div class="close" onclick="javascript:order_remove('<?php echo $order['order_id']; ?>');"></div>

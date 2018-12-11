@@ -87,9 +87,9 @@
                            <?php } ?>
                            
                         </ul>
-                        <li class="clearfix">
+                        <!-- <li class="clearfix"> -->
                         <a class="add_a" href="<?=$address_add?>"><span>Add new address</span></a>
-                      </li>
+                      <!-- </li> -->
                        <a class="btn240 addrres" onclick="toselectAddress()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
 
 

@@ -148,6 +148,9 @@ function saveMethod() {
         data: $('#collapse-shipping-method input[type=\'checkbox\']:checked'),
         dataType: 'json',
         success: function(json) {
+              $('html,body').animate({
+              scrollTop: 0
+            }, 0);
                 getOrder();
                 getPaymentMethod();
                

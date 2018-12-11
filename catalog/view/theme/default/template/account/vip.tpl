@@ -36,7 +36,7 @@
           <div class="text_1 clearfix">
             <h1 class="vip_h1">VIP SYSTEM</h1>
             <div class="pic clearfix" style="position: relative;">
-              <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/vip1.jpg"/>
+              <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/vip2.jpg"/>
               <span class="span1">$0</span>
               <span class="span2">$20000</span>
               <span class="span3">$50000</span>

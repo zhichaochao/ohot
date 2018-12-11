@@ -95,8 +95,8 @@ class ControllerAccountWishList extends Controller {
 					'name'       => $product_info['name'],
 					'model'      => $product_info['model'],
 					'stock'      => $stock,
-					'price'      => $product_info['price'],
-					'special'     => $product_info['special'],
+					'price'      => $this->currency->format($product_info['price'],$this->session->data['currency']),
+					'special'     =>$product_info['special']>0? $this->currency->format($product_info['special'],$this->session->data['currency']) : '', 
 					'href'       => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
 				
 				);
@@ -105,6 +105,7 @@ class ControllerAccountWishList extends Controller {
 			}
 		
 		}
+		// print_r($data['products']);exit();
 		$data['continue'] = $this->url->link('account/account', '', true);
 		$data['wishlist_delete'] = $this->url->link('account/wishlist/delete');
 		$data['goshopping'] = $this->url->link('common/home', '', true);
