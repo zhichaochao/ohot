@@ -80,7 +80,7 @@
                                 <span class="<?php if ($address['address_id'] == $address_id) echo ''; ?>">Default</span><?php } ?>
                                <!-- <a class="edit" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a> -->
                                
-                                <a class="edit" href="index.php?route=checkout/shipping_address/wap&address_id=<?php echo $address['address_id']; ?>">Edit</a>
+                                <a class="edit"  href="index.php?route=checkout/shipping_address/wap&address_id=<?php echo $address['address_id']; ?>">Edit</a>
                                 <!-- <a class="go_btn"  onclick="setDefault('<?php echo $address['address_id']; ?>', this)" >sent to this address&nbsp;&nbsp;&nbsp;></a> -->
                               <!-- </div> -->
                             </li>
@@ -229,10 +229,10 @@ $('.address_ul li').on('click', function() {
 
 });
 //yd
-$('.zf_1_ol li').on('click', function() {
-   $(this).addClass('active').siblings().removeClass('active');
+$('.zf_1_ol li p,.zf_1_ol li span').on('click', function() {
+   $(this).parent().addClass('active').siblings().removeClass('active');
     $.ajax({
-        url: 'index.php?route=checkout/shipping_address/changeAddress&address_id='+$(this).attr('aid'),
+        url: 'index.php?route=checkout/shipping_address/changeAddress&address_id='+$(this).parent().attr('aid'),
         dataType: 'json',
     
         success: function(json) {
