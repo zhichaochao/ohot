@@ -11,7 +11,8 @@
                     <div class="pd_div clearfix">
                         <div class="file_div">
                             <img class="file_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/file.png"/>
-                            <span class="file_span">Add More</span>
+                           
+                            <span class="file_span">Upload Bank Receipt</span>
                             <input type="file" name="bank_receipt[]" id="file" multiple value="" title="Upload bank receipt" onchange="getphoto(this)" class="flie_in"/>
                               
                         </div>
@@ -28,14 +29,24 @@
         </div>
         <style type="text/css">
         .file_span{
-            display: none;
+            display: block;
             position: relative;
-            width: 100px;
-            margin-left: -60px;
+            width: 180px;
+            margin-left: -99px;
             font-size: 18px;
             line-height: 30px;
             left:31px;
         }
+        /*.file_spans{
+            display: inline-block;
+            position: relative;
+            width: 180px;
+            margin-left: -99px;
+            font-size: 18px;
+            line-height: 30px;
+            left:31px;
+
+        }*/
     @media (max-width:920px) {
         .yd_footer{display: none !important;}
         .yd_footer2{display: block !important;}
@@ -86,7 +97,7 @@
             var html = node.outerHTML;
             $(node).hide();
             $(".file_div").append(html);
-            $(".file_span").css("display","inline-block");
+            $(".file_span").text("Add More");
             // $(".flie_in:last-child").remove()
             return imgURL;
         }

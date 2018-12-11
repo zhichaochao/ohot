@@ -17,14 +17,15 @@
                   <img src="<?php echo $product['thumb']; ?>"/>
                 </div>
                 <div class="text clearfix">
+                <p><?php echo $product['name']; ?> </p>
                    <?php if($product['special']) { ?>
-                     <span><?php echo $product['special']['special']; ?></span>
-                 
+                     <span><em><?php echo $product['special']; ?></em><i><?php echo $product['price']; ?></i></span>
+                      
                   <?php }else{ ?>
                      <span ><?php echo $product['price']; ?></span>
                   <?php } ?>
-                  <p class="p1"><?php echo $product['model']; ?></p>
-                  <p><?php echo $product['name']; ?> </p>
+                  <!-- <p class="p1"><?php echo $product['model']; ?></p> -->
+                  
                 </div>
               </a>
               <div class="close" value="<?=$product['product_id']?>"></div>

@@ -16,8 +16,14 @@
 		<title>SHOPCART2</title>
 		
 	</head> -->
-	<div class="yd_hide">
-	<?php echo $header; ?></div>
+
+	<?php echo $header?>
+	<style>
+		@media (max-width:920px){
+			.big_nav{display: none;}
+		}
+	</style>
+	
 	<body style="background: #f5f5f5;min-height: inherit !important; "><!--内容-->
 		<div class="shopcart2 pc_hide clearfix new_in_content">
 			<div class="content  shop2_content clearfix">
@@ -71,6 +77,16 @@
 								<input class="product_quantity input_<?php echo $product['cart_id']; ?>"  readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
 								<span class="add" onclick="javascript:updateQty(this,2);"></span>
 							</div>
+
+								</div>
+								<div class="shanchu clearfix">
+									<div class="del clearfix shop_close">
+										<svg t="1539766974948" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" onclick="javascript:cart_remove('<?php echo $product['cart_id']; ?>');">
+											<path d="M793.6 998.4H220.16c-51.2 0-97.28-40.96-97.28-97.28V261.12c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v645.12c0 25.6 20.48 46.08 46.08 46.08h573.44c25.6 0 46.08-20.48 46.08-46.08v-563.2c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v563.2c0 46.08-46.08 92.16-97.28 92.16z" p-id="5270" fill="#333"></path>
+											<path d="M51.2 266.24c-10.24 0-20.48-10.24-25.6-25.6 0-15.36 10.24-25.6 25.6-25.6l916.48-81.92c15.36 0 25.6 10.24 25.6 25.6s-10.24 25.6-25.6 25.6L51.2 266.24c5.12 0 0 0 0 0z" p-id="5271" fill="#333"></path>
+											<path d="M343.04 230.4c-10.24 0-20.48-10.24-25.6-25.6l-5.12-76.8C307.2 87.04 337.92 51.2 378.88 46.08l225.28-20.48c20.48 0 40.96 5.12 56.32 15.36 15.36 10.24 25.6 30.72 25.6 51.2l5.12 81.92c0 15.36-10.24 25.6-25.6 25.6s-25.6-10.24-25.6-25.6l-5.12-81.92c0-10.24-10.24-20.48-25.6-20.48l-225.28 25.6c-5.12 0-10.24 5.12-15.36 10.24-5.12 0-5.12 10.24-5.12 15.36L368.64 204.8c0 10.24-10.24 25.6-25.6 25.6 5.12 0 0 0 0 0zM435.2 768c-15.36 0-25.6-15.36-25.6-30.72V399.36c0-15.36 10.24-40.96 25.6-40.96s25.6 25.6 25.6 35.84v337.92c0 15.36-10.24 35.84-25.6 35.84zM588.8 768c-15.36 0-25.6-15.36-25.6-30.72V465.92c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v271.36c0 15.36-10.24 30.72-25.6 30.72z" p-id="5272" fill="#333"></path>
+										</svg>	
+									</div>
 								</div>
 							</li>
 			                <?php } ?>
@@ -233,6 +249,28 @@
 </html>
 
 <script>
+//判断左右滑动出现删除按钮
+	$('body').on('touchstart', '.shop2_content .shop2_ul>li', function(e) {
+        var touch = e.originalEvent,
+    	startX = touch.changedTouches[0].pageX;
+	    $(this).on('touchmove', function(e) {
+	    		e.preventDefault();
+	    		touch = e.originalEvent.touches[0] ||
+	    		    e.originalEvent.changedTouches[0];
+	    		if (touch.pageX - startX > 20) {//向左
+	    			$(this).find(".shanchu").animate({right:"-0.72rem"},function(){
+	    			});
+	    		    $(this).off('touchmove');
+	    		} else if (touch.pageX - startX < -20) {//向右
+	    			$(this).find(".shanchu").animate({right:"0px"},function(){
+	    			});
+	    		    $(this).off('touchmove');
+		    		};
+		    });
+ 
+        }).on('touchend', function() {
+        $(this).off('touchmove');
+    });	
 // 	getOrder();
 // 	function getOrder(){
 // //    console.log();
@@ -300,7 +338,7 @@ function wishlist(product_id) {
 		})
 
 		//多个删除
-		$(".shopcart2 .del , .delete").click(function(){
+		$(".delete").click(function(){
 			let i =0;
 			let len = $(".dx_label .check_i").length;
 			// console.log(len);
@@ -405,7 +443,7 @@ function cart_removes(product_key){
 
 	function cart_remove(product_key){
 
-	   if(confirm('Are you sure?')){
+	   // if(confirm('Are you sure?')){
 
 	   	     $.ajax({
 		        url: 'index.php?route=checkout/cart/remove',
@@ -419,7 +457,7 @@ function cart_removes(product_key){
 		        }
 		    })
 		 	
-	   }     
+	   // }     
 	}
 	
 	//收藏
@@ -526,6 +564,40 @@ function cart_removes(product_key){
 
 			// console.log(a);
 		}
+
+
+		//单选
+//单选
+		$(".dx_label input").click(function(){
+			const this_index = $(this).parents("li").index();
+			if($(this).prop("checked")){
+				$(".shop_ul>li").eq(this_index).find(".check_i").addClass("active");
+				$(".shop2_ul>li").eq(this_index).find(".check_i").addClass("active");
+				$(".shop_ul>li").eq(this_index).find("input").prop("checked",true);
+				$(".shop2_ul>li").eq(this_index).find("input").prop("checked",true);
+					
+				var len = $(".dx_label .check_i").length;
+				var i=0;
+				$(".dx_label .check_i").each(function(){
+					if($(this).hasClass("active")){
+						i++;
+						console.log($(this).siblings("input").val())
+					}
+					return i;
+				})
+				if(i>=len){
+					$(".qx_label input").prop("checked",true);
+					$(".qx_label .check_i").addClass("active");
+				}
+			}else{
+				$(".shop_ul>li").eq(this_index).find(".check_i").removeClass("active");
+				$(".shop2_ul>li").eq(this_index).find(".check_i").removeClass("active");
+				$(".shop_ul>li").eq(this_index).find("input").prop("checked",false);
+				$(".shop2_ul>li").eq(this_index).find("input").prop("checked",false);
+				$(".qx_label .check_i").removeClass("active");
+				$(".qx_label input").prop("checked","");
+			}
+		})
 
 </script>
 

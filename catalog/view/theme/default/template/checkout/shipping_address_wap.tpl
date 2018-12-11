@@ -16,7 +16,7 @@
         <p>ADD SHIPPING ADDRESS</p>
       </div>
 <?php }?>
-<div class="content in_content zf_13  new_in_content">
+<div class="content  zf_13  ">
       
       <div class="zf_con clearfix">
         <div class="zfbt clearfix">

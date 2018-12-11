@@ -5,12 +5,12 @@
     <script type="text/javascript" src="catalog/view/theme/default/js/common.js" ></script>
  <link rel="stylesheet" href="catalog/view/theme/default/js/select2/css/select2.css" />
         <script type="text/javascript" src="catalog/view/theme/default/js/select2/js/select2.js" ></script>
-<div class="new_nav pc_hide clearfix">
+<div class="new_nav  clearfix">
         <a class="fh" href="<?php echo $home?>"></a>
         <p>SHIPPING METHOD</p>
       </div>
 <?php if ($shipping_methods) { ?>
-   <div class="content in_content zf_21  new_in_content clearfix pc_hide ">
+   <div class="content in_content zf_21  new_in_content clearfix " style="margin-top: 90px;">
  <!-- <h3>Shipping Method</h3> -->
  <div class="zf_con clearfix">
  <p class="no_sel" style="color: #f00;"></p>
@@ -70,12 +70,12 @@
 </style> 
 
 <script type="text/javascript"><!--
-//浏览器窗口从pc/yd改变的时候刷新页面
-  var old_w = $(window).width();
-  $(window).resize(function(){
-    var new_w = $(window).width();
-    (old_w>920) ? (new_w <=920)?location.href="<?=$checkoutdas?>":0 : (new_w >920)?location.href="<?=$checkoutdas?>":0 ;
-  })
+// //浏览器窗口从pc/yd改变的时候刷新页面
+//   var old_w = $(window).width();
+//   $(window).resize(function(){
+//     var new_w = $(window).width();
+//     (old_w>920) ? (new_w <=920)?location.href="<?=$checkoutdas?>":0 : (new_w >920)?location.href="<?=$checkoutdas?>":0 ;
+//   })
 
 // $(document).ready(function() {
 //     getShippingAddress();
@@ -107,7 +107,7 @@ tips('Please Select Shipping Method','gantan');
 }
 
 var win = $(window).width();
- if(win<920){
+ // if(win<920){
   function saveMethods() {
 
     // console.log(e)
@@ -135,7 +135,7 @@ var win = $(window).width();
     //      $('#no_sel').html('Please Select Shipping Address');
     //      alert('Please Select Shipping Address');
     // }
-}
+// }
  }
  function getOrder(){
 //    console.log();
@@ -171,4 +171,18 @@ function getPaymentMethod()
 }
 
 //--></script>
+<style type="text/css">
+    /*@media (max-width:920px) {*/
+
+      body{margin-bottom: 1.2rem;}
+      .new_nav{height: 0.88rem;background: #fff;border-bottom: 1px solid #e5e5e5;position: fixed;top: 0;left: 0;width: 100%;z-index: 99;}
+  .new_nav p{font-size: 0.28rem;font-family: helvetica;font-weight: bold; text-align: center;display: block;line-height: 0.88rem;}
+  .new_nav a.fh{width: 0.77rem;height: 0.88rem;display: block;position: absolute;left: 0;top: 0;
+  background: url(catalog/view/theme/default/img/png/new_4.png) no-repeat center/0.17rem 0.32rem;}
+      .footer {display: none !important;}
+        .yd_footer{display: none !important;}
+        .yd_footer2{display: block !important;}
+    /*}*/
+    
+</style> 
 <?php echo $footer; ?>

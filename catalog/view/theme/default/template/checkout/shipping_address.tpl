@@ -87,9 +87,9 @@
                            <?php } ?>
                            
                         </ul>
-                        <li class="clearfix">
+                        <!-- <li class="clearfix"> -->
                         <a class="add_a" href="<?=$address_add?>"><span>Add new address</span></a>
-                      </li>
+                      <!-- </li> -->
                        <a class="btn240 addrres" onclick="toselectAddress()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
 
 
@@ -216,6 +216,9 @@ $('.address_ul li').on('click', function() {
          
                 alert(json['error']);
             } else {
+               $('html,body').animate({
+                scrollTop: 580
+            }, 500);
                 getShippingMethod();
             }
         },

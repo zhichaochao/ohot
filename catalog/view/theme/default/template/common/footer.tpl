@@ -23,7 +23,7 @@
           </li>
         <?php } ?>
                       <li>
-                    <h4>COMPANY INFO</h4>
+                    <h4>CONTACT INFO</h4>
                           <p><span><?php echo $yd_Call; ?></span> <?=$telephone;?></a></p>
                           <p><span><?php echo $yd_Whatsapp; ?></span>+<?php echo $whatsapp; ?></p>
                           <p><span><?php echo $yd_Email; ?></span><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
