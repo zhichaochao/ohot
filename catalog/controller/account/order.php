@@ -101,6 +101,7 @@ class ControllerAccountOrder extends Controller {
 				'view'       => $this->url->link('account/order/info', 'order_id=' . $result['order_id'], true),
 				'cancel_href' => $this->url->link('account/order/cancel', 'order_id=' . $result['order_id'], true),
 				'repay'	      => $this->url->link('account/order/repay', 'order_id=' . $result['order_id'], true),
+				'repay_receipt'	      =>$this->url->link('account/order/repay_receipt', 'order_id=' . $result['order_id'], true),
 			
 				'shipping_total'  	=> $shipping_total
 			);

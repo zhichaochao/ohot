@@ -81,6 +81,8 @@
 
                   <?php if($order['payment_code'] == 'pp_standard' || $order['payment_code'] == 'pp_express') { ?>
                     &nbsp;&nbsp;<a data-toggle="tooltip" href="<?php echo $order['repay'];?>" title="Pay"  class="red">Pay</a>
+                  <?php }else{ ?>
+                  <a data-toggle="tooltip" href="<?php echo $order['repay_receipt'];?>" title="Pay"  class="red">Submit Receipt</a>
                   <?php } ?>
                 <?php } ?>
                 </div>
@@ -169,6 +171,8 @@
             <?php if($order['status'] == 'Pending'){ ?> 
                 <?php if($order['payment_code'] == 'pp_standard' || $order['payment_code'] == 'pp_express') { ?>
                     <li><a data-toggle="tooltip" href="<?php echo $order['repay'];?>" title="Pay"  class="pay">Pay</a></li>
+                        <?php }else{ ?>
+                 <li> <a data-toggle="tooltip" href="<?php echo $order['repay_receipt'];?>" title="Pay"  class="pay">Submit Receipt</a></li>
                   <?php } ?>
                 <li> <button  data-toggle="tooltip" onclick="cancel_orders('<?php echo $order['cancel_href'];?>')" href="<?php echo $order['cancel_href'];?>" title="Cancel Order"  class="Cancel">Cancel</button></li>
 
