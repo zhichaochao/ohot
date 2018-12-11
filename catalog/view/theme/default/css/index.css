@@ -2946,7 +2946,7 @@
 	
 	/*******new_pay******/
 	.pay.content{padding: 0 !important;}
-	.pay .pay_text {padding-top: 0.8rem;max-width: inherit;min-height: 10rem;position: relative;padding:0.8rem 0.3rem 1rem 0.3rem;margin-bottom: 1.8rem;}
+	.pay .pay_text {padding-top: 0.8rem;max-width: inherit;min-height: 10rem;position: relative;padding:0.8rem 0.3rem 1rem 0.3rem;margin-bottom: 0rem;}
 	.pay .pay_text p.p1{font-family: helvetica;font-size: 0.3rem;color: #333;text-align: center;margin-bottom: 0.2rem;}
 	.pay .pay_text p.p1>span{font-size: 0.24rem;font-family: helvetica;color: #666;}
 	.pay .pay_text p.p3{font-family: helvetica;font-size: 0.22rem;color: #333;text-align: center;margin-bottom: 0.3rem;}
@@ -2954,7 +2954,7 @@
 	.pay .pay_text .pay_tb1{margin: 0 auto ;}
 	.pay .pay_text p.p2{font-family: helvetica;font-size: 0.24rem;color: #666;margin-top: 0.35rem;line-height: 0.3rem;}
 	.pay .pay_text .a_btn{width: 6rem;height: 0.8rem;display: block;text-align: center;line-height: 0.8rem;border-radius: 50px;color: #fff;
-	font-size: 0.3rem;font-family: helvetica;position: absolute;bottom: 0;left: 50%;margin-left: -3rem;border: none;
+	font-size: 0.3rem;font-family: helvetica;position: absolute;bottom: 1.8rem;left: 50%;margin-left: -3rem;border: none;
 	  background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);
 	}
@@ -3042,7 +3042,7 @@
 	.zf_con .form_div>label.fr{float: right;}
 	.zf_con .form_div>label input{display: block;width: 100%;border: 1px solid #aaa;line-height: 0.7rem;padding: 0 0.2rem;-webkit-appearance: none;
 	font-family: helvetica;font-size: 0.24rem;color: #333;position: relative;}
-	.zf_con .form_div>label select{display: block;width: 100%;border: 1px solid #aaa;height: 0.7rem;padding: 0 0.2rem;-webkit-appearance: none;
+	.zf_con .form_div>label select{display: block;width: 100%;border: 1px solid #aaa;height: 0.7rem;padding: 0 0.7rem 0 0.2rem ;-webkit-appearance: none;
 	font-family: helvetica;font-size: 0.24rem;color: #333;background: url(../img/png/new_8.png) no-repeat right center/0.7rem;}
 	.zf_con .form_div>label input:focus{border: 1px solid #333;}
 	.zf_con .form_div>label.true .gx{position: absolute;width: 0.14rem;height: 0.14rem;display: block;right: 0.25rem;top: 50%;margin-top: -0.1rem;z-index: 9;
