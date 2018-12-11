@@ -75,7 +75,7 @@ class ControllerAccountWishList extends Controller {
 
 			if ($product_info) {
 				if ($product_info['image']) {
-					$image = $this->model_tool_image->resize($product_info['image'], 700, 700);
+					$image = $this->model_tool_image->resize($product_info['image'], 400, 400);
 				} else {
 					$image = false;
 				}

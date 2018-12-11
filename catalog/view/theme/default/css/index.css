@@ -372,7 +372,7 @@
 	.shop_content .shop_ul .close{width: 2.08vw;height: 2.08vw;position: absolute;top: 0.52vw;right: 0.78vw;
 	background: url(../img/png/close3.png) no-repeat center/24px;cursor: pointer;}
 	.shop_content .shop_ul .shop_a{background: #fff;padding:0.1rem 0 0.25rem 0;}
-	.shop_content .shop_ul .two_a{width: 90%;margin: auto;display: block;text-align: center;height: 2.08vw;line-height: 2.08vw;
+	.shop_content .shop_ul .two_a{width: 53%;margin: auto;display: block;text-align: center;height: 2.08vw;line-height: 2.08vw;
 	color: #fff;font-size: 0.83vw;border-radius: 50px;
 	background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500); }
