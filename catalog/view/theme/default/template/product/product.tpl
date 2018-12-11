@@ -230,7 +230,7 @@
 											<span class="adds"></span>
 										</div>
 									</div>
-									<span class="length">Select color and  length&nbsp;&nbsp;></span>
+									<span class="length">Select Color And  Length&nbsp;&nbsp;></span>
 								</div>
 							</div>
 

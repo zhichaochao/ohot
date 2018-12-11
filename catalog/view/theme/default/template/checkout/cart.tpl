@@ -23,7 +23,7 @@
 			.big_nav{display: none;}
 		}
 	</style>
-	
+
 	<body style="background: #f5f5f5;min-height: inherit !important; "><!--内容-->
 		<div class="shopcart2 pc_hide clearfix new_in_content">
 			<div class="content  shop2_content clearfix">
@@ -33,7 +33,7 @@
 							<a class="fh" href="<?php echo $continueshopping?>"></a>
 							<p>MY ORDERS</p>
 						</div>
-						<div class="del clearfix">
+						<div class="del delete clearfix">
 							<svg t="1539766974948" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
 								<path d="M793.6 998.4H220.16c-51.2 0-97.28-40.96-97.28-97.28V261.12c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v645.12c0 25.6 20.48 46.08 46.08 46.08h573.44c25.6 0 46.08-20.48 46.08-46.08v-563.2c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v563.2c0 46.08-46.08 92.16-97.28 92.16z" p-id="5270" fill="#333"></path>
 								<path d="M51.2 266.24c-10.24 0-20.48-10.24-25.6-25.6 0-15.36 10.24-25.6 25.6-25.6l916.48-81.92c15.36 0 25.6 10.24 25.6 25.6s-10.24 25.6-25.6 25.6L51.2 266.24c5.12 0 0 0 0 0z" p-id="5271" fill="#333"></path>

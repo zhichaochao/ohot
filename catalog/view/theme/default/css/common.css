@@ -303,7 +303,7 @@ box-shadow: 0 -1px 10px 1px rgba(0,0,0,.2);}
 .yd_nav .top{position: relative;height: 1.2rem;background: #ffde64;width: 80%;} 
 .yd_nav .top .menu{position: absolute;top: 0.43rem;left: 0.4rem;width: 0.38rem;height: 0.31rem;display: block;}
 .yd_nav .top .close{position: absolute;top: 0.4rem;right: 0.4rem;width: 0.36rem;height: 0.35rem;display: block;}
-.yd_nav>ul{height: 80%;overflow: scroll;width: 80%;background: #ffde64;}
+.yd_nav>ul{height: 70%;overflow: scroll;width: 80%;background: #ffde64;}
 .yd_nav>ul>li{position: relative;}
 .yd_nav>ul>li>a{font-family: san_m;font-size: 0.3rem;font-weight: bold; color: #000;height: 0.38rem;line-height: 0.38rem;margin: 0.6rem 0;
 display: block;width: 100%;padding:0 0.4rem;box-sizing: border-box;}
@@ -311,7 +311,7 @@ display: block;width: 100%;padding:0 0.4rem;box-sizing: border-box;}
 .yd_nav>ul>li .slide_img img{width: 0.38rem;height: 0.38rem;display: block;transition: .5s;}
 .yd_nav>ul>li .slide_img.off img{transform: rotate(-45deg);}
 .yd_nav_ol {background: #ffde64;display: none;}
-.yd_nav_ol li a{font-family: san_r;font-size: 0.26rem;color: #333;height: 0.35rem;line-height: 0.35rem;margin: 0.4rem 0;display: block;}
+.yd_nav_ol li a{font-family: san_r;font-size: 0.26rem;color: #000;height: 0.35rem;line-height: 0.35rem;margin: 0.4rem 0;display: block;}
 .yd_nav .tc_logo{background: #ffde64;width: 80%;height: 1.15rem;line-height: 1.15rem;padding-left: 0.4rem;}
 .yd_nav .tc_logo a{font-size: 0.3rem;border: 1px solid #000;padding: 0 0.1rem;border-radius: 3px;height: 0.4rem;border-radius: 16px;
     display: inline-block;color: #000;float: left;line-height: 0.4rem;margin-top: 0.1rem;}
