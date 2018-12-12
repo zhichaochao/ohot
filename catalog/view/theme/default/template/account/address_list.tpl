@@ -23,7 +23,7 @@
                 <p><?php echo $result['address']; ?></p>
                  
                 <div class="close" onclick="del_address('<?php echo $result['delete'];?>')" class="btn btn-danger"></div>
-                  <span style="display: block;" onclick="javascript:default_address('<?php echo $result['address_id']; ?>');">Set Default Address</span>
+                  <span style="display: block;font-size: 0.83vw;position: absolute;bottom: 10px;left: 15px" onclick="javascript:default_address('<?php echo $result['address_id']; ?>');">Set As Default Address</span>
                 <a class="a_img" href="<?php echo $result['update']; ?>"></a>
               </div>
             </li>
@@ -31,7 +31,7 @@
             <li class="active">
               <div class="text">
                 <p><?php echo $result['address']; ?></p>
-                <span>Default address</span>
+                <span>Default Address</span>
                 <a class="a_img" href="<?php echo $result['update']; ?>"></a>
               </div>
             </li>

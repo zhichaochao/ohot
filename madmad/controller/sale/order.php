@@ -1235,7 +1235,7 @@ class ControllerSaleOrder extends Controller {
 			}
 
 			$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
-
+// print_r($data['order_statuses']);exit;
 			$data['order_status_id'] = $order_info['order_status_id'];
 
 			$data['account_custom_field'] = $order_info['custom_field'];

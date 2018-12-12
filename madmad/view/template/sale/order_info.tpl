@@ -283,12 +283,8 @@
                     <select name="order_status_id" id="input-order-status" class="form-control" <?php if($order_status_id==5){ ?>disabled="disabled"<?php } ?>>
                       <?php foreach ($order_statuses as $order_statuses) { ?>
                       
-                       <?php
-                         if(($order_status_id==2) || ($order_status_id==3)){
-                            $orderstatus=array("Pending","Paid","Shipped","Complete","Canceled","Refunded");  
-                         }else{                   
-                            $orderstatus=array("Pending","Paid","Complete","Canceled","Refunded");
-                         }
+                       <?php $orderstatus=array("Pending","Paid","Shipped","Complete","Canceled","Refunded","Processing");  
+                         
                          if( in_array($order_statuses['name'],$orderstatus) ){    
                        ?>
                       

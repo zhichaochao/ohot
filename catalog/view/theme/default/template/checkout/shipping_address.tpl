@@ -15,17 +15,21 @@
                             <li aid="<?=$address['address_id']?>" class=" <?php if ($address['address_id'] == $address_id) echo ''; ?> clearfix">
                                 <div class="text_li">
                                 <span> <?php echo $address['firstname'] .' '. $address['lastname']; ?> </span>
-                                <p><?php echo $address['telephone']; ?>  <?php 
-                    if(mb_strlen($address['address_1'],'UTF8')>15){ 
-                      echo mb_substr($address['address_1'],0,15).'...';
-                    }else{ 
-                      echo $address['address_1'];
-                    }; 
-                  ?>
-                  </p>
+
+                                <p>  <?php 
+                                    if(mb_strlen($address['address_1'],'UTF8')>15){ 
+                                      echo mb_substr($address['address_1'],0,15).'...';
+                                    }else{ 
+                                      echo $address['address_1'];
+                                    }; 
+                                  ?>
+                                  </p>
+
                                 <p><?php echo $address['city']; ?>, <?php echo $address['zone']; ?>,<?php echo $custom_field ? ',' . $custom_field : ''; ?></p>
+
                                 <span><?php echo $address['postcode']; ?></span>
                                 <span><?php echo $address['country']; ?></span>
+                                <span><?php echo $address['telephone']; ?></span>
                                 <a class="a_btn" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a>
                               
 
@@ -64,7 +68,7 @@
                             <li aid="<?=$address['address_id']?>" class=" <?php if ($address['address_id'] == $address_id) echo ''; ?>">
                                 <!-- <div class="text_li"> -->
                                 <p> <?php echo $address['firstname'] .' '. $address['lastname']; ?> </p>
-                                <p><?php echo $address['telephone']; ?>  <?php 
+                                <p><?php 
                                   if(mb_strlen($address['address_1'],'UTF8')>15){ 
                                     echo mb_substr($address['address_1'],0,15).'...';
                                   }else{ 
@@ -75,6 +79,7 @@
                                 <p><?php echo $address['city']; ?>, <?php echo $address['zone']; ?>,<?php echo $custom_field ? ',' . $custom_field : ''; ?></p>
                                 <p><?php echo $address['postcode']; ?></p>
                                 <p><?php echo $address['country']; ?></p>
+                                <p><?php echo $address['telephone']; ?> </p>
                                 <!-- <a class="a_btn" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a> -->
                                 <?php if($address['address_id'] == $address_id){ ?>
                                 <span class="<?php if ($address['address_id'] == $address_id) echo ''; ?>" style="color:red;">Default</span><?php } ?>
