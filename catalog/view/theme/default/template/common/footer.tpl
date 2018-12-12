@@ -131,6 +131,15 @@
             <p>ALL HAIR</p>
           </a>
         </li>
+        <li class="<?=strpos($thispage,'checkout') !== false ?'active':'';?>">
+          <a href="<?php echo $cart?>">
+           <!--  <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-1.png" alt="" />
+            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-2.png" alt="" /> -->
+            <span class="img"></span>
+            <!-- <p><span class='cart_count'><?=$text_cart_items;?></span>CART</p> -->
+            <p>CART</p>
+          </a>
+        </li>
         <li>
           <a class="contact" href="javascript:0;"  onclick="return false">
            <!--  <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/contact-1.png" alt="" />
@@ -151,15 +160,7 @@
             <p>CONTACT</p>
           </a>
         </li> -->
-        <li class="<?=strpos($thispage,'checkout') !== false ?'active':'';?>">
-          <a href="<?php echo $cart?>">
-           <!--  <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-1.png" alt="" />
-            <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-2.png" alt="" /> -->
-            <span class="img"></span>
-            <!-- <p><span class='cart_count'><?=$text_cart_items;?></span>CART</p> -->
-            <p>CART</p>
-          </a>
-        </li>
+        
         <li class="<?=strpos($thispage,'account') !== false ?'active':'';?>">
           <a href="<?php echo $account_left?>">
            <!--  <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/account-1.png" alt="" />
