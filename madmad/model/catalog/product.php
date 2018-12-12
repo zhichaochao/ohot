@@ -32,7 +32,7 @@ class ModelCatalogProduct extends Model {
 			    width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "',
 			    length_class_id = '" . (int)$data['length_class_id'] . "', status = '" . (int)$data['status'] . "',
 			    tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW(),
-			    relation_product = '" . $this->db->escape($data['relation_product'])."', discount_percentage = 0, is_main = ".(int)$data['is_main'] .", is_new = ".(int)$data['is_new']. ", is_sale = ".(int)$data['is_sale']. ", is_home = " .(int)$data['is_home'].", 
+			    relation_product = '" . $this->db->escape($data['relation_product'])."', discount_percentage = 0, is_main = ".(int)$data['is_main'] .", is_new = ".(int)$data['is_new']. ", is_sale = ".(int)$data['is_sale']. ", modelling = ".$data['modelling']. ", is_home = " .(int)$data['is_home'].", 
 		        free_postage = ".(int)$data['free_postage'] . ", video_link = '" .$this->db->escape($data['video_link']) ."'";
 		$this->querysql($sql);
 
@@ -250,7 +250,7 @@ class ModelCatalogProduct extends Model {
 			    video_link = '" .$this->db->escape($data['video_link']) ."',
 			    tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW(),
                 relation_product = '" . $this->db->escape($data['relation_product']) . "',discount_percentage = ".(int)$data['discount_percentage']." , 
-                is_main = ".(int)$data['is_main'] . ", is_new = " .(int)$data['is_new'] . ", is_sale = " .(int)$data['is_sale'] . ", is_home = " .(int)$data['is_home']
+                is_main = ".(int)$data['is_main'] . ", is_new = " .(int)$data['is_new'] . ", is_sale = " .(int)$data['is_sale'] . ", modelling = '" . $this->db->escape($data['modelling']) . "', is_home = " .(int)$data['is_home']
 		        . ", free_postage = ".(int)$data['free_postage'] ." WHERE product_id = '" . (int)$product_id . "'";
 
 		$this->querysql($sql);

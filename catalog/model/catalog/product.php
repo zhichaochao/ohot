@@ -86,6 +86,7 @@ class ModelCatalogProduct extends Model {
                 'video'            => $query->row['video'],
                 'is_new'            => $query->row['is_new'],
                 'is_sale'            => $query->row['is_sale'],
+                'modelling'            => $query->row['modelling'],
                 'video_link'       => $query->row['video_link'],
 
                 //新增读取的产品属性

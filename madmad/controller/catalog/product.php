@@ -1184,6 +1184,14 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$data['is_sale'] = true;
 		}
+
+		if (isset($this->request->post['modelling'])) {
+			$data['modelling'] = $this->request->post['modelling'];
+		} elseif (!empty($product_info)) {
+			$data['modelling'] = $product_info['modelling'];
+		} else {
+			$data['modelling'] = true;
+		}
 // print_r($data['is_sale']);exit;
         //是否首页显示
         if (isset($this->request->post['is_home'])) {

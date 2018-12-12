@@ -127,6 +127,14 @@
                   <?php } ?>
                 </div>
               </div>
+
+              <div class="form-group ">
+                <label class="col-sm-2 control-label" for="input-modelling">造型</label>
+                <div class="col-sm-10">
+                  <input type="text" name="modelling" value="<?php echo $modelling; ?>" placeholder="造型" id="input-modelling" class="form-control" />
+                
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-category"><span data-toggle="tooltip" title="<?php echo $help_category; ?>"><?php echo $entry_category; ?></span></label>
                 <div class="col-sm-10">

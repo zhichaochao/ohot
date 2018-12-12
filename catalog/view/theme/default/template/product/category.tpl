@@ -34,20 +34,24 @@
                 <p><?php echo $product['name']; ?></p>
                 <span class="price">
                   <?php if($product['special']) { ?>
-                     <span><?php echo $product['special']; ?>
-                     <del><?php echo $product['price']; ?></del></span>
+                  <em> <?php echo $product['special']; ?></em>
+                     <del><?php echo $product['price']; ?></del>
                   <?php }else{ ?>
                      <em class="price-single"><?php echo $product['price']; ?>
 
-                     <?php if($product['is_new']==0) { ?>
+                     
+                     </em>
+                  <?php } ?>
+
+                  <?php if($product['is_new']==0) { ?>
                      <span class="new">NEW</span>
                       <?php } ?>
                       <?php if($product['is_sale']==1) { ?>
                      <span class="sale">SALE</span>
                       <?php } ?>
-
-                     </em>
-                  <?php } ?>
+                      <?php if($product['modelling']) { ?>
+                      <i class="modelling"><?php echo $product['modelling']; ?></i>
+                        <?php } ?>
                 </span>
                   <!-- <span>$35.30</span> -->
                   <p class="p1"><?php echo $product['texture']; ?></p>
@@ -187,6 +191,17 @@
                              }else{
                                       result+= '<span class="price-single">'+data.products[i].price+'</span>';
                               }
+                                if (data.products[i].is_new==0) {
+                                  result+='<span class="new">NEW</span>';
+                                }
+                                if (data.products[i].is_sale==1) {
+                                  result+='<span class="sale">SALE</span>';
+                                }
+
+                                if (data.products[i].modelling) {
+                                  result+='<i class="modelling">'+data.products[i].modelling+' </i>';
+                                }
+
                                     result+=   '</span>'
                                         +' <p class="p1">'+data.products[i].texture
                                         + '</p>'

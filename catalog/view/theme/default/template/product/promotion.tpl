@@ -31,6 +31,9 @@
                     <!-- <span>$35.30</span>
                     <i>$78.40</i> -->
                   </div>
+                   <?php if($product['modelling']) { ?>
+                      <i class="modelling"><?php echo $product['modelling']; ?></i>
+                      <?php } ?>
                   <div class="fsbg_div">
                     <i>-<?php echo $product['off']; ?>%</i>
                     
@@ -156,6 +159,9 @@
                                           
                              }else{
                                       result+= '<span>'+data.products[i].price+'</span>';
+                              }
+                              if (data.products[i].modelling) {
+                                 result+='<i class="modelling">'+data.products[i].modelling+'</i>';
                               }
 
                                     result+=   '</div>'
