@@ -77,7 +77,7 @@
                                 <p><?php echo $address['country']; ?></p>
                                 <!-- <a class="a_btn" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a> -->
                                 <?php if($address['address_id'] == $address_id){ ?>
-                                <span class="<?php if ($address['address_id'] == $address_id) echo ''; ?>">Default</span><?php } ?>
+                                <span class="<?php if ($address['address_id'] == $address_id) echo ''; ?>" style="color:red;">Default</span><?php } ?>
                                <!-- <a class="edit" onclick="getShippingAddress('<?php echo $address['address_id']; ?>')">Edit</a> -->
                                
                                 <a class="edit"  href="index.php?route=checkout/shipping_address/wap&address_id=<?php echo $address['address_id']; ?>">Edit</a>
