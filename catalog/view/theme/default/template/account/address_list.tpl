@@ -44,7 +44,7 @@
             <?php }else{?>  
             <div class="right m_account clearfix">
           
-              <img src="catalog/view/theme/default/img/png/address.png"/>
+              <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/address.png"/>
               <p>You currently have no addresses saved </p>
               <a class="a_btn" href="<?php echo $add; ?>">ADD ADDRESS &nbsp;&nbsp;&nbsp;></a>
               

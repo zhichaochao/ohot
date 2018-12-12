@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 
 <div class="content in_content success">
-			<img class="sg_img" src="catalog/view/theme/default/img/png/successful.png"/>
+			<img class="sg_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/successful.png"/>
 			<h1>Congratulations !</h1>
 			<p>Payment is made successfully</p>
 			<div class="btn clearfix">

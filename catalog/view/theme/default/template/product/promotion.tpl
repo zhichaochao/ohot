@@ -6,7 +6,7 @@
 <input type="hidden" name="sort" value='<?=$sort;?>' id='sort'/>
 <input type="hidden" name="order" value='<?=$order;?>' id='order'/>
 <input type="hidden" name="limit" value='<?=$limit;?>' id='limit'/>
-      <img class="changeimage img_bnr pc_hide" data-image='catalog/view/theme/default/img/jpg/promotions.jpg' data-mimage='catalog/view/theme/default/img/jpg/promotions.jpg'  />
+      <img class="changeimage img_bnr pc_hide" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />
       
       <h1>DISCOUNTED GOODS</h1>
       
