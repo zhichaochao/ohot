@@ -976,7 +976,7 @@ class ControllerSaleOrder extends Controller {
 				$resreceipt=explode(",",$order_info['bank_receipt']);
 			foreach ($resreceipt as $k=> $value) {
 				$data['bank_receipt'][]=array(
-						'bank_receipt'=>$this->model_tool_image->resize($value, 500, 500)
+						'bank_receipt'=>$this->model_tool_image->resizze($value, 500, 500)
 					);
 			}
 				// $data['bank_receipt'] = $this->model_tool_image->resize($order_info['bank_receipt'], 500, 500);
