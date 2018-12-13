@@ -19,4 +19,18 @@ $(function(){
   $(".yd_footer , .yd_footer2").addClass("hide");
 })
 
+//触发发邮件动作
+  $(document).ready(function() {
+      sendEmail();
+  });
+
+  //发邮件的方法
+  function sendEmail(){
+    // alert(12121212);
+    $.ajax({
+          url: 'index.php?route=checkout/success/sendEmail_1',
+          type: 'post',
+      });
+  }
 </script>
+

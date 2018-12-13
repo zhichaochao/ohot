@@ -366,7 +366,7 @@ class ModelCheckoutOrder extends Model {
 		$order_info = $this->getOrder($order_id);
 		
 		// If order status is 0 then becomes greater than 0 send main html email
-		if ($order_info['order_status_id'] == 2 && $order_status_id) {
+		if ($order_info['order_status_id'] == 1 && $order_status_id) {
 			// Check for any downloadable products
 			$download_status = false;
 		
