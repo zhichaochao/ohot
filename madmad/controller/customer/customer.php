@@ -383,11 +383,6 @@ class ControllerCustomerCustomer extends Controller {
 		} else {
 			$filter_ip = null;
 		}
-		if (isset($this->request->get['telephone'])) {
-			$telephone = $this->request->get['telephone'];
-		} else {
-			$telephone = null;
-		}
 
 		if (isset($this->request->get['filter_date_added'])) {
 			$filter_date_added = $this->request->get['filter_date_added'];
@@ -480,7 +475,6 @@ class ControllerCustomerCustomer extends Controller {
 			'filter_approved'          => $filter_approved,
 			'filter_date_added'        => $filter_date_added,
 			'filter_ip'                => $filter_ip,
-			'telephone'                => $telephone,
 			'sort'                     => $sort,
 			'order'                    => $order,
 			'start'                    => ($page - 1) * $this->config->get('config_limit_admin'),
@@ -1068,10 +1062,9 @@ class ControllerCustomerCustomer extends Controller {
 				$this->error['warning'] = $this->language->get('error_exists');
 			}
 		}
-		if(!empty($this->request->post['telephone'])){
+
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
-		}
 		}
 
 		// Custom field validation
@@ -1086,7 +1079,7 @@ class ControllerCustomerCustomer extends Controller {
 				$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
 			}
 		}
-if(!empty($this->request->post['password'])){
+
 		if ($this->request->post['password'] || (!isset($this->request->get['customer_id']))) {
 			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
 				$this->error['password'] = $this->language->get('error_password');
@@ -1095,7 +1088,6 @@ if(!empty($this->request->post['password'])){
 			if ($this->request->post['password'] != $this->request->post['confirm']) {
 				$this->error['confirm'] = $this->language->get('error_confirm');
 			}
-		}
 		}
 
 		if (isset($this->request->post['address'])) {

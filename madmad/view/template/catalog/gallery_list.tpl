@@ -63,9 +63,7 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_product_name; ?>"><?php echo $column_product_name; ?></a>
                     <?php } ?></td>
-                  <!-- <td class="text-left">
-                    <?=$column_author?></a>
-                  </td> -->
+                  
                   <td class="text-left">
                     <?=$column_thumbnail?></a>
                   </td>

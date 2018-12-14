@@ -74,9 +74,9 @@ class ControllerExtensionPaymentNariaAccount extends Controller {
 
 		$this->load->model('tool/image');
 
-		if (isset($this->request->post['naria_account_image']) && is_file(DIR_IMAGE . $this->request->post['naria_account_image'])) {
+		if (isset($this->request->post['naria_account_image'])) {
 			$data['naria_account_thumb'] = $this->model_tool_image->resize($this->request->post['naria_account_image'], 100, 100);
-		} elseif ($this->config->get('naria_account_image') && is_file(DIR_IMAGE . $this->config->get('naria_account_image'))) {
+		} elseif ($this->config->get('naria_account_image')) {
 			$data['naria_account_thumb'] = $this->model_tool_image->resize($this->config->get('naria_account_image'), 100, 100);
 		} else {
 			$data['naria_account_thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);

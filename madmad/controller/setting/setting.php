@@ -489,10 +489,10 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['config_facebook'] = $this->config->get('config_facebook');
 		}
-		if (isset($this->request->post['config_meta_keywords'])) {
-			$data['config_meta_keywords'] = $this->request->post['config_meta_keywords'];
+		if (isset($this->request->post['config_instagram'])) {
+			$data['config_instagram'] = $this->request->post['config_instagram'];
 		} else {
-			$data['config_meta_keywords'] = $this->config->get('config_meta_keywords');
+			$data['config_instagram'] = $this->config->get('config_instagram');
 		}
 		if (isset($this->request->post['config_whatsapp'])) {
 			$data['config_whatsapp'] = $this->request->post['config_whatsapp'];

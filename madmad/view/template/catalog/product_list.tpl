@@ -2,13 +2,6 @@
 <div id="content">
   <div class="page-header">
     <div class="container-fluid">
-      <div class="pull-right">
-	<!-- <a href="<?php echo $importSpecial; ?>" data-toggle="tooltip" title="Import Products" class="btn btn-primary">Import Specials</a>
-	<a href="<?php echo $export; ?>" data-toggle="tooltip" title="Export Products" class="btn btn-primary">Export Products</a> -->
-	<a href="<?php echo $add; ?>" data-toggle="tooltip" title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-        <button type="submit" form="form-product" formaction="<?php echo $copy; ?>" data-toggle="tooltip" title="<?php echo $button_copy; ?>" class="btn btn-default"><i class="fa fa-copy"></i></button>
-        <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
-      </div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -89,7 +82,7 @@
                   <option value="0"><?php echo $text_disabled; ?></option>
                   <?php } ?>
                 </select>
-              </div>
+              </div>              
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
             </div>
           </div>
@@ -99,7 +92,6 @@
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
                   <td class="text-center"><?php echo $column_image; ?></td>
                   <td class="text-left"><?php if ($sort == 'pd.name') { ?>
                     <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
@@ -136,6 +128,7 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_browse; ?>"><?php echo $column_browse; ?></a>
                     <?php } ?></td>
+
                   <!-- <td class="text-center">浏览量</td> -->
                   <td class="text-right"><?php echo $column_action; ?></td>
                 </tr>
@@ -144,11 +137,6 @@
                 <?php if ($products) { ?>
                 <?php foreach ($products as $product) { ?>
                 <tr>
-                  <td class="text-center"><?php if (in_array($product['product_id'], $selected)) { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" checked="checked" />
-                    <?php } else { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" />
-                    <?php } ?></td>
                   <td class="text-center"><?php if ($product['image']) { ?>
                     <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="img-thumbnail" />
                     <?php } else { ?>
@@ -235,6 +223,18 @@ $('#button-filter').on('click', function() {
   if (filter_free_postage != '*') {
     url += '&filter_free_postage=' + encodeURIComponent(filter_free_postage);
   }
+	
+	// var filter_relation_product = $('input[name=\'filter_relation_product\']').val();
+ //    if (filter_relation_product != '*') {
+ //       url += '&filter_relation_product=' + encodeURIComponent(filter_relation_product);
+ //    }
+
+  //var filter_image = $('select[name=\'filter_image\']').val();
+//
+//  if (filter_image != '*') {
+//    url += '&filter_image=' + encodeURIComponent(filter_image);
+//  }
+
 	location = url;
 });
 //--></script>

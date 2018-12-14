@@ -42,7 +42,6 @@ $_['text_reports']                   = 'Reports';
 $_['text_report_sale']               = 'Sales';
 
 $_['text_gallery']                   = 'Gallery Manager';
-$_['text_gallerys']                   = 'OutOfStationManagement';
 $_['text_nav']                       = 'Navigation Manager';
 $_['text_profile']                   = 'Profile Manager';
 $_['text_customer_share']            = 'Customer Share';

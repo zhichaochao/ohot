@@ -103,10 +103,6 @@
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
               </div>
-              <div class="form-group">
-                <label class="control-label" for="input-telephone">手机号</label>
-                <input type="text" name="telephone" value="" placeholder="手机号" id="input-telephone" class="form-control" />
-              </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
             </div>
           </div>
@@ -230,10 +226,6 @@ $('#button-filter').on('click', function() {
 	if (filter_status != '*') {
 		url += '&filter_status=' + encodeURIComponent(filter_status); 
 	}	
-   var telephone = $('input[name=\'telephone\']').val();
-  if (telephone) {
-    url += '&telephone=' + encodeURIComponent(telephone);
-  }
 	
 	var filter_approved = $('select[name=\'filter_approved\']').val();
 	

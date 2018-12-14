@@ -43,7 +43,6 @@ $_['text_menu']                     = '菜单管理';
 $_['text_modification']             = 'OCMOD配置';
 $_['text_manufacturer']             = '品牌管理';
 $_['text_gallery']                  = '相册管理';
-$_['text_gallerys']                  = '站外管理';
 $_['text_option']                   = '商品选项';
 $_['text_order']                    = '订单管理';
 $_['text_order_status']             = '订单状态';

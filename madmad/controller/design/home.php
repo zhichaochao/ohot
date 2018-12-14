@@ -21,19 +21,6 @@ class ControllerDesignHome extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_design_home->addHome($this->request->post);
-			if (isset($this->request->post['image'])) {
-							if (is_file(DIR_IMAGE .$this->request->post['image'])) {
-								$image = $this->model_tool_image->resize($result['image'], 1537, 600);
-								$image = $this->model_tool_image->resize($result['image'], 1040	, 560);
-								
-							}
-							if (is_file(DIR_IMAGE .$this->request->post['mimage'])) {
-								$image = $this->model_tool_image->resize($result['mimage'], 710	, 400);
-								
-							}
-					
-			}
-
 
 			//获取路由参数
 			$doneUrl=isset($this->request->get['route']) ? $this->request->get['route'] : "";
@@ -65,18 +52,7 @@ class ControllerDesignHome extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_design_home->editHome($this->request->get['home_id'], $this->request->post);
-	if (isset($this->request->post['image'])) {
-							if (is_file(DIR_IMAGE .$this->request->post['image'])) {
-								$image = $this->model_tool_image->resize($result['image'], 1537, 600);
-								$image = $this->model_tool_image->resize($result['image'], 1040	, 560);
-								
-							}
-							if (is_file(DIR_IMAGE .$this->request->post['mimage'])) {
-								$image = $this->model_tool_image->resize($result['mimage'], 710	, 400);
-								
-							}
-					
-			}
+
 			//获取路由参数
 			$doneUrl=isset($this->request->get['route']) ? $this->request->get['route'] : "";
 			$done="editHome:ID=".$this->request->get['home_id']; //$this->request->post['name'];
@@ -391,7 +367,7 @@ class ControllerDesignHome extends Controller {
                  $data['video_url'] = $http_type . $_SERVER['HTTP_HOST'] . '/image/' . $this->request->post['video'];
         } elseif (!empty($home_info)) {
             $data['video'] = $home_info['video'];
-               $data['video_url'] = $http_type . $_SERVER['HTTP_HOST']. $home_info['video'];
+               $data['video_url'] = $http_type . $_SERVER['HTTP_HOST'].'/mabhmad/'. $home_info['video'];
         } else {
             $data['video'] = '';
             $data['video_url'] ='';

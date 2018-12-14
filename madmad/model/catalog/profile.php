@@ -16,9 +16,8 @@ class ModelCatalogProfile extends Model {
 	}
 	
 	public function addProfile($data = array()) {
-		$video_ids=implode(',', $data['profile_video']);
 
-		$this->querysql("INSERT INTO " . DB_PREFIX . "profile SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "' ,parent_id = '" . (int)$data['parent_id'] . "', author = '" . $this->db->escape($data['author']) . "', image = '" . $data['image'] . "', images = '" . $data['images'] . "', add_time = NOW(), update_time = NOW(), view = 0, video_ids = '" .$video_ids . "'");
+		$this->querysql("INSERT INTO " . DB_PREFIX . "profile SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "' ,parent_id = '" . (int)$data['parent_id'] . "', author = '" . $this->db->escape($data['author']) . "', image = '" . $data['image'] . "', images = '" . $data['images'] . "', add_time = NOW(), update_time = NOW(), view = 0");
 
 		$profile_id = $this->db->getLastId();
 		// print_r($profile_id);exit()
@@ -55,8 +54,7 @@ class ModelCatalogProfile extends Model {
 	}
 
 	public function editProfile($profile_id, $data) {
-		$video_ids=implode(',', $data['profile_video']);
-		$this->querysql("UPDATE " . DB_PREFIX . "profile SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "', author = '" . $this->db->escape($data['author']) . "', update_time = NOW(), image = '" . $this->db->escape($data['image']) . "', images = '" . $this->db->escape($data['images']) . "', parent_id = '" . (int)$data['parent_id'] . "', video_ids = '" .$video_ids . "' WHERE profile_id = '" . (int)$profile_id . "'");
+		$this->querysql("UPDATE " . DB_PREFIX . "profile SET sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "', author = '" . $this->db->escape($data['author']) . "', update_time = NOW(), image = '" . $this->db->escape($data['image']) . "', images = '" . $this->db->escape($data['images']) . "', parent_id = '" . (int)$data['parent_id'] . "' WHERE profile_id = '" . (int)$profile_id . "'");
 
 		$this->querysql("DELETE FROM " . DB_PREFIX . "profile_description WHERE profile_id = '" . (int)$profile_id . "'");
 

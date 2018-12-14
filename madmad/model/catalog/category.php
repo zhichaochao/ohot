@@ -1,89 +1,7 @@
 <?php
 class ModelCatalogCategory extends Model {
-
-	private function querysql($sql)
-	{
-		$dbs= unserialize($this->config->get('db_database_data'));
-		foreach ($dbs as $key => $value) {
-			if($key==0){
-				$this->db->query($sql);
-			}else{
-				$d='db'.$key;
-				$this->$d->query($sql);
-			}
-		}
-		
-	}
-
-	public function addCategory($data) {
-		$this->querysql("INSERT INTO " . DB_PREFIX . "category SET parent_id = '" . (int)$data['parent_id'] . "',
-				 `top` = '" . (isset($data['top']) ? (int)$data['top'] : 0) . "', 
-				 `m_show` = '" . (isset($data['m_show']) ? (int)$data['m_show'] : 0) . "',
-				 `pc_show` = '" . (isset($data['pc_show']) ? (int)$data['pc_show'] : 0) . "',
-				 `column` = '" . (int)$data['column'] . "',
-				 sort_order = '" . (int)$data['sort_order'] . "',
-				 m_show_title = '" . $data['m_show_title'] . "',
-				 pc_show_title = '" . $data['pc_show_title'] . "',
-				 status = '" . (int)$data['status'] . "',
-				 date_modified = NOW(), date_added = NOW()");
-
-		$category_id = $this->db->getLastId();
-
-		if (isset($data['m_image'])) {
-			$this->querysql("UPDATE " . DB_PREFIX . "category SET m_image = '" . $this->db->escape($data['m_image']) . "' WHERE category_id = '" . (int)$category_id . "'");
-		}
-		
-		if (isset($data['pc_image'])) {
-			$this->querysql("UPDATE " . DB_PREFIX . "category SET pc_image = '" . $this->db->escape($data['pc_image']) . "' WHERE category_id = '" . (int)$category_id . "'");
-		}
-
-		foreach ($data['category_description'] as $language_id => $value) {
-			$this->querysql("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
-		}
-
-		// MySQL Hierarchical Data Closure Table Pattern
-		$level = 0;
-
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "category_path` WHERE category_id = '" . (int)$data['parent_id'] . "' ORDER BY `level` ASC");
-
-		foreach ($query->rows as $result) {
-			$this->querysql("INSERT INTO `" . DB_PREFIX . "category_path` SET `category_id` = '" . (int)$category_id . "', `path_id` = '" . (int)$result['path_id'] . "', `level` = '" . (int)$level . "'");
-
-			$level++;
-		}
-
-		$this->querysql("INSERT INTO `" . DB_PREFIX . "category_path` SET `category_id` = '" . (int)$category_id . "', `path_id` = '" . (int)$category_id . "', `level` = '" . (int)$level . "'");
-
-		if (isset($data['category_filter'])) {
-			foreach ($data['category_filter'] as $filter_id) {
-				$this->querysql("INSERT INTO " . DB_PREFIX . "category_filter SET category_id = '" . (int)$category_id . "', filter_id = '" . (int)$filter_id . "'");
-			}
-		}
-
-		if (isset($data['category_store'])) {
-			foreach ($data['category_store'] as $store_id) {
-				$this->querysql("INSERT INTO " . DB_PREFIX . "category_to_store SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "'");
-			}
-		}
-
-		// Set which layout to use with this category
-		if (isset($data['category_layout'])) {
-			foreach ($data['category_layout'] as $store_id => $layout_id) {
-				$this->querysql("INSERT INTO " . DB_PREFIX . "category_to_layout SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
-			}
-		}
-
-		if (isset($data['keyword'])) {
-			$this->querysql("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
-		}
-
-		$this->cache->delete('category');
-
-		return $category_id;
-	}
-
 	public function editCategory($category_id, $data) {
-		$this->querysql("UPDATE " . DB_PREFIX . "category SET parent_id = '" . (int)$data['parent_id'] . "',
+		$this->db->query("UPDATE " . DB_PREFIX . "category SET parent_id = '" . (int)$data['parent_id'] . "',
 				 `top` = '" . (isset($data['top']) ? (int)$data['top'] : 0) . "',
 				 `m_show` = '" . (isset($data['m_show']) ? (int)$data['m_show'] : 0) . "',
 				 `pc_show` = '" . (isset($data['pc_show']) ? (int)$data['pc_show'] : 0) . "',
@@ -95,17 +13,17 @@ class ModelCatalogCategory extends Model {
 				 date_modified = NOW() WHERE category_id = '" . (int)$category_id . "'");
 
 		if (isset($data['m_image'])) {
-			$this->querysql("UPDATE " . DB_PREFIX . "category SET m_image = '" . $this->db->escape($data['m_image']) . "' WHERE category_id = '" . (int)$category_id . "'");
+			$this->db->query("UPDATE " . DB_PREFIX . "category SET m_image = '" . $this->db->escape($data['m_image']) . "' WHERE category_id = '" . (int)$category_id . "'");
 		}
 		
 		if (isset($data['pc_image'])) {
-			$this->querysql("UPDATE " . DB_PREFIX . "category SET pc_image = '" . $this->db->escape($data['pc_image']) . "' WHERE category_id = '" . (int)$category_id . "'");
+			$this->db->query("UPDATE " . DB_PREFIX . "category SET pc_image = '" . $this->db->escape($data['pc_image']) . "' WHERE category_id = '" . (int)$category_id . "'");
 		}
 
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "'");
 
 		foreach ($data['category_description'] as $language_id => $value) {
-			$this->querysql("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET category_id = '" . (int)$category_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
 		}
 
 		// MySQL Hierarchical Data Closure Table Pattern
@@ -114,7 +32,7 @@ class ModelCatalogCategory extends Model {
 		if ($query->rows) {
 			foreach ($query->rows as $category_path) {
 				// Delete the path below the current one
-				$this->querysql("DELETE FROM `" . DB_PREFIX . "category_path` WHERE category_id = '" . (int)$category_path['category_id'] . "' AND level < '" . (int)$category_path['level'] . "'");
+				$this->db->query("DELETE FROM `" . DB_PREFIX . "category_path` WHERE category_id = '" . (int)$category_path['category_id'] . "' AND level < '" . (int)$category_path['level'] . "'");
 
 				$path = array();
 
@@ -136,14 +54,14 @@ class ModelCatalogCategory extends Model {
 				$level = 0;
 
 				foreach ($path as $path_id) {
-					$this->querysql("REPLACE INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category_path['category_id'] . "', `path_id` = '" . (int)$path_id . "', level = '" . (int)$level . "'");
+					$this->db->query("REPLACE INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category_path['category_id'] . "', `path_id` = '" . (int)$path_id . "', level = '" . (int)$level . "'");
 
 					$level++;
 				}
 			}
 		} else {
 			// Delete the path below the current one
-			$this->querysql("DELETE FROM `" . DB_PREFIX . "category_path` WHERE category_id = '" . (int)$category_id . "'");
+			$this->db->query("DELETE FROM `" . DB_PREFIX . "category_path` WHERE category_id = '" . (int)$category_id . "'");
 
 			// Fix for records with no paths
 			$level = 0;
@@ -151,74 +69,55 @@ class ModelCatalogCategory extends Model {
 			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "category_path` WHERE category_id = '" . (int)$data['parent_id'] . "' ORDER BY level ASC");
 
 			foreach ($query->rows as $result) {
-				$this->querysql("INSERT INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category_id . "', `path_id` = '" . (int)$result['path_id'] . "', level = '" . (int)$level . "'");
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category_id . "', `path_id` = '" . (int)$result['path_id'] . "', level = '" . (int)$level . "'");
 
 				$level++;
 			}
 
-			$this->querysql("REPLACE INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category_id . "', `path_id` = '" . (int)$category_id . "', level = '" . (int)$level . "'");
+			$this->db->query("REPLACE INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category_id . "', `path_id` = '" . (int)$category_id . "', level = '" . (int)$level . "'");
 		}
 
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id = '" . (int)$category_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id = '" . (int)$category_id . "'");
 
 		if (isset($data['category_filter'])) {
 			foreach ($data['category_filter'] as $filter_id) {
-				$this->querysql("INSERT INTO " . DB_PREFIX . "category_filter SET category_id = '" . (int)$category_id . "', filter_id = '" . (int)$filter_id . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "category_filter SET category_id = '" . (int)$category_id . "', filter_id = '" . (int)$filter_id . "'");
 			}
 		}
 
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "'");
 
 		if (isset($data['category_store'])) {
 			foreach ($data['category_store'] as $store_id) {
-				$this->querysql("INSERT INTO " . DB_PREFIX . "category_to_store SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_store SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
 
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "'");
 
 		if (isset($data['category_layout'])) {
 			foreach ($data['category_layout'] as $store_id => $layout_id) {
-				$this->querysql("INSERT INTO " . DB_PREFIX . "category_to_layout SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_layout SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
 			}
 		}
 
-		$this->querysql("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "'");
 
 		if ($data['keyword']) {
-			$this->querysql("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
 		$this->cache->delete('category');
 	}
 
-	public function deleteCategory($category_id) {
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$category_id . "'");
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE path_id = '" . (int)$category_id . "'");
-
-		foreach ($query->rows as $result) {
-			$this->deleteCategory($result['category_id']);
-		}
-
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$category_id . "'");
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "'");
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id = '" . (int)$category_id . "'");
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "'");
-		$this->querysql("DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "'");
-		$this->querysql("DELETE FROM " . DB_PREFIX . "product_to_category WHERE category_id = '" . (int)$category_id . "'");
-		$this->querysql("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "'");
-		$this->querysql("DELETE FROM " . DB_PREFIX . "coupon_category WHERE category_id = '" . (int)$category_id . "'");
-
-		$this->cache->delete('category');
-	}
 
 	public function repairCategories($parent_id = 0) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category WHERE parent_id = '" . (int)$parent_id . "'");
 
 		foreach ($query->rows as $category) {
 			// Delete the path below the current one
-			$this->querysql("DELETE FROM `" . DB_PREFIX . "category_path` WHERE category_id = '" . (int)$category['category_id'] . "'");
+			$this->db->query("DELETE FROM `" . DB_PREFIX . "category_path` WHERE category_id = '" . (int)$category['category_id'] . "'");
 
 			// Fix for records with no paths
 			$level = 0;
@@ -226,12 +125,12 @@ class ModelCatalogCategory extends Model {
 			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "category_path` WHERE category_id = '" . (int)$parent_id . "' ORDER BY level ASC");
 
 			foreach ($query->rows as $result) {
-				$this->querysql("INSERT INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category['category_id'] . "', `path_id` = '" . (int)$result['path_id'] . "', level = '" . (int)$level . "'");
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category['category_id'] . "', `path_id` = '" . (int)$result['path_id'] . "', level = '" . (int)$level . "'");
 
 				$level++;
 			}
 
-			$this->querysql("REPLACE INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category['category_id'] . "', `path_id` = '" . (int)$category['category_id'] . "', level = '" . (int)$level . "'");
+			$this->db->query("REPLACE INTO `" . DB_PREFIX . "category_path` SET category_id = '" . (int)$category['category_id'] . "', `path_id` = '" . (int)$category['category_id'] . "', level = '" . (int)$level . "'");
 
 			$this->repairCategories($category['category_id']);
 		}

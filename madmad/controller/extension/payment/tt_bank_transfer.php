@@ -78,9 +78,9 @@ class ControllerExtensionPaymentTtBankTransfer extends Controller {
 
 		$this->load->model('tool/image');
 
-		if (isset($this->request->post['tt_bank_transfer_image']) && is_file(DIR_IMAGE . $this->request->post['tt_bank_transfer_image'])) {
+		if (isset($this->request->post['tt_bank_transfer_image']) ) {
 			$data['tt_bank_transfer_thumb'] = $this->model_tool_image->resize($this->request->post['tt_bank_transfer_image'], 100, 100);
-		} elseif ($this->config->get('tt_bank_transfer_image') && is_file(DIR_IMAGE . $this->config->get('tt_bank_transfer_image'))) {
+		} elseif ($this->config->get('tt_bank_transfer_image')) {
 			$data['tt_bank_transfer_thumb'] = $this->model_tool_image->resize($this->config->get('tt_bank_transfer_image'), 100, 100);
 		} else {
 			$data['tt_bank_transfer_thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);

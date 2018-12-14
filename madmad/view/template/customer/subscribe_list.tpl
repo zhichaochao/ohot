@@ -40,7 +40,6 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_product; ?>"><?php echo $column_product; ?></a>
                     <?php } ?></td>
-
                     <td class="text-left"><?php if ($sort == 'r.subtime') { ?>
                     <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>">添加日期</a>
                     <?php } else { ?>

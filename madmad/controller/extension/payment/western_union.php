@@ -78,9 +78,9 @@ class ControllerExtensionPaymentWesternUnion extends Controller {
 
 		$this->load->model('tool/image');
 
-		if (isset($this->request->post['western_union_image']) && is_file(DIR_IMAGE . $this->request->post['western_union_image'])) {
+		if (isset($this->request->post['western_union_image'])) {
 			$data['western_union_thumb'] = $this->model_tool_image->resize($this->request->post['western_union_image'], 100, 100);
-		} elseif ($this->config->get('western_union_image') && is_file(DIR_IMAGE . $this->config->get('western_union_image'))) {
+		} elseif ($this->config->get('western_union_image')) {
 			$data['western_union_thumb'] = $this->model_tool_image->resize($this->config->get('western_union_image'), 100, 100);
 		} else {
 			$data['western_union_thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);

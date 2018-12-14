@@ -23,7 +23,7 @@ class ControllerCustomerInquiries extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 
-		
+			
 
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
@@ -208,7 +208,7 @@ class ControllerCustomerInquiries extends Controller {
 				'name'       => $result['name'],
 				'email'     => $result['email'],
 				'phone'     => $result['phone'],
-				'status'	=>$result['status'],
+				'status'     => $result['status'],
 				'comment'     =>utf8_substr(strip_tags($result['comment']),0,50).'...',
 				'submitTime' => date($this->language->get('date_format_short'), strtotime($result['submitTime'])),
 				'edit'       => $this->url->link('customer/inquiries/edit', 'token=' . $this->session->data['token'] . '&id=' . $result['id'], true)
@@ -296,7 +296,6 @@ class ControllerCustomerInquiries extends Controller {
 		$data['sort_rating'] = $this->url->link('customer/inquiries', 'token=' . $this->session->data['token'] . '&sort=r.phone' . $url, true);
 		$data['sort_status'] = $this->url->link('customer/inquiries', 'token=' . $this->session->data['token'] . '&sort=r.comment' . $url, true);
 		$data['sort_date_added'] = $this->url->link('customer/inquiries', 'token=' . $this->session->data['token'] . '&sort=r.submitTime' . $url, true);
-		// $data['click_jia'] = $this->url->link('customer/inquiries/click_jia', 'token=' . $this->session->data['token']. $url, true);
 
 		$url = '';
 
@@ -399,8 +398,12 @@ class ControllerCustomerInquiries extends Controller {
 
 		if (isset($this->request->get['id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$inquiries_info = $this->model_customer_inquiries->getInquiries($this->request->get['id']);
-			
+			//print_r($inquiries_info);exit;
+		    //$data['inquiries_img'] = $this->model_customer_inquiries->getInquiriesImg($this->request->get['id']);
 		}
+		// else{
+		// 	$data['inquiries_img'] = array();
+		// }
 
 		$data['token'] = $this->session->data['token'];
 
@@ -446,7 +449,7 @@ class ControllerCustomerInquiries extends Controller {
 			$data['comment'] = '';
 		}
 
-
+		
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
@@ -483,6 +486,7 @@ class ControllerCustomerInquiries extends Controller {
 		$this->response->setOutput(json_encode($json));
 
 	}
+
 
   
 

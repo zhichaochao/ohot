@@ -187,10 +187,9 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label"><?php echo $entry_video; ?></label>
                 <div class="col-sm-10">
-                <input type="text" name="video" value="<?php echo $video; ?>"  id="input-sort-order" class="form-control" />
-                  <!-- <ul style="list-style-type: none">
+                  <ul style="list-style-type: none">
                     <!-- 预览框： -->
-                  <!--   <li style="float: left;width: 100px">
+                    <li style="float: left;width: 100px">
                       <div class="preview">
                           <?php if($video){ ?>
                           <video src="<?=$video_url;?>" loop="loop" autoplay="autoplay" width="100px" height="100px"></video><?php } ?>
@@ -205,11 +204,10 @@
                   </div></li>
                   <input type="hidden" name="video" value="<?=$video;?>" id='video' />
 
-                  </ul> --> 
+                  </ul>
 
                 </div>
               </div> 
-
               <div class="form-group">
                   
                          <label class="col-sm-2 control-label" for="input-sort-order"><?php echo $entry_image; ?></label>
