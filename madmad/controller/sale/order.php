@@ -1153,6 +1153,8 @@ class ControllerSaleOrder extends Controller {
 				}else{
 					$original_price = $this->currency->format($product['original_price'], $this->session->data['currency']);
 				}
+				$this->load->model('catalog/url_alias');
+				$keyword = $this->model_catalog_url_alias->getKeyword($product['product_id']);
 				$data['products'][] = array(
 					'order_product_id' => $product['order_product_id'],
 					'product_id'       => $product['product_id'],
@@ -1167,7 +1169,8 @@ class ControllerSaleOrder extends Controller {
 
 					'total_usd'    		   => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0),"USD"),
 
-					'href'     		   => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], true)
+					
+					'href'       => HTTP_CATALOG . $keyword
 				);
 				
 				$a+=$product['quantity'];

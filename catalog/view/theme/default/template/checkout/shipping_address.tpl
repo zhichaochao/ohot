@@ -123,20 +123,11 @@
                 <input type="text" name="address_1" value="<?php echo ($eaddress ? $eaddress['address_1'] : ''); ?>" placeholder="<?php echo $entry_address_1; ?>" id="input-shipping-address-1" class="form-control clear" />
                 <input  type="text" name="address_2" value="<?php echo ($eaddress ? $eaddress['address_2'] : ''); ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-shipping-address-2" class="form-control clear"/>
               </label>
-              
-              <label for="input-shipping-country">
-                <span><?php echo $entry_country; ?> *</span>
-                 <select name="country_id" id="input-shipping-country" class="form-control">
-                  <option value=""><?php echo $text_select; ?></option>
-                  <?php foreach ($countries as $country) { ?>
-                  <?php if ($country['country_id'] == ($eaddress ? $eaddress['country_id'] : $country_id)) { ?>
-                  <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-                  <?php } else { ?>
-                  <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
-                  <?php } ?>
-                  <?php } ?>
-                </select>
+               <label for="input-shipping-city">
+                <span><?php echo $entry_city; ?>*</span>
+                <input  type="text" name="city" value="<?php echo ($eaddress ? $eaddress['city'] : ''); ?>" placeholder="<?php echo $entry_city; ?>" id="input-shipping-city" class="form-control clear" />
               </label>
+              
 <!-- 
               <label for="">
                   <span>State *</span>
@@ -153,9 +144,19 @@
                 <span><?php echo $entry_postcode; ?> *</span>
                 <input  type="text" name="postcode" value="<?php echo $eaddress ? $eaddress['postcode'] : $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-shipping-postcode" class="form-control" />
               </label>
-              <label for="input-shipping-city">
-                <span><?php echo $entry_city; ?>*</span>
-                <input  type="text" name="city" value="<?php echo ($eaddress ? $eaddress['city'] : ''); ?>" placeholder="<?php echo $entry_city; ?>" id="input-shipping-city" class="form-control clear" />
+             
+              <label for="input-shipping-country">
+                <span><?php echo $entry_country; ?> *</span>
+                 <select name="country_id" id="input-shipping-country" class="form-control">
+                  <option value=""><?php echo $text_select; ?></option>
+                  <?php foreach ($countries as $country) { ?>
+                  <?php if ($country['country_id'] == ($eaddress ? $eaddress['country_id'] : $country_id)) { ?>
+                  <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+                  <?php } else { ?>
+                  <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                  <?php } ?>
+                  <?php } ?>
+                </select>
               </label>
               <label  for="input-shipping-zone">
                 <span><?php echo $entry_zone; ?> *</span>

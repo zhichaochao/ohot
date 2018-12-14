@@ -22,7 +22,7 @@
                         <?php if(!empty($addresses)){?>
                          <a class="btn240 addrres butbtn" onclick="toselectAddress()">SAVE AND CONTINUE &nbsp;&nbsp;&nbsp;></a>
                          <?php } ?>
-                        <div class="shipping_method bg_fff bg_gif" id="shipping_method" style="display: none;" >
+                        <div class="shipping_method bg_fff bg_gif" id="shipping_method" style="display: none;margin-top: 50px;" >
                             <h3>Shipping Method</h3>
                         </div>
                         </div>

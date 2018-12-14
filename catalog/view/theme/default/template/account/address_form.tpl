@@ -42,6 +42,23 @@
                 <input type="text" name="address_2" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-address-2" class="form-control" />
               </label>
               <label for="">
+                <span>City *</span>
+                <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" />
+              <?php if ($error_city) { ?>
+              <p class="text-danger" style="color: #fd4f57;font-size: 14px;"><?php echo $error_city; ?></p>
+              <?php } ?>
+                <!-- <p class="ts_ps">This field is required</p> -->
+              </label>
+              <label class="mr_no" for="">
+                <span>Post Code *</span>
+                <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode" class="form-control" />
+              <?php if ($error_postcode) { ?>
+              <p class="text-danger" style="color: #fd4f57;font-size: 14px;"><?php echo $error_postcode; ?></p>
+              <?php } ?>
+                <!-- <p class="ts_ps">This field is required</p> -->
+              </label>
+              
+              <label for="">
                 <span>Country *</span>
                 <select name="country_id" id="input-country" class="form-control">
                 <option value=""><?php echo $text_select; ?></option>
@@ -55,22 +72,6 @@
               </select>
               <?php if ($error_country) { ?>
               <p class="text-danger" style="color: #fd4f57;font-size: 14px;"><?php echo $error_country; ?></p>
-              <?php } ?>
-                <!-- <p class="ts_ps">This field is required</p> -->
-              </label>
-              <label class="mr_no" for="">
-                <span>Post Code *</span>
-                <input type="text" name="postcode" value="<?php echo $postcode; ?>" placeholder="<?php echo $entry_postcode; ?>" id="input-postcode" class="form-control" />
-              <?php if ($error_postcode) { ?>
-              <p class="text-danger" style="color: #fd4f57;font-size: 14px;"><?php echo $error_postcode; ?></p>
-              <?php } ?>
-                <!-- <p class="ts_ps">This field is required</p> -->
-              </label>
-              <label for="">
-                <span>City *</span>
-                <input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $entry_city; ?>" id="input-city" class="form-control" />
-              <?php if ($error_city) { ?>
-              <p class="text-danger" style="color: #fd4f57;font-size: 14px;"><?php echo $error_city; ?></p>
               <?php } ?>
                 <!-- <p class="ts_ps">This field is required</p> -->
               </label>
