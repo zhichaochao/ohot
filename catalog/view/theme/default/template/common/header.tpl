@@ -213,7 +213,7 @@ $("body").css("top","auto").css("min-height","inherit").css("position","inherit"
                     </ul>
                     <div class="tc_logo">
                     <img class="tc_img" src="catalog/view/theme/default/img/png/new_13.png"/>
-                    <a href="<?php echo $login?>">Login</a><i>/</i><a href="<?php echo $login?>">Register</a>
+                    <a href="<?php echo $login?>">Login</a><i>/</i><a href="<?php echo $logins?>">Register</a>
                   </div>
                 </div>
                 

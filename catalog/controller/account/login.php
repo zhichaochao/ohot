@@ -208,6 +208,12 @@ class ControllerAccountLogin extends Controller {
 		} else {
 		    $data['agree'] = 0;
 		}
+		if(isset($this->request->get['status'])){
+
+		$data['status']=$this->request->get['status'];
+		}else{
+			$data['status']='';
+		}
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		//$data['column_right'] = $this->load->controller('common/column_right');

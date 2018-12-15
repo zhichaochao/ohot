@@ -15,13 +15,13 @@
       <div class="text clearfix">
         <div class="top">
           <ol class="login_ol clearfix">
-            <li class="active">SIGN IN <span></span></li>
-            <li>SIGN UP</li>
+            <li class="<?=$status=='' ?'active':'';?>">SIGN IN <span></span></li>
+            <li class="<?=$status==1 ?'active':'';?>">SIGN UP</li>
           </ol>
         </div>
         <div class="bot">
           <ul class="login_ul clearfix">
-            <li class="active">
+            <li class="<?=$status=='' ?'active':'';?>">
               <p class="bt_p">Returning Customer</p>
               <!-- 新登录 -->
               <!-- <form class="login_form lr_form"> -->
@@ -44,7 +44,7 @@
                 <!-- <input type="hidden" name="url" value='<?=$redirecturl;?>'/> -->
               </form>
             </li>
-            <li>
+            <li class="<?=$status==1 ?'active':'';?>">
            <!-- 新 注册 -->
             <div class="register" id="register-form-div" >
               <p class="bt_p">New Customers</p>
