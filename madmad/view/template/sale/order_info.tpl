@@ -187,9 +187,9 @@
                   <?php echo $product['price']; ?>
                 <?php } else { ?>
                   <?php if(empty($product['original_price'])) { ?>
-                    <?php echo $product['price']; ?><br>
+                    <?php echo $product['price']; ?>
                   <?php } else { ?>
-                    <?php echo $product['price']; ?><br>
+                    <?php echo $product['price']; ?>
                     <del><?php echo $product['original_price']; ?></del>
                   <?php } ?>
                 <?php } ?>
