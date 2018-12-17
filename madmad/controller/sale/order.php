@@ -33,6 +33,7 @@ class ControllerSaleOrder extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('sale/order');
+		$orderReading = $this->model_sale_order->getOrderReading($this->request->get['order_id']);
 
 		$this->getForm();
 	}
@@ -224,6 +225,7 @@ class ControllerSaleOrder extends Controller {
 
 		$order_total = $this->model_sale_order->getTotalOrders($filter_data);
 		$results = $this->model_sale_order->getOrders($filter_data);
+		// print_r($results);exit;
 		foreach ($results as $result) {
 			$data['orders'][] = array(
 				'order_id'       => $result['order_id'],
@@ -239,6 +241,7 @@ class ControllerSaleOrder extends Controller {
 				'date_modified'  => date('Y-m-d H:i:s', strtotime($result['date_modified'])),
 				'shipping_code'  => $result['shipping_code'],
 				'payment_method' => $result['payment_method'],
+				'reading' => $result['reading'],
 				//'payment_type'   => $result['payment_type'],
 				'view'           => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
 				'edit'           => $this->url->link('sale/order/edit', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
@@ -825,6 +828,8 @@ class ControllerSaleOrder extends Controller {
 		}
 
 		$order_info = $this->model_sale_order->getOrder($order_id);
+
+		$orderReading = $this->model_sale_order->getOrderReading($order_id);
 
 		if ($order_info) {
 			$this->load->language('sale/order');
