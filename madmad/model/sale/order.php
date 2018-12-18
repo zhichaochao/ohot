@@ -241,9 +241,12 @@ class ModelSaleOrder extends Model {
 		if (!empty($data['email'])) {
 			$sql .= " AND o.email = '" . $data['email'] . "'";
 		}
-		if ($data['reading']=='0'){
+		if(isset($data['reading'])){
+			if ($data['reading']=='0'){
 			$sql .= " AND o.reading =0";
 		}
+		}
+		
 
 		if (!empty($data['telephone'])) {
 			$sql .= "AND o.telephone like '%" . $data['telephone'] . "%'";
