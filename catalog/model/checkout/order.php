@@ -1504,4 +1504,10 @@ class ModelCheckoutOrder extends Model {
 		}
 		return true;
 	}
+	public function getOrderReading($order_id)
+
+	{
+		 $sql = "update `".DB_PREFIX."order` set reading=0 where order_id = '".$order_id."'";
+		$query = $this->query($sql);
+	}
 }
