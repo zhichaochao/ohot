@@ -175,9 +175,24 @@
                   <td class="text-left"><?php echo $column_status; ?></td>
                   <td class="text-left"><?php echo $entry_payment_method; ?></td>
                   <td class="text-right"><?php echo $column_total; ?></td>
-                  <td class="text-left"><?php echo $column_date_added; ?></td>
+
+                  <td class="text-left"><?php if ($sort == 'o.column_date_added') { ?>
+                    <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
+                    <?php } else { ?>
+                    <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?></a>
+                    <?php } ?></td>
+
+                  <!-- <td class="text-left"><?php echo $column_date_added; ?></td> -->
                   <td class="text-left"><?php echo $column_date_modified; ?></td>
-                  <td class="text-left">阅览</td>
+
+                <td class="text-left"><?php if ($sort == 'o.reading') { ?>
+                    <a href="<?php echo $sort_order_reading; ?>" class="<?php echo strtolower($order); ?>">阅览</a>
+                    <?php } else { ?>
+                   <a href="<?php echo $sort_order_reading; ?>">阅览</a> 
+                    <?php } ?></td>
+
+                  
+
                   <td class="text-right"><?php echo $column_action; ?></td>
                 </tr>
               </thead>

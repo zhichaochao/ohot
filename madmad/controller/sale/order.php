@@ -100,6 +100,7 @@ class ControllerSaleOrder extends Controller {
 		$filter_order_no = isset($this->request->get['filter_order_no']) ? $this->request->get['filter_order_no'] : null;
 		$filter_customer = isset($this->request->get['filter_customer']) ? $this->request->get['filter_customer'] : null;
 		$filter_order_status = isset($this->request->get['filter_order_status']) ? $this->request->get['filter_order_status'] : null;
+		$reading = isset($this->request->get['reading']) ? $this->request->get['reading'] : null;
 
 		$filter_total = isset($this->request->get['filter_total']) ? $this->request->get['filter_total'] : null;
 
@@ -117,8 +118,8 @@ class ControllerSaleOrder extends Controller {
 		//订单的支付类型
 		$filter_payment_method = isset($this->request->get['filter_payment_method']) ? $this->request->get['filter_payment_method'] : null;
 
-		//$sort = isset($this->request->get['sort']) ? $this->request->get['sort'] : 'o.order_id';
-        //$order = isset($this->request->get['order']) ? $this->request->get['order'] : 'DESC';
+		$sort = isset($this->request->get['sort']) ? $this->request->get['sort'] : 'o.order_id';
+        $order = isset($this->request->get['order']) ? $this->request->get['order'] : 'DESC';
         $page = isset($this->request->get['page']) ? $this->request->get['page'] : 1;
 
         $url = '';
@@ -143,6 +144,9 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['telephone'])) {
 			$url .= '&telephone=' . $this->request->get['telephone'];
 		}
+		if (isset($this->request->get['reading'])) {
+			$url .= '&reading=' . $this->request->get['reading'];
+		}
 		//添加的开始时间
 		if (isset($this->request->get['filter_date_added'])) {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
@@ -163,12 +167,14 @@ class ControllerSaleOrder extends Controller {
 		if(isset($this->request->get['filter_payment_method'])){
 			$url .= '&filter_payment_method=' . $this->request->get['filter_payment_method'];
 		}
-		/*if (isset($this->request->get['sort'])) {
+
+		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
 		if (isset($this->request->get['order'])) {
 			$url .= '&order=' . $this->request->get['order'];
-		}*/
+		}
+
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}
@@ -217,15 +223,24 @@ class ControllerSaleOrder extends Controller {
 			'filter_date_added_endtime'    => $filter_date_added_endtime,
 			'filter_date_modified_endtime' => $filter_date_modified_endtime,
 			'filter_payment_method'  => $filter_payment_method,
-			//'sort'                 => $sort,
-			//'order'                => $order,
+			'sort'                 => $sort,
+			'order'                => $order,
+			'reading'                => $reading,
 			'start'                => ($page - 1) * $this->config->get('config_limit_admin'),
 			'limit'                => $this->config->get('config_limit_admin')
 		);
+// print_r($filter_data);exit;
+  
+			if($reading=='0'){
+
+		$order_total = $this->model_sale_order->getTotalOrderss($filter_data);
+			}else{
 
 		$order_total = $this->model_sale_order->getTotalOrders($filter_data);
+			}
+
 		$results = $this->model_sale_order->getOrders($filter_data);
-		// print_r($results);exit;
+		// print_r($filter_data);exit;
 		foreach ($results as $result) {
 			$data['orders'][] = array(
 				'order_id'       => $result['order_id'],
@@ -315,7 +330,7 @@ class ControllerSaleOrder extends Controller {
 			$data['selected'] = array();
 		}
 
-		/*$url = '';
+		$url = '';
 
 		if (isset($this->request->get['filter_order_id'])) {
 			$url .= '&filter_order_id=' . $this->request->get['filter_order_id'];
@@ -349,17 +364,17 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
-		}*/
+		}
 
-		//$data['sort_order'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.order_id' . $url, true);
-		//$data['sort_order_no'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.order_no' . $url, true);
-		//$data['sort_customer'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=customer' . $url, true);
-		//$data['sort_status'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=order_status' . $url, true);
-		//$data['sort_total'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.total' . $url, true);
-		//$data['sort_date_added'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.date_added' . $url, true);
-		//$data['sort_date_modified'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.date_modified' . $url, true);
+		$data['sort_order'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.order_id' . $url, true);
+		$data['sort_order_reading'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.reading' . $url, true);
+		$data['sort_customer'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=customer' . $url, true);
+		$data['sort_status'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=order_status' . $url, true);
+		$data['sort_total'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.total' . $url, true);
+		$data['sort_date_added'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.date_added' . $url, true);
+		$data['sort_date_modified'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&sort=o.date_modified' . $url, true);
 
-		/*$url = '';
+		$url = '';
 
 		if (isset($this->request->get['filter_order_id'])) {
 			$url .= '&filter_order_id=' . $this->request->get['filter_order_id'];
@@ -391,7 +406,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->get['order'])) {
 			$url .= '&order=' . $this->request->get['order'];
-		}*/
+		}
+		if (isset($this->request->get['reading'])) {
+			$url .= '&reading=' . $this->request->get['reading'];
+		}
 
 		$pagination = new Pagination();
 		$pagination->total = $order_total;
@@ -423,8 +441,8 @@ class ControllerSaleOrder extends Controller {
 
 		$data['payment_methods'] = $payment_methods;
 
-		//$data['sort'] = $sort;
-		//$data['order'] = $order;
+		$data['sort'] = $sort;
+		$data['order'] = $order;
 
 		$this->load->model('localisation/order_status');
 

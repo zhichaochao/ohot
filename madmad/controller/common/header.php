@@ -63,7 +63,11 @@ class ControllerCommonHeader extends Controller {
 			// Complete Orders
 			$data['complete_status_total'] = $this->model_sale_order->getTotalOrders(array('filter_order_status' => implode(',', $this->config->get('config_complete_status'))));
 			$data['complete_status'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&filter_order_status=' . implode(',', $this->config->get('config_complete_status')), true);
-
+			// 未读 Orders
+			$data['complete_reading_total'] = $this->model_sale_order->getTotalOrderss(0);
+			// print_r($data['complete_reading_total']);exit;
+			$data['complete_reading'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&reading=0',true);
+			$reading_total=$data['complete_reading_total'];
 			// Returns
 			$this->load->model('sale/return');
 
@@ -113,7 +117,7 @@ class ControllerCommonHeader extends Controller {
 			$data['affiliate_total'] = $affiliate_total;
 			$data['affiliate_approval'] = $this->url->link('marketing/affiliate', 'token=' . $this->session->data['token'] . '&filter_approved=1', true);
 
-			$data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total;
+			$data['alerts'] = $customer_total + $product_total + $review_total + $return_total + $affiliate_total+$reading_total;
 
 			$data['name'] = $this->config->get('config_name');
 			

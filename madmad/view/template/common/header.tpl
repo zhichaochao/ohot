@@ -45,6 +45,9 @@
         <li class="dropdown-header"><?php echo $text_order; ?></li>
         <li><a href="<?php echo $processing_status; ?>" style="display: block; overflow: auto;"><span class="label label-warning pull-right"><?php echo $processing_status_total; ?></span><?php echo $text_processing_status; ?></a></li>
         <li><a href="<?php echo $complete_status; ?>"><span class="label label-success pull-right"><?php echo $complete_status_total; ?></span><?php echo $text_complete_status; ?></a></li>
+        <!--  -->
+        <li><a href="<?php echo $complete_reading; ?>"><span class="label label-success pull-right"><?php echo $complete_reading_total; ?></span>未读订单</a></li>
+        <!--  -->
         <li><a href="<?php echo $return; ?>"><span class="label label-danger pull-right"><?php echo $return_total; ?></span><?php echo $text_return; ?></a></li>
         <li class="divider"></li>
         <li class="dropdown-header"><?php echo $text_customer; ?></li>

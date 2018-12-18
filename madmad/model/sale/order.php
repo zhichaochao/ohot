@@ -186,8 +186,9 @@ class ModelSaleOrder extends Model {
 	}
 
 	public function getOrders($data = array()) {
+		// print_r($data);exit;
 		//$sql = "SELECT o.order_id,o.order_no, CONCAT(o.firstname, ' ', o.lastname) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status, o.shipping_code, o.total, o.currency_code, o.currency_value, o.date_added, o.date_modified FROM `" . DB_PREFIX . "order` o";
-		$sql = "SELECT o.order_id,o.order_no,o.reading, o.payment_type, o.payment_method, o.email,o.telephone, o.order_status_id as orderstatus, CONCAT(o.firstname, ' ', o.lastname) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status, o.shipping_code, o.total, o.currency_code, o.currency_value, o.date_added, o.date_modified FROM `" . DB_PREFIX . "order` o";
+		$sql = "SELECT o.order_id,o.order_no,o.reading, o.payment_type, o.payment_method, o.email,o.telephone, o.order_status_id as orderstatus, CONCAT(o.firstname, ' ', o.lastname) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status, o.shipping_code, o.reading, o.total, o.currency_code, o.currency_value, o.date_added, o.date_modified FROM `" . DB_PREFIX . "order` o";
 
 		if (isset($data['filter_order_status'])) {
 			$implode = array();
@@ -240,6 +241,9 @@ class ModelSaleOrder extends Model {
 		if (!empty($data['email'])) {
 			$sql .= " AND o.email = '" . $data['email'] . "'";
 		}
+		if ($data['reading']=='0'){
+			$sql .= " AND o.reading =0";
+		}
 
 		if (!empty($data['telephone'])) {
 			$sql .= "AND o.telephone like '%" . $data['telephone'] . "%'";
@@ -249,28 +253,34 @@ class ModelSaleOrder extends Model {
 			$sql .= " AND o.payment_method = '" . $data['filter_payment_method'] . "'";
 		}
 
-		/*$sort_data = array(
+		$sort_data = array(
 			'o.order_id',
 			'customer',
 			'order_status',
 			'o.date_added',
 			'o.date_modified',
-			'o.total'
+			'o.reading'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY o.order_id";
+			$sql .= " ORDER BY o.date_added";
 		}
+
+		// if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+		// 	$sql .= " ORDER BY " . $data['sort'];
+		// } else {
+		// 	$sql .= " ORDER BY o.reading";
+		// }
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
 			$sql .= " DESC";
 		} else {
 			$sql .= " ASC";
-		}*/
+		}
 
-		$sql .=" ORDER BY o.date_added DESC,o.date_modified DESC ";
+		// $sql .=" ORDER BY o.date_added DESC,o.date_modified DESC ";
 
 		if (isset($data['start']) || isset($data['limit'])) {
 			if ($data['start'] < 0) {
@@ -283,7 +293,7 @@ class ModelSaleOrder extends Model {
 
 			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
 		}
-
+// print_r($sql);exit;
 		$query = $this->db->query($sql);
 
 		return $query->rows;
@@ -320,6 +330,7 @@ class ModelSaleOrder extends Model {
 	}
 
 	public function getTotalOrders($data = array()) {
+		// print_r($data);exit;
 		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order`";
 
 		if (!empty($data['filter_order_status'])) {
@@ -337,6 +348,10 @@ class ModelSaleOrder extends Model {
 		} else {
 			$sql .= " WHERE order_status_id > '0'";
 		}
+		// if ($data['reading']==0) {
+		// 	$sql .= " WHERE reading=0";
+
+		// }
 
 		if (!empty($data['filter_order_id'])) {
 			$sql .= " AND order_id = '" . (int)$data['filter_order_id'] . "'";
@@ -383,6 +398,17 @@ class ModelSaleOrder extends Model {
 
 		$query = $this->db->query($sql);
 
+		return $query->row['total'];
+	}
+	public function getTotalOrderss($data) {
+		//
+		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order`";
+		// if (!empty($data)) {
+			$sql .= " WHERE reading=0";
+
+		// }
+		$query = $this->db->query($sql);
+ // print_r($sql);exit;
 		return $query->row['total'];
 	}
 
