@@ -167,7 +167,7 @@
               </ul>
               <p class="p2_text">
                 <span>Notes:</span>
-                <span>if you have any questions,do not hesitate to send us an email to rebecca@hotbeautyhair.com.</span>
+                <span>if you have any questions,do not hesitate to send us an email to <?=$email?>.</span>
               </p>
             </div>
           </div>
