@@ -54,7 +54,7 @@ class ControllerCommonHeader extends Controller {
 		if ($this->customer->isLogged()) {
 			$this->load->model('account/wishlist');
 
-			$data['account_email']=$this->customer->getFirstName()?$this->customer->getFirstName().' '.$this->customer->getFirstName():$this->customer->getEmail();
+			$data['account_email']=$this->customer->getFirstName()?$this->customer->getFirstName().' '.$this->customer->getLastName():$this->customer->getEmail();
 			$data['account_vip']=$this->customer->getGroupName();
 			
 
