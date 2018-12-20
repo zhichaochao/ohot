@@ -6,8 +6,10 @@
 //     $h = $h[0]=='m'?'m/':'catalog/';
 // }
 // HTTP
-define('HTTP_SERVERS', 'http://mad.hotbeautyhairmall.com/');
-define('HTTPS_SERVERS', 'https://mad.hotbeautyhairmall.com/');
+define('HTTP_SERVERS', 'http://cdn.hotbeautyhairmall.com/');
+define('HTTPS_SERVERS', 'https://cdn.hotbeautyhairmall.com/');
+
+define('LOGIN_SERVERS', 'https://mad.hotbeautyhairmall.com/');
 
 // define('HTTP_SERVERS', 'opencart.com/');
 // define('HTTPS_SERVERS', 'opencart.com/');
