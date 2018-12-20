@@ -274,7 +274,7 @@ public function getOrderProductImgAndNameByOrderIds($order_id) {
 		
 		$res=implode(",",$bank_receipt);
 		// print_r($res);exit;
-		 $sql = "update `".DB_PREFIX."order` set bank_receipt = '". $res."',reading=0 where order_id = '".$order_id."'";
+		 $sql = "update `".DB_PREFIX."order` set bank_receipt = '". $res."',reading=0,order_status_id=2 where order_id = '".$order_id."'";
 		 // print_r($sql);exit();
 	    $query = $this->db->query($sql);
 	    // print_r(  $query);exit();
