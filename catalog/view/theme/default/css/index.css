@@ -427,7 +427,8 @@
 	border-right: 1px solid#ccc;border-left: 1px solid#ccc;text-align: center;font-size: 0.2rem;background: #f5f5f5;}
 	.gwc_pc .div5{display: inline-block;float: left;width: 1.2rem ;height: 1.6rem;line-height: 1.6rem; position: absolute;right: 8%;text-align: center;}
 	.gwc_pc .div5 span.z_price{display: inline-block;font-size: 0.2rem;vertical-align: middle;}  
-	.gwc_pc .div6{display: inline-block;width: 0.6rem ;height: 1.6rem;line-height: 1.6rem; position: absolute;right: 0.2rem;text-align: center;}
+	.gwc_pc .div6{display: inline-block;width: 0.6rem ;height: 1.6rem;line-height: 1.6rem; position: absolute;
+	right: 0.2rem;text-align: center;z-index: 100;}
 	.gwc_pc .div6 .shop_close{display: inline-block;width: 0.22rem;height: 0.22rem;vertical-align: middle;cursor: pointer;}
 	.gwc_pc .div6 .shop_close svg{width: 0.22rem;height: 0.22rem;float: left;cursor: pointer;}
 	@media only screen and (min-width: 921px) and (max-width: 1180px) {
@@ -1610,7 +1611,7 @@
 	.pay_ul>li label{display: block;width: 100%;box-sizing: border-box;}
 	.pay_ul>li label.gx{background: url(../img/png/new_6.png) no-repeat left center/0.3rem;padding-left: 0.52rem;}
 	.pay_ul>li.active label.gx{background: url(../img/png/new_6_.png) no-repeat left center/0.3rem;}
-	.pay_ul>li label img{display: inline-block;float: left;width: 1.32rem;height: 0.4rem;margin: 0 0.15rem 0 0rem;}
+	.pay_ul>li label img{display: inline-block;float: left;width: 1.32rem;margin: 0 0.15rem 0 0rem;}
 	.pay_ul>li label p{display: inline-block;float: left;font-family: helvetica;font-size: 0.24rem;color: #333;line-height: 0.4rem;}
 	.pay_ul>li p.ts_p{color: #f33030;height: 0.32rem;line-height: 0.32rem;padding-left: 0.45rem;background: url(../img/png/new_7.png) no-repeat left center/0.32rem;
 	display: block;clear: both;margin:0.15rem 0 0.3rem 0;}
