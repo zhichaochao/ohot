@@ -143,7 +143,7 @@
 
 					<?php foreach($products as $product){ ?>
 					<li class="clearfix">
-						      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>stockout</span></div><?php }?>
+						      	<?php if($product['stock']) { ?><div class="li_modal"> <span>stockout</span></div><?php }?>
 						<div class="div1 clearfix">
 
 							<label for="" class="dx_label">
