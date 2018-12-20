@@ -44,6 +44,7 @@
 
 						<?php foreach($products as $product){ ?>
 							<li class="clearfix">
+								      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>stockout</span></div><?php }?>
 							<label for="" class="dx_label">
 									 <input checked="checked"  pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
 									 <i class="check_i active"></i>
@@ -62,6 +63,7 @@
 			                          </p>                        
 			                         <?php } ?>                         
 			                        <?php } ?>
+			                  
 								</div>
 								<div class="price clearfix">
 										<?php if($product['original_price']) { ?>
@@ -141,6 +143,7 @@
 
 					<?php foreach($products as $product){ ?>
 					<li class="clearfix">
+						      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>stockout</span></div><?php }?>
 						<div class="div1 clearfix">
 
 							<label for="" class="dx_label">
@@ -168,6 +171,7 @@
 			                          </p>                        
 			                         <?php } ?>                         
 			                        <?php } ?>
+			                            
 							</div>
 						</div>
 						<div class="div3">
@@ -542,9 +546,10 @@ function cart_removes(product_key){
 
 		function select_cart() {
 			var a = new Array();
-			$(".shop_ul input.check_input").each(function(){
-    			if($(this).attr("checked")){
-    				a.push($(this).val());
+			$(".shop_ul .check_i").each(function(){
+    			if($(this).hasClass("active")){
+    				// $(this).siblings("input").val();
+    				a.push($(this).siblings("input").val());
 
     		}
     		
