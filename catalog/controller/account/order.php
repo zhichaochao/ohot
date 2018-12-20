@@ -102,6 +102,7 @@ class ControllerAccountOrder extends Controller {
 				'cancel_href' => $this->url->link('account/order/cancel', 'order_id=' . $result['order_id'], true),
 				'repay'	      => $this->url->link('account/order/repay', 'order_id=' . $result['order_id'], true),
 				'repay_receipt'	      =>$this->url->link('account/order/repay_receipt', 'order_id=' . $result['order_id'], true),
+				'repay_receipts'	      =>$this->url->link('account/order/repay_receipts', 'order_id=' . $result['order_id'], true),
 			
 				'shipping_total'  	=> $shipping_total
 			);
@@ -264,8 +265,30 @@ class ControllerAccountOrder extends Controller {
 			$results = $this->model_account_order->getOrders(($page - 1) * $limit, $limit,$status);
 			//print_r($results);exit;
 			$data['payment_code']=$order_info['payment_code'];
-			// print_r($data['payment_code']);exit;
+
+			$payment_code = $order_info['payment_code'];
+			$data['payment_method_code'] = $payment_code;
+			$this->load->model('tool/image');
+			if(isset($payment_code) && $payment_code != 'pp_express') {
+				if ($this->config->get($payment_code . '_attributes') && $this->config->get($payment_code . '_status')) {
+					$payment_method_attributes = $this->config->get($payment_code . '_attributes');
+
+					$sort_order = [];
+					foreach ($payment_method_attributes as $payment_method_attribute) {
+						$sort_order[] = $payment_method_attribute['sort_order'];
+					}
+					array_multisort($sort_order, SORT_ASC, $payment_method_attributes);
+					$data['payment_method_attributes'] = $payment_method_attributes;
+					$data['payment_method_image'] = $this->model_tool_image->resize($this->config->get($payment_code . '_image'), 474, 154);
+				}
+			}
+			// print_r($data['payment_method_attributes']);exit;
 			$data['repay']	      = $this->url->link('account/order/repay', 'order_id=' . $order_id, true);
+
+			$data['repay_receipts']	      = $this->url->link('account/order/repay_receipts', 'order_id=' . $order_id, true);
+
+
+				// 'repay_receipts'	      =>$this->url->link('account/order/repay_receipts', 'order_id=' . $result['order_id'], true),
 			// print_r($data['repay']);exit;
 			$data['repay_receipt']	      = $this->url->link('account/order/repay_receipt', 'order_id=' . $order_id, true);
 			$data['cancel_href'] = $this->url->link('account/order/cancel', 'order_id=' . $order_id, true);
@@ -890,6 +913,23 @@ class ControllerAccountOrder extends Controller {
 	    //$order_info = $this->model_account_order->getOrder($order_id);
 
 	    $this->response->redirect($this->url->link('checkout/confirm/view_order'));
+	}
+	public function repay_receipts(){
+	   if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('account/order', '', 'SSL');
+			$this->response->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+	    if (isset($this->request->get['order_id'])) {
+	        $order_id = $this->request->get['order_id'];
+	    } else {
+	        $order_id = 0;
+	    }
+
+	    $this->session->data['order_id'] = $order_id;
+	    //$this->load->model('account/order');
+	    //$order_info = $this->model_account_order->getOrder($order_id);
+
+	    $this->response->redirect($this->url->link('checkout/confirm/view_orderr'));
 	}
 	public function receipt()
 	{

@@ -31,7 +31,7 @@
 					<div class="left">
 						<div class="new_nav pc_hide clearfix">
 							<a class="fh" href="<?php echo $continueshopping?>"></a>
-							<p>MY ORDERS</p>
+							<p>MY PRODUCTS</p>
 						</div>
 						<div class="del delete clearfix">
 							<svg t="1539766974948" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">

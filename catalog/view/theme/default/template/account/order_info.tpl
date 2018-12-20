@@ -19,6 +19,7 @@
               <?php } ?>
             </div>
             <div class="ship active clearfix">
+
               <div class="left clearfix">
                 <span class="h2_span">Shipping Address</span>
                 <div class="text clearfix">
@@ -31,6 +32,7 @@
                   <?php } ?>
                 </div>
               </div>
+
               <div class="right clearfix">
                 <span class="h2_span">Shipping Method</span>
                 <div class="text clearfix">
@@ -52,6 +54,19 @@
                  <?php } ?> 
                 </div>
               </div>
+            <?php if($payment_code !== 'pp_express' || $payment_code !== 'pp_standard') { ?>
+              <div class="right clearfix" style="margin:0 0 20px 20px;">
+                <span class="h2_span">Payment Information</span>
+                <div class="text clearfix">
+                  <?php foreach($payment_method_attributes as $attribute) { ?>     
+                        <p>
+                         <?php echo $attribute['text']; ?>:
+                         <?php echo $attribute['value']; ?>
+                        </p>
+                    <?php } ?>
+                </div>
+              </div>
+              <?php } ?>
               
             </div>
           </div>
@@ -153,8 +168,13 @@
           
          <?php } ?>
           <?php if($order_status !== 'Pending'){ ?>
-         <a class="a_btn" href="<?php echo $continue?>">GO BACK</a> 
+           <a class="a_btn" href="<?php echo $continue?>">GO BACK</a>
          <?php } ?>
+              <?php if($order_status == 'Paid'){ ?>
+                 <?php if($payment_code !== 'pp_express' || $payment_code !== 'pp_standard') { ?>
+                       <a data-toggle="tooltip" href="<?php echo $repay_receipts;?>" title="Pay"  class="a_btn">Re Submit Receipt</a>
+                  <?php } ?>
+              <?php } ?>
            <?php if($bank_receipt) { ?>
            <div class="bot clearfix" style="margin-top: 70px;">
             <div class="hui_div clearfix">
@@ -279,7 +299,7 @@
               <li><a class="pay" href="<?php echo $repay;?>">Pay</a></li>
               <?php } ?> 
 
-              <?php if($payment_code == 'tt_bank_transfer') { ?>
+              <?php if($payment_code !== 'pp_express' || $payment_code !== 'pp_standard') { ?>
                <li><a class="pay" href="<?php echo $repay_receipt;?>">ReSubmit Receipt</a></li>
                <?php } ?> 
 

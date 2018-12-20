@@ -136,8 +136,8 @@
            <!--  <img class="active" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-1.png" alt="" />
             <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/cart-2.png" alt="" /> -->
             <span class="img"></span>
-            <!-- <p><span class='cart_count'><?=$text_cart_items;?></span>CART</p> -->
-            <p>CART</p>
+            <!-- <p><span class='cart_count'><?=$text_cart_items;?></span></p> -->
+            <p>CART</p><span class='cart_count'><?=$text_cart_items;?></span>
           </a>
         </li>
         <li>

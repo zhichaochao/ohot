@@ -586,8 +586,8 @@ class ControllerCheckoutConfirm extends Controller {
 	    // print_r($order);exit();
 	    $data['order'] = $order;
 	    
-	    if(!$order || $order['order_status'] != 'Pending') 
-	        $this->response->redirect($this->url->link('account/order'));
+	    // if(!$order || $order['order_status'] != 'Pending') 
+	    //     $this->response->redirect($this->url->link('account/order'));
 
 		// $payment_code = $this->session->data['payment_code'];
 		$payment_code = $order['payment_code'];
@@ -644,8 +644,8 @@ class ControllerCheckoutConfirm extends Controller {
 	    // print_r($order);exit();
 	    $data['order'] = $order;
 	    
-	    if(!$order || $order['order_status'] != 'Pending') 
-	        $this->response->redirect($this->url->link('account/order'));
+	    // if(!$order || $order['order_status'] != 'Pending') 
+	    //     $this->response->redirect($this->url->link('account/order'));
 
 		$payment_code = $order['payment_code'];
 		$data['payment_method_code'] = $payment_code;
@@ -701,8 +701,8 @@ class ControllerCheckoutConfirm extends Controller {
 	    // print_r($order);exit();
 	    $data['order'] = $order;
 	    
-	    if(!$order || $order['order_status'] != 'Pending') 
-	        $this->response->redirect($this->url->link('account/order'));
+	    // if(!$order || $order['order_status'] != 'Pending') 
+	    //     $this->response->redirect($this->url->link('account/order'));
 
 		$payment_code = $order['payment_code'];
 		$data['payment_method_code'] = $payment_code;

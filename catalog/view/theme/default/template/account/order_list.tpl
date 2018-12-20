@@ -82,8 +82,16 @@
                   <?php if($order['payment_code'] == 'pp_standard' || $order['payment_code'] == 'pp_express') { ?>
                     &nbsp;&nbsp;<a data-toggle="tooltip" href="<?php echo $order['repay'];?>" title="Pay"  class="red">Pay</a>
                   <?php }else{ ?>
-                  <a data-toggle="tooltip" href="<?php echo $order['repay_receipt'];?>" title="Pay"  class="red">Submit Receipt</a>
+                  <a data-toggle="tooltip" href="<?php echo $order['repay_receipt'];?>" title="Pay"  class="red">Pay</a>
+                  <a data-toggle="tooltip" href="<?php echo $order['repay_receipts'];?>" title="Pay"  class="red">Submit Receipt</a>
+                  
                   <?php } ?>
+                <?php } ?>
+                <?php if($order['status'] == 'Paid'){ ?>
+                <?php if($order['payment_code'] !== 'pp_standard' || $order['payment_code'] !== 'pp_express') { ?>
+                <a data-toggle="tooltip" href="<?php echo $order['repay_receipt'];?>" title="Pay"  class="red">Pay</a>
+                <?php } ?>
+
                 <?php } ?>
                 </div>
                 

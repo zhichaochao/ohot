@@ -37,7 +37,12 @@ class ControllerCheckoutCart extends Controller {
             $data['button_shopping'] = $this->language->get('button_shopping');
             $data['button_checkout'] = $this->language->get('button_checkout');
         $data['vip'] = $this->url->link('account/vip', '', true);
-        $data['continueshopping'] = $this->url->link('product/category', '', true);
+        // $data['continueshopping'] = $this->url->link('product/category', '', true);
+        if(isset($_SERVER['HTTP_REFERER'])){
+            $data['continueshopping'] =$_SERVER['HTTP_REFERER'];
+        }else{
+            $data['continueshopping'] =$this->url->link('common/home');
+        }
  // $data['error_warning']='';
             if (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
                 $data['error_warning'] = $this->language->get('error_stock');

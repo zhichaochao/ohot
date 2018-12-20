@@ -235,10 +235,10 @@ $('.address_ul li').on('click', function() {
 
 });
 //yd
-$('.zf_1_ol li p,.zf_1_ol li span').on('click', function() {
-   $(this).parent().addClass('active').siblings().removeClass('active');
+$('.zf_1_ol li').on('click', function() {
+   $(this).addClass('active').siblings().removeClass('active');
     $.ajax({
-        url: 'index.php?route=checkout/shipping_address/changeAddress&address_id='+$(this).parent().attr('aid'),
+        url: 'index.php?route=checkout/shipping_address/changeAddress&address_id='+$(this).attr('aid'),
         dataType: 'json',
     
         success: function(json) {

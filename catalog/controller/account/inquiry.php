@@ -114,7 +114,7 @@ class ControllerAccountInquiry extends Controller {
 		//$data['results'] = sprintf($this->language->get('text_pagination'), ($inquiry_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($inquiry_total - $limit)) ? $inquiry_total : ((($page - 1) * $limit) + $limit), $inquiry_total, ceil($inquiry_total / $limit));
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($inquiry_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($inquiry_total - $limit)) ? $inquiry_total : ((($page - 1) * $limit) + $limit), $inquiry_total, ceil($inquiry_total / $limit));
 
-		//$data['continue'] 		= $this->url->link('account/account', '', 'SSL');
+		$data['account_order'] 		= $this->url->link('account/order', '', true);
 		//$data['limit']			= $limit;
 
         //删除成功提示  dyl add
