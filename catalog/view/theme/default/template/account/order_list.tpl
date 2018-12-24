@@ -62,6 +62,7 @@
                     </li>
                         <?php } }?>
                   </ol>
+                   <p class="p_slide">Total <?php echo $order['count']; ?> Pieces <i></i></p>
                 </div>
                 <a href=" <?php echo $order['view']; ?>">
                 <div class="total">
@@ -341,6 +342,24 @@ function order_removes(order_id){
       
     // }
 }
+var li_hei = $(".peo_center .m_or_det .bot_ol>li").eq(0).outerHeight(true);
+      $(".peo_center .m_or_det .bot_ol").each(function(){
+        if($(this).find("li").length>=3){
+           $(this).height(li_hei*3);
+           $(this).siblings(".p_slide").addClass("off");
+        }
+      })
+//查看更多订单items
+    $(".p_slide").click(function(){
+      if($(this).hasClass("active")){
+        $(this).siblings(".peo_center .m_or_det .bot_ol").animate({height: li_hei*3+"px"},300);
+        $(this).removeClass("active");
+      }else{
+        $(this).addClass("active");
+        let len = $(this).siblings(".peo_center .m_or_det .bot_ol").find("li").length;
+        $(this).siblings(".peo_center .m_or_det .bot_ol").animate({height: len*li_hei+"px"},500);
+      }
+    });
 </script>
 
 <div class="yd_hide"><?php echo $footer; ?></div>
