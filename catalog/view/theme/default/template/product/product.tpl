@@ -746,7 +746,7 @@ function productInfoImg(elm) {
    if(win>920){
 var product_id = "<?php echo $product_id; ?>";
     $('#button-cart').on('click', function() {
- if($('#button-cart').html()!='STOCKOUT'){
+ if($('#button-cart').html()!='SOLD OUT'){
         $.ajax({
             url: 'index.php?route=checkout/cart/add',
             type: 'post',
@@ -827,7 +827,7 @@ var product_id = "<?php echo $product_id; ?>";
 		                if ($('input[name="quantity"]').val()<json['quantity']) {
 		                    $('#button-cart').html('ADD TO SHOPPING CART&nbsp;&nbsp;&nbsp;&nbsp;>');
 		                }else{
-		                   $('#button-cart').html('STOCKOUT');
+		                   $('#button-cart').html('SOLD OUT');
 		                }
 		            }
 		        });

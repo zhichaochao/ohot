@@ -744,4 +744,27 @@ class ModelCatalogProduct extends Model {
             }
         }
     }
+
+    public function getbrowse($product_id)
+    {
+        $sql="SELECT browse from " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id. "' ";
+         $dbs= unserialize($this->config->get('db_database_data'));
+
+        $res=array();
+        // $total=0;
+        foreach ($dbs as $key => $value) {
+            // print_r($key);exit;
+            if($key==0){
+              $res[]=  $this->db->query($sql)->row;
+
+            }else{
+                $d='db'.$key;
+                $res[]=$this->$d->query($sql)->row;
+            }
+            // $total+=$res['browse'];
+        }
+        // print_r($res);exit;
+     return $res;
+
+    }
 }
