@@ -16,11 +16,8 @@
                             <input type="file" name="bank_receipt[]" id="file" multiple value="" title="Upload bank receipt" onchange="getphoto(this)" class="flie_in"/>
                               
                         </div>
-                        <!-- <div class="text_div">
-                            <img src="" alt="" />
-                            <div class="close" onclick="del_img($(this))"></div>
-                        </div> -->
-                    </div>
+                        <!-- <div class="text_div"></div>-->                    
+                        </div>
                 </div>
                 <!-- <a class="a_btn" href="javascript:;">CONTINUE</a> -->
                 <button type="submit" class="a_btn">SUBMIT</button>
@@ -59,7 +56,7 @@
 <script>
         window.onload = function(){
             $("button.a_btn").click(function(){
-               if($(".text_div>img").attr("src")==""){
+               if($(this).attr("data-i")!="1"){
                     tips("Please upload voucher.","gantan");
                     return false;
                 }else{
@@ -106,7 +103,7 @@
        function creatImg(imgRUL){
         const img = '<img src="'+imgRUL+'" alt="">';
         $(".pd_div").before(img);
-
+        $("button.a_btn").attr("data-i","1");
 
 
       }

@@ -323,6 +323,12 @@
                <?php if($order_status == 'Canceled' || $order_status == 'Completed' ){ ?>
                <li><button class="del" type="button" onclick="javascript:order_removes('<?php echo $order_id;?>');">Delete</button></li>
                <?php } ?> 
+
+               <?php if($order_status == 'Paid'){ ?>
+                 <?php if($payment_code !== 'pp_express' || $payment_code !== 'pp_standard') { ?>
+               <li><a class="pay" href="<?php echo $repay_receipts;?>">Re Submit Receipt</a></li>
+                  <?php } ?>
+              <?php } ?>
                
             </ol>
           </li>
@@ -448,7 +454,7 @@
     @media (max-width:920px) {
         .yd_footer{display: none !important;}
         .yd_footer2{display: block !important;}
-        body{margin-bottom: 1rem;}
+        body{margin-bottom: 1.8rem;background-color: #f5f5f5;}
     }
     
 </style> 
