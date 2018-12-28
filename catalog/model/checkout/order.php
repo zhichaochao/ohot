@@ -364,9 +364,14 @@ class ModelCheckoutOrder extends Model {
         /*下单成功发送邮件*/
 	public function sendEmail($order_id, $order_status_id){
 		$order_info = $this->getOrder($order_id);
+		// print_r($order_id);print_r( $order_status_id);
+		// print_r(	$order_info );
+
 		
 		// If order status is 0 then becomes greater than 0 send main html email
-		if ($order_info['order_status_id'] == 1 && $order_status_id) {
+		// ($order_info['order_status_id'] == 1||$order_info['order_status_id'] == 2)
+		if ($order_status_id) {
+			// print_r(1);exit();
 			// Check for any downloadable products
 			$download_status = false;
 		
@@ -641,9 +646,10 @@ class ModelCheckoutOrder extends Model {
 					$text .= chr(9) . '-' . $option['name'] . ' ' . (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value) . "\n";
 				}
 			}
-		
+			if (isset($order_voucher_query->rows)&&$order_voucher_query->rows) {
 			foreach ($order_voucher_query->rows as $voucher) {
 				$text .= '1x ' . $voucher['description'] . ' ' . $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']);
+			}
 			}
 		
 			$text .= "\n";
@@ -701,6 +707,7 @@ class ModelCheckoutOrder extends Model {
 			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 			$mail->setHtml($this->load->view('mail/order', $data));
 			$mail->setText($text);
+			// print_r($mail);exit();
 			$mail->send();
 			
 			// Admin Alert Mail
@@ -759,10 +766,13 @@ class ModelCheckoutOrder extends Model {
 						$text .= chr(9) . '-' . $option['name'] . ' ' . (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value) . "\n";
 					}
 				}
-		
-				foreach ($order_voucher_query->rows as $voucher) {
+				if (isset($order_voucher_query->rows)&&$order_voucher_query->rows) {
+					foreach ($order_voucher_query->rows as $voucher) {
 					$text .= '1x ' . $voucher['description'] . ' ' . $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']);
+					}
 				}
+		
+			
 		
 				$text .= "\n";
 		
@@ -1508,6 +1518,6 @@ class ModelCheckoutOrder extends Model {
 
 	{
 		 $sql = "update `".DB_PREFIX."order` set reading=0 where order_id = '".$order_id."'";
-		$query = $this->query($sql);
+		$query = $this->db->query($sql);
 	}
 }

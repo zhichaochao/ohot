@@ -125,8 +125,16 @@ class ControllerCheckoutSuccess extends Controller {
         $orders = $this->model_checkout_order->getOrderReading($this->session->data['order_id']);
 
 		if(!isset($this->session->data['send_order_id']) || $this->session->data['send_order_id'] != $order_id ){
-			$this->model_checkout_order->sendEmail($order_id, $order['order_status_id']);
-		}
+			$k=$this->model_checkout_order->sendEmail($order_id, $order['order_status_id']);
+            if ($k) {
+              print_r($k);
+            }else{
+                print_r('success');
+            }
+
+		}else{
+            print_r('error');
+        }
 	}
 	
 	/**

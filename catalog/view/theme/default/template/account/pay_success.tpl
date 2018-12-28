@@ -20,9 +20,9 @@ $(function(){
 })
 
 //触发发邮件动作
-  $(document).ready(function() {
+  // $(document).ready(function() {
       sendEmail();
-  });
+  // });
 
   //发邮件的方法
   function sendEmail(){
