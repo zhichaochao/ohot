@@ -443,11 +443,11 @@ class ModelCheckoutOrder extends Model {
 			$data['order_id'] = $order_id;
 			$data['date_added'] = date($language->get('date_format_short'), strtotime($order_info['date_added']));
 			
-			if($order_info['payment_type'] == 'Standard'){
-				$data['payment_method'] = 'PayPal Payments Standard';
-			}else if($order_info['payment_type'] == 'Express'){
-				$data['payment_method'] ='PayPal Express Checkout';
-			}
+			// if($order_info['payment_type'] == 'Standard'){
+			// 	$data['payment_method'] = 'PayPal Payments Standard';
+			// }else if($order_info['payment_type'] == 'Express'){
+				$data['payment_method'] =$order_info['payment_method'];
+			// }
 			
 			$data['shipping_method'] = $order_info['shipping_method'];
 			$data['email'] = $order_info['email'];
@@ -896,11 +896,11 @@ class ModelCheckoutOrder extends Model {
 			$data['order_id'] = $order_id;
 			$data['date_added'] = date($language->get('date_format_short'), strtotime($order_info['date_added']));
 			
-			if($order_info['payment_type'] == 'Standard'){
-				$data['payment_method'] = 'PayPal Payments Standard';
-			}else if($order_info['payment_type'] == 'Express'){
-				$data['payment_method'] ='PayPal Express Checkout';
-			}
+			// if($order_info['payment_type'] == 'Standard'){
+			// 	$data['payment_method'] = 'PayPal Payments Standard';
+			// }else if($order_info['payment_type'] == 'Express'){
+				$data['payment_method'] =$order_info['payment_method'];
+			// }
 			
 			$data['shipping_method'] = $order_info['shipping_method'];
 			$data['email'] = $order_info['email'];
