@@ -15,12 +15,12 @@
         <?php } ?>
         <?php } ?>
        <?php } } ?>
-       <li class="clearfix">
+       <!-- <li class="clearfix">
           <a href="<?php echo $promotion['url']; ?>"><div class="pic_img">
             <img src="<?php echo $promimg; ?>"/><p>
             <div class="zzc_div"></div></p>
           </div></a> 
-        </li>
+        </li> -->
       </ul>
     </div>
 <?php echo $footer; ?>
