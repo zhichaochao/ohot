@@ -10,30 +10,30 @@ class ControllerProductAllcategory extends Controller {
 		$this->load->model('tool/image');
 		
 
-			$category_image = $this->model_catalog_category->getCategoryImage();
-			//print_r($category_image);
-			$rows=$category_image->rows;
-			//print_r($rows);exit;
-			//$category_path=$this->get_category_path($nav['inside_id']);
-			foreach ($rows as $key=>$value ){
+			// $category_image = $this->model_catalog_category->getCategoryImage();
+			// //print_r($category_image);
+			// $rows=$category_image->rows;
+			// //print_r($rows);exit;
+			// //$category_path=$this->get_category_path($nav['inside_id']);
+			// foreach ($rows as $key=>$value ){
 
-			$category_info = $this->model_catalog_category->getCategory($value['category_id']);
-			//print_r($category_info);exit;
-			if ($category_info['parent_id']==0) {
-				$path= $category_info['category_id'];
-			}else{
-				$path=$this->get_category_path($category_info['parent_id']);
-				$paths= $path."_".$category_info['category_id'];
-			}
-			//print_r($paths);exit;
-			$data['rows'][$key] = array(
-					'm_image'       => $this->model_tool_image->resize($value['m_image'],710,320),
-					'name'	 		 => $value['name'],
-					'href'             => $this->url->link('product/category', 'path=' . $paths)
+			// $category_info = $this->model_catalog_category->getCategory($value['category_id']);
+			// //print_r($category_info);exit;
+			// if ($category_info['parent_id']==0) {
+			// 	$path= $category_info['category_id'];
+			// }else{
+			// 	$path=$this->get_category_path($category_info['parent_id']);
+			// 	$paths= $path."_".$category_info['category_id'];
+			// }
+			// //print_r($paths);exit;
+			// $data['rows'][$key] = array(
+			// 		'm_image'       => $this->model_tool_image->resize($value['m_image'],710,320),
+			// 		'name'	 		 => $value['name'],
+			// 		'href'             => $this->url->link('product/category', 'path=' . $paths)
 					
-				);
+			// 	);
 			 
-			}
+			// }
 			//print_r($data['rows']);exit;
 			$data['continue'] = $this->url->link('common/home');
 			$data['navs']=$this->get_navs();

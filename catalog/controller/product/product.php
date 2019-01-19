@@ -595,6 +595,32 @@ class ControllerProductProduct extends Controller {
             //购物车链接
             $data['shopping_cart'] = $this->url->link('checkout/cart');
 
+            //优惠券
+            $this->load->model('catalog/review');
+            $resultcoupon = $this->model_catalog_review->getcoupon();
+        
+
+            if($resultcoupon){
+            foreach ($resultcoupon as $key => $value) {
+
+                 $data['resultcoupon'][] = array(
+                    'coupon_id'     => $value['coupon_id'],
+                    'name'          => $value['name'],
+                    'code'          => $value['code'],
+                    'discountp'     =>floatval($value['discount']),
+                    'discount'      =>$this->currency->format(floatval($value['discount']),$this->session->data['currency']), 
+                    'type'          => $value['type'],
+                    'total'         => $this->currency->format($value['total'],$this->session->data['currency']),
+                    'date_end'      => date($this->language->get('date_format_short'), strtotime($value['date_end']))
+                    );
+            }
+            }else{
+                 $data['resultcoupon']='';
+            }
+
+
+            $data['addcoupon'] = $this->url->link('common/home/addcus', '', true);
+
             $data['column_left'] = $this->load->controller('common/column_left');
             $data['column_right'] = $this->load->controller('common/column_right');
             $data['content_top'] = $this->load->controller('common/content_top');

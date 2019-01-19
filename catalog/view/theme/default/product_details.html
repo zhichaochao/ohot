@@ -299,7 +299,7 @@
 					</div>
 					<div class="right">
 						<div class="top_text">
-							<a class="bt_a" href="###">Raw Super Double Drawn BoB</a>
+							<a class="bt_a" href="###">Raw Super Double Drawn BoB Raw Super Double Drawn BoB Raw Super Double Drawn BoB</a>
 							<p class="price"><span>$36.59</span><i>$136.00</i></p>
 							<div class="yd_hide clearfix">
 								<label class="num_label clearfix" for="">
@@ -337,7 +337,6 @@
 										</ul>
 										
 									</label>
-									
 									<label class="len_label" for="">
 										<span>Length:</span>
 										<div class="select_div">
@@ -376,9 +375,38 @@
 										<img class=" changeimage" data-image='img/jpg/size_guid.jpg' data-mimage='img/jpg/yd_size_guid.jpg'  />
 										<div class="close"></div>
 									</div>
+									<button class="xyd_btn sc_btn" href="###"><span>WISHLIST</span></button>
 								</div>
+								
 								<a class="add_shop a_btn clearfix" href="javascript:0;">ADD TO SHOPPING CART&nbsp;&nbsp;&nbsp;&nbsp;></a>
-								<button class="xyd_btn sc_btn" href="###"><span>WISHLIST</span></button>
+								<button class="conpon_btn" type="button">GET COUPON CODE</button>
+								<ul class="get_ul clearfix">
+									<li>
+										<p class="p1">Spend US $299.00 to get US $10.00 off. </p>
+										<p class="p2">(excluding shipping costs)</p>
+										<p class="p3">Expires 2019/01/31</p>
+										<button class="get_btn">Get It Now</button>
+									</li>
+									<li>
+										<p class="p1">Spend US $299.00 to get US $10.00 off. </p>
+										<p class="p2">(excluding shipping costs)</p>
+										<p class="p3">Expires 2019/01/31</p>
+										<button class="get_btn">Get It Now</button>
+									</li>
+									<li>
+										<p class="p1">Spend US $299.00 to get US $10.00 off. </p>
+										<p class="p2">(excluding shipping costs)</p>
+										<p class="p3">Expires 2019/01/31</p>
+										<button class="get_btn">Get It Now</button>
+									</li>
+									<li>
+										<p class="p1">Spend US $299.00 to get US $10.00 off. </p>
+										<p class="p2">(excluding shipping costs)</p>
+										<p class="p3">Expires 2019/01/31</p>
+										<button class="get_btn">Get It Now</button>
+									</li>
+								</ul>
+							
 							</div>
 						
 							<div class="yd_show clearfix">
@@ -386,11 +414,11 @@
 									<ol class="clearfix">
 										<li class="clearfix">
 											<span>Color:</span>
-											<em>Black</em>
+											<em class="active">Black</em>
 										</li>
 										<li class="clearfix">
 											<span>Black:</span>
-											<em>10 Inch 100g</em>
+											<em class="active">10 Inch 100g</em>
 										</li>
 									</ol>
 									<div class="price_input clearfix">
@@ -402,6 +430,33 @@
 										</div>
 									</div>
 									<span class="length">Select color and  length&nbsp;&nbsp;></span>
+									<button class="conpon_btn" type="button">GET COUPON CODE</button>
+									<ul class="get_ul clearfix">
+										<li>
+											<p class="p1">Spend US $299.00 to get US $10.00 off. </p>
+											<p class="p2">(excluding shipping costs)</p>
+											<p class="p3">Expires 2019/01/31</p>
+											<button class="get_btn">Get It Now</button>
+										</li>
+										<li>
+											<p class="p1">Spend US $299.00 to get US $10.00 off. </p>
+											<p class="p2">(excluding shipping costs)</p>
+											<p class="p3">Expires 2019/01/31</p>
+											<button class="get_btn">Get It Now</button>
+										</li>
+										<li>
+											<p class="p1">Spend US $299.00 to get US $10.00 off. </p>
+											<p class="p2">(excluding shipping costs)</p>
+											<p class="p3">Expires 2019/01/31</p>
+											<button class="get_btn">Get It Now</button>
+										</li>
+										<li>
+											<p class="p1">Spend US $299.00 to get US $10.00 off. </p>
+											<p class="p2">(excluding shipping costs)</p>
+											<p class="p3">Expires 2019/01/31</p>
+											<button class="get_btn">Get It Now</button>
+										</li>
+									</ul>
 								</div>
 							</div>
 						
@@ -787,9 +842,10 @@
 						<div class="img clearfix">
 							<img src="img/jpg/i.jpg" alt="" />
 							<span>$31.50</span>
+							<i>$131.50</i>
 						</div>
 						<ol class="attr_ol clearfix">
-							<li class="clearfix">
+							<li class="clearfix size">
 								<span class="bt_span">Color:</span>	
 								<ul class="attr_ul clearfix">
 									<li class="active">Black</li>
@@ -798,7 +854,7 @@
 									<li>Nature Black</li>
 								</ul>
 							</li>
-							<li class="clearfix">
+							<li class="clearfix size">
 								<span class="bt_span">Length:</span>	
 								<ul class="attr_ul clearfix">
 									<li class="active">10 Inch 100g</li>
@@ -1018,6 +1074,16 @@
 			</ol>
 		</div>
 		
+		<!--优惠卷弹窗-->
+		<div class="modal coupon_modal clearfix">
+			<div class="text">
+				<div class="close"></div>
+				<h1>CONGRATULATIONS!</h1>
+				<p>You’ve won</p>
+				<span class="red_btn clearfix">US $10.00</span>
+				<button type="button" class="tj_btn clearfix">OK</button>
+			</div>
+		</div>	
 	</body>
 </html>
 
@@ -1206,8 +1272,6 @@ var swiper2 = new Swiper('#swiper2', {
 			}
 		})
 		
-		
-		
 		window.onload = function(){
 			if($(".lb_text .swiper-slide").length>5){
 				$(".pro_lb_off .swiper-button-nexts").show();
@@ -1215,6 +1279,25 @@ var swiper2 = new Swiper('#swiper2', {
 			}
 		}
 		
+		//打开关闭优惠卷
+		$(".conpon_btn").click(function(e){
+			e.stopPropagation();
+			if(!$(this).hasClass("active")){
+				$(".get_ul").slideDown();
+				$(this).addClass("active");
+			}else{
+				$(".get_ul").slideUp();
+				$(this).removeClass("active");
+			}
+		})
+		
+		$(".get_btn").click(function(e){
+			e.stopPropagation();
+			$(".coupon_modal").fadeIn();
+		})
+		$(".coupon_modal .close, .coupon_modal .tj_btn").click(function(){
+			$(".coupon_modal").fadeOut();
+		})
 	})
 </script>
 		

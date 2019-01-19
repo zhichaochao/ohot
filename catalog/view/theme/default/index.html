@@ -19,10 +19,10 @@
 <script type="text/javascript">
 function googleTranslateElementInit() {
 new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+	$("body").css("top","auto").css("min-height","inherit").css("position","inherit");
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"> </script>	
-		
 
 	</head>
 	<body>
@@ -46,8 +46,8 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 							<li><a href="###">ZAR</a></li>
 						</ul>
 					</div>
-					<div id="google_translate_element"></div>
 				</div>
+				<div id="google_translate_element" class="fanyi"></div>
 				
 				<!--logo-->
 				<div class="logo">
@@ -203,7 +203,10 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 					
 					<ul>
 						<li class="clearfix">
-							<a href="###">All Hair Collections </a><img class="slide_img" src="img/png/jiahao.png" data-img="img/png/jiahao.png" data-imgs="img/png/jianhao.png"/>
+							<a href="###">All Hair Collections </a>
+							<div class="slide_img">
+								<img src="img/png/jiahao.png"/>
+							</div>
 							<ol class="yd_nav_ol clearfix">
 								<li class="clearfix"><a class="right_img" href="###">Double Drawn Funmi Hair </a></li>
 								<li class="clearfix"><a class="right_img" href="###">Virgin Brazilian Hair </a></li>
@@ -212,7 +215,10 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 							</ol>
 						</li>
 						<li class="clearfix">
-							<a href="###">Closure & Frontal & Wig </a><img class="slide_img" src="img/png/jiahao.png" data-img="img/png/jiahao.png" data-imgs="img/png/jianhao.png"/>
+							<a href="###">Closure & Frontal & Wig </a>
+							<div class="slide_img">
+								<img src="img/png/jiahao.png"/>
+							</div>
 							<ol class="yd_nav_ol clearfix">
 								<li class="clearfix"><a class="right_img" href="###">360 Frontal </a></li>
 								<li class="clearfix"><a class="right_img" href="###">Customized Bundles Wig</a></li>
@@ -231,6 +237,10 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 							<a class="right_img" href="###">Company Profile</a>
 						</li>
 					</ul>
+					<div class="tc_logo">
+						<img class="tc_img" src="img/png/new_13.png"/>
+						<a href="###">Login</a><i>/</i><a href="###">Register</a>
+					</div>
 				</div>
 				
 			</div>
@@ -263,6 +273,40 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 		
 		<!--内容-->
 		<div class="content">
+			<div class="in_coupon clearfix">
+				<ul class="clearfix">
+					<li>
+						<div class="text">
+							<div class="center">
+								<span class="pon_sp">Coupon</span>
+							</div>
+						</div>
+						<p class="bot_p">SAVE MORE WITH COUPON</p>
+					</li>
+					<li>
+						<div class="text">
+							<div class="center">
+								<span class="pon_sp">US<em>$10.00</em></span>
+								<p class="pon_p1">Orders of US $299.00+</p>
+								<p class="pon_p2">Expires 2019/01/31</p>
+							</div>
+						</div>
+						<p class="bot_p">GET COUPON NOW</p>
+					</li>
+					<li>
+						<div class="text">
+							<div class="center">
+								<span class="pon_sp">US<em>$10.00</em></span>
+								<p class="pon_p1">Orders of US $299.00+</p>
+								<p class="pon_p2">Expires 2019/01/31</p>
+							</div>
+						</div>
+						<p class="bot_p">GET COUPON NOW</p>
+					</li>
+				</ul>
+			</div>
+			
+			
 			<div class="index_text index_text1 clearfix">
 				<div class="bt">
 					<img src="img/png/bt1.png" alt="" />
@@ -838,6 +882,15 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 					</a>
 				</li>
 				<li>
+					<a href="###">
+						<!--<img class="active" src="img/png/cart-1.png" alt="" />
+						<img src="img/png/cart-2.png" alt="" />-->
+						<span class="img"></span>
+						<p>CART </p>
+						<span class="cart_count">0</span>
+					</a>
+				</li>
+				<li>
 					<a class="contact" href="javascript:0;">
 						<!--<img class="active" src="img/png/contact-1.png" alt="" />
 						<img src="img/png/contact-2	.png" alt="" />-->
@@ -849,14 +902,6 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 						<a href="###"><img src="img/jpg/fot_con2.jpg"/></a>
 						<a href="###"><img src="img/jpg/fot_con3.jpg"/></a>
 					</div>
-				</li>
-				<li>
-					<a href="###">
-						<!--<img class="active" src="img/png/cart-1.png" alt="" />
-						<img src="img/png/cart-2.png" alt="" />-->
-						<span class="img"></span>
-						<p>CART</p>
-					</a>
 				</li>
 				<li>
 					<a href="###">
@@ -962,8 +1007,16 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 			</div>
 		</div>
 	
-		
-		
+		<!--优惠卷弹窗-->
+		<div class="modal coupon_modal clearfix">
+			<div class="text">
+				<div class="close"></div>
+				<h1>CONGRATULATIONS!</h1>
+				<p>You’ve won</p>
+				<span class="red_btn clearfix">US $10.00</span>
+				<button type="button" class="tj_btn clearfix">OK</button>
+			</div>
+		</div>		
 
 
 	</body>
@@ -1052,9 +1105,15 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 	        }
 		})
 		
+		//打开关闭优惠卷
+		$(".in_coupon ul li").click(function(){
+			$(".coupon_modal").fadeIn();
+		})
+		$(".coupon_modal .close, .coupon_modal .tj_btn").click(function(){
+			$(".coupon_modal").fadeOut();
+		})
+		
 	})
-	
-	
 </script>
 	
 

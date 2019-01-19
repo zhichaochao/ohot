@@ -32,7 +32,7 @@
                     </ul>
                        <?php foreach ($totals as $k => $total) { ?>
                        <?php if($total['title']=='Total') { ?>
-                        <p class="p2"><?php echo $total['title']; ?> <span class="fr"><?php echo $total['text']; ?></span></p>
+                        <p class="p2 cous" pid="<?php echo $couponornot; ?>"><?php echo $total['title']; ?> <span class="fr"><?php echo $total['text']; ?></span></p>
                         <?php }else{ ?>
                             <p class="p1"><?php echo $total['title']; ?> <span class="fr"><?php echo $total['text']; ?></span></p>
                         <?php } ?>
@@ -97,6 +97,42 @@ function savecomment() {
         }
     })
 }
+
+$(function(){
+   var cou= $('#coupon_code').val();
+   var cous= $('.cous').attr("pid");
+   if( cou!=='' && cous==0  ){
+
+    defaultcoupon_code();
+   }
+     })
+function defaultcoupon_code() {
+  $.ajax({
+        url: 'index.php?route=extension/total/coupon/jcoupon',
+        type: 'post',
+        data: $('input#coupon_code'),
+        dataType: 'json',
+      
+        success: function(json) {
+       
+
+            if (json['redirect']) {
+                location = json['redirect'];
+            } else if (json['error']) {
+                if (json['error']) {
+                    $('#new-checkout-bot-code').html( json['error']);
+                }
+               
+            } else {
+                getOrder();
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });  
+}
+
 function coupon_code(e) {
     $.ajax({
         url: 'index.php?route=extension/total/coupon/jcoupon',

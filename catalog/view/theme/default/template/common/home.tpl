@@ -4,6 +4,33 @@
         
         <!--内容-->
         <div class="content">
+
+        <div class="in_coupon clearfix">
+            <?php if($resultcoupon){?>
+                <ul class="clearfix in_ul3">
+                <?php foreach ($resultcoupon as $coupons) { ?>
+                    <li  onclick="cuscoupon('<?=$coupons['coupon_id']?>')" >
+               
+                        <div class="text">
+                            <div class="center">
+
+                                <?php if($coupons['type']=='P') { ?>  
+                                <span class="pon_sp">US<em><?=$coupons['discountp'];?>%OFF</em></span>   
+                               <?php }else{ ?> 
+                                <span class="pon_sp">US<em><?=$coupons['discount'];?></em></span>
+                               <?php } ?> 
+                                <p class="pon_p1">Orders of US <?=$coupons['total'];?>+</p>
+                                <p class="pon_p2">Expires <?=$coupons['date_end'];?></p>
+                            </div>
+                        </div>
+                        <p class="bot_p">GET COUPON NOW</p>
+                    </li>
+                 <?php } ?>
+                </ul>
+                 <?php } ?>
+            </div>
+
+
             <div class="index_text index_text1">
                 <div class="bt">
                     <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bt1.png"  />
@@ -222,16 +249,65 @@
             </div>
             
         </div>
+
+<!-- <?php foreach ($resultcoupon as $coupons) { ?> -->
+        <div class="modal coupon_modal clearfix khpj_midal">
+
+            <div class="text">
+                <div class="close"></div>
+                <h1>CONGRATULATIONS!</h1>
+                <p>You’ve won</p>
+               <!--  <?php if($coupons['type']=='P') { ?>  
+                <span class="red_btn clearfix">US <?=$coupons['discountp'];?>%OFF</span>
+                 <!-- <span class="pon_sp">US<em><?=$coupons['discountp'];?>%OFF</em></span>    -->
+                  <!-- <?php }else{ ?>  --> 
+                  <span class="red_btn clearfix" id="price_count">UC </span>
+                  <!-- <span class="pon_sp">US<em><?=$coupons['discount'];?></em></span> -->
+               <!-- <?php } ?>  -->
+                
+                <button type="button" class="tj_btn clearfix">OK</button>
+            </div>
+        </div>
+        <!-- <?php } ?> -->
    
       
 <?php echo $footer; ?>
 
 <script>
+// $(function () {
+//        $(".in_ul3 .text").click(function(){
+//         alert(11);
+//       var index=$(this).parent().index();
+//       alert(11);
+//       // $('.pl_lb').removeClass('show');
+//       // $('.pl_lb').eq(index).addClass('show');
+//       if(!$(this).hasClass("img_null")){
+//         $(".khpj_midal").eq(index).fadeIn();
 
-// var login_time = setTimeout(gg_show,1000);
-//     function gg_show (){
-//         $(".img_modal").fadeIn();
-//     }
+//         $("body").css("overflow","hidden");
+//         var swiper = new Swiper('.pl_lb', {
+//             pagination: {
+//               el: '.swiper-pagination',
+//               type: 'fraction',
+//             },
+//             navigation: {
+//               nextEl: '.swiper-button-next',
+//               prevEl: '.swiper-button-prev',
+//             },
+//           });
+//       }
+        
+//     }); 
+
+//     $(".khpj_midal .close").click(function(){
+//       $(".khpj_midal").fadeOut();
+//       $("body").css("overflow","");
+//     });
+
+var login_time = setTimeout(gg_show,1000);
+    function gg_show (){
+        $(".img_modal").fadeIn();
+    }
 var login_time = setTimeout(gg_show,1000);
     function gg_show (){
         $(".img_modal").fadeIn();
@@ -316,8 +392,38 @@ var login_time = setTimeout(gg_show,1000);
             // }
         })
         
+        //打开关闭优惠卷
+        $(".in_coupon ul li").click(function(){
+            $(".coupon_modal").fadeIn();
+
+
+
+        })
+        $(".coupon_modal .close, .coupon_modal .tj_btn").click(function(){
+            $(".coupon_modal").fadeOut();
+        })
+        
     })
     
-    
+function cuscoupon(coupon_id) {
+            // alert(coupon_id);
+               $.ajax({
+            url:'<?php echo $addcouponcus;?>',
+            type:'post',
+            data:{'coupon_id':coupon_id},
+            dataType: 'json',
+            success:function(data){
+                // alert(data);
+                if (data.error) {
+                     window.location.href="<?php echo $login?>";
+              }else{
+                   $('.red_btn').html('UC'+data.price);     
+                
+              }
+
+            }
+
+           })
+          }
 </script>
         

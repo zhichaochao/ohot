@@ -15,6 +15,14 @@ class ControllerCheckoutConfirm extends Controller {
 		    $data['success'] = '';
 		}
 
+		$this->load->model('catalog/review');
+			// $cart_total=$this->session->data['cart_total'];
+			$resultcoupon = $this->model_catalog_review->getCustomerUseCoupon();
+			if($resultcoupon){
+				 $data['coupon']=$resultcoupon->row['code'];
+				
+			}
+			 
 		// Validate minimum quantity requirements.
 		if (!isset($this->request->get['cart_ids'])){$this->request->get['cart_ids']='';}
 		$this->session->data['cart_ids']=$this->request->get['cart_ids'];
@@ -166,13 +174,17 @@ class ControllerCheckoutConfirm extends Controller {
                         优化 by hwh end */
                         
 			$data['totals'] = array();
-			foreach ($order_data['totals'] as $total) {
-				$data['totals'][] = array(
+			$data['couponornot']=0;
+				foreach ($order_data['totals'] as $total) {
+					if($total['code']=='coupon'){
+						$data['couponornot']=1;
+					}
+					$data['totals'][] = array(
 					'title' => $total['title'],
 					'text'  => $this->currency->format($total['value'], $this->session->data['currency'])
 				);
 			}
-	
+				// print_r($data['totals']);exit;
 		$data['payment_type'] = isset($this->session->data['payment_type'])?$this->session->data['payment_type']:'';
 		$data['comment'] = isset($this->session->data['comment'])?$this->session->data['comment']:'';
 
@@ -182,7 +194,7 @@ class ControllerCheckoutConfirm extends Controller {
 
 		$this->response->setOutput($this->load->view('checkout/confirm', $data));
 	}
-	
+
 	public function savecomment() {
 	    $json = array();
 	    $this->load->language('checkout/checkout');

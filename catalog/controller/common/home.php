@@ -143,10 +143,79 @@ class ControllerCommonHome extends Controller {
         $data['video']=HTTPS_SERVERS. $homes[0]['video'];
         if(isset($this->session->data['choose'])){ $data['choose']=1; }else { $data['choose']=''; }
         // unset($this->session->data['choose']);
+        
 
+        $this->load->model('catalog/review');
+        $resultcoupon = $this->model_catalog_review->getcoupon();
+        
+
+        if($resultcoupon){
+        foreach ($resultcoupon as $key => $value) {
+
+             $data['resultcoupon'][] = array(
+                'coupon_id'     => $value['coupon_id'],
+                'name'          => $value['name'],
+                'code'          => $value['code'],
+                'discountp'     =>floatval($value['discount']),
+                'discount'      =>$this->currency->format(floatval($value['discount']),$this->session->data['currency']), 
+                'type'          => $value['type'],
+                'total'         => $this->currency->format($value['total'],$this->session->data['currency']),
+                'date_end'      => date($this->language->get('date_format_short'), strtotime($value['date_end']))
+                );
+        }
+        }else{
+             $data['resultcoupon']='';
+        }
+
+
+
+
+        $data['addcouponcus'] = $this->url->link('common/home/addcus', '', true);
+        $data['login'] = $this->url->link('account/login');
         $data['choose_url']=$this->url->link('common/home/set_session', '', true);
 		$this->response->setOutput($this->load->view('common/home', $data));
 	}
+
+
+    public function addcus() {
+
+        $json = array();
+        if ($this->customer->isLogged()) {
+
+        if (isset($this->request->post['coupon_id'])) {
+            $coupon_id = $this->request->post['coupon_id'];
+        }
+// print_r($coupon_id);exit;
+        $this->load->model('catalog/review');
+
+        $coupon_info = $this->model_catalog_review->getcoupons($coupon_id);
+// print_r($coupon_info);exit;
+        if ($coupon_info) {
+            
+                // Edit customers cart
+                $this->load->model('catalog/review');
+
+               $result= $this->model_catalog_review->addcoupon($this->request->post['coupon_id']);
+                // print_r($result);exit;
+                $json['price'] = $this->currency->format(floatval($result['price']),$this->session->data['currency']);
+                $json['success'] = "success";
+
+                // $json['total'] =  $this->model_catalog_review->getTotalsThumbs($this->request->post['review_id']);
+                // print_r($json['total']);
+           
+            }
+
+         } else {
+
+                $json['error'] =  $this->url->link('account/login', '', true);
+            }
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
+
+
+
     protected function get_category_path($category_id)
     {
         $this->load->model('catalog/category');

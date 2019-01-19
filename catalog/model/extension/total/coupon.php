@@ -198,6 +198,10 @@ class ModelExtensionTotalCoupon extends Model {
 
 			if ($coupon_info) {
 				$this->db->query("INSERT INTO `" . DB_PREFIX . "coupon_history` SET coupon_id = '" . (int)$coupon_info['coupon_id'] . "', order_id = '" . (int)$order_info['order_id'] . "', customer_id = '" . (int)$order_info['customer_id'] . "', amount = '" . (float)$order_total['value'] . "', date_added = NOW()");
+
+
+
+				$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_coupon` WHERE coupon_id = '" . (int)$$coupon_info['coupon_id'] . "' AND customer_id='" . (int)$this->customer->getId() . "'");
 			} else {
 				return $this->config->get('config_fraud_status_id');
 			}

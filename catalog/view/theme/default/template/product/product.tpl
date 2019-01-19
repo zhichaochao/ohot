@@ -159,15 +159,50 @@
 									<img class=" changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
 									<div class="close"></div>
 								</div>
+								<button class="xyd_btn  <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"><span>WISHLIST</span></button>
 							</div>
-							<?php if (!isset($logins)) { ?>
+
+								<?php if (!isset($logins)) { ?>
+
+								<a class="a_btn clearfix" href="<?php echo $login; ?>">PLEASE LOGIN FIRST&nbsp;&nbsp;&nbsp;&nbsp;></a>
+								<?php }else{ ?>
+						
+								<a class="a_btn clearfix" id="button-cart" >ADD TO SHOPPING CART&nbsp;&nbsp;&nbsp;&nbsp;></a>
+								<?php }?>
+
+								<!--  -->
+								
+
+								<?php if($resultcoupon){?>	
+								<button class="conpon_btn" type="button">GET COUPON CODE</button>
+								<ul class="get_ul clearfix">
+
+									<?php foreach ($resultcoupon as $coupons) { ?>
+									<li  >
+										<?php if($coupons['type']=='P') { ?>  
+										<p class="p1">Spend US <?=$coupons['total'];?> to get US <?=$coupons['discountp'];?>%OFF. </p>
+		                                <!-- <span class="pon_sp">US<em><?=$coupons['discountp'];?>%OFF</em></span>    -->
+		                               	<?php }else{ ?> 
+		                                <p class="p1">Spend US <?=$coupons['total'];?> to get US <?=$coupons['discount'];?> off. </p>
+		                               	<?php } ?>
+										<p class="p2">(excluding shipping costs)</p>
+										<p class="p3">Expires <?=$coupons['date_end'];?></p>
+										<button class="get_btn" onclick="coupon('<?=$coupons['coupon_id']?>')">Get It Now</button>
+									</li>
+									<?php }?>
+								</ul>
+									<?php }?>
+
+
+
+							<!-- <?php if (!isset($logins)) { ?>
 							<a class="a_btn clearfix" href="<?php echo $login; ?>">PLEASE LOGIN FIRST&nbsp;&nbsp;&nbsp;&nbsp;></a>
 							<?php }else{ ?>
 							<a class="a_btn clearfix" id="button-cart" >ADD TO SHOPPING CART&nbsp;&nbsp;&nbsp;&nbsp;></a>
-							<?php }?>
-							<button class="xyd_btn <?=$wishlist==1 ?'off':'';?>"
+							<?php }?> -->
+							<!-- <button class="xyd_btn <?=$wishlist==1 ?'off':'';?>"
 							 
-			              onclick="wishlist('<?php echo $product_id; ?>',this);"><span>WISHLIST</span></button>
+			              onclick="wishlist('<?php echo $product_id; ?>',this);"><span>WISHLIST</span></button> -->
 						</div>
 
 						<div class="yd_show clearfix">
@@ -231,6 +266,26 @@
 										</div>
 									</div>
 									<span class="length">Select Color And  Length&nbsp;&nbsp;></span>
+									<?php if($resultcoupon){?>
+									<button class="conpon_btn" type="button">GET COUPON CODE</button>
+									<ul class="get_ul clearfix">
+
+									<?php foreach ($resultcoupon as $coupons) { ?>
+									<li>
+										<?php if($coupons['type']=='P') { ?>  
+										<p class="p1">Spend US <?=$coupons['total'];?> to get US <?=$coupons['discountp'];?>%OFF. </p>
+		                                <!-- <span class="pon_sp">US<em><?=$coupons['discountp'];?>%OFF</em></span>    -->
+		                               	<?php }else{ ?> 
+		                                <p class="p1">Spend US <?=$coupons['total'];?> to get US <?=$coupons['discount'];?> off. </p>
+		                               	<?php } ?>
+										<p class="p2">(excluding shipping costs)</p>
+										<p class="p3">Expires <?=$coupons['date_end'];?></p>
+										<button class="get_btn"  onclick="yd_coupon('<?=$coupons['coupon_id']?>')">Get It Now</button>
+									</li>
+									<?php }?>
+									</ul>
+									<?php }?>
+									<!--  -->
 								</div>
 							</div>
 
@@ -499,6 +554,16 @@
 			</div>
 		
 		</div>
+				<!--优惠卷弹窗-->
+		<div class="modal coupon_modal clearfix">
+			<div class="text">
+				<div class="close"></div>
+				<h1>CONGRATULATIONS!</h1>
+				<p>You’ve won</p>
+				<span class="red_btn clearfix ydred_btn"></span>
+				<button type="button" class="tj_btn clearfix">OK</button>
+			</div>
+		</div>	
 <!-- 新 -->
 <script>
 
@@ -855,6 +920,41 @@ var product_id = "<?php echo $product_id; ?>";
     }
     }
     
+
+ function coupon(coupon_id) {
+            // alert(coupon_id);
+               $.ajax({
+            url:'<?php echo $addcoupon ;?>',
+            type:'post',
+            data:{'coupon_id':coupon_id},
+            dataType: 'json',
+            success:function(data){
+            	if (data.error) {
+                     window.location.href="<?php echo $login?>";
+              }else{
+                   $('.red_btn').html('US'+data.price);     
+                
+              }
+            }
+           })
+          }   
+function yd_coupon(coupon_id) {
+            // alert(coupon_id);
+               $.ajax({
+            url:'<?php echo $addcoupon ;?>',
+            type:'post',
+            data:{'coupon_id':coupon_id},
+            dataType: 'json',
+            success:function(data){
+            	if (data.error) {
+                     window.location.href="<?php echo $login?>";
+              }else{
+                   $('.ydred_btn').html('US'+data.price);     
+                
+              }
+            }
+           })
+          }           
 </script>
 
 <script type="text/javascript">
@@ -935,6 +1035,26 @@ var product_id = "<?php echo $product_id; ?>";
 		   		$(".cart_tc").removeClass("active");
 		   		$("body").css("overflow","");
 			}
+		})
+
+		//打开关闭优惠卷
+		$(".conpon_btn").click(function(e){
+			e.stopPropagation();
+			if(!$(this).hasClass("active")){
+				$(".get_ul").slideDown();
+				$(this).addClass("active");
+			}else{
+				$(".get_ul").slideUp();
+				$(this).removeClass("active");
+			}
+		})
+		
+		$(".get_btn").click(function(e){
+			e.stopPropagation();
+			$(".coupon_modal").fadeIn();
+		})
+		$(".coupon_modal .close, .coupon_modal .tj_btn").click(function(){
+			$(".coupon_modal").fadeOut();
 		})
 </script>
 <div class="yd_hide"><?php echo $footer; ?></div>
