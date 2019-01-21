@@ -18,9 +18,11 @@ class ControllerCheckoutConfirm extends Controller {
 		$this->load->model('catalog/review');
 			// $cart_total=$this->session->data['cart_total'];
 			$resultcoupon = $this->model_catalog_review->getCustomerUseCoupon();
-			if($resultcoupon){
+			// print_r($resultcoupon);exit;
+			if(!empty($resultcoupon->row)){
 				 $data['coupon']=$resultcoupon->row['code'];
-				
+			}else{
+				$data['coupon']='';
 			}
 			 
 		// Validate minimum quantity requirements.

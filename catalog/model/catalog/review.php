@@ -217,7 +217,9 @@ class ModelCatalogReview extends Model {
 		$query = $this->db->query("SELECT  * FROM " .DB_PREFIX. "customer_coupon WHERE customer_id= '" . (int)$this->customer->getId() . "'ORDER BY price DESC LIMIT 1");
 		$resquery =$query->row;
 		if(!empty($resquery)){
-			$querys = $this->db->query("SELECT code FROM " . DB_PREFIX . "coupon WHERE coupon_id = '" . $resquery['coupon_id'] . "'  AND status='1'");
+			$querys = $this->db->query("SELECT code FROM " . DB_PREFIX . "coupon c WHERE coupon_id = '" . $resquery['coupon_id'] . "'  AND status='1' AND c.date_end >= NOW()");
+			// $querys = $this->db->query("SELECT code FROM " . DB_PREFIX . "coupon c WHERE coupon_id = '" . $resquery['coupon_id'] . "'  AND status='1' AND c.date_end >= NOW() AND c.total <= '" .$cart_total."'");
+			// print_r("SELECT code FROM " . DB_PREFIX . "coupon c WHERE coupon_id = '" . $resquery['coupon_id'] . "'  AND status='1' AND c.date_end >= NOW() AND c.total <= '" .$cart_total."'");exit;
 			return $querys;
 		}
 			
