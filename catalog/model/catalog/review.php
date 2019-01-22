@@ -214,15 +214,8 @@ class ModelCatalogReview extends Model {
 	//    [total] => 5
 	//     ) 
 	public function getCustomerUseCoupon() {
-		$query = $this->db->query("SELECT  * FROM " .DB_PREFIX. "customer_coupon WHERE customer_id= '" . (int)$this->customer->getId() . "'ORDER BY price DESC LIMIT 1");
-		$resquery =$query->row;
-		if(!empty($resquery)){
-			$querys = $this->db->query("SELECT code FROM " . DB_PREFIX . "coupon c WHERE coupon_id = '" . $resquery['coupon_id'] . "'  AND status='1' AND c.date_end >= NOW()");
-			// $querys = $this->db->query("SELECT code FROM " . DB_PREFIX . "coupon c WHERE coupon_id = '" . $resquery['coupon_id'] . "'  AND status='1' AND c.date_end >= NOW() AND c.total <= '" .$cart_total."'");
-			// print_r("SELECT code FROM " . DB_PREFIX . "coupon c WHERE coupon_id = '" . $resquery['coupon_id'] . "'  AND status='1' AND c.date_end >= NOW() AND c.total <= '" .$cart_total."'");exit;
-			return $querys;
-		}
-			
+		$query = $this->db->query("SELECT code FROM " . DB_PREFIX ."coupon c LEFT JOIN " .DB_PREFIX. "customer_coupon cc ON (c.coupon_id=cc.coupon_id) WHERE cc.customer_id= '" . (int)$this->customer->getId() . "'AND c.status='1' AND c.status_c='1' AND c.date_end >= NOW() ORDER BY price DESC LIMIT 1");
+		return $query;	
 	}
 
 }
