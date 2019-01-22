@@ -6,7 +6,7 @@
         <div class="content">
 
         <div class="in_coupon clearfix">
-            <?php if($resultcoupon){?>
+            <?php if(!empty($resultcoupon)&&$resultcoupon){?>
                 <ul class="clearfix in_ul3">
                 <?php foreach ($resultcoupon as $coupons) { ?>
                     <li  onclick="cuscoupon('<?=$coupons['coupon_id']?>')" >
