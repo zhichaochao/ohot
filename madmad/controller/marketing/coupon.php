@@ -551,6 +551,14 @@ class ControllerMarketingCoupon extends Controller {
 			$data['status'] = true;
 		}
 
+		if (isset($this->request->post['status_c'])) {
+			$data['status_c'] = $this->request->post['status_c'];
+		} elseif (!empty($coupon_info)) {
+			$data['status_c'] = $coupon_info['status_c'];
+		} else {
+			$data['status_c'] = true;
+		}
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

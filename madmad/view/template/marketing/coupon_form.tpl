@@ -198,6 +198,21 @@
                   </select>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-status">方式</label>
+                <div class="col-sm-10">
+                  <select name="status_c" id="input-status_c" class="form-control">
+                    <?php if ($status_c) { ?>
+                    <option value="1" >领取</option>
+                    <option value="0" selected="selected">输入</option>
+                    <?php } else { ?>
+                    <option value="1" selected="selected">领取</option>
+                    <option value="0" >输入</option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
             </div>
             <?php if ($coupon_id) { ?>
             <div class="tab-pane" id="tab-history">

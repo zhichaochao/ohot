@@ -417,7 +417,7 @@ function cuscoupon(coupon_id) {
                 if (data.error) {
                      window.location.href="<?php echo $login?>";
               }else{
-                   $('.red_btn').html('UC'+data.price);     
+                   $('.red_btn').html('US'+data.price);     
                 
               }
 

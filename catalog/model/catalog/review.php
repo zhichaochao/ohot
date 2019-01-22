@@ -145,7 +145,7 @@ class ModelCatalogReview extends Model {
 		// if ($limit==3) {
 		// 	$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "coupon o WHERE status='1' AND o.uses_total != 0  AND o.date_end >= NOW() ORDER BY o.coupon_id desc  limit $limit ");
 		// }else{
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "coupon o WHERE status='1' AND o.uses_total != 0  AND o.date_end >= NOW() ORDER BY o.coupon_id desc   ");
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "coupon o WHERE status='1' AND o.uses_total != 0  AND o.date_end >= NOW() AND o.status_c = 1 ORDER BY o.coupon_id desc   ");
 		// }
 		
 
