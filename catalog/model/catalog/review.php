@@ -218,4 +218,42 @@ class ModelCatalogReview extends Model {
 		return $query;	
 	}
 
+	public function getCustomerCoupon() {
+		// $limit='';
+		// if ($filter_data['limit']>0) {
+		// 	$limit.=' limit '.$filter_data['start'].','.$filter_data['limit'];
+		// }
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_coupon cc LEFT JOIN " .DB_PREFIX. "coupon c ON (c.coupon_id=cc.coupon_id) WHERE cc.customer_id = '" . (int)$this->customer->getId(). "' AND c.status='1' AND c.date_end >= NOW()");
+		// print_r($query);exit;
+		// $query->rows;
+		if(!empty($query->rows)){
+			foreach ($query->rows as $result) {
+			$coupon_data[$result['coupon_id']] = $this->getcoupons($result['coupon_id']);
+		}
+		return $coupon_data;
+		}else{
+		return false;
+		}
+		
+		
+	}
+	public function getCustomerCouponun() {
+		// $limit='';
+		// if ($filter_data['limit']>0) {
+		// 	$limit.=' limit '.$filter_data['start'].','.$filter_data['limit'];
+		// }
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_coupon cc LEFT JOIN " .DB_PREFIX. "coupon c ON (c.coupon_id=cc.coupon_id) WHERE cc.customer_id = '" . (int)$this->customer->getId(). "' AND c.status='1' AND c.date_end < NOW()");
+		// print_r($query);exit;
+		// $query->rows;
+		if(!empty($query->rows)){
+			foreach ($query->rows as $result) {
+			$coupon_data[$result['coupon_id']] = $this->getcoupons($result['coupon_id']);
+		}
+		return $coupon_data;
+		}else{
+		return false;
+		}
+		
+		
+	}
 }

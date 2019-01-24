@@ -289,7 +289,8 @@
 	.get_ul>li>p.p3{color: #999}
 	.get_ul .get_btn{width: 1.6rem;height: 0.4rem;background: #fa3404;font-size: 0.16rem;
 	border-radius: 5px;color: #fff;border: none;display: block;position: absolute;top: 0.35rem;right: 0rem;}
-	  
+	.get_ul .get_btn:hover{background: #fc532a;} 
+	.get_ul .get_btn.active{background: #ccc;}
 	  
 	.pro_det_content .right .xyd_btn{width: 7.3vw;border: 1px solid #ccc;color: #333;height: 2.25vw;line-height: 2.25vw;
 	font-size: 0.83vw;padding-top: 0;float: left;margin:1.77vw 0 0 0 ;
@@ -994,6 +995,21 @@
 		 background: -webkit-linear-gradient(left, #fa4940 , #fa4940);background: -o-linear-gradient(right, #fa4940, #fa4940);
 	  background: -moz-linear-gradient(right, #fa4940, #fa4940); background: linear-gradient(to right, #fa4940 , #fa4940);
 	}
+	.mycoupon{float: left;width: 57.3vw;padding: 0 0.25rem;margin-top: 0.6rem;}
+	.mycoupon ul,.mycoupon ol{display:block;width: 100%;overflow: hidden;padding-bottom: 0.4rem;}
+	.mycoupon li{width:15vw;float: left;margin-right: 2.08vw;text-align: center;cursor: pointer;min-width: 2rem;}
+	.mycoupon li>.text{height: 1.2rem;line-height: 1.2rem; border-radius: 10px 10px 0 0;
+	background: #f33507 url(../img/png/valid.png) no-repeat right -20px top/4.16vw;}
+	.mycoupon li>.text .center{vertical-align: middle;display: inline-block;}
+	.mycoupon li>.text .pon_sp{font-size: 0.3rem;color: #fff4c9;line-height: 0.34rem;display: block;}
+	.mycoupon li>.text .pon_sp em{margin-left: 0.2rem;}
+	.mycoupon li>.text .pon_p1{font-size: 0.16rem;color: #fff;line-height: 0.2rem;display: block;}
+	.mycoupon li>.bot_p{font-size: 0.16rem;color: #999;border-radius: 0 0 10px 10px;background: #fff;
+	height: 0.4rem;line-height: 0.4rem;}
+	.mycoupon .expired{padding-top: 0.4rem;border-top: 1px solid #e3e3e3;}
+	.mycoupon .expired li>.text{background: #ccc url(../img/png/expired.png) no-repeat right -20px top/4.16vw;}
+	.mycoupon .expired li>.text .pon_sp{color: #fff;}
+	
 	
 	/*m_or_det*/ 
 	.peo_center .m_or_det h1{font-size: 24px;margin-top: 35px;margin-bottom: 15px;line-height: 30px;height: 30px;}
@@ -1232,7 +1248,7 @@
 	.view_order .bot .total p{font-size: 16px;display: block;float: right;width: 270px;clear: both;padding-top: 20px;line-height: 20px;margin-right: 20px;}
 	.view_order .bot .total p .p_span{font-weight: bold;font-size: 20px;}
 	.view_order .text_con a.a_btn{font-size: 16px;color: #fff;border-radius: 4px;height: 40px;line-height: 40px;display: block;
-	float: right;margin:24px 0 0 0;width: 200px;text-align: center;
+	float: right;margin:24px 0 0 40px;width: 200px;text-align: center;
 	 background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);
 	}
@@ -3222,6 +3238,7 @@ text-align: center;cursor: pointer;}
 .in_coupon>ul>li>.text{background: #f33507;height: 1.2rem;line-height: 1.2rem; border-radius: 10px 10px 0 0;}
 .in_coupon>ul>li>.text .center{vertical-align: middle;display: inline-block;}
 .in_coupon>ul>li>.text .pon_sp{font-size: 0.3rem;color: #fff4c9;line-height: 0.34rem;display: block;}
+.in_coupon>ul>li>.text .pon_sp em{margin-left: 0.1rem;}
 .in_coupon>ul>li>.text .pon_p1{font-size: 0.16rem;color: #fff;line-height: 0.2rem;display: block;}
 .in_coupon>ul>li>.text .pon_p2{font-size: 0.16rem;color: #ff9999;line-height: 0.2rem;display: block;}
 .in_coupon>ul>li>.bot_p{font-size: 0.16rem;color: #333;border-radius: 0 0 10px 10px;background: #d6d6d6;

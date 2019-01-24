@@ -283,20 +283,20 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 						</div>
 						<p class="bot_p">SAVE MORE WITH COUPON</p>
 					</li>
-					<li>
+					<li class="coupon_li">
 						<div class="text">
 							<div class="center">
-								<span class="pon_sp">US<em>$10.00</em></span>
+								<span class="pon_sp">US<em>$30.00</em></span>
 								<p class="pon_p1">Orders of US $299.00+</p>
 								<p class="pon_p2">Expires 2019/01/31</p>
 							</div>
 						</div>
 						<p class="bot_p">GET COUPON NOW</p>
 					</li>
-					<li>
+					<li class="coupon_li">
 						<div class="text">
 							<div class="center">
-								<span class="pon_sp">US<em>$10.00</em></span>
+								<span class="pon_sp">US<em>$50.00</em></span>
 								<p class="pon_p1">Orders of US $299.00+</p>
 								<p class="pon_p2">Expires 2019/01/31</p>
 							</div>
@@ -1013,7 +1013,7 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 				<div class="close"></div>
 				<h1>CONGRATULATIONS!</h1>
 				<p>You’ve won</p>
-				<span class="red_btn clearfix">US $10.00</span>
+				<span class="red_btn clearfix">US <em>$10.00</em></span>
 				<button type="button" class="tj_btn clearfix">OK</button>
 			</div>
 		</div>		
@@ -1106,8 +1106,9 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 		})
 		
 		//打开关闭优惠卷
-		$(".in_coupon ul li").click(function(){
-			$(".coupon_modal").fadeIn();
+		$(".coupon_li").click(function(){
+			$(".coupon_modal .red_btn em").text($(this).find(".pon_sp em").text());
+			$(".coupon_modal").show();
 		})
 		$(".coupon_modal .close, .coupon_modal .tj_btn").click(function(){
 			$(".coupon_modal").fadeOut();

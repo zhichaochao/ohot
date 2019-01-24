@@ -9,7 +9,7 @@
             <?php if(!empty($resultcoupon)&&$resultcoupon){?>
                 <ul class="clearfix in_ul3">
                 <?php foreach ($resultcoupon as $coupons) { ?>
-                    <li  onclick="cuscoupon('<?=$coupons['coupon_id']?>')" >
+                    <li  class="coupon_li"  onclick="cuscoupon('<?=$coupons['coupon_id']?>')" >
                
                         <div class="text">
                             <div class="center">
@@ -261,7 +261,7 @@
                 <span class="red_btn clearfix">US <?=$coupons['discountp'];?>%OFF</span>
                  <!-- <span class="pon_sp">US<em><?=$coupons['discountp'];?>%OFF</em></span>    -->
                   <!-- <?php }else{ ?>  --> 
-                  <span class="red_btn clearfix" id="price_count">UC </span>
+                  <span class="red_btn clearfix" id="price_count">UC <em></em> </span>
                   <!-- <span class="pon_sp">US<em><?=$coupons['discount'];?></em></span> -->
                <!-- <?php } ?>  -->
                 
@@ -393,11 +393,9 @@ var login_time = setTimeout(gg_show,1000);
         })
         
         //打开关闭优惠卷
-        $(".in_coupon ul li").click(function(){
-            $(".coupon_modal").fadeIn();
-
-
-
+        $(".coupon_li").click(function(){
+            $(".coupon_modal .red_btn em").text($(this).find(".pon_sp em").text());
+            $(".coupon_modal").show();
         })
         $(".coupon_modal .close, .coupon_modal .tj_btn").click(function(){
             $(".coupon_modal").fadeOut();
@@ -417,7 +415,7 @@ function cuscoupon(coupon_id) {
                 if (data.error) {
                      window.location.href="<?php echo $login?>";
               }else{
-                   $('.red_btn').html('US'+data.price);     
+                   // $('.red_btn').html('US'+data.price);     
                 
               }
 

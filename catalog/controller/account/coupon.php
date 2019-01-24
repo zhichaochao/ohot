@@ -22,7 +22,49 @@ class ControllerAccountCoupon extends Controller {
 		    $data['coupon'] = '';
 		}
 		$data['coupons']=$this->url->link('account/coupon', '', true);
-		
+
+
+		$this->load->model('catalog/review');
+		$resultcoupon = $this->model_catalog_review->getCustomerCoupon();
+		// print_r($resultcoupon);exit;
+		if($resultcoupon){
+			foreach ($resultcoupon as $result) {
+				// $time=time();
+				$data['rescoupons'][] = array(
+					'coupon_id'=>$result['coupon_id'],
+					'name'=>$result['name'],
+					// 'type'=>$result['type'],
+					// 'usecoupon'=>$result['usecoupon'],
+			 		// 'discountp' 			=>floatval($result['discount']),
+			 		'discount' 		=>$this->currency->format(floatval($result['discount']),$this->session->data['currency']),
+			 		'total' 	=> $this->currency->format(floatval($result['total']),$this->session->data['currency']),
+					// 'status' =>  strtotime($result['date_end'])>$time ? 0:1,
+					'date_end' => date($this->language->get('date_format_short'), strtotime($result['date_end']))
+					);
+
+			}
+		}
+
+		$resultcouponun = $this->model_catalog_review->getCustomerCouponun();
+		// print_r($resultcouponun);exit;
+		if($resultcouponun){
+			foreach ($resultcouponun as $result) {
+				// $time=time();
+				$data['rescouponsun'][] = array(
+					'coupon_id'=>$result['coupon_id'],
+					'name'=>$result['name'],
+					// 'type'=>$result['type'],
+					// 'usecoupon'=>$result['usecoupon'],
+			 		// 'discountp' 			=>floatval($result['discount']),
+			 		'discount' 		=>$this->currency->format(floatval($result['discount']),$this->session->data['currency']),
+			 		'total' 	=> $this->currency->format(floatval($result['total']),$this->session->data['currency']),
+					// 'status' =>  strtotime($result['date_end'])>$time ? 0:1,
+					'date_end' => date($this->language->get('date_format_short'), strtotime($result['date_end']))
+					);
+
+			}
+		}
+		// print_r($data['rescouponsun']);exit;
 		//引入该页面的css样式
 		// $this->document->addStyle('catalog/view/theme/default/stylesheet/account/account_address.css');
 		

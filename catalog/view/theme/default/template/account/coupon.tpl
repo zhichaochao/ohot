@@ -31,6 +31,42 @@
             <input type="text"  id="coupon_code" name="coupon" value="<?php echo @$coupon; ?>" placeholder="enter a Coupon Code"/>
           <a class="a_btn"  onclick="coupon_code(this)">ADD COUPON&nbsp;&nbsp;&nbsp;></a>
         </div>
+
+
+
+        <div class="mycoupon clearfix">
+<?php if(isset($rescoupons)){ ?> 
+          <ul class="valid">
+    <?php foreach ($rescoupons as $coupon) { ?>
+            <li>
+              <div class="text">
+                <div class="center">
+                  <span class="pon_sp">US<em><?php echo $coupon['discount']; ?></em></span>
+                  <p class="pon_p1">Orders of US <?php echo $coupon['total']; ?>+</p>
+                </div>
+              </div>
+              <p class="bot_p">Expires <?php echo $coupon['date_end']; ?></p>
+            </li>
+            <?php } ?>
+          </ul>
+<?php } ?>
+
+<?php if(isset($rescouponsun)){ ?> 
+          <ul class="expired">
+<?php foreach ($rescouponsun as $coupon) { ?>
+            <li>
+              <div class="text">
+                <div class="center">
+                  <span class="pon_sp">US<em><?php echo $coupon['discount']; ?></em></span>
+                  <p class="pon_p1">Orders of US <?php echo $coupon['total']; ?>+</p>
+                </div>
+              </div>
+              <p class="bot_p">Expires <?php echo $coupon['date_end']; ?></p>
+            </li>
+<?php } ?>
+          </ul>
+<?php } ?>
+        </div>
         
   
         
