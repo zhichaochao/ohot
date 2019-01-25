@@ -287,7 +287,7 @@ class ControllerCheckoutCart extends Controller {
             }
             // print_r($products);exit;
             $data['cart_total']=$this->currency->format($cart_total, $this->session->data['currency']);
-
+            $this->session->data['cart_total']=$cart_total;
             $data['paypal_checkout'] = HTTP_SERVER.'index.php?route=extension/payment/pp_express/express';
             $data['step_cart'] = $this->language->get('step_cart');
             $data['step_checkout'] = $this->language->get('step_checkout');

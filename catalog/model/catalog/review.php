@@ -213,8 +213,8 @@ class ModelCatalogReview extends Model {
 	//   [coupon_id] => 25
 	//    [total] => 5
 	//     ) 
-	public function getCustomerUseCoupon() {
-		$query = $this->db->query("SELECT code FROM " . DB_PREFIX ."coupon c LEFT JOIN " .DB_PREFIX. "customer_coupon cc ON (c.coupon_id=cc.coupon_id) WHERE cc.customer_id= '" . (int)$this->customer->getId() . "'AND c.status='1' AND c.status_c='1' AND c.date_end >= NOW() ORDER BY price DESC LIMIT 1");
+	public function getCustomerUseCoupon($cart_total) {
+		$query = $this->db->query("SELECT code FROM " . DB_PREFIX ."coupon c LEFT JOIN " .DB_PREFIX. "customer_coupon cc ON (c.coupon_id=cc.coupon_id) WHERE cc.customer_id= '" . (int)$this->customer->getId() . "'AND c.status='1' AND c.status_c='1' AND c.date_end >= NOW() AND c.total <='".$cart_total."' ORDER BY price DESC LIMIT 1");
 		return $query;	
 	}
 

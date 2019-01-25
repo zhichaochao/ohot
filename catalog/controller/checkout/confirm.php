@@ -16,9 +16,9 @@ class ControllerCheckoutConfirm extends Controller {
 		}
 
 		$this->load->model('catalog/review');
-			// $cart_total=$this->session->data['cart_total'];
-			$resultcoupon = $this->model_catalog_review->getCustomerUseCoupon();
-			// print_r($resultcoupon);exit;
+			$cart_total=$this->session->data['cart_total'];
+			$resultcoupon = $this->model_catalog_review->getCustomerUseCoupon($cart_total);
+			// print_r($cart_total);exit;
 			if(!empty($resultcoupon->row)){
 				 $data['coupon']=$resultcoupon->row['code'];
 			}else{
