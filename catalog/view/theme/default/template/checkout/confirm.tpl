@@ -1,6 +1,7 @@
 <?php if (!isset($redirect)) { ?>
   <h2>SUMMARY</h2>
   <i id="error-confirm" style="color: #f00;"></i>
+    <input type="hidden" name="coupon1" id="coupon1" value="<?php echo $coupon1; ?>">
                     <ul class="cart_ul">
                      <?php foreach ($products as $product) { ?>
                         <li class="clearfix">
@@ -100,8 +101,9 @@ function savecomment() {
 
 $(function(){
    var cou= $('#coupon_code').val();
+   var cou1= $('#coupon1').val();
    var cous= $('.cous').attr("pid");
-   if( cou!=='' && cous==0  ){
+   if( cou!=='' && cous==0  || cou!=cou1){
 
     defaultcoupon_code();
    }

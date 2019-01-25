@@ -494,8 +494,10 @@ class ControllerCheckoutCart extends Controller {
                $k++;
             }
             $json['total']=$this->currency->format($total['total'], $this->session->data['currency']);
+            $json['totals']=$total['total'];
             unset($total['total']);
              $json['products']=$total;
+             $this->session->data['cart_total']=$json['totals'];
 
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($json));
