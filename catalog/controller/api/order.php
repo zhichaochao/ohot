@@ -424,7 +424,7 @@ class ControllerApiOrder extends Controller {
 	                }
 	                if($order_status_id==3){  //订单发货后
 	                   $content = "Dear {$order_info['firstname']} {$order_info['lastname']},". "\n\n";
-	                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus.", the tracking number is ".$shippingNumberContent.", please track it on www.dhl.com."."\n\n";
+	                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus.", the tracking number is ".$shippingNumberContent.$t_company."\n\n";
 	                   $content.= "If you have any questions, please don’t hesitate to send emails to hellena@hotbeautyhair.com."."\n";
 	                   $content.= "Best Regards,"."\n";
 	                   $content.= "Hot Beauty Hair Team";
@@ -880,7 +880,7 @@ class ControllerApiOrder extends Controller {
 	                }
 	                if($this->request->post['order_status_id']==3){  //订单发货后
 	                   $content = "Dear {$order_info['firstname']} {$order_info['lastname']},". "\n\n";
-	                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus.", the tracking number is ".$shippingNumberContent.", please track it on www.dhl.com."."\n\n";
+	                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus.", the tracking number is ".$shippingNumberContent.$t_company."\n\n";
 	                   $content.= "If you have any questions, please don’t hesitate to send emails to hellena@hotbeautyhair.com."."\n";
 	                   $content.= "Best Regards,"."\n";
 	                   $content.= "Hot Beauty Hair Team";
@@ -1086,9 +1086,18 @@ class ControllerApiOrder extends Controller {
 			}*/
 
 			if ($order_info) {
+
+
 				if( ($this->request->post['order_status_id']!=3 && $this->request->post['order_status_id']!=5) || $this->request->post['shippingNumber']=='undefined' ){
                    $this->request->post['shippingNumber']='';
 				}
+				if (strlen($this->request->post['shippingNumber'])==10 ) {
+					$t_company=', please track it on www.dhl.com.';
+				}else{
+					$t_company='';
+				}
+
+				
 // 				if($this->request->post['order_status_id']!=7 && $this->request->post['order_status_id']!=11){
 //                    $this->request->post['comment']='';
 // 				}
@@ -1118,7 +1127,7 @@ class ControllerApiOrder extends Controller {
                 }
                 if($this->request->post['order_status_id']==3){  //订单发货后
                    $content = "Dear {$order_info['firstname']} {$order_info['lastname']},". "\n\n";
-                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus.", the tracking number is ".$shippingNumberContent.", please track it on www.dhl.com."."\n\n";
+                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus.", the tracking number is ".$shippingNumberContent.$t_company."\n\n";
                    $content.= "If you have any questions, please don’t hesitate to send emails to ".$config_email."."."\n";
                    $content.= "Best Regards,"."\n";
                    $content.= "Hot Beauty Hair Team";
