@@ -102,21 +102,21 @@ class ControllerApiOrder extends Controller {
 			}
 
 			if( !empty($order_status_id) ){
-				if($order_status_id==3){    //Processing状态
-				   if(empty($this->request->post['shippingNumber'])){
-	                  $json['error'] = 'Please fill in the shipping number!';
-	               }
-		           //检测物流号是否有重复
-		           if(!empty($this->request->post['shippingNumber'])){
-		              $order_id = !empty($json['order_id']) ? $json['order_id'] : 0;
-		              $shippingNumber=$this->request->post['shippingNumber'];
-		              $this->load->model('checkout/order');
-		              $result= $this->model_checkout_order->checkOrderShippingNumber($order_id,$shippingNumber);
-		              if($result){
-		                 $json['error'] = 'The shipping number has been used!';
-		              }
-		           }
-				}
+				// if($order_status_id==3){    //Processing状态
+				//    if(empty($this->request->post['shippingNumber'])){
+	   //                $json['error'] = 'Please fill in the shipping number!';
+	   //             }
+		  //          //检测物流号是否有重复
+		  //          if(!empty($this->request->post['shippingNumber'])){
+		  //             $order_id = !empty($json['order_id']) ? $json['order_id'] : 0;
+		  //             $shippingNumber=$this->request->post['shippingNumber'];
+		  //             $this->load->model('checkout/order');
+		  //             $result= $this->model_checkout_order->checkOrderShippingNumber($order_id,$shippingNumber);
+		  //             if($result){
+		  //                $json['error'] = 'The shipping number has been used!';
+		  //             }
+		  //          }
+				// }
 				if($order_status_id==7 || $order_status_id==11){    //Canceled/Refunded状态
 				   if(empty($this->request->post['comment'])){
 				      $json['error'] = 'Comment must fill in!';
@@ -502,21 +502,21 @@ class ControllerApiOrder extends Controller {
 		  //dyl add
 	      $json['error']='';
 		  if( !empty($this->request->post['order_status_id']) ){
-		      if($this->request->post['order_status_id']==3){    //Processing状态
-			   	  if(empty($this->request->post['shippingNumber'])){
-                     $json['error'] = 'Please fill in the shipping number!';
-                  }
-	              //检测物流号是否有重复
-	              if(!empty($this->request->post['shippingNumber'])){
-	               	 $order_id = isset($this->request->get['order_id']) ? $this->request->get['order_id'] : 0;
-	               	 $shippingNumber=$this->request->post['shippingNumber'];
-	               	 $this->load->model('checkout/order');
-	               	 $result= $this->model_checkout_order->checkOrderShippingNumber($order_id,$shippingNumber);
-	               	 if($result){
-	                    $json['error'] = 'The shipping number has been used!';
-	               	 }
-	              }
-			   }
+		    //   if($this->request->post['order_status_id']==3){    //Processing状态
+			   // 	  if(empty($this->request->post['shippingNumber'])){
+      //                $json['error'] = 'Please fill in the shipping number!';
+      //             }
+	     //          //检测物流号是否有重复
+	     //          if(!empty($this->request->post['shippingNumber'])){
+	     //           	 $order_id = isset($this->request->get['order_id']) ? $this->request->get['order_id'] : 0;
+	     //           	 $shippingNumber=$this->request->post['shippingNumber'];
+	     //           	 $this->load->model('checkout/order');
+	     //           	 $result= $this->model_checkout_order->checkOrderShippingNumber($order_id,$shippingNumber);
+	     //           	 if($result){
+	     //                $json['error'] = 'The shipping number has been used!';
+	     //           	 }
+	     //          }
+			   // }
 			   if($this->request->post['order_status_id']==7 || $this->request->post['order_status_id']==11){    //Canceled/Refunded状态
 			      if(empty($this->request->post['comment'])){
 			      	 $json['error'] = 'Comment must fill in!';
@@ -1043,21 +1043,21 @@ class ControllerApiOrder extends Controller {
 			//dyl add
 			$json['error']='';
 			if( !empty($this->request->post['order_status_id'])){
-			   if($this->request->post['order_status_id']==3){    //Processing状态
-			   	  if(empty($this->request->post['shippingNumber'])){
-                     $json['error'] = 'Please fill in the shipping number!';
-                  }
-	              //检测物流号是否有重复
-	              if(!empty($this->request->post['shippingNumber'])){
-	               	 $order_id = isset($this->request->get['order_id']) ? $this->request->get['order_id'] : 0;
-	               	 $shippingNumber=$this->request->post['shippingNumber'];
-	               	 $this->load->model('checkout/order');
-	               	 $result= $this->model_checkout_order->checkOrderShippingNumber($order_id,$shippingNumber);
-	               	 if($result){
-	                    $json['error'] = 'The shipping number has been used!';
-	               	 }
-	              }
-			   }
+			   // if($this->request->post['order_status_id']==3){    //Processing状态
+			   // 	  if(empty($this->request->post['shippingNumber'])){
+      //                $json['error'] = 'Please fill in the shipping number!';
+      //             }
+	     //          //检测物流号是否有重复
+	     //          if(!empty($this->request->post['shippingNumber'])){
+	     //           	 $order_id = isset($this->request->get['order_id']) ? $this->request->get['order_id'] : 0;
+	     //           	 $shippingNumber=$this->request->post['shippingNumber'];
+	     //           	 $this->load->model('checkout/order');
+	     //           	 $result= $this->model_checkout_order->checkOrderShippingNumber($order_id,$shippingNumber);
+	     //           	 if($result){
+	     //                $json['error'] = 'The shipping number has been used!';
+	     //           	 }
+	     //          }
+			   // }
 			   if($this->request->post['order_status_id']==7 || $this->request->post['order_status_id']==11){    //Canceled/Refunded状态
 			      if(empty($this->request->post['comment'])){
 			      	 $json['error'] = 'Comment must fill in!';

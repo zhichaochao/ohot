@@ -303,7 +303,7 @@
                 
                 <!--物流号-->
                 <?php if($order_status_id==3){ $style="display:block;"; }else{ $style="display:none;"; }?>                
-                <div class="form-group required" id="shippingNumber" style="<?php echo $style;?>">
+                <div class="form-group " id="shippingNumber" style="<?php echo $style;?>">
                   <label class="col-sm-2 control-label" for="input-shippingNumber"><?php echo $entry_shippingNumber ; ?></label>
                   <div class="col-sm-10">
                     <input type="text" id="shippingNumbervalue" name="shippingNumber" value="<?php echo $shippingNumber ; ?>" id="input-shippingNumber"/>
