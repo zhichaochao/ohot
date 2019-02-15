@@ -261,7 +261,7 @@
                 <span class="red_btn clearfix">US <?=$coupons['discountp'];?>%OFF</span>
                  <!-- <span class="pon_sp">US<em><?=$coupons['discountp'];?>%OFF</em></span>    -->
                   <!-- <?php }else{ ?>  --> 
-                  <span class="red_btn clearfix" id="price_count">UC <em></em> </span>
+                  <span class="red_btn clearfix" id="price_count">US <em></em> </span>
                   <!-- <span class="pon_sp">US<em><?=$coupons['discount'];?></em></span> -->
                <!-- <?php } ?>  -->
                 
