@@ -2,6 +2,9 @@
 <div id="content">
   <div class="page-header">
     <div class="container-fluid">
+    <div class="pull-right">
+    <a  class="btn btn-success" id="btn-success" formaction="<?php echo $explode; ?>">批量导出</a>
+     </div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -92,6 +95,7 @@
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
+                  <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
                   <td class="text-center"><?php echo $column_image; ?></td>
                   <td class="text-left"><?php if ($sort == 'pd.name') { ?>
                     <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
@@ -137,6 +141,11 @@
                 <?php if ($products) { ?>
                 <?php foreach ($products as $product) { ?>
                 <tr>
+                <td class="text-center"><?php if (in_array($product['product_id'], $selected)) { ?>
+                    <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" checked="checked" />
+                    <?php } else { ?>
+                    <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" />
+                    <?php } ?></td>
                   <td class="text-center"><?php if ($product['image']) { ?>
                     <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="img-thumbnail" />
                     <?php } else { ?>
@@ -277,6 +286,15 @@ $('input[name=\'filter_model\']').autocomplete({
 	'select': function(item) {
 		$('input[name=\'filter_model\']').val(item['label']);
 	}
+});
+$('#btn-success').on('click', function(e) {
+  $('#form-product').attr('action', this.getAttribute('formAction'));
+  
+  // if (confirm('<?php echo $text_confirm; ?>')) {
+    $('#form-product').submit();
+  // } else {
+  //   return false;
+  // }
 });
 //--></script></div>
 <?php echo $footer; ?>
