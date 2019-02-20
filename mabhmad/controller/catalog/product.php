@@ -873,12 +873,12 @@ class ControllerCatalogProduct extends Controller {
 	        foreach ($product_option_value_data as $key=>$v){
 
 	        	$data['productprice'][]=array(
-		            'product_id' => $product_info['product_id'],
+		            // 'product_id' => $product_info['product_id'],
 		           	 'name' => $product_info['name'],
 		           	 'model' => $product_info['model'],
-		            'length_id' => $product_options[0]['option_id'],
+		            // 'length_id' => $product_options[0]['option_id'],
 
-		            'option_value_id'=>$v['option_value_id'],
+		            'product_option_value_id'=>$v['product_option_value_id'],
 		            'quantity' => $v['quantity'],
 		             'names'=>isset($special_optio[$key]['name'])?$special_optio[$key]['name']:'无',
 		            'price1' => $v['price1'],
@@ -894,11 +894,11 @@ class ControllerCatalogProduct extends Controller {
       		}
       	// }
         $header = array(
-            'product_id' => '*商品id',
+            // 'product_id' => '*商品id',
             'name' => '*名称',
             'model' => '*型号',
-            'length_id' => '*length_id',
-            'option_value_id' => '*option_value_id',
+            // 'length_id' => '*length_id',
+            'product_option_value_id' => '*product_option_value_id',
 
             'quantity' => '*数量',
             'names' => '*尺寸',

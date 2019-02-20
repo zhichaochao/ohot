@@ -1467,11 +1467,11 @@ if(!empty($product_options[0]['product_option_value'])){
 		
 	        foreach ($product_option_value_data as $key=>$v){
 	        	$data['productprice'][]=array(
-		            'product_id' => $product_info['product_id'],
+		            // 'product_id' => $product_info['product_id'],
 		           	 'name' => $product_info['name'],
 		           	 'model' => $product_info['model'],
-		            'length_id' =>$product_options[0]['option_id'],
-		            'option_value_id'=>$v['option_value_id'],
+		            // 'length_id' =>$product_options[0]['option_id'],
+		            'product_option_value_id'=>$v['product_option_value_id'],
 		            'names'=>isset($special_optio[$key]['name'])?$special_optio[$key]['name']:'无',
 		            'price5' => $v['price5'],
 		            'price6' => $v['price6'],
@@ -1481,11 +1481,11 @@ if(!empty($product_options[0]['product_option_value'])){
       		}
       	// }
         $header = array(
-            'product_id' => '*商品id',
+            // 'product_id' => '*商品id',
             'name' => '*名称',
             'model' => '*型号',
-            'length_id' => '*length_id',
-            'option_value_id' => '*option_value_id',
+            // 'length_id' => '*length_id',
+            'product_option_value_id' => '*product_option_value_id',
             'names' => '*尺寸',
             'price5' => '*Special Price 1',
             'price6' => '*Special Price 2', 
