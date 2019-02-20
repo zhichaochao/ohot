@@ -1455,7 +1455,7 @@ class ControllerCatalogProduct extends Controller {
 		            'product_id' => $product_info['product_id'],
 		           	 'name' => $product_info['name'],
 		           	 'model' => $product_info['model'],
-		            'length_id' => $product_info['length_id'],
+		            'length_id' =>$product_options[0]['option_id'],
 
 		            'option_value_id'=>$v['option_value_id'],
 		            'price5' => $v['price5'],

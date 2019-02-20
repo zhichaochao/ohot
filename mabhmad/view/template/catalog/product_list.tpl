@@ -3,6 +3,7 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
+      <a  class="btn btn-success" id="btn-success" formaction="<?php echo $explode; ?>">批量导出</a>
 	<!-- <a href="<?php echo $importSpecial; ?>" data-toggle="tooltip" title="Import Products" class="btn btn-primary">Import Specials</a>
 	<a href="<?php echo $export; ?>" data-toggle="tooltip" title="Export Products" class="btn btn-primary">Export Products</a> -->
 	<a href="<?php echo $add; ?>" data-toggle="tooltip" title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
@@ -277,6 +278,15 @@ $('input[name=\'filter_model\']').autocomplete({
 	'select': function(item) {
 		$('input[name=\'filter_model\']').val(item['label']);
 	}
+});
+$('#btn-success').on('click', function(e) {
+  $('#form-product').attr('action', this.getAttribute('formAction'));
+  
+  // if (confirm('<?php echo $text_confirm; ?>')) {
+    $('#form-product').submit();
+  // } else {
+  //   return false;
+  // }
 });
 //--></script></div>
 <?php echo $footer; ?>

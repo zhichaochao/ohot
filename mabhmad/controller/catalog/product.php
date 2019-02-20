@@ -541,6 +541,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['add'] = $this->url->link('catalog/product/add', 'token=' . $this->session->data['token'] . $url, true);
 		$data['copy'] = $this->url->link('catalog/product/copy', 'token=' . $this->session->data['token'] . $url, true);
 		$data['delete'] = $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . $url, true);
+		$data['explode'] = $this->url->link('catalog/product/exportComment', 'token=' . $this->session->data['token'], true);
 
 		$data['products'] = array();
 
@@ -797,6 +798,115 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->response->setOutput($this->load->view('catalog/product_list', $data));
 	}
+	 public function exportComment(){
+      	require_once DIR_SYSTEM.'common/SimpleExcel.php';
+      	$this->load->model('catalog/product');
+
+      	if (isset($this->request->post['selected'])) {
+      			// print_r($this->request->post['selected']);exit;
+			foreach ($this->request->post['selected'] as $product_id) {
+			// print_r($product_id);exit;
+			$product_info = $this->model_catalog_product->getProduct($product_id);
+
+			$product_options = $this->model_catalog_product->getProductOptionss($product_id);
+// print_r($product_options);exit;
+			$data['product_options'] = array();
+
+		foreach ($product_options as $product_option) {
+			$product_option_value_data = array();
+
+			if (isset($product_option['product_option_value'])) {
+				foreach ($product_option['product_option_value'] as $product_option_value) {
+					$product_option_value_data[] = array(
+						'product_option_value_id' => $product_option_value['product_option_value_id'],
+						'option_value_id'         => $product_option_value['option_value_id'],
+						'quantity'                => $product_option_value['quantity'],
+						'subtract'                => $product_option_value['subtract'],
+						'price'                   => $product_option_value['price'],
+						'price1'                   => $product_option_value['price1'],
+						'price2'                   => $product_option_value['price2'],
+						'price3'                   => $product_option_value['price3'],
+						'price4'                   => $product_option_value['price4'],
+						'price5'                   => $product_option_value['price5'],
+						'price6'                   => $product_option_value['price6'],
+						'price7'                   => $product_option_value['price7'],
+						'price_prefix'            => $product_option_value['price_prefix'],
+						'points'                  => $product_option_value['points'],
+						'points_prefix'           => $product_option_value['points_prefix'],
+						'weight'                  => $product_option_value['weight'],
+						'weight_prefix'           => $product_option_value['weight_prefix']
+					);
+				}
+			}
+			if (isset($this->request->get['product_id'])&&$product_option['name']=='Length'&&$product_option['type']=='select') {
+			
+					
+			
+				$data['special_options']=$this->model_catalog_product->getProductOptionnames($this->request->get['product_id'],$product_option['option_id']);
+
+			}
+			
+
+			$data['product_options'][] = array(
+				'product_option_id'    => $product_option['product_option_id'],
+				'product_option_value' => $product_option_value_data,
+				'option_id'            => $product_option['option_id'],
+				'name'                 => $product_option['name'],
+				'type'                 => $product_option['type'],
+				'value'                => isset($product_option['value']) ? $product_option['value'] : '',
+				'option_value_id'      => isset($product_option['option_value_id']) ? $product_option['option_value_id'] : 0,
+				'required'             => $product_option['required']
+			);
+		}
+		// print_r($product_options);exit;
+	        foreach ($product_option_value_data as $v){
+
+	        	$data['productprice'][]=array(
+		            'product_id' => $product_info['product_id'],
+		           	 'name' => $product_info['name'],
+		           	 'model' => $product_info['model'],
+		            'length_id' => $product_options[0]['option_id'],
+
+		            'option_value_id'=>$v['option_value_id'],
+		            'quantity' => $v['quantity'],
+		            'price'  => $v['price1']*1.25,
+		            'price1' => $v['price1'],
+		            'price2' => $v['price2'],
+		            'price3' => $v['price3'],
+		            'price4' => $v['price4'],
+		            'price5' => $v['price5'],
+		            'price6' => $v['price6'],
+		            'price7' => $v['price7']
+		            
+	            );
+	        }
+      		}
+      	}
+        $header = array(
+            'product_id' => '*商品id',
+            'name' => '*名称',
+            'model' => '*型号',
+            'length_id' => '*length_id',
+            'option_value_id' => '*option_value_id',
+
+            'quantity' => '*数量',
+            'price' => '*价格',
+            'price1' => '*VIP',
+            'price2' => '*Silver VIP',
+            'price3' => '*Gold VIP',
+            'price4' => '*Dianond VIP',
+
+            'price5' => '*Special Price 1',
+            'price6' => '*Special Price 2', 
+            'price7' => '*Special Price 3'
+        );
+         ksort($data['productprice']);
+        $excel = new SimpleExcel();
+        $excel->header = $header;
+        $excel->name = '主站price'.date('Y-m-d');
+        $excel->data = $data['productprice'];
+        $excel->toString();
+  }
 
 	protected function getForm() {
 		$data['heading_title'] = $this->language->get('heading_title');
