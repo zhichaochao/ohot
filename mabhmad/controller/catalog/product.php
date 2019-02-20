@@ -801,10 +801,19 @@ class ControllerCatalogProduct extends Controller {
 	 public function exportComment(){
       	require_once DIR_SYSTEM.'common/SimpleExcel.php';
       	$this->load->model('catalog/product');
+		if (isset($this->request->post['selected'])) {
+		          $product_ids=$this->request->post['selected'];
 
-      	if (isset($this->request->post['selected'])) {
+		        }else{
+		          $product_ids=array();
+		          $products=$this->model_catalog_product->getProducts(array());
+		          foreach ($products as $key => $value) {
+		            $product_ids[]=$value['product_id'];
+		          }
+		        }
+      	// if (isset($this->request->post['selected'])) {
       			// print_r($this->request->post['selected']);exit;
-			foreach ($this->request->post['selected'] as $product_id) {
+			foreach ($product_ids as $product_id) {
 			// print_r($product_id);exit;
 			$product_info = $this->model_catalog_product->getProduct($product_id);
 
@@ -838,12 +847,14 @@ class ControllerCatalogProduct extends Controller {
 					);
 				}
 			}
-			if (isset($this->request->get['product_id'])&&$product_option['name']=='Length'&&$product_option['type']=='select') {
-			
-					
-			
-				$data['special_options']=$this->model_catalog_product->getProductOptionnames($this->request->get['product_id'],$product_option['option_id']);
+			if (isset($product_id)&&$product_option['name']=='Length'||$product_option['name']=='Length2' &&$product_option['type']=='select') {
 
+				$data['special_options']=$this->model_catalog_product->getProductOptionnames($product_id,$product_option['option_id']);
+				foreach ($data['special_options'] as $special_option) {
+						$special_optio[] = array(
+							'name'                => $special_option['name']
+							);		
+				}
 			}
 			
 
@@ -859,7 +870,7 @@ class ControllerCatalogProduct extends Controller {
 			);
 		}
 		// print_r($product_options);exit;
-	        foreach ($product_option_value_data as $v){
+	        foreach ($product_option_value_data as $key=>$v){
 
 	        	$data['productprice'][]=array(
 		            'product_id' => $product_info['product_id'],
@@ -869,7 +880,7 @@ class ControllerCatalogProduct extends Controller {
 
 		            'option_value_id'=>$v['option_value_id'],
 		            'quantity' => $v['quantity'],
-		            'price'  => $v['price1']*1.25,
+		             'names'=>isset($special_optio[$key]['name'])?$special_optio[$key]['name']:'无',
 		            'price1' => $v['price1'],
 		            'price2' => $v['price2'],
 		            'price3' => $v['price3'],
@@ -881,7 +892,7 @@ class ControllerCatalogProduct extends Controller {
 	            );
 	        }
       		}
-      	}
+      	// }
         $header = array(
             'product_id' => '*商品id',
             'name' => '*名称',
@@ -890,7 +901,7 @@ class ControllerCatalogProduct extends Controller {
             'option_value_id' => '*option_value_id',
 
             'quantity' => '*数量',
-            'price' => '*价格',
+            'names' => '*尺寸',
             'price1' => '*VIP',
             'price2' => '*Silver VIP',
             'price3' => '*Gold VIP',
