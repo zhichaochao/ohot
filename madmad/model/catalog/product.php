@@ -254,6 +254,18 @@ class ModelCatalogProduct extends Model {
         return $query->rows;
     }
 
+    public function getProductses($data = array()) {
+        $sql = "SELECT *  FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+        $sql .= " GROUP BY p.product_id";
+            $sql .= " ORDER BY p.status";
+            $sql .= " DESC";
+
+        $query = $this->db->query($sql);
+
+        return $query->rows;
+    }
+
     public function getProductsByCategoryId($category_id) {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN "
 

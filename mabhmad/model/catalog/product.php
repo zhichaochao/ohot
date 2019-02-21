@@ -694,6 +694,17 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape(
 
 		return $query->rows;
 	}
+	 public function getProductses($data = array()) {
+        $sql = "SELECT *  FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+        $sql .= " GROUP BY p.product_id";
+            $sql .= " ORDER BY p.status";
+            $sql .= " DESC";
+
+        $query = $this->db->query($sql);
+
+        return $query->rows;
+    }
 
 	public function getProductsByCategoryId($category_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN "
@@ -1145,7 +1156,8 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape(
 
 	public function UpdateOptionVluePrice($product_option_value_id,$data=array())
 	{
-		$this->querysql("UPDATE " . DB_PREFIX . "product_option_value SET quantity = '" . $this->db->escape($data['quantity']) . "',price = '" . $this->db->escape($data['price']) . "',price1 = '" . $this->db->escape($data['price1']) . "',price2 = '" . $this->db->escape($data['price2']) . "',price3 = '" . $this->db->escape($data['price3']) . "',price4 = '" . $this->db->escape($data['price4']) . "',price5 = '" . $this->db->escape($data['price5']) . "',price6 = '" . $this->db->escape($data['price6']) . "',price7= '" . $this->db->escape($data['price7']) . "' WHERE product_option_value_id = '" . (int)$product_option_value_id . "'");
+		$this->querysql("UPDATE " . DB_PREFIX . "product_option_value SET quantity = '" . $this->db->escape($data['quantity']) . "',price = '" . $this->db->escape($data['price']) . "',price1 = '" . $this->db->escape($data['price1']) . "',price2 = '" . $this->db->escape($data['price2']) . "',price3 = '" . $this->db->escape($data['price3']) . "',price4 = '" . $this->db->escape($data['price4']) . "' WHERE product_option_value_id = '" . (int)$product_option_value_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET quantity = '" . $this->db->escape($data['quantity']) . "',price5 = '" . $this->db->escape($data['price5']) . "',price6 = '" . $this->db->escape($data['price6']) . "',price7= '" . $this->db->escape($data['price7']) . "' WHERE product_option_value_id = '" . (int)$product_option_value_id . "'");
 	}
 
 

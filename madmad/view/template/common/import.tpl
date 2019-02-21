@@ -39,6 +39,11 @@
           <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
         <?php } ?>
+         <?php if ($error) { ?>
+        <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error; ?>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        <?php } ?>
         
         <div style="padding-left:90px;">
             <form action="" method="post" enctype="multipart/form-data" id="form">

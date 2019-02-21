@@ -1398,7 +1398,7 @@ class ControllerCatalogProduct extends Controller {
 
 		        }else{
 		          $product_ids=array();
-		          $products=$this->model_catalog_product->getProducts(array());
+		          $products=$this->model_catalog_product->getProductses(array());
 		          foreach ($products as $key => $value) {
 		            $product_ids[]=$value['product_id'];
 		          }
@@ -1463,6 +1463,7 @@ class ControllerCatalogProduct extends Controller {
 		// print_r($data['productprice']);exit();
 		 
         $header = array(
+            // 'product_id' => '*product_id',
             'product_option_value_id' => '*pov.id',
             'name' => '*名称(名字长一点)',
             'model' => '*型号(*)',
@@ -1475,7 +1476,7 @@ class ControllerCatalogProduct extends Controller {
             'price7' => '*Special Price 3',
             'status' => '*状态'
         );
-         ksort($data['productprice']);
+         // ksort($data['productprice']);
         $excel = new SimpleExcel();
         $excel->header = $header;
         $excel->name = '副站price'.date('Y-m-d');
@@ -1596,6 +1597,7 @@ class ControllerCatalogProduct extends Controller {
 				// print_r($res['data'] );exit;
 	            foreach ($res['data'] as $k=>$v){//格式化导入数据
 	            	$data=array();
+	            	if (!isset($v[8])) {	
 	            	if ($v[0]>0) {
 	            		$product_option_value_id=intval($v[0]);
 	            		$data['price5']=floatval($v[4]);
@@ -1606,6 +1608,10 @@ class ControllerCatalogProduct extends Controller {
 
 					$this->session->data['success'] = 'Import success!';
 	            	}
+	            	}else{
+	            		$this->session->data['error'] = '此模板为主站模板，导入错误！';
+	            	}
+
 	               
 	            }
 	          
@@ -1617,6 +1623,12 @@ class ControllerCatalogProduct extends Controller {
 			unset($this->session->data['success']);
 		} else {
 			$data['success'] = '';
+		}
+		 if (isset($this->session->data['error'])) {
+			$data['error'] ="此模板为主站模板，导入错误！";
+			unset($this->session->data['error']);
+		} else {
+			$data['error'] = '';
 		}
 	    
 	    $data['title'] = '导入商品信息';
