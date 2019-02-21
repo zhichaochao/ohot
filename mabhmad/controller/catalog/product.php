@@ -2019,11 +2019,13 @@ class ControllerCatalogProduct extends Controller {
 	        }else{
 	            $importData = array();
 				$i = 0;
+				// print_r($res['data'][1][8]);exit;
+				if (isset($res['data'][1][8])) {
 				// print_r($res['data'] );exit;
 	            foreach ($res['data'] as $k=>$v){//格式化导入数据
 	            	$data=array();
 	            	// print_r($v[8]);exit;
-	            	if (isset($v[8])) {
+	            	
 	            	if ($v[0]>0) {
 	            		$product_option_value_id=intval($v[0]);
 
@@ -2043,10 +2045,12 @@ class ControllerCatalogProduct extends Controller {
 
 					$this->session->data['success'] = 'Import success!';
 	            	}
-	               }else{
+	               
+	            }
+	        }else{
+	        	// print_r(111);exit;
 	               	$this->session->data['error'] = '此模板为副站模板，导入错误！';
 	               }
-	            }
 	          
 	        }
 	    }

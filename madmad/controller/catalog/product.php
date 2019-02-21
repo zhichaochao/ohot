@@ -1594,10 +1594,11 @@ class ControllerCatalogProduct extends Controller {
 	        }else{
 	            $importData = array();
 				$i = 0;
+				if (!isset($res['data'][1][8])) {
 				// print_r($res['data'] );exit;
 	            foreach ($res['data'] as $k=>$v){//格式化导入数据
 	            	$data=array();
-	            	if (!isset($v[8])) {	
+	            		
 	            	if ($v[0]>0) {
 	            		$product_option_value_id=intval($v[0]);
 	            		$data['price5']=floatval($v[4]);
@@ -1608,12 +1609,13 @@ class ControllerCatalogProduct extends Controller {
 
 					$this->session->data['success'] = 'Import success!';
 	            	}
-	            	}else{
-	            		$this->session->data['error'] = '此模板为主站模板，导入错误！';
-	            	}
+	            	
 
 	               
 	            }
+	        }else{
+	            		$this->session->data['error'] = '此模板为主站模板，导入错误！';
+	            	}
 	          
 	        }
 	    }
