@@ -678,6 +678,15 @@ class ModelCatalogProduct extends Model {
         // print_r($query->rows);exit();
         return $query->rows;
     }
+    
+    public function getProductOptionname($option_value_id) {
+        $query = $this->db->query("SELECT name FROM " . DB_PREFIX . "option_value_description  WHERE option_value_id = '" . (int)$option_value_id . "' AND language_id = 1");
+            return $query->row;
+    }
+    public function UpdateOptionVluePrice($product_option_value_id,$data=array())
+    {
+         $this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET price5 = '" . $this->db->escape($data['price5']) . "',price6 = '" . $this->db->escape($data['price6']) . "',price7= '" . $this->db->escape($data['price7']) . "' WHERE product_option_value_id = '" . (int)$product_option_value_id . "'");
+    }
 
  
    /**

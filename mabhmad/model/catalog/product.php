@@ -1130,6 +1130,24 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape(
 		// print_r($query->rows);exit();
 		return $query->rows;
 	}
+	   /**
+	* 获取option属性名字
+	* @author  dyl  志超
+	
+	*/
+	public function getProductOptionname($option_value_id) {
+		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "option_value_description  WHERE option_value_id = '" . (int)$option_value_id . "' AND language_id = 1");
+			return $query->row;
+	}
+
+
+
+
+	public function UpdateOptionVluePrice($product_option_value_id,$data=array())
+	{
+		$this->querysql("UPDATE " . DB_PREFIX . "product_option_value SET quantity = '" . $this->db->escape($data['quantity']) . "',price = '" . $this->db->escape($data['price']) . "',price1 = '" . $this->db->escape($data['price1']) . "',price2 = '" . $this->db->escape($data['price2']) . "',price3 = '" . $this->db->escape($data['price3']) . "',price4 = '" . $this->db->escape($data['price4']) . "',price5 = '" . $this->db->escape($data['price5']) . "',price6 = '" . $this->db->escape($data['price6']) . "',price7= '" . $this->db->escape($data['price7']) . "' WHERE product_option_value_id = '" . (int)$product_option_value_id . "'");
+	}
+
 
  
    /**

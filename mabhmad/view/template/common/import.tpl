@@ -34,6 +34,12 @@
         </div>
         <?php } ?>
         
+        <?php if ($success) { ?>
+        <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        <?php } ?>
+        
         <div style="padding-left:90px;">
             <form action="" method="post" enctype="multipart/form-data" id="form">
                 <div class="supplier-order-add">
@@ -47,12 +53,12 @@
                 </div>
             </form>
             
-            <div style="margin-top:20px;">
+           <!--  <div style="margin-top:20px;">
               <p><span>提示：</span></p>
               <p><span>1.</span><span> 只能使用模板文件导入，且每次只能上传一个</span><span>文件</span><span>；</span></p>
               <p><span>2. 文件</span><span>内容格式请严格按照文件模板。</span>
                 <?php if(isset($tplUrl)){ ?> <a href="<?php echo $tplUrl; ?>">下载模板</a> <?php } ?> </p>
-            </div>            
+            </div>  -->           
             
         </div>
     </section>

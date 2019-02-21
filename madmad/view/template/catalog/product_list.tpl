@@ -4,6 +4,7 @@
     <div class="container-fluid">
     <div class="pull-right">
     <a  class="btn btn-success" id="btn-success" formaction="<?php echo $explode; ?>">批量导出</a>
+    <a href="<?php echo $importSpecial; ?>" data-toggle="tooltip" title="Import Products" class="btn btn-primary">导入价格</a>
      </div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">

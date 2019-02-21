@@ -542,6 +542,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['copy'] = $this->url->link('catalog/product/copy', 'token=' . $this->session->data['token'] . $url, true);
 		$data['delete'] = $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . $url, true);
 		$data['explode'] = $this->url->link('catalog/product/exportComment', 'token=' . $this->session->data['token'], true);
+		$data['explodes'] = $this->url->link('catalog/product/exportCommentes', 'token=' . $this->session->data['token'], true);
 
 		$data['products'] = array();
 
@@ -826,82 +827,67 @@ class ControllerCatalogProduct extends Controller {
 
 			if (isset($product_option['product_option_value'])) {
 				foreach ($product_option['product_option_value'] as $product_option_value) {
-					$product_option_value_data[] = array(
-						'product_option_value_id' => $product_option_value['product_option_value_id'],
-						'option_value_id'         => $product_option_value['option_value_id'],
-						'quantity'                => $product_option_value['quantity'],
-						'subtract'                => $product_option_value['subtract'],
-						'price'                   => $product_option_value['price'],
-						'price1'                   => $product_option_value['price1'],
-						'price2'                   => $product_option_value['price2'],
-						'price3'                   => $product_option_value['price3'],
-						'price4'                   => $product_option_value['price4'],
-						'price5'                   => $product_option_value['price5'],
-						'price6'                   => $product_option_value['price6'],
-						'price7'                   => $product_option_value['price7'],
-						'price_prefix'            => $product_option_value['price_prefix'],
-						'points'                  => $product_option_value['points'],
-						'points_prefix'           => $product_option_value['points_prefix'],
-						'weight'                  => $product_option_value['weight'],
-						'weight_prefix'           => $product_option_value['weight_prefix']
-					);
-				}
-			}
-			if (isset($product_id)&&$product_option['name']=='Length'||$product_option['name']=='Length2' &&$product_option['type']=='select') {
+				// print_r($product_option_value);exit;
+					$tmp_name=$this->model_catalog_product->getProductOptionname($product_option_value['option_value_id']);
 
-				$data['special_options']=$this->model_catalog_product->getProductOptionnames($product_id,$product_option['option_id']);
-				foreach ($data['special_options'] as $special_option) {
-						$special_optio[] = array(
-							'name'                => $special_option['name']
-							);		
-				}
-			}
-			
-
-			$data['product_options'][] = array(
-				'product_option_id'    => $product_option['product_option_id'],
-				'product_option_value' => $product_option_value_data,
-				'option_id'            => $product_option['option_id'],
-				'name'                 => $product_option['name'],
-				'type'                 => $product_option['type'],
-				'value'                => isset($product_option['value']) ? $product_option['value'] : '',
-				'option_value_id'      => isset($product_option['option_value_id']) ? $product_option['option_value_id'] : 0,
-				'required'             => $product_option['required']
-			);
-		}
-		// print_r($product_options);exit;
-	        foreach ($product_option_value_data as $key=>$v){
-
-	        	$data['productprice'][]=array(
+					$data['productprice'][]=array(
 		            // 'product_id' => $product_info['product_id'],
+		            'product_option_value_id'=>$product_option_value['product_option_value_id'],
 		           	 'name' => $product_info['name'],
 		           	 'model' => $product_info['model'],
 		            // 'length_id' => $product_options[0]['option_id'],
-
-		            'product_option_value_id'=>$v['product_option_value_id'],
-		            'quantity' => $v['quantity'],
-		             'names'=>isset($special_optio[$key]['name'])?$special_optio[$key]['name']:'无',
-		            'price1' => $v['price1'],
-		            'price2' => $v['price2'],
-		            'price3' => $v['price3'],
-		            'price4' => $v['price4'],
-		            'price5' => $v['price5'],
-		            'price6' => $v['price6'],
-		            'price7' => $v['price7']
+					'names'=>isset($tmp_name['name'])?$tmp_name['name']:'无',
+		            'quantity' => $product_option_value['quantity'],
+		            'price1' => $product_option_value['price1'],
+		            'price2' => $product_option_value['price2'],
+		            'price3' => $product_option_value['price3'],
+		            'price4' => $product_option_value['price4'],
+		            'price5' => $product_option_value['price5'],
+		            'price6' => $product_option_value['price6'],
+		            'price7' => $product_option_value['price7'],
+		            'status' =>$product_info['status'] > 0 ? '启用' :'禁用'
 		            
 	            );
-	        }
-      		}
-      	// }
+
+
+
+				}
+			}
+			
+		}
+			$data['productprice'][]=array(
+		            // 'product_id' => '',
+		            'product_option_value_id'=>'',
+		           	 'name' => '',
+		           	 'model' => '',
+		            // 'length_id' => '',
+					'names'=>'',
+		            'quantity' => '',
+		             
+		            'price1' => '',
+		            'price2' => '',
+		            'price3' =>'',
+		            'price4' =>'',
+		            'price5' => '',
+		            'price6' => '',
+		            'price7' => '',
+		            'status' => '',
+		            
+	            );
+
+	}
+		// print_r($data['productprice']);exit();
+		 
         $header = array(
             // 'product_id' => '*商品id',
-            'name' => '*名称',
-            'model' => '*型号',
+            'product_option_value_id' => '*pov.id',
+            'name' => '*名称(名字长一点)',
+            'model' => '*型号(*)',
             // 'length_id' => '*length_id',
-            'product_option_value_id' => '*product_option_value_id',
 
-            'quantity' => '*数量',
+            
             'names' => '*尺寸',
+            'quantity' => '*数量',
             'price1' => '*VIP',
             'price2' => '*Silver VIP',
             'price3' => '*Gold VIP',
@@ -909,12 +895,105 @@ class ControllerCatalogProduct extends Controller {
 
             'price5' => '*Special Price 1',
             'price6' => '*Special Price 2', 
-            'price7' => '*Special Price 3'
+            'price7' => '*Special Price 3',
+            'status' => '*状态'
         );
          ksort($data['productprice']);
         $excel = new SimpleExcel();
         $excel->header = $header;
         $excel->name = '主站price'.date('Y-m-d');
+        $excel->data = $data['productprice'];
+        $excel->toString();
+  }
+   public function exportCommentes(){
+      	require_once DIR_SYSTEM.'common/SimpleExcel.php';
+      	$this->load->model('catalog/product');
+		if (isset($this->request->post['selected'])) {
+		          $product_ids=$this->request->post['selected'];
+
+		        }else{
+		          $product_ids=array();
+		          $products=$this->model_catalog_product->getProducts(array());
+		          foreach ($products as $key => $value) {
+		            $product_ids[]=$value['product_id'];
+		          }
+		        }
+      	// if (isset($this->request->post['selected'])) {
+      			// print_r($this->request->post['selected']);exit;
+			foreach ($product_ids as $product_id) {
+			// print_r($product_id);exit;
+			$product_info = $this->model_catalog_product->getProduct($product_id);
+
+			$product_options = $this->model_catalog_product->getProductOptionss($product_id);
+// print_r($product_options);exit;
+			$data['product_options'] = array();
+
+		foreach ($product_options as $product_option) {
+			$product_option_value_data = array();
+
+			if (isset($product_option['product_option_value'])) {
+				foreach ($product_option['product_option_value'] as $product_option_value) {
+				
+					$tmp_name=$this->model_catalog_product->getProductOptionname($product_option_value['option_value_id']);
+
+					$data['productprice'][]=array(
+		            // 'product_id' => $product_info['product_id'],
+		            'product_option_value_id'=>$product_option_value['product_option_value_id'],
+		           	 'name' => $product_info['name'],
+		           	 'model' => $product_info['model'],
+		            // 'length_id' => $product_options[0]['option_id'],
+					'names'=>isset($tmp_name['name'])?$tmp_name['name']:'无',
+		            // 'quantity' => $product_option_value['quantity'],
+		            // 'price1' => $product_option_value['price1'],
+		            // 'price2' => $product_option_value['price2'],
+		            // 'price3' => $product_option_value['price3'],
+		            // 'price4' => $product_option_value['price4'],
+		            'price5' => $product_option_value['price5'],
+		            'price6' => $product_option_value['price6'],
+		            'price7' => $product_option_value['price7'],
+		            'status' =>$product_info['status'] > 0 ? '启用' :'禁用'
+		            
+	            );
+
+
+
+				}
+			}
+			
+		}
+			$data['productprice'][]=array(
+		            // 'product_id' => '',
+		            'product_option_value_id'=>'',
+		           	 'name' => '',
+		           	 'model' => '',
+					'names'=>'',
+		            'price5' => '',
+		            'price6' => '',
+		            'price7' => '',
+		            'status' => '',
+		            
+	            );
+
+	}
+		// print_r($data['productprice']);exit();
+		 
+        $header = array(
+            'product_option_value_id' => '*pov.id',
+            'name' => '*名称(名字长一点)',
+            'model' => '*型号(*)',
+
+            
+            'names' => '*尺寸',
+
+            'price5' => '*Special Price 1',
+            'price6' => '*Special Price 2', 
+            'price7' => '*Special Price 3',
+            'status' => '*状态'
+        );
+         ksort($data['productprice']);
+        $excel = new SimpleExcel();
+        $excel->header = $header;
+        $excel->name = '副站price'.date('Y-m-d');
         $excel->data = $data['productprice'];
         $excel->toString();
   }
@@ -1915,9 +1994,23 @@ class ControllerCatalogProduct extends Controller {
 	 */
 	private function _importSpecial() 
 	{
-	    if(isset($this->request->get['act2']) && $this->request->get['act2'] == 'tpl')//下载模板
-	        Common::downloadFile('tpl_import_product_special.xlsx');
-	    
+	    // if(isset($this->request->get['act2']) && $this->request->get['act2'] == 'tpl')//下载模板
+	    //     Common::downloadFile('tpl_import_product_special.xlsx');
+
+	 //        if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
+		// 	//	print_r($_FILES);exit;
+		// 	if ((isset( $this->request->files['file'] )) && (is_uploaded_file($this->request->files['file']['tmp_name']))) {
+		// 		$file = $this->request->files['file']['tmp_name'];
+		// 		// print_r($file);exit;
+		// 		$this->load->model('catalog/product');
+		// 		$uploaded = $this->model_catalog_product->upload($file);
+		// 	}
+		// 	else
+		// 	{
+		// 	    $data['error_upload_warning'] = 'Please upload the file!';
+		// 	}
+		// }
+	    	$this->load->model('catalog/product');
 	    if(!empty($this->request->files)){
 	        $res = Common::uploadExcelToArray();
 	        
@@ -1926,74 +2019,40 @@ class ControllerCatalogProduct extends Controller {
 	        }else{
 	            $importData = array();
 				$i = 0;
+				// print_r($res['data'] );exit;
 	            foreach ($res['data'] as $k=>$v){//格式化导入数据
-	                if(count($v) < 7) {
-	                    $data['msg'][] = '第'.($k+1).'行，内容格式错误!'; continue;
-	                }
-	                $row = array();
-	                if(!$v[0]) continue;
+	            	$data=array();
+	            	if ($v[0]>0) {
+	            		$product_option_value_id=intval($v[0]);
 
-	                $row0['model'] = trim($v[0]);
-	                $row0['price'] = floatval($v[7]);
-	                $row0['quantity'] = intval($v[8]);
-	                $row0['relation_product'] = trim($v[9]);
-	                $row0['is_main'] = trim($v[10]);
-	                $row0['is_new'] = trim($v[11]);
+	            		$data['quantity']=floatval($v[4]);  // 4
 
+	            		$data['price']=floatval($v[5])*1.25;
+	            		$data['price1']=floatval($v[5]);
+	           			 
+	            		$data['price2']=floatval($v[6]);
+	            		$data['price3']=floatval($v[7]);
+	            		$data['price4']=floatval($v[8]);
+	            		$data['price5']=floatval($v[9]);
+	            		$data['price6']=floatval($v[10]);
+	            		$data['price7']=floatval($v[11]);
 
-	                $row['model'] = trim($v[0]);
-	                $row['customer_group'] = trim($v[25]);
-//	                $row['priority'] = intval($v[2]);
-	                $row['price'] = floatval($v[27]);
-	                $row['percent'] = floatval($v[26]);
-	                $row['date_start'] = trim($v[28]);
-	                $row['date_end'] = trim($v[29]);
-	    
-	                $product = Base::getRow('product', $row['model'], 'model');
-	                if(!$product){
-						$row0['product_id'] = 0;
-						$row['product_id'] = 0;
-	                    $data['msg'][] = '第'.($k+1).'行，商品Model '.$row['model'].' 不存在!';
-	                }else{
-                        $row0['product_id'] = $product['product_id'];
-                        $row['product_id'] = $product['product_id'];
-	                }
-	                $customerGroup = Base::getRow('customer_group_description', $row['customer_group'], 'name', 1);
-	                if(!$customerGroup){
-	                    $data['msg'][] = '第'.($k+1).'行，客户分组 '.$row['customer_group'].' 不存在!';
-	                    continue;
-	                }else{
-	                    $row['customer_group_id'] = $customerGroup['customer_group_id'];
-	                }
-	                $productSpecials = $this->model_catalog_product->getProductSpecials($row['product_id']);
-	                if($productSpecials){
-	                    foreach ($productSpecials as $special){
-							if ($special['customer_group_id'] == $row['customer_group_id']) {
-								$row['product_special_id'] = $special['product_special_id'];
-								$i++;
-							}
-	                    }
-	                } else {
-						$row['product_special_id'] = '';
-					}
-	                $importData0[] = $row0;
-	                $importData[] = $row;
+	           			  $this->model_catalog_product->UpdateOptionVluePrice($product_option_value_id,$data);
+
+					$this->session->data['success'] = 'Import success!';
+	            	}
+	               
 	            }
-	            if(empty($data['msg'])){//无错误信息，保存采购单
-                    $attributes0 = array('product_id', 'model', 'price', 'quantity', 'relation_product', 'is_main','is_new');
-	                $attributes = array('product_special_id', 'product_id', 'customer_group_id', 'priority', 'price', 'percent', 'date_start', 'date_end');
-	                $num0= Common::saveData('product',$attributes0,$importData0,2000,false,'REPLACE INTO');
-					$num = Common::saveData('product_special', $attributes, $importData, 2000, false, 'REPLACE INTO');
-	                if($num > 0 && $num0>0){
-						$num = $num-$i;
-	                    $info = '商品信息导入成功，成功导入'.$num.'条记录！';
-	                    $data['info'] = $info;
-	                }else{
-	                    $data['msg'][] = '商品信息导入失败!';
-	                }
-	            }
+	          
 	        }
 	    }
+
+	    if (isset($this->session->data['success'])) {
+			$data['success'] ="Import success!";
+			unset($this->session->data['success']);
+		} else {
+			$data['success'] = '';
+		}
 	    
 	    $data['title'] = '导入商品信息';
 	    $data['tplUrl'] = $this->url->link('catalog/product', 'act=importSpecial&act2=tpl&token=' . $this->session->data['token'], true);
