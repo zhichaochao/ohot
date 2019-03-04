@@ -222,11 +222,13 @@ class ModelCatalogProduct extends Model {
         );
 
         if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-            $sql .= " ORDER BY " . $data['sort'];
+            // $sql .= " ORDER BY " . $data['sort'];
+            $sql .= " ORDER BY p.date_modified";
             // print_r(1);exit();
         } else {
             // print_r($data['sort']);
-            $sql .= " ORDER BY pd.name";
+            // $sql .= " ORDER BY pd.name";
+            $sql .= " ORDER BY p.date_modified";
             // print_r(2);exit();
         }
 
