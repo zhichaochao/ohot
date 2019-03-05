@@ -1394,6 +1394,27 @@ class ModelCatalogProduct extends Model {
 		return $product_data;
 	}
 
+	public function getRecommendProductsnew($product_id,$limit=20){
+    	$sql = "SELECT c.category_id  From " . DB_PREFIX . "category c WHERE  c.category_id= (SELECT category_id From " . DB_PREFIX . "product_to_category where product_id= '".$product_id."' limit 1)";
+    	$qus=$this->db->query($sql);
+	 	$querys =$qus->rows ;
+	 	foreach ($querys as $key => $value) {
+		$sql = "select distinct p.product_id from " . DB_PREFIX . "product p
+			    left join " . DB_PREFIX . "product_to_category ptc on p.product_id = ptc.product_id
+			    left join " . DB_PREFIX . "category c on c.category_id = ptc.category_id
+			    left join " . DB_PREFIX . "product_to_store p2s on p.product_id = p2s.product_id
+			    where p.status = 1 and p.date_available <= NOW() and p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
+			    and c.category_id = '" . $value['category_id'] . "'
+			    and c.status = 1  order by p.date_modified desc limit ".$limit;
+			  
+		$query = $this->db->query($sql);
+		}
+		foreach ($query->rows as $result) {
+			$product_data[] = $this->getProduct($result['product_id']);	
+		}
+		return $product_data;
+	}
+
 	/**
 	 * 获得产品的特价信息
 	 * @author yufeng

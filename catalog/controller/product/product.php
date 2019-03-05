@@ -521,8 +521,8 @@ class ControllerProductProduct extends Controller {
             $data['faq']= html_entity_decode($faq['description'], ENT_QUOTES, 'UTF-8');
 
             //首页推荐商品
-            $recommend_products = $this->model_catalog_product->getRecommendProducts(4);
-             //print_r($recommend_products);exit();
+            $recommend_products = $this->model_catalog_product->getRecommendProductsnew($this->request->get['product_id'],4);
+             // print_r($recommend_products);exit();
             $i = 0;
             foreach($recommend_products as $key=>$row){
                 $recommend_products[$key]['key_id'] = $i;   //作为索引值 dyl add
