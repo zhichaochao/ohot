@@ -30,7 +30,7 @@ class ControllerProductPromotion extends Controller {
 		} else {
 			$limit =16;
 		}
-
+		$data['category_id'] =17;
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$data['breadcrumbs'] = array();

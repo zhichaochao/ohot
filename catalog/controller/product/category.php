@@ -695,6 +695,7 @@ class ControllerProductCategory extends Controller {
                             
                 //texture
                 $texture = $this->model_catalog_product->getOptionDes('Texture',$result['product_id']);
+				$off=floor((1-$result['special']/$result['price'])*100);
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
@@ -707,6 +708,7 @@ class ControllerProductCategory extends Controller {
 					'name'        => utf8_substr(strip_tags($result['name']),0,40).'...',
 					'color_name'  => $color_name,
                     'texture'     => $texture,
+                    'off'     => $off,
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
 					'price'       => $this->currency->format($result['price'],$this->session->data['currency']),
 					'special'     => $result['special']>0? $this->currency->format($result['special'],$this->session->data['currency']) : '',

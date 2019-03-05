@@ -6,6 +6,7 @@
 <input type="hidden" name="sort" value='<?=$sort;?>' id='sort'/>
 <input type="hidden" name="order" value='<?=$order;?>' id='order'/>
 <input type="hidden" name="limit" value='<?=$limit;?>' id='limit'/>
+<input type="hidden" name="category_id" value='<?=$category_id;?>' id='category_id'/>
       <img class="changeimage img_bnr pc_hide" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />
       
       <h1>DISCOUNTED GOODS</h1>
@@ -122,7 +123,7 @@
       var allpage=$('#allpage').val();
       var page=$('#page').val();
       var sort=$('#sort').val();
-      // var category_id=$('#category_id').val();
+      var category_id=$('#category_id').val();
       var limit=$('#limit').val();
       var win =$(window).width();
         if(win<920){
@@ -134,7 +135,7 @@
               page++;
               $('#page').val(page);
                $.ajax({
-                          url: 'index.php?route=product/promotion/loadpage&page='+page+'&sort='+sort+'&limit='+limit ,
+                          url: 'index.php?route=product/category/loadpage&page='+page+'&sort='+sort+'&category_id='+category_id+'&limit='+limit ,
                           dataType: 'json',
                           success: function(data) {
                             var result="";
