@@ -155,7 +155,7 @@ class ModelCatalogProduct extends Model {
 	public function getProductMinPrice($product_id){
 			//用户组
 		$price_type=$this->customer->isLogged()?(int)$this->config->get('config_customer_group_id'):'';
-	       $query = $this->db->query("SELECT price as price ,product_option_id,product_option_value_id FROM (SELECT * FROM th_product_option_value pov WHERE product_id='".$product_id."' AND quantity>0 AND option_id IN( SELECT option_id FROM th_product_option po WHERE product_id ='".$product_id."' AND po.product_option_id=pov.product_option_id) ORDER BY price ASC,option_value_id ASC ) as opv GROUP BY option_id ");
+	       $query = $this->db->query("SELECT price".$price_type." as price ,product_option_id,product_option_value_id FROM (SELECT * FROM th_product_option_value pov WHERE product_id='".$product_id."' AND quantity>0 AND option_id IN( SELECT option_id FROM th_product_option po WHERE product_id ='".$product_id."' AND po.product_option_id=pov.product_option_id) ORDER BY price ASC,option_value_id ASC ) as opv GROUP BY option_id ");
 	       // print_r("SELECT  price".$price_type." as price ,product_option_id,product_option_value_id FROM (SELECT * FROM " . DB_PREFIX . "product_option_value WHERE  product_id='".$product_id."' AND quantity>0 ORDER BY  price".$price_type." ASC,option_value_id ASC ) as opv  GROUP BY option_id ");exi
 	       // print_r($query->rows);exit;
 	     
