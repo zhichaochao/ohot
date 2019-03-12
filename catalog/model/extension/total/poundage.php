@@ -11,9 +11,11 @@ class ModelExtensionTotalPoundage extends Model {
 			$poundage = '';
 			if ($this->config->get('pp_express_is_poundage')) {
 				if ($this->config->get('pp_express_poundage')) {
-
+					if(isset($this->request->get['cart_ids'])){
+					$cost = $this->cart->getSubTotal($this->request->get['cart_ids']);
+					}else{
 					$cost = $this->cart->getSubTotal();
-
+					}
 					//是否包含邮费
 					if ($this->config->get('pp_express_including_postage')) {
 						if (isset($this->session->data['shipping_method'])) {

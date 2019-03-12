@@ -54,6 +54,7 @@
                  <?php } ?> 
                 </div>
               </div>
+              <?php if(isset($payment_method_attributes)) { ?>
             <?php if($payment_code !== 'pp_express' || $payment_code !== 'pp_standard') { ?>
               <div class="right clearfix" style="margin:0 0 20px 20px;">
                 <span class="h2_span">Payment Information</span>
@@ -66,6 +67,7 @@
                     <?php } ?>
                 </div>
               </div>
+              <?php } ?>
               <?php } ?>
               
             </div>
