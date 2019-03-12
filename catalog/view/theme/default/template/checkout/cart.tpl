@@ -46,8 +46,8 @@
 							<li class="clearfix">
 								      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>stockout</span></div><?php }?>
 							<label for="" class="dx_label">
-									 <input checked="checked"  pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
-									 <i class="check_i active"></i>
+									 <input <?php if($product['stock']) { ?> checked="checked"<?php }?>  pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
+									 <i class="check_i  <?php if($product['stock']) { ?>active<?php }?>"></i>
 							</label>
 								<div class="pic_img">
 									<a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="" /></a>
@@ -147,8 +147,8 @@
 						<div class="div1 clearfix">
 
 							<label for="" class="dx_label">
-									 <input checked="checked"   pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
-									 <i class="check_i active"></i>
+									 <input  <?php if($product['stock']) { ?>checked="checked" <?php }?>  pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
+									 <i class="check_i <?php if($product['stock']) { ?>active<?php }?>"></i>
 									<!-- <input autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>" class="check_i" > -->
 							</label>
 							<?php if ($product['thumb']) { ?>
