@@ -543,7 +543,7 @@ function cart_removes(product_key){
       select_cart();
     })
 
-
+select_cart();
 		function select_cart() {
 			var a = new Array();
 			$(".shop_ul .check_i").each(function(){

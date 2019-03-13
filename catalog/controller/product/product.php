@@ -530,9 +530,9 @@ class ControllerProductProduct extends Controller {
                 $recommend_products[$key]['description'] = utf8_substr(strip_tags(html_entity_decode($row['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..';
             
                 if($recommend_products[$key]['image']){
-                    $recommend_products[$key]['image'] = $this->model_tool_image->resize($row['image'], 360, 360);
+                    $recommend_products[$key]['image'] = $this->model_tool_image->resize($row['image'], 400, 400);
                 }else{
-                    $recommend_products[$key]['image'] = $this->model_tool_image->resize('placeholder.png', 360, 360);
+                    $recommend_products[$key]['image'] = $this->model_tool_image->resize('placeholder.png', 4000, 400);
                 }
             
                 $recommend_products[$key]['product_link'] = $this->url->link('product/product','product_id='.$row['product_id']);
