@@ -32,7 +32,7 @@ class ModelAccountCustomer extends Model {
 				language_id = '" . (int)$this->config->get('config_language_id') . "',
 				firstname = '" . $this->db->escape($data['firstname']) . "',
 			    lastname = '" . $this->db->escape($data['lastname']) . "',
-			    email = '" . $this->db->escape($data['email']) . "',
+			    email = '" . $this->db->escape(strtolower($data['email'])) . "',
 			    custom_field = '" . $this->db->escape(isset($data['custom_field']['account']) ? json_encode($data['custom_field']['account']) : '') . "',
 			    salt = '" . $this->db->escape($salt = token(9)) . "',
 			    password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "',

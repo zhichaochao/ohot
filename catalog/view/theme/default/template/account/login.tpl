@@ -29,7 +29,7 @@
                 <label for="">
                   <span>E-Mail Address <i class="red_i">*</i></span>
                   <!-- <input class="email email1" type="text" /> -->
-                  <input type="text" name="email" value="<?php echo $email; ?>" placeholder="<?php echo $entry_email; ?>" id="input-email" />
+                  <input type="text" name="email" value="<?php echo $email; ?>" class="nameemail" placeholder="<?php echo $entry_email; ?>" id="input-email" />
                  <p class="ts_p"    <?php if ($error_warning) { ?>  style='display:block;' <?php } ?>><?php if ($error_warning) { ?><?php echo $error_warning; ?><?php }else{ ?>The email address you entered is incorrect<?php } ?></p>
                 </label>
                 <label for="">
@@ -184,6 +184,16 @@ $(document).delegate('#button-register', 'click', function() {
       if(!re.test(text) && text !=""){
         $(this).siblings(".ts_p").addClass("off");
         $(this).siblings(".ts_p").text("Letters Only, No Space or Digit");
+      }else{
+        $(this).siblings(".ts_p").removeClass("off");
+      }
+    })
+     $(".nameemail").change(function(){
+      var text=$(this).val();
+      var re=/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
+      if(!re.test(text) && text !=""){
+        $(this).siblings(".ts_p").addClass("off");
+        $(this).siblings(".ts_p").text("Special Symbols Are Not Supported");
       }else{
         $(this).siblings(".ts_p").removeClass("off");
       }
