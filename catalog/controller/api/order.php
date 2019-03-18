@@ -401,6 +401,7 @@ class ControllerApiOrder extends Controller {
 				    $this->model_checkout_order->addOrderHistory($json['order_id'], $order_status_id, $order_data['comment'], $this->request->post['notify'],$this->request->post['shippingNumber']);
 
 				    //dyl改
+				    $config_email = $this->config->get('config_email');
 				    $order_info=$this->model_checkout_order->getOrderDataByOrderId($json['order_id']);
 	                $orderStatus=$this->checkOrderStatus($order_status_id);                                        //订单状态描述
 	                $shippingNumberContent=!empty($this->request->post['shippingNumber']) ? $this->request->post['shippingNumber'] : '';  //物流号
@@ -418,14 +419,14 @@ class ControllerApiOrder extends Controller {
 	                if($order_status_id==2){  //处理中
 	                   $content = "Dear {$order_info['firstname']} {$order_info['lastname']},"."\n\n";
 	                   $content.= "Thank you for shopping with Hot Beauty Hair.com. Your order is preparing in Hot Beauty Hair’s warehouse. The tracking number will be emailed after we ship out your order."."\n\n";
-	                   $content.= "If any other questions,please kindly just email us at hellena@hotbeautyhair.com."."\n\n";
+	                   $content.= "If any other questions,please kindly just email us at ".$config_email."."."\n\n";
 	                   $content.= "Hot Beauty Hair Team";
 	                   $Subject = "Your hair order is successful - Hot Beauty Hair";
 	                }
 	                if($order_status_id==3){  //订单发货后
 	                   $content = "Dear {$order_info['firstname']} {$order_info['lastname']},". "\n\n";
 	                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus.", the tracking number is ".$shippingNumberContent.$t_company."\n\n";
-	                   $content.= "If you have any questions, please don'thesitate to send emails to hellena@hotbeautyhair.com."."\n";
+	                   $content.= "If you have any questions, please don'thesitate to send emails to ".$config_email."."."\n";
 	                   $content.= "Best Regards,"."\n";
 	                   $content.= "Hot Beauty Hair Team";
 	                   $Subject = "Your order #".$order_info['order_no']." has been ".$orderStatus;
@@ -434,7 +435,7 @@ class ControllerApiOrder extends Controller {
 	                   $content = "Dear"."\n";
 	                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus."."."\n";
 	                   $content.= "Any feedback of our hair would be a great appreciated."."\n\n";
-	                   $content.= "If you have any questions, please don'thesitate to send emails to hellena@hotbeautyhair.com."."\n";
+	                   $content.= "If you have any questions, please don'thesitate to send emails to ".$config_email."."."\n";
 	                   $content.= "Have a fantastic day!"."\n";
 	                   $content.= "Best Regards,"."\n";
 	                   $content.= "Hot Beauty Hair Team";
@@ -445,7 +446,7 @@ class ControllerApiOrder extends Controller {
 	                   $content = "Dear"."\n\n";
 	                   $content.= "Thank you for your recent order #".$order_info['order_no']." Unfortunately, your order has been ".$orderStatus." since the ".$since."."."\n";
 	                   $content.= "Welcome to visit our online shop again."."\n\n";
-	                   $content.= "If you have any questions, please don'thesitate to send emails to hellena@hotbeautyhair.com."."\n";
+	                   $content.= "If you have any questions, please don'thesitate to send emails to ".$config_email."."."\n";
 	                   $content.= "Best Regards,"."\n";
 	                   $content.= "Hot Beauty Hair Team";
 	                   $Subject = "Your order #".$order_info['order_no']." has been ".$orderStatus;
@@ -856,7 +857,7 @@ class ControllerApiOrder extends Controller {
 
 					//$this->model_checkout_order->addOrderHistory($order_id, $order_status_id);
 					$this->model_checkout_order->addOrderHistory($order_id, $order_status_id, $this->request->post['comment'], $notify, $this->request->post['shippingNumber']);
-
+					$config_email=$this->config->get('config_email');
 					//dyl改  783973660@qq.com
 	                $orderStatus=$this->checkOrderStatus($this->request->post['order_status_id']);
 	                $shippingNumberContent=!empty($this->request->post['shippingNumber']) ? $this->request->post['shippingNumber'] : '';
@@ -874,14 +875,14 @@ class ControllerApiOrder extends Controller {
 	                if($this->request->post['order_status_id']==2){  //处理中
 	                   $content = "Dear {$order_info['firstname']} {$order_info['lastname']},"."\n\n";
 	                   $content.= "Thank you for shopping with Hot Beauty Hair.com. Your order is preparing in Hot Beauty Hair’s warehouse. The tracking number will be emailed after we ship out your order."."\n\n";
-	                   $content.= "If any other questions,please kindly just email us at hellena@hotbeautyhair.com."."\n\n";
+	                   $content.= "If any other questions,please kindly just email us at ".$config_email."."."\n\n";
 	                   $content.= "Hot Beauty Hair Team";
 	                   $Subject = "Your hair order is successful - Hot Beauty Hair";
 	                }
 	                if($this->request->post['order_status_id']==3){  //订单发货后
 	                   $content = "Dear {$order_info['firstname']} {$order_info['lastname']},". "\n\n";
 	                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus.", the tracking number is ".$shippingNumberContent.$t_company."\n\n";
-	                   $content.= "If you have any questions, please don'thesitate to send emails to hellena@hotbeautyhair.com."."\n";
+	                   $content.= "If you have any questions, please don'thesitate to send emails to ".$config_email."."."\n";
 	                   $content.= "Best Regards,"."\n";
 	                   $content.= "Hot Beauty Hair Team";
 	                   $Subject = "Your order #".$order_info['order_no']." has been ".$orderStatus;
@@ -890,7 +891,7 @@ class ControllerApiOrder extends Controller {
 	                   $content = "Dear"."\n";
 	                   $content.= "Thank you shopping with Hot Beauty Hair. Your order #".$order_info['order_no']." has been ".$orderStatus."."."\n";
 	                   $content.= "Any feedback of our hair would be a great appreciated."."\n\n";
-	                   $content.= "If you have any questions, please don'thesitate to send emails to hellena@hotbeautyhair.com."."\n";
+	                   $content.= "If you have any questions, please don'thesitate to send emails to ".$config_email."."."\n";
 	                   $content.= "Have a fantastic day!"."\n";
 	                   $content.= "Best Regards,"."\n";
 	                   $content.= "Hot Beauty Hair Team";
@@ -901,7 +902,7 @@ class ControllerApiOrder extends Controller {
 	                   $content = "Dear"."\n\n";
 	                   $content.= "Thank you for your recent order #".$order_info['order_no']." Unfortunately, your order has been ".$orderStatus." since the ".$since."."."\n";
 	                   $content.= "Welcome to visit our online shop again."."\n\n";
-	                   $content.= "If you have any questions, please don'thesitate to send emails to hellena@hotbeautyhair.com."."\n";
+	                   $content.= "If you have any questions, please don'thesitate to send emails to ".$config_email."."."\n";
 	                   $content.= "Best Regards,"."\n";
 	                   $content.= "Hot Beauty Hair Team";
 	                   $Subject = "Your order #".$order_info['order_no']." has been ".$orderStatus;
