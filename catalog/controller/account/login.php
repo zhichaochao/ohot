@@ -295,11 +295,11 @@ class ControllerAccountLogin extends Controller {
 	        $json['error']['agree'] = "Warning: You must agree to the registration agreement!";
 	    }
 
-	    $res = $this->makeRequest('https://opencart.com/index.php?route=account/login/getcustomerbytotal'.'&email='.$this->request->post['email']);
+	    // $res = $this->makeRequest('https://www.hotbeautyhairmall.com//index.php?route=account/login/getcustomerbytotal'.'&email='.$this->request->post['email']);
+	    // file_get_contents($res);
 	    // $reqData = json_decode($res['result'], true);
-	   // print_r();
-	   // exit;
-	    if($res['result']==1){
+	   $counts=file_get_contents('https://mad.hotbeautyhairmall.com/index.php?route=account/login/getcustomerbytotal'.'&email='.$this->request->post['email']);
+	    if($counts>0){
 	    	$json['error']['warning'] = $this->language->get('error_exists');
 	    }
 	    // print_r($json['error']['warning']);exit;
