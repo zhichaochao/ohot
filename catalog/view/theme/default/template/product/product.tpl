@@ -110,7 +110,7 @@
 									<span>Quantity:</span>
 									<div class="price_input clearfix">
 											<span class="sub" ></span>
-										<input class="num" name="quantity" type="text" value="1" id="nums" readonly="readonly" />
+										<input class="num" name="quantity" type="text" value="1" id="numss" readonly="readonly" />
 										<span class="add"></span>
 									</div>
 								</label>
@@ -889,7 +889,11 @@ var product_id = "<?php echo $product_id; ?>";
 
 		            success: function(json) {
 		                $('#money').html(json['html']);
-		                if ($('input[name="quantity"]').val()<json['quantity']) {
+		                var num=parseInt($('#numss').val());
+		                var quantity=parseInt(json['quantity']);
+		                console.log($('#numss').val());
+		                console.log(json['quantity']);
+		                if (num<quantity) {
 		                    $('#button-cart').html('ADD TO SHOPPING CART&nbsp;&nbsp;&nbsp;&nbsp;>');
 		                }else{
 		                   $('#button-cart').html('SOLD OUT');
