@@ -74,6 +74,10 @@
                 <label class="control-label" for="input-quantity"><?php echo $entry_quantity; ?></label>
                 <input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" placeholder="<?php echo $entry_quantity; ?>" id="input-quantity" class="form-control" />
               </div>
+              <div class="form-group" >
+                <label class="control-label" for="input-sortorder">排序</label>
+                <input type="text" name="filter_sortorder" value="" placeholder="排序" id="input-sortorder" class="form-control" />
+              </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
@@ -226,7 +230,11 @@ $('#button-filter').on('click', function() {
 	if (filter_quantity) {
 		url += '&filter_quantity=' + encodeURIComponent(filter_quantity);
 	}
+  var filter_sortorder = $('input[name=\'filter_sortorder\']').val();
 
+  if (filter_sortorder) {
+    url += '&filter_sortorder=' + encodeURIComponent(filter_sortorder);
+  }
 	var filter_status = $('select[name=\'filter_status\']').val();
 
 	if (filter_status != '*') {

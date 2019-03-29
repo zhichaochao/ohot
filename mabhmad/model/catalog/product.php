@@ -627,6 +627,9 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape(
 		if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
 			$sql .= " AND p.quantity = '" . (int)$data['filter_quantity'] . "'";
 		}
+		if (isset($data['filter_sortorder']) && !is_null($data['filter_sortorder'])) {
+			$sql .= " AND p.sort_order = '" . (int)$data['filter_sortorder'] . "'";
+		}
 
 		if (isset($data['filter_relation_product'])) {
 			$sql .= " AND p.relation_product LIKE '%" . $this->db->escape($data['filter_relation_product']) . "%'";
@@ -1034,6 +1037,10 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape(
 
 		if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
 			$sql .= " AND p.quantity = '" . (int)$data['filter_quantity'] . "'";
+		}
+
+		if (isset($data['filter_sortorder']) && !is_null($data['filter_sortorder'])) {
+			$sql .= " AND p.sort_order = '" . (int)$data['filter_sortorder'] . "'";
 		}
 
 		if (isset($data['filter_relation_product'])) {
