@@ -178,6 +178,9 @@ class ModelCatalogProduct extends Model {
         if (!empty($data['filter_model'])) {
             $sql .= " AND p.model LIKE '%" . $this->db->escape($data['filter_model']) . "%'";
         }
+        if (isset($data['filter_sortorder']) && !is_null($data['filter_sortorder'])) {
+            $sql .= " AND p.sort_order = '" . (int)$data['filter_sortorder'] . "'";
+        }
 
         if (isset($data['filter_price']) && !is_null($data['filter_price'])) {
             $sql .= " AND p.price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
@@ -596,6 +599,9 @@ class ModelCatalogProduct extends Model {
         if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
             $sql .= " AND p.quantity = '" . (int)$data['filter_quantity'] . "'";
         }
+        if (isset($data['filter_sortorder']) && !is_null($data['filter_sortorder'])) {
+            $sql .= " AND p.sort_order = '" . (int)$data['filter_sortorder'] . "'";
+        }
 
         if (isset($data['filter_relation_product'])) {
             $sql .= " AND p.relation_product LIKE '%" . $this->db->escape($data['filter_relation_product']) . "%'";
@@ -817,21 +823,21 @@ class ModelCatalogProduct extends Model {
     public function getbrowse($product_id)
     {
         $sql="SELECT browse from " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id. "' ";
-         $dbs= unserialize($this->config->get('db_database_data'));
+         // $dbs= unserialize($this->config->get('db_database_data'));
+        $res=$this->db->query($sql)->row;
+        // $res=array();
+        // // $total=0;
+        // foreach ($dbs as $key => $value) {
+        //     // print_r($key);exit;
+        //     if($key==0){
+        //       $res[]=  $this->db->query($sql)->row;
 
-        $res=array();
-        // $total=0;
-        foreach ($dbs as $key => $value) {
-            // print_r($key);exit;
-            if($key==0){
-              $res[]=  $this->db->query($sql)->row;
-
-            }else{
-                $d='db'.$key;
-                $res[]=$this->$d->query($sql)->row;
-            }
-            // $total+=$res['browse'];
-        }
+        //     }else{
+        //         $d='db'.$key;
+        //         $res[]=$this->$d->query($sql)->row;
+        //     }
+        //     // $total+=$res['browse'];
+        // }
         // print_r($res);exit;
      return $res;
 

@@ -96,6 +96,9 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['filter_quantity'])) {
 				$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
 			}
+			if (isset($this->request->get['filter_sortorder'])) {
+				$url .= '&filter_sortorder=' . $this->request->get['filter_sortorder'];
+			}
 
 			if (isset($this->request->get['filter_status'])) {
 				$url .= '&filter_status=' . $this->request->get['filter_status'];
@@ -153,6 +156,9 @@ class ControllerCatalogProduct extends Controller {
 			if (isset($this->request->get['filter_quantity'])) {
 				$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
 			}
+			if (isset($this->request->get['filter_sortorder'])) {
+				$url .= '&filter_sortorder=' . $this->request->get['filter_sortorder'];
+			}
 
 			if (isset($this->request->get['filter_status'])) {
 				$url .= '&filter_status=' . $this->request->get['filter_status'];
@@ -205,6 +211,11 @@ class ControllerCatalogProduct extends Controller {
 			$filter_quantity = $this->request->get['filter_quantity'];
 		} else {
 			$filter_quantity = null;
+		}
+		if (isset($this->request->get['filter_sortorder'])) {
+			$filter_sortorder = $this->request->get['filter_sortorder'];
+		} else {
+			$filter_sortorder = null;
 		}
 
 		if (isset($this->request->get['filter_status'])) {
@@ -264,6 +275,9 @@ class ControllerCatalogProduct extends Controller {
 		if (isset($this->request->get['filter_quantity'])) {
 			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
 		}
+		if (isset($this->request->get['filter_sortorder'])) {
+			$url .= '&filter_sortorder=' . $this->request->get['filter_sortorder'];
+		}
 
 		if (isset($this->request->get['filter_status'])) {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
@@ -317,6 +331,7 @@ class ControllerCatalogProduct extends Controller {
 			'filter_model'	  => $filter_model,
 			'filter_price'	  => $filter_price,
 			'filter_quantity' => $filter_quantity,
+			'filter_sortorder' => $filter_sortorder,
 			'filter_status'   => $filter_status,
 			'filter_relation_product'   => $filter_relation_product,
 			'filter_image'    => $filter_image,
@@ -365,12 +380,12 @@ class ControllerCatalogProduct extends Controller {
 	
 
 			$resbrowse=$this->model_catalog_product->getbrowse($result['product_id']);
-			$a=0;
-			foreach ($resbrowse as $resbrow) {
-				$a+=$resbrow['browse'];
-			}
+			// $a=0;
+			// foreach ($resbrowse as $resbrow) {
+				$a=$resbrowse['browse'];
+			// }
 			$browse=$a;
-			// print_r($a);exit;
+			// print_r($browse);exit;
 			$this->load->model('catalog/url_alias');
 			$keyword = $this->model_catalog_url_alias->getKeyword($result['product_id']);
 			$data['products'][] = array(
@@ -463,6 +478,9 @@ class ControllerCatalogProduct extends Controller {
 		if (isset($this->request->get['filter_quantity'])) {
 			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
 		}
+		if (isset($this->request->get['filter_sortorder'])) {
+			$url .= '&filter_sortorder=' . $this->request->get['filter_sortorder'];
+		}
 
 		if (isset($this->request->get['filter_status'])) {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
@@ -511,6 +529,9 @@ class ControllerCatalogProduct extends Controller {
 
 		if (isset($this->request->get['filter_quantity'])) {
 			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+		}
+		if (isset($this->request->get['filter_sortorder'])) {
+			$url .= '&filter_sortorder=' . $this->request->get['filter_sortorder'];
 		}
 
 		if (isset($this->request->get['filter_status'])) {
@@ -727,6 +748,9 @@ class ControllerCatalogProduct extends Controller {
 
 		if (isset($this->request->get['filter_quantity'])) {
 			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+		}
+		if (isset($this->request->get['filter_sortorder'])) {
+			$url .= '&filter_sortorder=' . $this->request->get['filter_sortorder'];
 		}
 
 		if (isset($this->request->get['filter_status'])) {

@@ -45,7 +45,7 @@
               <div class="form-group">
                 <label class="control-label" for="input-model"><?php echo $entry_free_postage; ?></label>
                 <select name="filter_free_postage" id="input-free-postage" class="form-control">
-                  <option value="*"></option>
+                  <option value="*"></option> 
                   <?php if ($filter_free_postage) { ?>
                   <option value="1" selected="selected">YES</option>
                   <?php } else { ?>
@@ -68,6 +68,10 @@
               <div class="form-group" >
                 <label class="control-label" for="input-quantity"><?php echo $entry_quantity; ?></label>
                 <input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" placeholder="<?php echo $entry_quantity; ?>" id="input-quantity" class="form-control" />
+              </div>
+              <div class="form-group" >
+                <label class="control-label" for="input-sortorder">排序</label>
+                <input type="text" name="filter_sortorder" value="" placeholder="排序" id="input-sortorder" class="form-control" />
               </div>
             </div>
             <div class="col-sm-4">
@@ -222,6 +226,11 @@ $('#button-filter').on('click', function() {
 	if (filter_quantity) {
 		url += '&filter_quantity=' + encodeURIComponent(filter_quantity);
 	}
+  var filter_sortorder = $('input[name=\'filter_sortorder\']').val();
+
+  if (filter_sortorder) {
+    url += '&filter_sortorder=' + encodeURIComponent(filter_sortorder);
+  }
 
 	var filter_status = $('select[name=\'filter_status\']').val();
 
