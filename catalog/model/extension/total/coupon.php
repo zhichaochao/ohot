@@ -201,7 +201,7 @@ class ModelExtensionTotalCoupon extends Model {
 
 
 
-				$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_coupon` WHERE coupon_id = '" . (int)$$coupon_info['coupon_id'] . "' AND customer_id='" . (int)$this->customer->getId() . "'");
+				$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_coupon` WHERE coupon_id = '" . (int)$coupon_info['coupon_id'] . "' AND customer_id='" . (int)$this->customer->getId() . "'");
 			} else {
 				return $this->config->get('config_fraud_status_id');
 			}
