@@ -624,12 +624,12 @@ class ControllerCatalogProduct extends Controller {
 	
 
 
-			$resbrowse=$this->model_catalog_product->getbrowse($result['product_id']);
-			$a=0;
-			foreach ($resbrowse as $resbrow) {
-				$a+=$resbrow['browse'];
-			}
-			$browse=$a;
+			// $resbrowse=$this->model_catalog_product->getbrowse($result['product_id']);
+			// $a=0;
+			// foreach ($resbrowse as $resbrow) {
+			// 	$a+=$resbrow['browse'];
+			// }
+			// $browse=$a;
 
 			$this->load->model('catalog/url_alias');
 			$keyword = $this->model_catalog_url_alias->getKeyword($result['product_id']);
@@ -643,7 +643,7 @@ class ControllerCatalogProduct extends Controller {
 				'special'    => isset($special_price) ?$special_price : 0,
 				'free_postage' => $result['free_postage'],
 				'quantity'   => $result['quantity'],
-				'browse'   => $browse,
+				'browse'   => $result['viewed'],
 				'relation_product'   => $result['relation_product'],
 				'status'     => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'edit'       => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'] . $url, true)
