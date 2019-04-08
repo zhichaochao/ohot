@@ -552,14 +552,24 @@ class ControllerApiOrder extends Controller {
 
 				// Payment Method
 				if (!$json && !empty($this->request->post['payment_method'])) {
+					if($this->request->post['payment_method']!='pp_standard'){
 					if (empty($this->session->data['payment_methods'])) {
 						$json['error'] = $this->language->get('error_no_payment');
 					} elseif (!isset($this->session->data['payment_methods'][$this->request->post['payment_method']])) {
 						$json['error'] = $this->language->get('error_payment_method');
 					}
-
+					}
+					if($this->request->post['payment_method']!='pp_standard'){
 					if (!$json) {
 						$this->session->data['payment_method'] = $this->session->data['payment_methods'][$this->request->post['payment_method']];
+					}
+					}else{
+						$this->session->data['payment_method'] = Array (
+					  'code' =>'pp_standard',
+					  'title' =>'PayPal Payments Standard',
+					  'terms' =>'',
+					  'sort_order' => ''
+					  );
 					}
 				}
 

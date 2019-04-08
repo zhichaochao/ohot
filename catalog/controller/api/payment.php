@@ -260,24 +260,38 @@ class ControllerApiPayment extends Controller {
 		if (!isset($this->session->data['api_id'])) {
 			$json['error'] = $this->language->get('error_permission');
 		} else {
+			// print_r($this->request->post['payment_method']);exit;
 			// Payment Address
 			if (!isset($this->session->data['payment_address'])) {
 				$json['error'] = $this->language->get('error_address');
 			}
-
+			if($this->request->post['payment_method']!='pp_standard'){
 			// Payment Method
 			if (empty($this->session->data['payment_methods'])) {
 				$json['error'] = $this->language->get('error_no_payment');
 			} elseif (!isset($this->request->post['payment_method'])) {
 				$json['error'] = $this->language->get('error_method');
-			} elseif (!isset($this->session->data['payment_methods'][$this->request->post['payment_method']])) {
+			}elseif (!isset($this->session->data['payment_methods'][$this->request->post['payment_method']])) {
+				 // print_r(222);exit;
 				$json['error'] = $this->language->get('error_method');
 			}
+			}else{
+				$this->session->data['payment_method'] = Array (
+					  'code' =>'pp_standard',
+					  'title' =>'PayPal Payments Standard',
+					  'terms' =>'',
+					  'sort_order' => ''
+					  );
 
+				$json['success'] = $this->language->get('text_method');
+			}
+			
+		if($this->request->post['payment_method']!='pp_standard'){
 			if (!$json) {
 				$this->session->data['payment_method'] = $this->session->data['payment_methods'][$this->request->post['payment_method']];
 
 				$json['success'] = $this->language->get('text_method');
+			}
 			}
 		}
 

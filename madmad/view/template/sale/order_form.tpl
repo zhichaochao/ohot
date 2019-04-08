@@ -1992,6 +1992,11 @@ $('#button-payment-address').on('click', function() {
 							html = '<option value=""><?php echo $text_select; ?></option>';
 
 							if (json['payment_methods']) {
+                  if ('pp_standard' == $('select[name=\'payment_method\'] option:selected').val()) {
+                      html += '<option selected value="pp_standard">' +'PayPal Payments Standard' + '</option>';
+                  }else{
+                  html += '<option value="pp_standard">' +'PayPal Payments Standard' + '</option>';
+                }
 								for (i in json['payment_methods']) {
 									if (json['payment_methods'][i]['code'] == $('select[name=\'payment_method\'] option:selected').val()) {
 										html += '<option value="' + json['payment_methods'][i]['code'] + '" selected="selected">' + json['payment_methods'][i]['title'] + '</option>';
