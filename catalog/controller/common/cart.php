@@ -104,7 +104,7 @@ class ControllerCommonCart extends Controller {
 			}
 
 			$data['products'][] = array(
-				//'cart_id'   => $product['cart_id'],
+				'cart_id'   => $product['cart_id'],
 				// 'key'   => $product['key'],
 				'thumb'     => $image,
 				'name'      => $product['name'],

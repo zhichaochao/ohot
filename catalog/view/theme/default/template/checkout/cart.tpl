@@ -425,6 +425,7 @@ function cart_removes(product_key){
       		// if(win<920){tips("Successfully Modify Shopping Cart",'');}
         	console.log(json);
         	$('.total_price').html(json['total']);
+        	$('#cart_count').html(json['text_cart_items']);
         	for (var i = json['products'].length - 1; i >= 0; i--) {
         		$('.price_'+json['products'][i].cart_id).html(json['products'][i].value);
         	}
@@ -440,7 +441,7 @@ function cart_removes(product_key){
 			    num += parseInt($(this).val());
 			    //你的代码写在这里。
 			});
-	     $('#cart_count').html(parseInt(num));
+	    
 
 	    
 	}

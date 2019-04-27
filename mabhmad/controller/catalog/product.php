@@ -423,6 +423,65 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->getList();
 	}
+	// 同步产品
+	public function synchronizationProducts() {
+		$this->load->language('catalog/product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('catalog/product');
+
+		if (isset($this->request->post['selected'])) {
+			foreach ($this->request->post['selected'] as $product_id) {
+				$this->model_catalog_product->copySynchronizationProduct($product_id);
+				
+				// $this->model_catalog_product->deleteProduct($product_id);
+			}
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			$url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['filter_model'])) {
+				$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['filter_price'])) {
+				$url .= '&filter_price=' . $this->request->get['filter_price'];
+			}
+
+			if (isset($this->request->get['filter_quantity'])) {
+				$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
+			}
+			if (isset($this->request->get['filter_sortorder'])) {
+				$url .= '&filter_sortorder=' . $this->request->get['filter_sortorder'];
+			}
+
+			if (isset($this->request->get['filter_status'])) {
+				$url .= '&filter_status=' . $this->request->get['filter_status'];
+			}
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->response->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, true));
+		}
+
+		$this->getList();
+	}
 
 	protected function getList() {
 		if (isset($this->request->get['filter_name'])) {
@@ -564,6 +623,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['delete'] = $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . $url, true);
 		$data['explode'] = $this->url->link('catalog/product/exportComment', 'token=' . $this->session->data['token'], true);
 		$data['explodes'] = $this->url->link('catalog/product/exportCommentes', 'token=' . $this->session->data['token'], true);
+		$data['synchronizationproducts'] = $this->url->link('catalog/product/synchronizationProducts', 'token=' . $this->session->data['token'], true);
 
 		$data['products'] = array();
 
@@ -658,6 +718,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['text_disabled'] = $this->language->get('text_disabled');
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
+		$data['text_confirms'] = "同步产品操作无法撤消！确定要执行操作？";
 
 		$data['column_image'] = $this->language->get('column_image');
 		$data['column_name'] = $this->language->get('column_name');

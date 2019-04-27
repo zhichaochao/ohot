@@ -10,51 +10,55 @@
       <img class="changeimage img_bnr pc_hide" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />
       
       <h1>DISCOUNTED GOODS</h1>
-      
       <div class="pro_content clearfix">
+    <div class="top clearfix"> <div class="s_page"><?php echo $pagination; ?></div></div>
         <div class="pro_text clearfix">
           <ul class="pro_ul prolist clearfix">
             <?php foreach ($products as $product) { ?>
-            <li>
+             <li>
               <a href="<?php echo $product['href']; ?>">
-                <div class="pic_img">
-                  <img src="<?php echo $product['thumb']; ?>" />
+                <div class="pic_img" >
+                  <img src="<?php echo $product['thumb']; ?>"   />
                 </div>
-                <div class="text clearfix">
-                  <p><?php echo $product['name']; ?></p>
-                  <div class="price">
+                <div class="text clearfix" >
+                <p><?php echo $product['name']; ?></p>
+                <span class="price">
                   <?php if($product['special']) { ?>
-                     <span><?php echo $product['special']; ?></span>
-                     <i><?php echo $product['price']; ?></i>
+                  <em> <?php echo $product['special']; ?></em>
+                     <del><?php echo $product['price']; ?></del>
                   <?php }else{ ?>
-                     <span ><?php echo $product['price']; ?></span>
+                     <em class="price-single"><?php echo $product['price']; ?>
+                     </em>
                   <?php } ?>
-                    <!-- <span>$35.30</span>
-                    <i>$78.40</i> -->
-                  </div>
-                   <?php if($product['modelling']) { ?>
-                      <i class="modelling"><?php echo $product['modelling']; ?></i>
+                </span> 
+                <?php if($product['is_new']==0) { ?>
+                     <span class="new" style="float: left;font-size: 16px;text-align: center;">NEW</span>
                       <?php } ?>
-                  <div class="fsbg_div">
+                      <?php if($product['is_sale']==1) { ?>
+                     <span class="new" style="float: left;font-size: 16px;text-align: center;">SALE</span>
+                      <?php } ?>
+                      <!-- <?php if($product['modelling']) { ?>
+                      <i class="modelling"><?php echo $product['modelling']; ?></i>
+                        <?php } ?> -->
+                 <div class="fsbg_div">
                     <i>-<?php echo $product['off']; ?>%</i>
-                    
                   </div>
                 </div>
               </a>
               <div class="sc_div <?=$product['wishlist']==1 ?'off':'';?>"
-                     
                onclick="wishlist('<?php echo $product['product_id']; ?>',this);" ></div>
-              <!-- <div class="sc_div"></div> -->
             </li>
             <?php } ?>
           </ul>
         </div>
+
         <div class="bot clearfix">
         <div class="left"><?php echo $pagination; ?></div>
           <div class="right">
             <p><?php echo $results; ?></p>
           </div>
         </div>
+
       </div>
     </div>    
 <div>
@@ -140,7 +144,7 @@
                           success: function(data) {
                             var result="";
                             // console.log( data);
-                            for (var i =0; i < data.products.length ; i++) {
+                           for (var i =0; i < data.products.length ; i++) {
                             var addwinst="wishlist('"+data.products[i].product_id+"'";
                                result+='<li>'
                                   +'<a href="'+data.products[i].href+'">'
@@ -148,29 +152,33 @@
                                         +'<img src="'+data.products[i].thumb+'"   />'
                                     + '</div>'
                                       + '<div class="text clearfix" >'
-                                      +'<p>'+data.products[i].name
-                                        +'</p>'
-                                       + '<div class="price">';
-
+                                       + '<span class="price">';
                               if (data.products[i].special) {
                                  result += '  <span>'+data.products[i].special
-                                            + '</span>'
-                                           +' <i>'+data.products[i].price
-                                            +'</i>';
-                                          
+                                           +' <del>'+data.products[i].price
+                                            +'</del>'
+                                          + '</span>';
                              }else{
-                                      result+= '<span>'+data.products[i].price+'</span>';
+                                      result+= '<span class="price-single">'+data.products[i].price+'</span>';
                               }
-                              if (data.products[i].modelling) {
-                                 result+='<i class="modelling">'+data.products[i].modelling+'</i>';
-                              }
+                                
 
-                                    result+=   '</div>'
-                                        +' <div class="fsbg_div">'
+                                    result+=   '</span>'
+                                    if (data.products[i].is_new==0) {
+                                    result+='<span class="new" style="float: left;font-size: 16px;text-align: center;">NEW</span>';
+                                    }
+                                    if (data.products[i].is_sale==1) {
+                                      result+='<span class="sale" style="float: left;font-size: 16px;text-align: center;">SALE</span>';
+                                    }
+
+                                    // if (data.products[i].modelling) {
+                                    //   result+='<i class="modelling">'+data.products[i].modelling+' </i>';
+                                    // }
+                                     result+=' <div class="fsbg_div">'
                                         +'<i>'+'-'+data.products[i].off+'%'    
                                         +'</i>' 
                                         + '</div>'
-                                      +'</div>'
+                                     
                                    +'</a>';
                                    if (data.products[i].wishlist==1) {
                                     result+='<div class="sc_div off" onclick="'+addwinst+',this);" >';

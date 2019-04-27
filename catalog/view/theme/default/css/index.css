@@ -455,7 +455,7 @@
 		.gwc_pc .div2 p{display: inline-block;background: #f5f5f5;font-size: 0.93vw;color: #666;border-radius: 20px;padding: 0 0.15rem;
 		height: 30px;line-height:30px; margin: 0 0.52vw 0.73vw 0;float: left;}
 	}
-	.gwc_pc .total{position: fixed;bottom: 0;left: 0;width: 100%;height: 0.7rem;box-shadow: 0 0 10px 1px rgba(0,0,0,.2);background: #fff;}
+	.gwc_pc .total{position: fixed;bottom: 0;left: 0;width: 100%;height: 0.7rem;box-shadow: 0 0 10px 1px rgba(0,0,0,.2);background: #fff;z-index: 100;}
 	.gwc_pc .total .qx{max-width: 1200px;margin: auto;padding: 0 0.2rem;border: none;background: transparent;}
 	.gwc_pc .total .qx .qx_label{height: 0.7rem;line-height: 0.74rem;}
 	.gwc_pc .total .qx .qx_label .check_i{height: 0.7rem}
@@ -1576,7 +1576,7 @@
 	.promotion .pro_text .pro_ul .text{padding: 0 10px 20px 10px;}
 	.promotion .pro_text .pro_ul .text p{margin-top: 16px;text-align: left;padding: 0;font-size: 14px;line-height: 16px;}
 	.promotion .pro_text .pro_ul .text .price{width: 50%;float: left;}	
-	.promotion .pro_text .pro_ul .text span{display:block;line-height: 24px; margin: 20px 0 8px 0;text-align: left;font-size: 24px;color: #fe2a4d;padding: 0;}
+	.promotion .pro_text .pro_ul .text span{display:block;line-height: 32px; margin: 20px 0 8px 0;text-align: left;font-size: 24px;color: #fe2a4d;padding: 3px;}
 	.promotion .pro_text .pro_ul .text .price i {font-size: 16px;color: #999;text-decoration: line-through;
 	display: block;float: left;text-align: left;}
 	.promotion .pro_text .pro_ul .text .modelling{background: #a89d9b;display: inline-block;font-size: 0.72vw;margin: 20px 0 8px 0;color:#fff;
@@ -1825,7 +1825,7 @@
 	.pro_content .pro_ul li:nth-of-type(even){border-left:1px solid #eee;}
 	.pro_content .pro_ul .pic_img{width: 100%;overflow: hidden;margin-bottom: 0.2rem;}
 	.pro_content .pro_ul .pic_img img{display: block;width: 100% !important;height: auto !important;}
-	.pro_content .pro_ul .text span{font-family: helvetica;color: #333; font-size: 0.3rem;line-height: 0.32rem; display: block;
+	.pro_content .pro_ul .text span{font-family: helvetica;color: #333; font-size: 0.3rem;line-height: 32px; display: block;
 	padding: 0 0.1rem 0 0.1rem;position: relative;margin-top: 0.2rem;font-weight: bold;}
 	.pro_content .pro_ul .text span em{float: left;}
 	.pro_content .pro_ul .text span del{float: left;font-size: 0.18rem;color: #999;font-weight: normal;margin-left: 0.05rem;}

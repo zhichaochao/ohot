@@ -110,7 +110,7 @@
 									<span>Quantity:</span>
 									<div class="price_input clearfix">
 											<span class="sub" ></span>
-										<input class="num" name="quantity" type="text" value="1" id="numss" readonly="readonly" />
+										<input class="num" name="quantity" type="text" value="1" id="numss"  />
 										<span class="add"></span>
 									</div>
 								</label>
@@ -261,7 +261,7 @@
 										<p>Quantity:</p>
 										<div class="text clearfix">
 											<span class="subs"></span>
-											<input class="num" type="text" value="1" readonly="readonly">
+											<input class="num" type="text" value="1" >
 											<span class="adds"></span>
 										</div>
 									</div>
@@ -534,7 +534,7 @@
 								<span class="bt_span">Quantity:</span>
 								<div class="price_input clearfix">
 											<span class="sub" ></span>
-										<input class="num" name="quantity" type="text" value="1" id="nums" readonly="readonly" />
+										<input class="num" name="quantity" type="text" value="1" id="nums"  />
 										<span class="add"></span>
 									</div>
 								<!-- <div class="price_input clearfix">
