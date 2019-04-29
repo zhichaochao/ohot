@@ -46,7 +46,7 @@
                         </p>
                         <i id="new-checkout-bot-code" style="color: #f00;"></i>
                         <label >
-                            <input type="text"  id="coupon_code" name="coupon" value="<?php echo @$coupon; ?>" placeholder="coupon code"/>
+                            <input type="text"  id="coupon_code" name="coupon" value="<?php echo @$coupon1; ?>" placeholder="coupon code"/>
                             <button  onclick="coupon_code(this)">CONFIRM</button>
                         </label>
                     </div>

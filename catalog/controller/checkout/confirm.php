@@ -20,16 +20,18 @@ class ControllerCheckoutConfirm extends Controller {
 			$resultcoupon = $this->model_catalog_review->getCustomerUseCoupon($cart_total);
 			// print_r($resultcoupon);exit;
 			if(!empty($resultcoupon->row)){
-				 $data['coupon']=$resultcoupon->row['code'];
+				 $data['coupon1']=$resultcoupon->row['code'];
+			}else if(isset($this->session->data['coupon'])){
+				$data['coupon1']=$this->session->data['coupon'];
 			}else{
-				$data['coupon']='';
+				$data['coupon1'] ='';
 			}
 
-			if (isset($this->session->data['coupon'])) {
-		    $data['coupon1'] = $this->session->data['coupon'];
-		} else {
-		    $data['coupon1'] = '';
-		}
+		// 	if (isset($this->session->data['coupon'])) {
+		//     $data['coupon1'] = $this->session->data['coupon'];
+		// } else {
+		//     $data['coupon1'] = '';
+		// }
 			// print_r($data['coupon1']); exit;
 		// Validate minimum quantity requirements.
 		if (!isset($this->request->get['cart_ids'])){$this->request->get['cart_ids']='';}
