@@ -682,6 +682,10 @@ class ControllerAccountOrder extends Controller {
 						'bank_receipt'=>$value
 					);
 			}
+			if(!empty($order_info['price_reduction'])){
+				$data['pricereduction']=$order_info['price_reduction'];
+				$data['pricereductiontotal']=$order_info['total'];
+			}
 		// print_r($data['bank_receipt']);exit;
 			$data['continue'] = $this->url->link('account/order', '', true);
 

@@ -619,6 +619,7 @@ class ControllerSaleOrder extends Controller {
 			$data['shipping_method'] = $order_info['shipping_method'];
 			$data['shipping_code'] = $order_info['shipping_code'];
 			$data['shippingNumber'] = $order_info['shippingNumber'];
+			$data['price_reduction'] = $order_info['price_reduction'];
 
 			// Products
 			$data['order_products'] = array();
@@ -1208,7 +1209,10 @@ class ControllerSaleOrder extends Controller {
 					'text_usd'  => $this->currency->format($total['value'], 'USD')
 				);
 			}
-
+			if(!empty($order_info['price_reduction'])){
+				$data['pricereduction']=$order_info['price_reduction'];
+				$data['pricereductiontotal']=$order_info['total'];
+			}
 			$data['comment'] = nl2br($order_info['comment']);
 
 			$this->load->model('customer/customer');
@@ -1487,7 +1491,42 @@ class ControllerSaleOrder extends Controller {
 			return new Action('error/not_found');
 		}
 	}
+	// jianjia
+	public function pricereduction() {
+			$this->load->language('sale/order');
 
+			$json = array();
+// print_r($this->request->post);exit;
+			if (isset($this->request->post['pricereduction'])&&!empty($this->request->post['pricereduction'])) {
+		
+				if (isset($this->request->post['pricereduction'])) {
+				$pricereduction = $this->request->post['pricereduction'];
+				} else {
+					$pricereduction = '';
+				}
+				if (isset($this->request->post['order_ids'])) {
+					$order_id = $this->request->post['order_ids'];
+				} else {
+					$order_id = 0;
+				}
+
+				$this->load->model('sale/order');
+
+				// $order_info = $this->model_sale_order->getOrder($order_id);
+				$order_info = $this->model_sale_order->getupdateOrderprice($order_id,$pricereduction);
+
+				if ($order_info) {
+				// 	$this->load->model('marketing/affiliate');
+
+				// 	$this->model_marketing_affiliate->deleteTransaction($order_id);
+				}
+
+				$json['pricereduction'] =$pricereduction;
+			}
+
+			$this->response->addHeader('Content-Type: application/json');
+			$this->response->setOutput(json_encode($json));
+		}
 	protected function validate(){
 		//add by yufeng 2016.11.09 
 		//获取用户登录ID

@@ -128,6 +128,10 @@
                 <?php }?>
 
                 <p class="clearfix"><span class="p_span fl">Total </span><span class="fr"><?php echo $total; ?></span></p>
+                <?php if (isset($pricereduction)) { ?>
+                <p class="clearfix"><span class="fl">Price reduction</span><span class="fr">-<?php echo $pricereduction; ?></span></p>
+                <p class="clearfix"><span class="p_span fl">Total price</span><span class="fr"><?php echo $pricereductiontotal; ?></span></p>
+                 <?php }?>
               </div>
             </div>
 
@@ -228,9 +232,14 @@
             </ol>
             <p class="p_slide">Total <?php echo $count?> Pieces <i></i></p>
             <div class="totals">
+             <?php if (isset($pricereduction)) { ?>
+             <span>Total price: <em><?php echo $pricereductiontotal; ?></em></span>
+              <p>Shipping <em><?php echo $shipping_total; ?></em></p>
+              <p>Price reduction <em>-<?php echo $pricereduction; ?></em></p>
+              <?php }else{?>
               <span>Total: <em><?php echo $total; ?></em></span>
               <p>Shipping <em><?php echo $shipping_total; ?></em></p>
-
+              <?php }?>
                <?php if($totals){?>
                  <?php if($totals[2]['code']=='poundage'){?>
                  <p>Poundage <em><?php echo $totals[2]['text']; ?></em></p>

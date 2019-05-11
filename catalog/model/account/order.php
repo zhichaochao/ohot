@@ -100,6 +100,7 @@ class ModelAccountOrder extends Model {
 				'shippingNumber'          => $order_query->row['shippingNumber'],  //dyl add
 				'payment_telephone'       => $order_query->row['payment_telephone'],
 				'shipping_telephone'      => $order_query->row['shipping_telephone'],
+				'price_reduction'      => $order_query->row['price_reduction'],
 				'bank_receipt'            => $order_query->row['bank_receipt']
 			);
 		} else {

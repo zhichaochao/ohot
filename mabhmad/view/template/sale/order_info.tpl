@@ -239,6 +239,16 @@
               <?php } ?>
             </tr>
             <?php } ?>
+              <?php if (isset($pricereduction)) { ?>
+               <tr>
+                <td colspan="4" class="text-right">Price reduction:</td>
+                <td class="text-right">-<?php echo $pricereduction; ?>
+               </tr>
+                <tr>
+                <td colspan="4" class="text-right">Total price:</td>
+                <td class="text-right"><?php echo $pricereductiontotal; ?>
+               </tr>
+              <?php } ?>
           </tbody>
         </table>
         <?php if ($comment) { ?>

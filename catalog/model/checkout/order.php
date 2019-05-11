@@ -353,6 +353,7 @@ class ModelCheckoutOrder extends Model {
 				'order_no'                => $order_query->row['order_no'],      //订单号
 				'payment_telephone'       => $order_query->row['payment_telephone'],   //账单电话号码
 				'shipping_telephone'      => $order_query->row['shipping_telephone'],   //物流电话号码
+				'price_reduction'      => $order_query->row['price_reduction'],   //物流电话号码
 				'payment_type'            => $order_query->row['payment_type']    //订单的支付方式
 			);
 		} else {

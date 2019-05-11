@@ -44,7 +44,7 @@
 
 						<?php foreach($products as $product){ ?>
 							<li class="clearfix">
-								      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>stockout</span></div><?php }?>
+								      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>Stockout &nbsp&nbsp(Please delete this product!)</span></div><?php }?>
 							<label for="" class="dx_label">
 									 <input <?php if($product['stock']) { ?> checked="checked"<?php }?>  pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
 									 <i class="check_i  <?php if($product['stock']) { ?>active<?php }?>"></i>

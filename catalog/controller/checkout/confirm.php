@@ -607,7 +607,10 @@ class ControllerCheckoutConfirm extends Controller {
 	    $order = $this->model_checkout_order->getOrder($order_id);
 	    // print_r($order);exit();
 	    $data['order'] = $order;
-	    
+	    if(!empty($order['price_reduction'])){
+				$data['pricereduction']=$order['price_reduction'];
+				$data['pricereductiontotal']=$order['total'];
+			}
 	    // if(!$order || $order['order_status'] != 'Pending') 
 	    //     $this->response->redirect($this->url->link('account/order'));
 

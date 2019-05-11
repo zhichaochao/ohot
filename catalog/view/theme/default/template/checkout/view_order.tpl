@@ -14,6 +14,16 @@
                                 <td><span><?php echo $total['value']; ?></span></td>
                             </tr>
                         <?php } ?>
+                         <?php if (isset($pricereduction)) { ?>
+                            <tr>
+                                <td><span>Price reduction</span></td>
+                                <td><span>-<?php echo $pricereduction; ?></span></td>
+                            </tr>
+                            <tr>
+                                <td><span>Total price</span></td>
+                                <td><span><?php echo $pricereductiontotal; ?></span></td>
+                            </tr>
+                        <?php }?>
                 </table>
                 <?php if ($payment_method_code == 'pp_express' || $payment_method_code == 'pp_standard') { ?>
                 <a class="a_btn" href="<?php echo $payment; ?>">CONTINUE</a>
