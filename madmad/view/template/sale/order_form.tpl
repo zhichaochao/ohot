@@ -882,6 +882,19 @@
                       </span></div>
                   </div>
                 </div>
+                <!-- 减价 -->
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-price-reduction">减价</label>
+                  <div class="col-sm-10">
+                    <div class="input-group button-price-reduction">
+                      <input type="text" name="pricereduction" value="<?php echo $price_reduction; ?>" id="input-price-reduction" class="form-control" />
+                      <span class="input-group-btn">
+                      <input type="hidden" name="order_ids" value="<?php echo $order_id; ?>">
+                      <button type="button" id="button-price-reduction" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_apply; ?></button>
+                      </span></div>
+                  </div>
+                </div>
+                  <!-- 减价 -->
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-voucher"><?php echo $entry_voucher; ?></label>
                   <div class="col-sm-10">
@@ -2436,7 +2449,43 @@ $('input[name=\'affiliate\']').autocomplete({
 		$('input[name=\'affiliate_id\']').val(item['value']);
 	}
 });
+// 减价
+$('#button-price-reduction').on('click', function() {
+  $.ajax({
+    url: 'index.php?route=sale/order/pricereduction&token=<?php echo $token; ?>',
+    type: 'post',
+    data:$('.button-price-reduction input[type=\'text\'], .button-price-reduction input[type=\'hidden\']'),
+    dataType: 'json',
+    crossDomain: true,
+    beforeSend: function() {
+      $('#button-price-reduction').button('loading');
+    },
+    complete: function() {
+      $('#button-price-reduction').button('reset');
+    },
+    success: function(json) {
+      $('.alert, .text-danger').remove();
+      $('.form-group').removeClass('has-error');
 
+      // if (json['error']) {
+      //   $('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+      //   // Highlight any found errors
+      //   $('input[name=\'pricereduction\']').closest('.form-group').addClass('has-error');
+      // }
+
+      if (json['success']) {
+        $('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+        // Refresh products, vouchers and totals
+        $('#button-refresh').trigger('click');
+      }
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+      alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    }
+  });
+});
 // Checkout
 $('#button-save').on('click', function() {
     

@@ -178,7 +178,8 @@ class ModelSaleOrder extends Model {
 				'transaction_id'          => $transaction_id,          //订单交易号  add by yufeng
 				'payment_type'            => $order_query->row['payment_type'],    //支付类型
 				'payment_telephone'       => $order_query->row['payment_telephone'],    //账单地址中的电话号码
-				'shipping_telephone'      => $order_query->row['shipping_telephone']     //物流地址中的电话号码
+				'shipping_telephone'      => $order_query->row['shipping_telephone'],    //物流地址中的电话号码
+				'price_reduction'      	  => $order_query->row['price_reduction']     //减价
 			);
 		} else {
 			return;
@@ -639,5 +640,14 @@ class ModelSaleOrder extends Model {
  public function getOrderReading($order_id)
  {
   $this->db->query("UPDATE `" . DB_PREFIX . "order` SET reading = '1' WHERE order_id = '" . (int)$order_id . "'");
+ }
+  public function getupdateOrderprice($order_id,$pricereduction)
+ {		
+		$order_info=$this->db->query("SELECT total FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "'");
+		if($order_info){
+			$total=$order_info->row['total'];
+			$totals=$total-$pricereduction;
+			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET total ='$totals',price_reduction='$pricereduction'  WHERE order_id = '" . (int)$order_id . "'");
+		}
  }
 }
