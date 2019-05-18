@@ -330,6 +330,9 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
                 } else {
                     $this->querysql("INSERT INTO " . DB_PREFIX . "product_option SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', value = '" . $this->db->escape($product_option['value']) . "', required = '" . (int)$product_option['required'] . "'");
                 }
+
+                $prooptions=$this->db->query("SELECT * FROM " . DB_PREFIX . "product_option WHERE product_id= '".(int)$product_id."'");
+                $this->querysql("UPDATE  " . DB_PREFIX . "product_option SET product_option_id= '" .$prooptions->row['product_option_id'] . "'WHERE product_id='".(int)$product_id."'AND option_id='".$prooptions->row['option_id']."'");
             }
         }
 
