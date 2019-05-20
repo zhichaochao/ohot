@@ -566,7 +566,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 
                                 else {
 
-                                    $this->querysql("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "',
+                                    $this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "',
                      
                             product_option_id = '" . (int)$product_option['product_option_id'] . "', product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', 
                      
@@ -580,6 +580,11 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
                      
                             weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");
                                      // if($product_option['type'] == 'select' ){
+                             
+                           $product_option_value_id = $this->db->getLastId();
+                        $row=  $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_value WHERE product_option_value_id ='" .$product_option_value_id. "'");
+                      
+                            $this->copsql('product_option_value',$row->row);
                             $quantity+=$product_option_value['quantity'];
                         // }
 
@@ -606,7 +611,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 							$quantity=0;
                             foreach ($product_option['product_option_value'] as $product_option_value) {
 
-                                $this->querysql("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "',
+                                 $this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "',
                              
                                 product_option_id = '" . (int)$product_option_id . "', product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', 
                              
@@ -619,6 +624,10 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
                                 points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', 
                              
                                 weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");
+                                 $product_option_value_id = $this->db->getLastId();
+                        $row=  $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_value WHERE product_option_value_id ='" .$product_option_value_id. "'");
+                      
+                            $this->copsql('product_option_value',$row->row);
                                // if($product_option['type'] == 'select' ){
                             $quantity+=$product_option_value['quantity'];
                         // }
