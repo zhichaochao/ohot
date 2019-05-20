@@ -18,6 +18,9 @@ var fun = function (doc, win) {
     doc.addEventListener('DOMContentLoaded', recalc, false);
 }
 fun(document, window);
+
+
+
 $(function(){
 	var DivScroll = function( layerNode ){
 		//如果没有这个元素的话，那么将不再执行下去
@@ -98,7 +101,6 @@ $(function(){
 	},function(){
 		$(this).find("ol").stop().slideUp();
 	})
-	
 //	头部导航货币切换
 	if(win>992){
 		$(".nav .mn_type").hover(function(){
@@ -273,6 +275,10 @@ $(function(){
           })
         }
 	})
+	
+	$("img.lazyLoad ").each(function(){
+		$(this).attr("src","image/yjz.jpg");  
+	})	
 var lazyLoad = (function(){
 	var clock;
 	function init(){
@@ -287,6 +293,17 @@ var lazyLoad = (function(){
 		checkShow();
 	}
 	function checkShow(){
+		$("img.lazyLoad ").each(function(){
+			
+			var this_img =$(this);
+			if(this_img.attr('isLoaded')){
+        		return;
+        		
+      		}
+			if(shouldShow(this_img)){
+				showImg(this_img);
+			}
+		})
 		$("img.changeimage ").each(function(){
 			var this_img =$(this);
 			if(this_img.attr('isLoaded')){

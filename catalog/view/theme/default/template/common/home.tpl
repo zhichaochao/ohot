@@ -44,7 +44,7 @@
                         <a href="<?=$fast['link'];?>">
                             <div class="pic clearfix">
                                
-                                <img class="changeimage" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>"  />
+                                <img class="changeimage lazyLoad" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>"  />
                             </div>
                             <div class="text">
                                 <h2><?=$fast['title'];?></h2>
@@ -53,7 +53,7 @@
                         </a>
                         <?php }else{?>
                         <div class="pic clearfix">
-                                 <img class="changeimage" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>" />
+                                 <img class="changeimage lazyLoad" title="<?=$fast['title'];?>" alt="<?=$fast['title'];?>" data-image="<?=$fast['image'];?>" data-mimage="<?=$fast['mimage'];?>" />
                             </div>
                             <div class="text">
                                 <h2><?=$fast['title'];?></h2>
@@ -88,7 +88,7 @@
                     <li>
                         <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage" data-image="<?=$val['image'];?>"  data-mimage="<?=$val['image'];?>"  />
+                                <img class="changeimage lazyLoad" data-image="<?=$val['image'];?>"  data-mimage="<?=$val['image'];?>"  />
                                 <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -126,7 +126,7 @@
                     <li>
                         <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
+                                <img class="changeimage lazyLoad" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
                                 <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -164,7 +164,7 @@
                     <li>
                        <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
+                                <img class="changeimage lazyLoad" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
                                  <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -191,7 +191,7 @@
                 
                 <div class="top top4">
                     
-                    <img class="top4_img changeimage" data-image="<?=$homes[3]['image'];?>" " data-mimage="<?=$homes[3]['mimage'];?>"  />
+                    <img class="top4_img changeimage lazyLoad" data-image="<?=$homes[3]['image'];?>" " data-mimage="<?=$homes[3]['mimage'];?>"  />
                 </div>
                    <?php if(isset($homes[3]['child'])){ ?>
                 <ol class="ol_img5 ol_img clearfix">
@@ -199,7 +199,7 @@
                     <li>
                        <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>" />
+                                <img class="changeimage lazyLoad" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>" />
                               <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">

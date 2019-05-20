@@ -67,13 +67,13 @@
 										<!-- 产品后台上传视频 -->
 										 <?php foreach ($images as $k => $image) {  if($k > 0) {?>
 							    		<div class="swiper-slide ban_img">
-													<img  src="<?php echo $image['image']; ?>" title='<?php echo $heading_title; ?>'  />
+													<img class="lazyLoad" src="" srcs="<?php echo $image['image']; ?>" title='<?php echo $heading_title; ?>'  />
 										</div>
 								    	<?php } } ?>
 											<?php } elseif ($thumb) { ?>
 									   	<?php foreach ($images as $k => $image) { ?>
 								    		<div class="swiper-slide ban_img">
-													<img  src="<?php echo $image['image']; ?>" title='<?php echo $heading_title; ?>'  />
+													<img class="lazyLoad" src="" srcs="<?php echo $image['image']; ?>" title='<?php echo $heading_title; ?>'  />
 											</div>
 								    	<?php } ?>
 							    	<?php } ?>

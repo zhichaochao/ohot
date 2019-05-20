@@ -28,7 +28,7 @@
             <li>
               <a href="<?php echo $product['href']; ?>">
                 <div class="pic_img" >
-                  <img src="<?php echo $product['thumb']; ?>"   />
+                  <img  class="lazyLoad" src="" srcs="<?php echo $product['thumb']; ?>"  />
                 </div>
                 <div class="text clearfix" >
                 <p><?php echo $product['name']; ?></p>
@@ -179,7 +179,7 @@
                                result+='<li>'
                                   +'<a href="'+data.products[i].href+'">'
                                     +'<div class="pic_img" >'
-                                        +'<img src="'+data.products[i].thumb+'"   />'
+                                        +'<img class="lazyLoad" src=""  srcs="'+data.products[i].thumb+'"  />'
                                     + '</div>'
                                       + '<div class="text clearfix" >'
                                        + '<span class="price">';
