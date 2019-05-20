@@ -14,6 +14,24 @@ class ModelCatalogProduct extends Model {
 		}
 		
 	}
+		private function copsql($table_name,$row)
+	{
+		$dbs= unserialize($this->config->get('db_database_data'));
+		foreach ($dbs as $key => $value) {
+				if($key>0){
+					$d='db'.$key;
+					$sql= "INSERT INTO " . DB_PREFIX . $table_name." SET ";
+					foreach ($row as $k => $val) {
+					
+							$sql.=  $k."='".$val."',";
+					}
+				$sql = substr( $sql,0, strlen($sql)-1 );
+				// print_r($sql);exit;
+				$this->$d->query($sql);
+			}
+		}
+		
+	}
 	public function addProduct($data) {
 		
 		//加载Model
@@ -319,8 +337,12 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
                         $product_option_id = $this->db->getLastId();
                         $quantity=0;
                         foreach ($product_option['product_option_value'] as $product_option_value) {
-                            $this->querysql("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_id = '" . (int)$product_option_id . "', product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', option_value_id = '" . (int)$product_option_value['option_value_id'] . "', quantity = '" . (int)$product_option_value['quantity'] . "', subtract = '" . (int)$product_option_value['subtract'] . "', price = '" . (float)$product_option_value['price'] . "', price1 = '" . (float)$product_option_value['price1'] . "', price2 = '" . (float)$product_option_value['price2'] . "', price3 = '" . (float)$product_option_value['price3'] . "', price4 = '" . (float)$product_option_value['price4'] . "', price5 = '" . (float)$product_option_value['price5'] . "', price6 = '" . (float)$product_option_value['price6'] . "', price7 = '" . (float)$product_option_value['price7'] . "', price_prefix = '" . $this->db->escape($product_option_value['price_prefix']) . "', points = '" . (int)$product_option_value['points'] . "', points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");
-                            // if($product_option['type'] == 'select'  ){
+
+                            $this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET product_option_id = '" . (int)$product_option_id . "', product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', option_value_id = '" . (int)$product_option_value['option_value_id'] . "', quantity = '" . (int)$product_option_value['quantity'] . "', subtract = '" . (int)$product_option_value['subtract'] . "', price = '" . (float)$product_option_value['price'] . "', price1 = '" . (float)$product_option_value['price1'] . "', price2 = '" . (float)$product_option_value['price2'] . "', price3 = '" . (float)$product_option_value['price3'] . "', price4 = '" . (float)$product_option_value['price4'] . "', price5 = '" . (float)$product_option_value['price5'] . "', price6 = '" . (float)$product_option_value['price6'] . "', price7 = '" . (float)$product_option_value['price7'] . "', price_prefix = '" . $this->db->escape($product_option_value['price_prefix']) . "', points = '" . (int)$product_option_value['points'] . "', points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");
+                              $product_option_value_id = $this->db->getLastId();
+                        $row=  $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_value WHERE product_option_value_id ='" .$product_option_value_id. "'");
+                      
+                            $this->copsql('product_option_value',$row->row);
                             $quantity+=$product_option_value['quantity'];
                         // }
 
