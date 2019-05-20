@@ -824,9 +824,12 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 			$data['sku'] = '';
 			$data['upc'] = '';
 			$data['viewed'] = '0';
-			$data['keyword'] = '';
 			$data['status'] = '1';
 			$data['product_id'] =$product_id;
+
+			$keywordres=$this->db->query("SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
+			
+			$data['keyword']=$keywordres->row['keyword'];
 
 			$data['product_attribute'] = $this->getProductAttributes($product_id);
 			$data['product_description'] = $this->getProductDescriptions($product_id);
