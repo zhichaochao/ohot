@@ -218,6 +218,13 @@ class ControllerCatalogProduct extends Controller {
 			$filter_sortorder = null;
 		}
 
+		if (isset($this->request->get['category_id'])) {
+			$category_id = $this->request->get['category_id'];
+			$data['category_id'] = $this->request->get['category_id'];
+		} else {
+			$category_id = null;
+		}
+
 		if (isset($this->request->get['filter_status'])) {
 			$filter_status = $this->request->get['filter_status'];
 		} else {
@@ -275,6 +282,10 @@ class ControllerCatalogProduct extends Controller {
 		if (isset($this->request->get['filter_quantity'])) {
 			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
 		}
+
+		if (isset($this->request->get['category_id'])) {
+			$url .= '&category_id=' . $this->request->get['category_id'];
+		}
 		if (isset($this->request->get['filter_sortorder'])) {
 			$url .= '&filter_sortorder=' . $this->request->get['filter_sortorder'];
 		}
@@ -323,6 +334,42 @@ class ControllerCatalogProduct extends Controller {
 
 		$data['explode'] = $this->url->link('catalog/product/exportComment', 'token=' . $this->session->data['token'], true);
 		$data['importSpecial'] = $this->url->link('catalog/product', 'act=importSpecial&token=' . $this->session->data['token'] . $url, true);
+
+		$data['categories'] = array();
+
+		$categories_1 = $this->model_catalog_product->getCategories(0);
+
+		foreach ($categories_1 as $category_1) {
+			$level_2_data = array();
+
+			$categories_2 = $this->model_catalog_product->getCategories($category_1['category_id']);
+
+			foreach ($categories_2 as $category_2) {
+				$level_3_data = array();
+
+				$categories_3 = $this->model_catalog_product->getCategories($category_2['category_id']);
+
+				foreach ($categories_3 as $category_3) {
+					$level_3_data[] = array(
+						'category_id' => $category_3['category_id'],
+						'name'        => $category_3['name'],
+					);
+				}
+
+				$level_2_data[] = array(
+					'category_id' => $category_2['category_id'],
+					'name'        => $category_2['name'],
+					'children'    => $level_3_data
+				);
+			}
+
+			$data['categories'][] = array(
+				'category_id' => $category_1['category_id'],
+				'name'        => $category_1['name'],
+				'children'    => $level_2_data
+			);
+		}
+
 		$data['products'] = array();
 
 		$filter_data = array(
@@ -336,6 +383,7 @@ class ControllerCatalogProduct extends Controller {
 			'filter_relation_product'   => $filter_relation_product,
 			'filter_image'    => $filter_image,
 			'sort'            => $sort,
+			'filter_category_id'   => $category_id,
 			'order'           => $order,
 			'start'           => ($page - 1) * $this->config->get('config_limit_admin'),
 			'limit'           => $this->config->get('config_limit_admin')
@@ -548,6 +596,10 @@ class ControllerCatalogProduct extends Controller {
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['category_id'])) {
+			$url .= '&category_id=' . $this->request->get['category_id'];
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -1417,18 +1469,29 @@ class ControllerCatalogProduct extends Controller {
   public function exportComment(){
       	require_once DIR_SYSTEM.'common/SimpleExcel.php';
       	$this->load->model('catalog/product');
-		if (isset($this->request->post['selected'])) {
+      	if (isset($this->request->post['selected'])) {
 		          $product_ids=$this->request->post['selected'];
-
 		        }else{
-		          $product_ids=array();
-		          $products=$this->model_catalog_product->getProductses(array());
-		          foreach ($products as $key => $value) {
-		            $product_ids[]=$value['product_id'];
-		          }
-		        }
+		        	if(empty($this->request->post['category_id'])){
+		        		$product_ids=array();
+				          $products=$this->model_catalog_product->getProductses($data =array());
+				          foreach ($products as $key => $value) {
+				            $product_ids[]=$value['product_id'];
+				          }
+		        	}else{
+		        		$category_id=$this->request->post['category_id'];
+		        		$data = array(
+		        			'category_id'	  => $category_id
+		        			);
+		        		// $product_ids=array();
+				          $products=$this->model_catalog_product->getProductses($data);
+				          foreach ($products as $key => $value) {
+				            $product_ids[]=$value['product_id'];
+				          }
+		      		}
+				}
       	// if (isset($this->request->post['selected'])) {
-      			// print_r($this->request->post['selected']);exit;
+      			print_r($product_ids);exit;
 			foreach ($product_ids as $product_id) {
 			// print_r($product_id);exit;
 			$product_info = $this->model_catalog_product->getProduct($product_id);

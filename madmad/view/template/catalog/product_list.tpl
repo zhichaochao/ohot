@@ -90,7 +90,29 @@
                   <option value="0"><?php echo $text_disabled; ?></option>
                   <?php } ?>
                 </select>
-              </div>              
+              </div> 
+
+              <div class="form-group">
+            <label class="control-label" for="input-status">分类</label>
+             <select name="category_id" class="form-control">
+            <option value="0">选择分类</option>
+            <?php foreach ($categories as $category_1) { ?>
+    
+            <option value="<?php echo $category_1['category_id']; ?>"><?php echo $category_1['name']; ?></option>
+        
+            <?php foreach ($category_1['children'] as $category_2) { ?>
+
+            <option value="<?php echo $category_2['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_2['name']; ?></option>
+ 
+            <?php foreach ($category_2['children'] as $category_3) { ?>
+
+            <option value="<?php echo $category_3['category_id']; ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category_3['name']; ?></option>
+
+            <?php } ?>
+            <?php } ?>
+            <?php } ?>
+          </select>
+            </div>           
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
             </div>
           </div>
@@ -151,6 +173,9 @@
                     <?php } else { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" />
                     <?php } ?></td>
+                     <?php if (isset($category_id)) { ?>
+                     <input type="hidden" name="category_id" value="<?php echo $category_id; ?>" id="hiddencatalog_id" > 
+                     <?php } ?>
                   <td class="text-center"><?php if ($product['image']) { ?>
                     <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="img-thumbnail" />
                     <?php } else { ?>
@@ -230,6 +255,11 @@ $('#button-filter').on('click', function() {
 
   if (filter_sortorder) {
     url += '&filter_sortorder=' + encodeURIComponent(filter_sortorder);
+  }
+   var category_id = $('select[name=\'category_id\']').val();
+
+  if (category_id != '*') {
+    url += '&category_id=' + encodeURIComponent(category_id);
   }
 
 	var filter_status = $('select[name=\'filter_status\']').val();
