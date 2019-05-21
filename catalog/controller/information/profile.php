@@ -41,7 +41,7 @@ class ControllerInformationProfile extends Controller {
 				}
 				$profile_know['childs']=$childs;
 				// print_r($profile_care['childs']);exit;
-				$videos=$this->model_catalog_profile->getVideos(array('start'=>0,'limit'=>3));
+				$videos=$this->model_catalog_profile->getVideos(array('start'=>0,'limit'=>9));
 				//var_dump($videos);exit;
 			    if ($videos) {
 				
@@ -55,7 +55,7 @@ class ControllerInformationProfile extends Controller {
 			   $profile_video['videos']=$videos;
 
 
-			   $outsidevideos=$this->model_catalog_profile->getOutsideVideos(array('start'=>0,'limit'=>3));
+			   $outsidevideos=$this->model_catalog_profile->getOutsideVideos(array('start'=>0,'limit'=>9));
 			   if ($outsidevideos) {
 			   	foreach ($outsidevideos as $key => $value) {
 			   		$videos[$key]['out_id']=$value['out_id'];

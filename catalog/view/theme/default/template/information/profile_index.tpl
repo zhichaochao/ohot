@@ -2,6 +2,23 @@
 		
 			<div class="content in_content hairclub clearfix">
 				<img class="changeimage bnr_img" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/hairclub1.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_hairclub1.jpg'  />
+				<h1>HAIR TUTORIAL</h1>
+				<p>“Best and easiest hair tutorials start from here!”</p>
+				
+				<ul class="video_ul clearfix">
+					<?php foreach ($profile_video['videos'] as $key => $child) {?>
+					<li>
+						<video src="<?=$child['video'];?>" class="video_li" poster="<?=$child['image'];?>"></video>
+						<img class="bf" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bf.png"/>
+						<div class="text_vd clearfix">
+						<div class="bg_div">
+							<p><?=$child['title'];?> </p>
+						</div>
+						</div>
+					</li>
+					<?php } ?>
+				</ul>
+				<a class="view_a" href="<?php echo $videohome?>">VIEW MORE&nbsp;&nbsp;&nbsp;></a>
 				<h1><?=$profile_care['title'];?></h1>
 				<p><?=$profile_care['meta_description'];?></p>
 				<ul class="hair_ul clearfix">
@@ -48,28 +65,7 @@
 					
 				</ul>
 
-				<h1>HAIR TUTORIAL</h1>
-				<p>“Best and easiest hair tutorials start from here!”</p>
-				
-				<ul class="video_ul clearfix">
-					<?php foreach ($profile_video['videos'] as $key => $child) {?>
-					<li>
-						<video src="<?=$child['video'];?>" class="video_li" poster="<?=$child['image'];?>"></video>
-						<img class="bf" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bf.png"/>
-						<div class="text_vd clearfix">
-						<div class="bg_div">
-							<p><?=$child['title'];?> </p>
-						</div>
-						</div>
-					</li>
-					<?php } ?>
-				</ul>
-
-				
-				
-				<a class="view_a" href="<?php echo $videohome?>">VIEW MORE&nbsp;&nbsp;&nbsp;></a>
-
-						<h1>Video Channel</h1>
+				<h1>Video Channel</h1>
 				<p>“Newest hair product launch and fantanstic video public.”</p>
 				
 				<ul class="video_ul clearfix">
