@@ -1491,7 +1491,7 @@ class ControllerCatalogProduct extends Controller {
 		      		}
 				}
       	// if (isset($this->request->post['selected'])) {
-      			print_r($product_ids);exit;
+      			// print_r($product_ids);exit;
 			foreach ($product_ids as $product_id) {
 			// print_r($product_id);exit;
 			$product_info = $this->model_catalog_product->getProduct($product_id);
