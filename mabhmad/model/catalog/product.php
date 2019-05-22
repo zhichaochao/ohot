@@ -51,7 +51,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape(
           length_class_id = '" . (int)$data['length_class_id'] . "', status = '" . (int)$data['status'] . "',
           tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW(),date_added = NOW(),
           relation_product = '" . $this->db->escape($data['relation_product'])."', discount_percentage = 0, is_main = ".(int)$data['is_main'] .", is_new = ".(int)$data['is_new']. ", is_sale = ".(int)$data['is_sale']. ", modelling = '".$data['modelling']. "', is_home = " .(int)$data['is_home'].", 
-            free_postage = ".(int)$data['free_postage'] . ", video_link = '" .$this->db->escape($data['video_link']) ."'";
+            free_postage = ".(int)$data['free_postage'] . ", video_link = '" .$this->db->escape($data['video_link']) ."', template_product = '" .$this->db->escape($data['template_product']) ."'";
 		$this->db->query($sql);
 
 		$product_id = $this->db->getLastId();
@@ -257,7 +257,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
           length_class_id = '" . (int)$data['length_class_id'] . "', status = '" . (int)$data['status'] . "',
           tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW(),date_added = NOW(),
           relation_product = '" . $this->db->escape($data['relation_product'])."', discount_percentage = 0, is_main = ".(int)$data['is_main'] .", is_new = ".(int)$data['is_new']. ", is_sale = ".(int)$data['is_sale']. ", modelling = '".$data['modelling']. "', is_home = " .(int)$data['is_home'].", 
-            free_postage = ".(int)$data['free_postage'] . ", video_link = '" .$this->db->escape($data['video_link']) ."'";
+            free_postage = ".(int)$data['free_postage'] . ", video_link = '" .$this->db->escape($data['video_link']) ."', template_product = '" .$this->db->escape($data['template_product']) ."'";
 		$this->querysql($sql);
 
 		$product_id = $data['product_id'];
@@ -481,7 +481,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 			    video_link = '" .$this->db->escape($data['video_link']) ."',
 			    tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW(),
                 relation_product = '" . $this->db->escape($data['relation_product']) . "',discount_percentage = ".(int)$data['discount_percentage']." , 
-                is_main = ".(int)$data['is_main'] . ", is_new = " .(int)$data['is_new'] . ", is_sale = " .(int)$data['is_sale'] . ", modelling = '" . $this->db->escape($data['modelling']) . "', is_home = " .(int)$data['is_home']
+                is_main = ".(int)$data['is_main'] . ", is_new = " .(int)$data['is_new'] . ", is_sale = " .(int)$data['is_sale'] . ", template_product = " .(int)$data['template_product'] . ", modelling = '" . $this->db->escape($data['modelling']) . "', is_home = " .(int)$data['is_home']
 		        . ", free_postage = ".(int)$data['free_postage'] ." WHERE product_id = '" . (int)$product_id . "'";
 
 		$this->querysql($sql);
@@ -885,7 +885,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 	}
 
 	public function getProducts($data = array()) {
-		$sql = "SELECT *  FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON ( p.product_id=p2c.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT *  FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON ( p.product_id=p2c.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.template_product = '0'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND (pd.name LIKE '%" . $this->db->escape($data['filter_name']) . "%' OR p.model LIKE '%" . $this->db->escape($data['filter_name'])  . "%')";
@@ -928,6 +928,100 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 				$sql .= " AND (p.image IS NULL OR p.image = '' OR p.image = 'no_image.png')";
 			}
 		}
+
+		$sql .= " GROUP BY p.product_id";
+
+		$sort_data = array(
+			'pd.name',
+			'p.model',
+			'p.price',
+			'p.browse',
+			'p.quantity',
+			'p.relation_product',
+			'p.status',
+			'p.sort_order',
+			'pd.product_id'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			// $sql .= " ORDER BY " . $data['sort'];
+			$sql .= " ORDER BY p.date_modified";
+			// print_r(1);exit();
+		} else {
+			// print_r($data['sort']);
+			// $sql .= " ORDER BY pd.name";
+			$sql .= " ORDER BY p.date_modified";
+			// print_r(2);exit();
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+		// print_r($sql);exit();
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
+	public function getTemplateProducts($data = array()) {
+		$sql = "SELECT *  FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON ( p.product_id=p2c.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.template_product = '1'";
+
+		// if (!empty($data['filter_name'])) {
+		// 	$sql .= " AND (pd.name LIKE '%" . $this->db->escape($data['filter_name']) . "%' OR p.model LIKE '%" . $this->db->escape($data['filter_name'])  . "%')";
+		// }
+
+		// if (!empty($data['filter_model'])) {
+		// 	$sql .= " AND p.model LIKE '%" . $this->db->escape($data['filter_model']) . "%'";
+		// }
+		if (!empty($data['filter_category_id'])) {
+				$sql .= " AND p2c.category_id=".(int)$data['filter_category_id']." ";
+		}
+
+		// if (isset($data['filter_price']) && !is_null($data['filter_price'])) {
+		// 	$sql .= " AND p.price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
+		// }
+
+		// if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
+		// 	$sql .= " AND p.quantity = '" . (int)$data['filter_quantity'] . "'";
+		// }
+		// if (isset($data['filter_sortorder']) && !is_null($data['filter_sortorder'])) {
+		// 	$sql .= " AND p.sort_order = '" . (int)$data['filter_sortorder'] . "'";
+		// }
+
+		// if (isset($data['filter_relation_product'])) {
+		// 	$sql .= " AND p.relation_product LIKE '%" . $this->db->escape($data['filter_relation_product']) . "%'";
+		// }
+
+		// if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+		// 	$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
+		// }
+		
+		// if (isset($data['filter_free_postage']) && !is_null($data['filter_free_postage'])) {
+		// 	$sql .= " AND p.free_postage = '" . (int)$data['filter_free_postage'] . "'";
+		// }
+
+		// if (isset($data['filter_image']) && !is_null($data['filter_image'])) {
+		// 	if ($data['filter_image'] == 1) {
+		// 		$sql .= " AND (p.image IS NOT NULL AND p.image <> '' AND p.image <> 'no_image.png')";
+		// 	} else {
+		// 		$sql .= " AND (p.image IS NULL OR p.image = '' OR p.image = 'no_image.png')";
+		// 	}
+		// }
 
 		$sql .= " GROUP BY p.product_id";
 
@@ -1303,7 +1397,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 	public function getTotalProducts($data = array()) {
 		$sql = "SELECT COUNT(DISTINCT p.product_id) AS total FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p2c.product_id = pd.product_id)";
 
-		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.template_product = '0'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
@@ -1347,6 +1441,59 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 				$sql .= " AND (p.image IS NULL OR p.image = '' OR p.image = 'no_image.png')";
 			}
 		}
+
+		$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
+
+	public function getTemplateTotalProducts($data = array()) {
+		$sql = "SELECT COUNT(DISTINCT p.product_id) AS total FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p2c.product_id = pd.product_id)";
+
+		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.template_product = '1'";
+
+		// if (!empty($data['filter_name'])) {
+		// 	$sql .= " AND pd.name LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+		// }
+
+		// if (!empty($data['filter_model'])) {
+		// 	$sql .= " AND p.model LIKE '%" . $this->db->escape($data['filter_model']) . "%'";
+		// }
+
+		// if (isset($data['filter_price']) && !is_null($data['filter_price'])) {
+		// 	$sql .= " AND p.price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
+		// }
+
+		// if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
+		// 	$sql .= " AND p.quantity = '" . (int)$data['filter_quantity'] . "'";
+		// }
+
+		// if (isset($data['filter_sortorder']) && !is_null($data['filter_sortorder'])) {
+		// 	$sql .= " AND p.sort_order = '" . (int)$data['filter_sortorder'] . "'";
+		// }
+
+		// if (isset($data['filter_relation_product'])) {
+		// 	$sql .= " AND p.relation_product LIKE '%" . $this->db->escape($data['filter_relation_product']) . "%'";
+		// }
+
+		if (!empty($data['filter_category_id'])) {
+				$sql .= " AND p2c.category_id=".(int)$data['filter_category_id']." ";
+		}
+		// if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+		// 	$sql .= " AND p.status = '" . (int)$data['filter_status'] . "'";
+		// }
+		
+		// if (isset($data['filter_free_postage']) && !is_null($data['filter_free_postage'])) {
+		// 	$sql .= " AND p.free_postage = '" . (int)$data['filter_free_postage'] . "'";
+		// }
+
+		// if (isset($data['filter_image']) && !is_null($data['filter_image'])) {
+		// 	if ($data['filter_image'] == 1) {
+		// 		$sql .= " AND (p.image IS NOT NULL AND p.image <> '' AND p.image <> 'no_image.png')";
+		// 	} else {
+		// 		$sql .= " AND (p.image IS NULL OR p.image = '' OR p.image = 'no_image.png')";
+		// 	}
+		// }
 
 		$query = $this->db->query($sql);
 
