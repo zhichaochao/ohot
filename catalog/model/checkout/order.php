@@ -212,6 +212,18 @@ class ModelCheckoutOrder extends Model {
 				$this->querysql("INSERT INTO " . DB_PREFIX . "order_total SET order_id = '" . (int)$order_id . "', code = '" . $this->db->escape($total['code']) . "', title = '" . $this->db->escape($total['title']) . "', `value` = '" . (float)$total['value'] . "', sort_order = '" . (int)$total['sort_order'] . "'");
 			}
 		}
+		if (isset($data['pricereduction']) && !empty($data['pricereduction'])) {
+			$order_infores=$this->db->query("SELECT pricereduction FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "'");
+			if(empty($order_infores->row)){
+				$order_info=$this->db->query("SELECT total FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "'");
+				if($order_info){
+				$total=$order_info->row['total'];
+				$totals=$total-$data['pricereduction'];
+				$this->db->query("UPDATE `" . DB_PREFIX . "order` SET total ='$totals',price_reduction='".$data['pricereduction']."'  WHERE order_id = '" . (int)$order_id . "'");
+				}
+			}
+		}
+
 	}
 
 	public function deleteOrder($order_id) {

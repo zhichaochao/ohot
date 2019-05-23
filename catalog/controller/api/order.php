@@ -849,6 +849,7 @@ class ControllerApiOrder extends Controller {
 					}
 
                     $order_data['shippingNumber']=$this->request->post['shippingNumber'];  //dyl add
+                    $order_data['pricereduction']=$this->request->post['pricereduction'];  
 					$this->model_checkout_order->editOrder($order_id, $order_data);
 
 					// Set the order history

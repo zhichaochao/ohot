@@ -883,7 +883,7 @@
                   </div>
                 </div>
                 <!-- 减价 -->
-                <div class="form-group">
+               <!--  <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-price-reduction">减价</label>
                   <div class="col-sm-10">
                     <div class="input-group button-price-reduction">
@@ -892,6 +892,12 @@
                       <input type="hidden" name="order_ids" value="<?php echo $order_id; ?>">
                       <button type="button" id="button-price-reduction" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_apply; ?></button>
                       </span></div>
+                  </div>
+                </div>
+ -->                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-affiliate">减价</label>
+                  <div class="col-sm-10">
+                     <input type="text" name="pricereduction" value="<?php echo $price_reduction; ?>" id="input-price-reduction" class="form-control" />
                   </div>
                 </div>
                   <!-- 减价 -->
@@ -2504,7 +2510,7 @@ $('#button-save').on('click', function() {
 		url: url,
 		type: 'post',
 		//data: $('select[name=\'payment_method\'] option:selected,  select[name=\'shipping_method\'] option:selected,  #tab-total select[name=\'order_status_id\'], #tab-total select, #tab-total textarea[name=\'comment\'], #tab-total input[name=\'affiliate_id\']'),
-		data: $('select[name=\'payment_method\'] option:selected,  select[name=\'shipping_method\'] option:selected,  #tab-total select[name=\'order_status_id\'], #tab-total select, #tab-total textarea[name=\'comment\'], #tab-total input[name=\'affiliate_id\'], #tab-total input[name=\'shippingNumber\'], #tab-total input[name=\'notify\']'),
+		data: $('select[name=\'payment_method\'] option:selected,  select[name=\'shipping_method\'] option:selected,  #tab-total select[name=\'order_status_id\'], #tab-total select, #tab-total textarea[name=\'comment\'], #tab-total input[name=\'affiliate_id\'], #tab-total input[name=\'shippingNumber\'], #tab-total input[name=\'notify\'], #tab-total input[name=\'pricereduction\']'),
 		dataType: 'json',
 		crossDomain: true,
 		beforeSend: function() {
