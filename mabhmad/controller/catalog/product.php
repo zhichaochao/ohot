@@ -1900,6 +1900,29 @@ class ControllerCatalogProduct extends Controller {
 			$product_images = $this->request->post['product_image'];
 		} elseif (isset($this->request->get['product_id'])) {
 			$product_images = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
+
+			// 判断主图是否存在 images 中
+            $image_exist=0;
+            $first_image='';
+            foreach ($product_images as $key=>$value){
+                  if($value['image']==$product_info['image']){
+                      $image_exist=1;
+                      $first_image=$value;
+                      unset($product_images[$key]);
+                  }
+            };
+
+            if($first_image){
+            	$first_image['sort_order']=0;
+            	array_unshift($product_images,$first_image);
+            }
+
+            !$image_exist && $product_info['image'] && array_unshift($product_images,[
+                'product_image_id'=>0,
+                'product_id'=>$product_info['product_id'],
+                'image'=>$product_info['image'],
+                'sort_order'=>0
+            ]);
 		} else {
 			$product_images = array();
 		}

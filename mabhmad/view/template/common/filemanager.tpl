@@ -9,6 +9,7 @@
         <div class="col-sm-5"><a href="<?php echo $parent; ?>" data-toggle="tooltip" title="<?php echo $button_parent; ?>" id="button-parent" class="btn btn-default"><i class="fa fa-level-up"></i></a> <a href="<?php echo $refresh; ?>" data-toggle="tooltip" title="<?php echo $button_refresh; ?>" id="button-refresh" class="btn btn-default"><i class="fa fa-refresh"></i></a>
           <button type="button" data-toggle="tooltip" title="<?php echo $button_upload; ?>" id="button-upload" class="btn btn-primary"><i class="fa fa-upload"></i></button>
           <button type="button" data-toggle="tooltip" title="<?php echo $button_folder; ?>" id="button-folder" class="btn btn-default"><i class="fa fa-folder"></i></button>
+          <button type="button" data-toggle="tooltip" title="批量选中图片" id="button-selected" class="btn btn-success"><i class="fa fa-check-circle"></i></button>
           <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" id="button-delete" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
         </div>
         <div class="col-sm-7">
@@ -237,4 +238,23 @@ $('#modal-image #button-delete').on('click', function(e) {
 		});
 	}
 });
+  $('#modal-image #button-selected').on('click', function(e) {
+    if (confirm('确定批量选中图片？注意：此举会删除已有的图片')) {
+      var length=$('input[name^=\'path\']:checked').length;
+      if(length){
+       var html='';
+        for(var j=0;j<length;j++){
+          var src=$('input[name^=\'path\']:checked:eq('+j+')').parent().parent().find('a img').attr('src');
+          var val=$('input[name^=\'path\']:checked:eq('+j+')').val();
+          html += '<tr id="image-row' + j + '">';
+          html += '  <td class="text-left"><a href="" id="thumb-image' + j + '"data-toggle="image" class="img-thumbnail"><img src="'+src+'" alt="" title="" data-placeholder="缩略图" /></a><input type="hidden" name="product_image[' + j + '][image]" value="'+val+'" id="input-image' + j + '" /></td>';
+          html += '  <td class="text-right"><input type="text" name="product_image[' + j + '][sort_order]" value="100" placeholder="排序" class="form-control" /></td>';
+          html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + j  + '\').remove();" data-toggle="tooltip" title="移除" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+          html += '</tr>';
+        }
+        $('#images tbody').html(html);
+      }
+      $('#modal-image').modal('hide');
+    }
+  });
 //--></script>
