@@ -749,22 +749,7 @@
               </div>
             </div>
             <div class="tab-pane" id="tab-image">
-              <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <td class="text-left"><?php echo $entry_image; ?></td>
-                    </tr>
-                  </thead>
-                  
-                  <tbody>
-                    <tr>
-                      <td class="text-left"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" /></td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="table-responsive">
+              <div class="table-responsive"><div class="alert alert-info">注意：将自动根据排序数字最小的那行对应的图片作为封面图</div>
                 <table id="images" class="table table-striped table-bordered table-hover">
                   <thead>
                     <tr>
@@ -1368,18 +1353,18 @@ function addSpecial() {
 }
 //--></script>
   <script type="text/javascript"><!--
-var image_row = <?php echo $image_row; ?>;
-
 function addImage() {
-	html  = '<tr id="image-row' + image_row + '">';
-	html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
-	html += '  <td class="text-right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
-	html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row  + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-	html += '</tr>';
+    var image_row=$('#images tbody tr').length;
 
-	$('#images tbody').append(html);
+  html  = '<tr id="image-row' + image_row + '">';
+  html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img src="<?php echo $placeholder; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="input-image' + image_row + '" /></td>';
+  html += '  <td class="text-right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="100" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
+  html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row  + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '</tr>';
 
-	image_row++;
+  $('#images tbody').append(html);
+
+  image_row++;
 }
 //--></script>
   

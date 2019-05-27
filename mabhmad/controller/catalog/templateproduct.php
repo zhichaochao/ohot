@@ -316,6 +316,8 @@ public function add() {
 		);
 
 		$data['delete'] = $this->url->link('catalog/templateproduct/delete', 'token=' . $this->session->data['token'] . $url, true);
+		$data['explode'] = $this->url->link('catalog/templateproduct/exportComment', 'token=' . $this->session->data['token'], true);
+		$data['importSpecial'] = $this->url->link('catalog/product', 'act=importSpecial&token=' . $this->session->data['token'] . $url, true);
 		$data['categories'] = array();
 
 				$categories_1 = $this->model_catalog_product->getCategories(0);
@@ -610,6 +612,123 @@ public function add() {
 
 		$this->response->setOutput($this->load->view('catalog/template_product', $data));
 	}
+		 public function exportComment(){
+      	require_once DIR_SYSTEM.'common/SimpleExcel.php';
+      	$this->load->model('catalog/product');
+      	if (isset($this->request->post['selected'])) {
+		          $product_ids=$this->request->post['selected'];
+		        }else{
+		        	if(empty($this->request->post['category_id'])){
+		        		$product_ids=array();
+				          $products=$this->model_catalog_product->getTemplateProducts($data =array());
+				          foreach ($products as $key => $value) {
+				            $product_ids[]=$value['product_id'];
+				          }
+		        	}else{
+		        		$category_id=$this->request->post['category_id'];
+		        		$data = array(
+		        			'filter_category_id'	  => $category_id
+		        			);
+		        		// $product_ids=array();
+				          $products=$this->model_catalog_product->getTemplateProducts($data);
+				          foreach ($products as $key => $value) {
+				            $product_ids[]=$value['product_id'];
+				          }
+		      		}
+				}
+      	// if (isset($this->request->post['selected'])) {
+      			// print_r($product_ids);exit;
+			foreach ($product_ids as $product_id) {
+			// print_r($product_id);exit;
+			$product_info = $this->model_catalog_product->getProduct($product_id);
+
+			$product_options = $this->model_catalog_product->getProductOptionss($product_id);
+// print_r($product_options);exit;
+			$data['product_options'] = array();
+
+		foreach ($product_options as $product_option) {
+			$product_option_value_data = array();
+
+			if (isset($product_option['product_option_value'])) {
+				foreach ($product_option['product_option_value'] as $product_option_value) {
+				// print_r($product_option_value);exit;
+					$tmp_name=$this->model_catalog_product->getProductOptionname($product_option_value['option_value_id']);
+
+					$data['productprice'][]=array(
+		            // 'product_id' => $product_info['product_id'],
+		            'product_option_value_id'=>$product_option_value['product_option_value_id'],
+		           	 'name' => $product_info['name'],
+		           	 'model' => $product_info['model'],
+		            // 'length_id' => $product_options[0]['option_id'],
+					'names'=>isset($tmp_name['name'])?$tmp_name['name']:'无',
+		            'quantity' => $product_option_value['quantity'],
+		            'price1' => $product_option_value['price1'],
+		            'price2' => $product_option_value['price2'],
+		            'price3' => $product_option_value['price3'],
+		            'price4' => $product_option_value['price4'],
+		            'price5' => $product_option_value['price5'],
+		            'price6' => $product_option_value['price6'],
+		            'price7' => $product_option_value['price7'],
+		            'status' =>$product_info['status'] > 0 ? '启用' :'禁用'
+		            
+	            );
+
+
+
+				}
+			}
+			
+		}
+			$data['productprice'][]=array(
+		            // 'product_id' => '',
+		            'product_option_value_id'=>'',
+		           	 'name' => '',
+		           	 'model' => '',
+		            // 'length_id' => '',
+					'names'=>'',
+		            'quantity' => '',
+		             
+		            'price1' => '',
+		            'price2' => '',
+		            'price3' =>'',
+		            'price4' =>'',
+		            'price5' => '',
+		            'price6' => '',
+		            'price7' => '',
+		            'status' => '',
+		            
+	            );
+
+	}
+		// print_r($data['productprice']);exit();
+		 
+        $header = array(
+            // 'product_id' => '*商品id',
+            'product_option_value_id' => '*pov.id',
+            'name' => '*名称(名字长一点)',
+            'model' => '*型号(*)',
+            // 'length_id' => '*length_id',
+
+            
+            'names' => '*尺寸',
+            'quantity' => '*数量',
+            'price1' => '*VIP',
+            'price2' => '*Silver VIP',
+            'price3' => '*Gold VIP',
+            'price4' => '*Dianond VIP',
+
+            'price5' => '*Special Price 1',
+            'price6' => '*Special Price 2', 
+            'price7' => '*Special Price 3',
+            'status' => '*状态'
+        );
+         ksort($data['productprice']);
+        $excel = new SimpleExcel();
+        $excel->header = $header;
+        $excel->name = '主站price'.date('Y-m-d');
+        $excel->data = $data['productprice'];
+        $excel->toString();
+  }
 	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'catalog/product')) {
 			$this->error['warning'] = $this->language->get('error_permission');
@@ -1500,6 +1619,28 @@ public function add() {
 			$product_images = $this->request->post['product_image'];
 		} elseif (isset($this->request->get['product_id'])) {
 			$product_images = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
+			// 判断主图是否存在 images 中
+            $image_exist=0;
+            $first_image='';
+            foreach ($product_images as $key=>$value){
+                  if($value['image']==$product_info['image']){
+                      $image_exist=1;
+                      $first_image=$value;
+                      unset($product_images[$key]);
+                  }
+            };
+
+            if($first_image){
+            	$first_image['sort_order']=0;
+            	array_unshift($product_images,$first_image);
+            }
+
+            !$image_exist && $product_info['image'] && array_unshift($product_images,[
+                'product_image_id'=>0,
+                'product_id'=>$product_info['product_id'],
+                'image'=>$product_info['image'],
+                'sort_order'=>0
+            ]);
 		} else {
 			$product_images = array();
 		}

@@ -949,7 +949,7 @@ class ControllerCatalogProduct extends Controller {
 		        }else{
 		        	if(empty($this->request->post['category_id'])){
 		        		$product_ids=array();
-				          $products=$this->model_catalog_product->getProductses($data =array());
+				          $products=$this->model_catalog_product->getTemplateProducts($data =array());
 				          foreach ($products as $key => $value) {
 				            $product_ids[]=$value['product_id'];
 				          }
@@ -959,7 +959,7 @@ class ControllerCatalogProduct extends Controller {
 		        			'category_id'	  => $category_id
 		        			);
 		        		// $product_ids=array();
-				          $products=$this->model_catalog_product->getProductses($data);
+				          $products=$this->model_catalog_product->getTemplateProducts($data);
 				          foreach ($products as $key => $value) {
 				            $product_ids[]=$value['product_id'];
 				          }

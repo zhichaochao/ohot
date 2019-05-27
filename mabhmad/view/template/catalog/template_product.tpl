@@ -3,6 +3,8 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
+      <a  class="btn btn-success" id="btn-success" formaction="<?php echo $explode; ?>">主站批量导出</a>
+  <a href="<?php echo $importSpecial; ?>" data-toggle="tooltip" title="Import Products" class="btn btn-primary">导入价格</a>
         <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
       </div>
       <h1><?php echo $heading_title; ?></h1>
@@ -224,7 +226,15 @@ $('input[name=\'filter_model\']').autocomplete({
 		$('input[name=\'filter_model\']').val(item['label']);
 	}
 });
-
+$('#btn-success').on('click', function(e) {
+  $('#form-product').attr('action', this.getAttribute('formAction'));
+  
+  // if (confirm('<?php echo $text_confirm; ?>')) {
+    $('#form-product').submit();
+  // } else {
+  //   return false;
+  // }
+});
 
 
 //--></script></div>
