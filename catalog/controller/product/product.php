@@ -358,7 +358,9 @@ class ControllerProductProduct extends Controller {
             // print_r($product_info);exit();
             $results = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
             foreach ($results as $result) {
-                $data['images'][] = array(
+                if ($result['image']!=$product_info['image']) {
+                    # code...
+                      $data['images'][] = array(
                 
                     'thumb' => $this->model_tool_image->resize($result['image'], 200, 200),  //小图
                   
@@ -366,9 +368,10 @@ class ControllerProductProduct extends Controller {
                   
                     'thumb2'=> $this->model_tool_image->resize($result['image'], 800, 800)
                 );
+                }
+              
             }
-
-            
+          
             //包邮
             if($product_info['free_postage']){
                 $data['free_shipping'] = $this->language->get('text_free_shipping');
