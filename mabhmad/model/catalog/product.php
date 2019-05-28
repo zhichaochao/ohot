@@ -299,9 +299,9 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 			
 		}
         */
-		if (isset($data['image'])) {
-			$this->querysql("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
-		}
+		// if (isset($data['image'])) {
+		// 	$this->querysql("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
+		// }
 
 		foreach ($data['product_description'] as $language_id => $value) {
 			
@@ -396,12 +396,25 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 			}
 			
 		}
-
+		
 		if (isset($data['product_image'])) {
-			foreach ($data['product_image'] as $product_image) {
-				$this->querysql("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($product_image['image']) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
+		    $sort=[];
+			foreach ($data['product_image'] as $key=>$product_image) {
+			    $sort[$key]=(int)$product_image['sort_order'];
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($product_image['image']) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
 			}
+
+            if ($sort) {
+                // 按照数字大小排序
+                asort($sort);
+                $this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['product_image'][array_keys($sort)[0]]['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
+            }
 		}
+		// if (isset($data['product_image'])) {
+		// 	foreach ($data['product_image'] as $product_image) {
+		// 		$this->querysql("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($product_image['image']) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
+		// 	}
+		// }
 
 		if (isset($data['product_download'])) {
 			foreach ($data['product_download'] as $download_id) {
