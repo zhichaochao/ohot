@@ -415,16 +415,16 @@
 					</ul>
 				</div>
 				
-				<div class="pro_det_bot clearfix">
+				<div class="pro_det_bot swiper-container pro_big_img  clearfix" id="swiper1" style="margin-bottom: 1.6rem;">
 					<h1 class="clearfix">
 						<hr />
 						<span>RECOMMENDED FOR YOU</span>
 					</h1>
 
-					<ul class="bot_det_ul">
+					<ul class="bot_det_ul swiper-wrapper">
 					 <?php foreach ($recommend_products as $product) { ?>
 							
-						<li>
+						<li class="swiper-slide ">
 							<a href="<?php echo $product['product_link']; ?>"> 
 								<div class="pic_img" >
 									<img src="<?php echo $product['image']; ?>"  />
@@ -447,6 +447,8 @@
 						</li>
 						<?php } ?> 
 					</ul>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
 				</div>
 				
 				<div class="cart_fixed clearfix">
@@ -766,6 +768,26 @@ $(function(){
 				}
 			}
 		})
+
+var li_w=4;
+var win_w = $(window).innerWidth();
+if(win_w>=1080){
+	li_w=4;
+}else{
+	li_w=2
+}
+var mySwiper = new Swiper('#swiper1', {
+	loop:true,
+	autoplay: true,
+	slidesPerView : li_w,
+	loopFillGroupWithBlank: true,
+	slidesPerGroup: 1,
+	navigation: {
+	    nextEl: '.swiper-button-next',
+	    prevEl: '.swiper-button-prev',
+	  },
+})
+
 	})
 function productInfoImg(elm) {
         var ind = $(elm).parents("li").index();

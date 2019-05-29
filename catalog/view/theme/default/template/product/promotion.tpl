@@ -11,7 +11,7 @@
       
       <h1>DISCOUNTED GOODS</h1>
       <div class="pro_content clearfix">
-    <div class="top clearfix"> <div class="s_page"><?php echo $pagination; ?></div></div>
+    <div class="top clearfix"> <div class="s_page"><?php echo $pagination; ?></div></div> 
         <div class="pro_text clearfix">
           <ul class="pro_ul prolist clearfix">
             <?php foreach ($products as $product) { ?>

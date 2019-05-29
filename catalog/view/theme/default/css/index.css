@@ -360,10 +360,10 @@
 	.pro_det_content .pro_det_bot h1{text-align: center;position: relative;height: 5.2vw;line-height: 5.2vw;}	
 	.pro_det_content .pro_det_bot h1 hr{width: 100%;height: 1px;border: none;background: #ddd;position: absolute;top: 50%;}
 	.pro_det_content .pro_det_bot h1 span{font-family: bau;font-size: 1.35vw;color: #333;display: inline-block;background: #fff;position: relative;top: -0.1vw;}
-	.pro_det_content .pro_det_bot ul{margin: 0 -0.83vw;}
-	.pro_det_content .pro_det_bot ul li{float: left;width: 25%;padding: 0 0.83vw;margin-bottom: 0.83vw;}
+	.pro_det_content .pro_det_bot ul{/*margin: 0 -0.83vw;*/}
+	.pro_det_content .pro_det_bot ul li{float: left;/*width: 25%;*/margin-bottom: 0.83vw;padding: 0 0.83vw;}
 	.pro_det_content .pro_det_bot ul li .pic_img{width: 100%;overflow: hidden;}
-	.pro_det_content .pro_det_bot ul li .pic_img img{display: block;transition: all .5s;}
+	.pro_det_content .pro_det_bot ul li .pic_img img{display: block;transition: all .5s;margin: auto;}
 	.pro_det_content .pro_det_bot ul li:hover .pic_img img{transform: scale(1.05);}
 	
 	.pro_det_content .pro_det_bot ul li .text{display: block;}
@@ -1576,7 +1576,7 @@
 	.promotion .pro_text .pro_ul .text{padding: 0 10px 20px 10px;}
 	.promotion .pro_text .pro_ul .text p{margin-top: 16px;text-align: left;padding: 0;font-size: 14px;line-height: 16px;}
 	.promotion .pro_text .pro_ul .text .price{width: 50%;float: left;}	
-	.promotion .pro_text .pro_ul .text span{display:block;line-height: 32px; margin: 20px 0 8px 0;text-align: left;font-size: 24px;color: #fe2a4d;padding: 3px;}
+	.promotion .pro_text .pro_ul .text span{display:block;line-height: 32px; margin: 20px 0 8px 0;text-align: left;font-size: 24px;color: #fe2a4d;padding: 0;}
 	.promotion .pro_text .pro_ul .text .price i {font-size: 16px;color: #999;text-decoration: line-through;
 	display: block;float: left;text-align: left;}
 	.promotion .pro_text .pro_ul .text .modelling{background: #a89d9b;display: inline-block;font-size: 0.72vw;margin: 20px 0 8px 0;color:#fff;
