@@ -753,6 +753,7 @@ class ControllerCatalogProduct extends Controller {
 				'free_postage' => $result['free_postage'],
 				'quantity'   => $result['quantity'],
 				'browse'   => $result['viewed'],
+				'sort_order'   => $result['sort_order'],
 				'relation_product'   => $result['relation_product'],
 				'status'     => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'edit'       => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'] . $url, true)

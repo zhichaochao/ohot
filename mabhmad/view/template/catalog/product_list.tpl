@@ -159,6 +159,7 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?></a>
                     <?php } ?></td>
+                  <td class="text-center">排序</td>
                   <td class="text-center"><?php echo $column_free_postage; ?></td>
 
                   <td class="text-right"><?php if ($sort == 'p.browse') { ?>
@@ -203,6 +204,7 @@
                     <span class="label label-success"><?php echo $product['quantity']; ?></span>
                     <?php } ?></td>
                   <td class="text-left"><?php echo $product['status']; ?></td>
+                  <td class="text-left"><?php echo $product['sort_order']; ?></td>
                   <td class="text-center">
                     <?php if($product['free_postage'] == '1') {?>
                       YES
