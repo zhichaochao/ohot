@@ -541,7 +541,10 @@ class ControllerProductProduct extends Controller {
                 $recommend_products[$key]['product_link'] = $this->url->link('product/product','product_id='.$row['product_id']);
                 $recommend_products[$key]['texture'] = $this->model_catalog_product->getOptionDes('Texture',$row['product_id']);
                 $recommend_products[$key]['price'] = $this->currency->format($row['price'], $this->session->data['currency']);
-                $recommend_products[$key]['special'] = $this->currency->format($row['special'], $this->session->data['currency']);
+                if($row['special']!=0|| !empty($row['special'])){
+                    $recommend_products[$key]['special'] = $this->currency->format($row['special'], $this->session->data['currency']);
+                }
+
                 $recommend_products[$key]['min_name'] = utf8_substr(strip_tags($row['name']),0,40).'...';
                 $i++;
             }
