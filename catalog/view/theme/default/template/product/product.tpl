@@ -781,7 +781,7 @@ var mySwiper = new Swiper('#swiper1', {
 	autoplay: true,
 	slidesPerView : li_w,
 	loopFillGroupWithBlank: true,
-	slidesPerGroup: 1,
+	slidesPerGroup: li_w,
 	navigation: {
 	    nextEl: '.swiper-button-next',
 	    prevEl: '.swiper-button-prev',
