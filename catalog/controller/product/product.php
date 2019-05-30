@@ -535,7 +535,7 @@ class ControllerProductProduct extends Controller {
                 if($recommend_products[$key]['image']){
                     $recommend_products[$key]['image'] = $this->model_tool_image->resize($row['image'], 400, 400);
                 }else{
-                    $recommend_products[$key]['image'] = $this->model_tool_image->resize('placeholder.png', 4000, 400);
+                    $recommend_products[$key]['image'] = $this->model_tool_image->resize('placeholder.png', 400, 400);
                 }
             
                 $recommend_products[$key]['product_link'] = $this->url->link('product/product','product_id='.$row['product_id']);
