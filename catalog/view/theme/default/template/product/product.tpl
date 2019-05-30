@@ -433,8 +433,8 @@
 								<p class="p2"><?php echo $product['name']; ?> </p>
 								<span class="price">
 					                  <?php if($product['special']) { ?>
-					                     <span><?php echo $product['special']['special']; ?></span>
-					                     <del><?php echo $product['price']; ?></del>
+					                     <em><?php echo $product['special']; ?></em>
+					                     <del style="color:#999;"><?php echo $product['price']; ?></del>
 					                  <?php }else{ ?>
 					                     <span class="price-single"><?php echo $product['price']; ?></span>
 					                  <?php } ?>

@@ -22,7 +22,7 @@
                 </div>
                 <div class="text clearfix" >
                 <p><?php echo $product['name']; ?></p>
-                <span class="price">
+                <span class="price" style="line-height: 1.25vw;">
                   <?php if($product['special']) { ?>
                   <em> <?php echo $product['special']; ?></em>
                      <del><?php echo $product['price']; ?></del>
