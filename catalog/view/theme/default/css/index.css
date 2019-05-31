@@ -1576,7 +1576,7 @@
 	.promotion .pro_text .pro_ul .text{padding: 0 10px 20px 10px;}
 	.promotion .pro_text .pro_ul .text p{margin-top: 16px;text-align: left;padding: 0;font-size: 14px;line-height: 16px;}
 	.promotion .pro_text .pro_ul .text .price{width: 50%;float: left;}	
-	.promotion .pro_text .pro_ul .text span{display:block;line-height: 32px; margin: 20px 0 8px 0;text-align: left;font-size: 24px;color: #fe2a4d;padding: 10px;}
+	.promotion .pro_text .pro_ul .text span{display:block;line-height: 32px; margin: 20px 0 8px 0;text-align: left;font-size: 24px;color: #fe2a4d;padding: 0;}
 	.promotion .pro_text .pro_ul .text .price i {font-size: 16px;color: #999;text-decoration: line-through;
 	display: block;float: left;text-align: left;}
 	.promotion .pro_text .pro_ul .text .modelling{background: #a89d9b;display: inline-block;font-size: 0.72vw;margin: 20px 0 8px 0;color:#fff;
@@ -3080,7 +3080,7 @@
 	.promotion .img_bnr{display: block;margin:0 auto 0.6rem auto;}
 	.promotion h1{font-size: 0.24rem;font-family: bau;color: #000;line-height: 0.28rem;margin-bottom: 0.4rem;text-align: center;font-weight: normal;}
 	.promotion .pro_content {background: #fff;padding: 0;border: none;}
-	.promotion .pro_text .pro_ul .text .price{width: 45%;float: left;padding: 0 0.1rem;}	
+	.promotion .pro_text .pro_ul .text .price{width: 46%;float: left;padding: 0 0.1rem;}	
 	.promotion .pro_text .pro_ul .text span{display:block;line-height: 0.28rem; margin: 0.1rem 0 0.05rem 0;
 	text-align: left;font-size: 0.24rem;color: #fe2a4d;padding: 0;}
 	.promotion .pro_text .pro_ul .text .modelling{background: #a89d9b;display: inline-block;font-size: 0.16rem;margin: 0.1rem 0 0.05rem 0;color:#fff;
