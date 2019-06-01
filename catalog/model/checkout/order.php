@@ -213,7 +213,7 @@ class ModelCheckoutOrder extends Model {
 			}
 		}
 		if (isset($data['pricereduction']) && !empty($data['pricereduction'])) {
-			$order_infores=$this->querysql("SELECT pricereduction FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "'");
+			$order_infores=$this->querysql("SELECT price_reduction FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "'");
 			if(empty($order_infores->row)){
 				$order_info=$this->querysql("SELECT total FROM `" . DB_PREFIX . "order` WHERE order_id = '" . (int)$order_id . "'");
 				if($order_info){
