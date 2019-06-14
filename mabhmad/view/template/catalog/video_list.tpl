@@ -28,6 +28,25 @@
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-list"></i> <?php echo $text_list; ?></h3>
       </div>
+        <div class="panel-body">
+        <div class="well">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label" for="input-gallery-title">视频标题</label>
+                <input type="text" name="video_title" value="" placeholder="视频标题" id="input-gallery-title" class="form-control" />
+              </div>
+              
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label" for="input-product-name">视频名称</label>
+                  <input type="text" name="video_video" value="" placeholder="视频名称" id="input-date-added" class="form-control" />
+              </div>
+              <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i>筛选器</button>
+            </div>
+          </div>
+        </div>
       <div class="panel-body">
         <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-information">
           <div class="table-responsive">
@@ -40,6 +59,7 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_title; ?>"><?php echo $column_title; ?></a>
                     <?php } ?></td>
+                    <td class="text-right">视频名称</td>
                   <td class="text-right"><?php if ($sort == 'i.sort_order') { ?>
                     <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?></a>
                     <?php } else { ?>
@@ -58,6 +78,7 @@
                     <input type="checkbox" name="selected[]" value="<?php echo $video['video_id']; ?>" />
                     <?php } ?></td>
                   <td class="text-left"><?php echo $video['title']; ?></td>
+                  <td class="text-right"><?php echo $video['video']; ?></td>
                   <td class="text-right"><?php echo $video['sort_order']; ?></td>
                   <td class="text-right"><a href="<?php echo $video['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
@@ -79,4 +100,66 @@
     </div>
   </div>
 </div>
+  <script type="text/javascript"><!--
+$('#button-filter').on('click', function() {
+  url = 'index.php?route=catalog/video&token=<?php echo $token; ?>';
+  
+  var video_title = $('input[name=\'video_title\']').val();
+  
+  if (video_title) {
+    url += '&video_title=' + encodeURIComponent(video_title);
+  }
+      
+  var video_video = $('input[name=\'video_video\']').val();
+  
+  if (video_video) {
+    url += '&video_video=' + encodeURIComponent(video_video);
+  }
+
+  location = url;
+});
+
+$('input[name=\'video_title\']').autocomplete({
+  'source': function(request, response) {
+    $.ajax({
+      url: 'index.php?route=catalog/video/autocomplete&token=<?php echo $token; ?>&video_title=' +  encodeURIComponent(request),
+      dataType: 'json',
+      success: function(json) {
+        response($.map(json, function(item) {
+          return {
+            label: item['title']
+          }
+        }));
+      }
+    });
+  },
+  'select': function(item) {
+    $('input[name=\'video_title\']').val(item['label']);
+  }
+});
+
+$('input[name=\'video_video\']').autocomplete({
+  'source': function(request, response) {
+    $.ajax({
+      url: 'index.php?route=catalog/video/autocomplete&token=<?php echo $token; ?>&video_video=' +  encodeURIComponent(request),
+      dataType: 'json',
+      success: function(json) {
+        response($.map(json, function(item) {
+          return {
+            label: item['video']
+          }
+        }));
+      }
+    });
+  },
+  'select': function(item) {
+    $('input[name=\'video_video\']').val(item['label']);
+  }
+});
+//--></script> 
+  <script type="text/javascript"><!--
+$('.date').datetimepicker({
+  pickTime: false
+});
+//--></script></div>
 <?php echo $footer; ?>

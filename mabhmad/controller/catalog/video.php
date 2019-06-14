@@ -137,6 +137,19 @@ class ControllerCatalogVideo extends Controller {
 	}
 
 	protected function getList() {
+
+		  if (isset($this->request->get['video_title'])) {
+            $video_title = $this->request->get['video_title'];
+        } else {
+            $video_title = null;
+        }
+
+        if (isset($this->request->get['video_video'])) {
+            $video_video = $this->request->get['video_video'];
+        } else {
+            $video_video = null;
+        }
+
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -189,18 +202,21 @@ class ControllerCatalogVideo extends Controller {
 		$filter_data = array(
 			'sort'  => $sort,
 			'order' => $order,
+			'video_title' => $video_title,
+			'video_video' => $video_video,
 			'start' => ($page - 1) * $this->config->get('config_limit_admin'),
 			'limit' => $this->config->get('config_limit_admin')
 		);
 
-		$video_total = $this->model_catalog_video->getTotalVideos();
+		$video_total = $this->model_catalog_video->getTotalVideos($filter_data);
 
 		$results = $this->model_catalog_video->getVideos($filter_data);
-//var_dump($results);exit;
+// print_r($results);exit;
 		foreach ($results as $result) {
 			$data['videos'][] = array(
 				'video_id' => $result['video_id'],
 				'title'          => $result['title'],
+				'video'     => $result['video'],
 				'sort_order'     => $result['sort_order'],
 				'edit'           => $this->url->link('catalog/video/edit', 'token=' . $this->session->data['token'] . '&video_id=' . $result['video_id'] . $url, true)
 			);
@@ -219,7 +235,7 @@ class ControllerCatalogVideo extends Controller {
 		$data['button_add'] = $this->language->get('button_add');
 		$data['button_edit'] = $this->language->get('button_edit');
 		$data['button_delete'] = $this->language->get('button_delete');
-
+		$data['token'] = $this->session->data['token'];
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		} else {
@@ -515,7 +531,7 @@ $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset(
         if(isset($this->request->post['image'])){
             $data['image'] = $this->request->post['image'];
         }
-        elseif(isset($this->request->get['video_id'])&&$video_info['image']){
+        elseif(isset($this->request->get['video_id'])&& isset($video_info['image'])){
             $data['image'] = $video_info['image'];
         }
         else{
@@ -609,6 +625,59 @@ $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset(
 		}
 
 		return !$this->error;
+	}
+		public function autocomplete() {
+		$json = array();
+
+		if (isset($this->request->get['video_title']) || isset($this->request->get['video_video'])) {
+			// $this->load->model('catalog/product');
+			$this->load->model('catalog/video');
+
+			if (isset($this->request->get['video_title'])) {
+				$video_title = $this->request->get['video_title'];
+			} else {
+				$video_title = '';
+			}
+			
+			if (isset($this->request->get['video_video'])) {
+				$video_video = $this->request->get['video_video'];
+			} else {
+				$video_video = '';
+			}
+
+			if (isset($this->request->get['limit'])) {
+				$limit = $this->request->get['limit'];
+			} else {
+				$limit = 5;
+			}
+
+			$filter_data = array(
+				'video_title'  => $video_title,
+				'video_video'  => $video_video,
+				// 'filter_model' => $filter_model,
+				'start'        => 0,
+				'limit'        => $limit
+			);
+
+			$results = $this->model_catalog_video->getVideos($filter_data);
+// print_r($results);exit;
+			foreach ($results as $result) {
+				// $option_data = array();
+
+				// $product_options = $this->model_catalog_product->getProductOptions($result['product_id']);
+				$json[] = array(
+					'video_id' => $result['video_id'],
+					'video' => $result['video'],
+					'title'       => strip_tags(html_entity_decode($result['title'], ENT_QUOTES, 'UTF-8'))
+					// 'model'      => $result['model'],
+//					'option'     => $option_data,
+					// 'price'      => $result['price']
+				);
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 	
 }

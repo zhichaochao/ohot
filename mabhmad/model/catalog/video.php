@@ -109,6 +109,14 @@ class ModelCatalogVideo extends Model {
 		if ($data) {
 			$sql = "SELECT * FROM " . DB_PREFIX . "video i LEFT JOIN " . DB_PREFIX . "video_description id ON (i.video_id = id.video_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
+			 if (!empty($data['video_title'])) {
+			            $sql .= " AND id.title like '%" . $this->db->escape($data['video_title']) . "%'";
+			        }
+
+			        if (isset($data['video_video']) && !is_null($data['video_video'])) {
+			            $sql .= " AND i.video like '%" . $this->db->escape($data['video_video']) . "%'";
+			        }
+
 			$sort_data = array(
 				'id.title',
 				'i.sort_order'
@@ -202,11 +210,35 @@ class ModelCatalogVideo extends Model {
 		return $video_layout_data;
 	}
 
-	public function getTotalVideos() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "video");
+	// public function getTotalVideos() {
+	// 	$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "video");
 
-		return $query->row['total'];
-	}
+	// 	return $query->row['total'];
+	// }
+
+	  public function getTotalVideos($data = array()){
+
+        $sql = "SELECT * FROM " . DB_PREFIX . "video i LEFT JOIN " . DB_PREFIX . "video_description id ON (i.video_id = id.video_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+			 if (!empty($data['video_title'])) {
+			            $sql .= " AND id.title like '%" . $this->db->escape($data['video_title']) . "%'";
+			        }
+
+			        if (isset($data['video_video']) && !is_null($data['video_video'])) {
+			            $sql .= " AND i.video like '%" . $this->db->escape($data['video_video']) . "%'";
+			        }
+
+        $query = $this->db->query($sql);
+// print_r($query);exit;
+        if($query->row){
+            $total = $query->num_rows;
+        }
+        else{
+            $total = 0;
+        }
+
+        return $total;
+    }
 
 	public function getTotalVideosByLayoutId($layout_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "video_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
