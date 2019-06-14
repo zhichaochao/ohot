@@ -127,7 +127,8 @@ $('input[name=\'video_title\']').autocomplete({
       success: function(json) {
         response($.map(json, function(item) {
           return {
-            label: item['title']
+            label: item['title'],
+            value: item['video_id']
           }
         }));
       }
@@ -146,7 +147,8 @@ $('input[name=\'video_video\']').autocomplete({
       success: function(json) {
         response($.map(json, function(item) {
           return {
-            label: item['video']
+            label: item['video'],
+            value: item['video_id']
           }
         }));
       }
