@@ -34,14 +34,14 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label class="control-label" for="input-gallery-title">视频标题</label>
-                <input type="text" name="video_title" value="" placeholder="视频标题" id="input-gallery-title" class="form-control" />
+                <input type="text" name="video_title" value="<?php echo $video_title; ?>" placeholder="视频标题" id="input-gallery-title" class="form-control" />
               </div>
               
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label class="control-label" for="input-product-name">视频名称</label>
-                  <input type="text" name="video_video" value="" placeholder="视频名称" id="input-date-added" class="form-control" />
+                  <input type="text" name="video_video" value="<?php echo $video_video; ?>" placeholder="视频名称" id="input-date-added" class="form-control" />
               </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i>筛选器</button>
             </div>

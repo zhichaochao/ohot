@@ -293,6 +293,8 @@ class ControllerCatalogVideo extends Controller {
 
 		$data['sort'] = $sort;
 		$data['order'] = $order;
+		$data['video_title'] = $video_title;
+		$data['video_video'] = $video_video;
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
