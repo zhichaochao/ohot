@@ -232,9 +232,9 @@
 	left: auto !important;right: 0 !important;top: 2.08vw !important;}
 	.pro_det_content .pro_det_dl{display: block;clear: both;}
 	.pro_det_content .pro_det_dl dt{font-size: 0.83vw;color: #333;line-height: 1.77vw;padding-bottom: 0.2vw;}
-	.pro_det_content .pro_det_dl dd{width: 33.33%;display: block;float: left;height: 2.08vw;line-height: 2.08vw;
+	.pro_det_content .pro_det_dl dd{display: block;float: left;height: 2.08vw;line-height: 2.08vw;
 	padding: 0 10px 0 0;box-sizing: border-box;cursor: pointer;margin-bottom: 10px;}
-	.pro_det_content .pro_det_dl dd p{background: #f5f5f5;border-radius: 50px;text-align: center;font-size: 0.93vw;}
+	.pro_det_content .pro_det_dl dd p{background: #f5f5f5;border-radius: 50px;text-align: center;font-size: 0.93vw;padding: 0 15px;}
 	.pro_det_content .pro_det_dl dd p.active,
 	.pro_det_content .pro_det_dl dd p:hover{color: #fff;background: -webkit-linear-gradient(left, #f23030 , #fb3500);background: -o-linear-gradient(right, #f23030, #fb3500);
 	  background: -moz-linear-gradient(right, #f23030, #fb3500); background: linear-gradient(to right, #f23030 , #fb3500);border-radius: 50px;}
@@ -254,7 +254,7 @@
 	border-right: 1px solid#ccc;border-left: 1px solid#ccc;text-align: center;font-size: 0.83vw;}
 	.pro_det_content .select_div{background: #fff;text-align: center;position: relative;}
 	.pro_det_content .select_div button{ margin: auto;display: inline-block; border: 1px solid #ccc;height: 2.25vw;
-	font-size: 0.83vw;line-height: 2.25vw;background: #fff;box-sizing: content-box;padding: 0 1.04vw;}
+	font-size: 0.83vw;line-height: 2.25vw;background: #fff;box-sizing: content-box;padding: 0 10px;}
 	.pro_det_content .select_div button:hover{background: #f5f5f5;cursor: pointer;}
 	.pro_det_content .select_div button span{background: url(../img/png/down.png) no-repeat right center;background-size: 0.72vw;padding-right: 1.7vw;}
 	.pro_det_content .select_div .select_ul{position: absolute;width: 100%;background: #fff;left:0;border-left: 1px solid #ccc;border-bottom: 1px solid #ccc;
