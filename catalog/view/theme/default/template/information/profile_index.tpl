@@ -90,10 +90,10 @@
 <script>
 	$(function(){
 		$(".video_ul li img.bf").click(function(){
-			$(this).siblings(".text_vd").css("display","none");
-			for(var i=0; i<$(".video_ul li").length;i++){
-				document.getElementsByClassName("video_li")[i].pause();
-			}
+			$(this).siblings(".bg_div").css("display","none");
+			$(".video_li").each(function(){
+		        this.pause();
+		      })
 			$(this).siblings("video").attr("controls","controls");
 			this.previousElementSibling.play();
 			
