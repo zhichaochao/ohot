@@ -143,7 +143,7 @@ class ControllerCatalogGallery extends Controller
         if (isset($this->request->get['sort'])) {
             $sort = $this->request->get['sort'];
         } else {
-            $sort = 'id';
+            $sort = 'sort_order';
         }
 
         if (isset($this->request->get['page'])) {
@@ -208,7 +208,7 @@ class ControllerCatalogGallery extends Controller
         $gallery_total = $this->model_catalog_gallery->getTotalgallerys($filter_data);
 
         $results = $this->model_catalog_gallery->getGallerys($filter_data);
-       // var_dump($results);exit();
+       // print_r($results);exit();
         foreach ($results as $result) {
             $data['galleries'][] = array(
                 'gallery_id'        => $result['gallery_id'],
@@ -217,6 +217,7 @@ class ControllerCatalogGallery extends Controller
                 'gallery_title'     => $result['gallery_title'],
                 'view'              => $result['view'],
                 'author'            => $result['author'],
+                'sort_order'            => $result['sort_order'],
                 'image'             => $this->model_tool_image->resize($result['image'], 50, 50),
                 'edit'              => $this->url->link('catalog/gallery/edit', 'token=' . $this->session->data['token'] . '&gallery_id=' . $result['gallery_id'] . $url, true)
             );

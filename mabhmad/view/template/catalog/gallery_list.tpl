@@ -72,6 +72,9 @@
                   <td class="text-left">
                     <?=$column_view?></a>
                   </td>
+                  <td class="text-left">
+                   排序
+                  </td>
                   <td class="text-right"><?php echo $column_action; ?></td>
                 </tr>
               </thead>
@@ -90,6 +93,7 @@
                   <!-- <td class="text-left"><?=$gallery['author']?></td> -->
                   <td class="text-left"><img src="<?php echo $gallery['image']; ?>"/></td>
                   <td class="text-left"><?=$gallery['view']?></td>
+                  <td class="text-left"><?=$gallery['sort_order']?></td>
                   <td class="text-right"><a href="<?php echo $gallery['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
                 <?php } ?>

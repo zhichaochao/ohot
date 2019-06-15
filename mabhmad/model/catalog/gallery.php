@@ -36,7 +36,7 @@ class ModelCatalogGallery extends Model
 
     public function getGallerys($data = array()) {
 
-        $sql = "SELECT gallery_id, gallery_title, product_name, author,product_id, image, view FROM " . DB_PREFIX . "gallery WHERE status = '1'";
+        $sql = "SELECT gallery_id, gallery_title, product_name, author,product_id,sort_order, image, view FROM " . DB_PREFIX . "gallery WHERE status = '1'";
 
         if (!empty($data['filter_gallery_title'])) {
             $sql .= " AND gallery_title like '%" . $this->db->escape($data['filter_gallery_title']) . "%'";
