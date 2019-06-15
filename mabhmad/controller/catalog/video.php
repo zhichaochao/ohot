@@ -541,6 +541,7 @@ $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset(
         }
  // var_dump( $video_info );exit();
         $data['club_image'] = $this->model_tool_image->resize($data['image'], 100, 100);
+        $this->model_tool_image->resize($data['image'], 380, 215);
 
   
 		//var_dump( $data['author']);exit();
