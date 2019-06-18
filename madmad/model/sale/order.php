@@ -490,7 +490,7 @@ class ModelSaleOrder extends Model {
 
 			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET invoice_no = '" . (int)$invoice_no . "', invoice_prefix = '" . $this->db->escape($order_info['invoice_prefix']) . "' WHERE order_id = '" . (int)$order_id . "'");
 
-			return $order_info['invoice_prefix'] . $invoice_no;
+			return $order_info['invoice_prefix'].'a'.date('Ymd') . sprintf( "%03d",$invoice_no);
 		}
 	}
 

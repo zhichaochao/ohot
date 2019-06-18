@@ -13,34 +13,35 @@
 <body>
 <div class="container">
   <?php foreach ($orders as $order) { ?>
-  <div style="page-break-after: always;">
-    <h1><?php echo $text_invoice; ?> #<?php echo $order['order_id']; ?></h1>
+  <div style="page-break-after: always; margin-top: 30px;">
+   <!--<h1><?php echo $text_invoice; ?> #<?php echo $order['order_id']; ?></h1>-->
+    <button type="button" class="dy_btn noprint" onclick=" window.print();">打印(转化为PDF)</button>
     <table class="table table-bordered">
       <thead>
         <tr>
-          <td colspan="2"><?php echo $text_order_detail; ?></td>
+          <td colspan="2" align="center"><b style="font-size: 32px;">Commercial Invoice</b></td>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td style="width: 50%;"><address>
-            <strong><?php echo $order['store_name']; ?></strong><br />
-            <?php echo $order['store_address']; ?>
+            <strong>From: Hot Beauty Hair Products Co., Ltd.</strong><br />
+           Add: <?php echo $order['store_address']; ?>
             </address>
-            <b><?php echo $text_telephone; ?></b> <?php echo $order['store_telephone']; ?><br />
+            <b>Phone#:</b> <?php echo $order['store_telephone']; ?><br />
             <?php if ($order['store_fax']) { ?>
             <b><?php echo $text_fax; ?></b> <?php echo $order['store_fax']; ?><br />
             <?php } ?>
-            <b><?php echo $text_email; ?></b> <?php echo $order['store_email']; ?><br />
-            <b><?php echo $text_website; ?></b> <a href="<?php echo $order['store_url']; ?>"><?php echo $order['store_url']; ?></a></td>
-          <td style="width: 50%;"><b><?php echo $text_date_added; ?></b> <?php echo $order['date_added']; ?><br />
+            <b>Email:</b> <?php echo $order['store_email']; ?><br />
+            <b>Website:</b> <?php echo $order['store_url']; ?></td>
+          <td style="width: 50%;"><b>Date:</b> <?php echo $order['date_added']; ?><br />
             <?php if ($order['invoice_no']) { ?>
-            <b><?php echo $text_invoice_no; ?></b> <?php echo $order['invoice_no']; ?><br />
+            <b>Invoice No.:</b> <?php echo $order['invoice_no']; ?><br />
             <?php } ?>
-            <b><?php echo $text_order_id; ?></b> <?php echo $order['order_id']; ?><br />
-            <b><?php echo $text_payment_method; ?></b> <?php echo $order['payment_method']; ?><br />
+            <b>Order No.:</b> <?php echo $order['order_id']; ?><br />
+            <b>Payment Method:</b> <?php echo $order['payment_method']; ?><br />
             <?php if ($order['shipping_method']) { ?>
-            <b><?php echo $text_shipping_method; ?></b> <?php echo $order['shipping_method']; ?><br />
+            <b>Shipment Method:</b> <?php echo $order['shipping_method']; ?><br />
             <?php } ?></td>
         </tr>
       </tbody>
@@ -48,8 +49,8 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <td style="width: 50%;"><b><?php echo $text_payment_address; ?></b></td>
-          <td style="width: 50%;"><b><?php echo $text_shipping_address; ?></b></td>
+          <td style="width: 50%;"><b>Payment Address:</b></td>
+          <td style="width: 50%;"><b>Shipping Address:</b></td>
         </tr>
       </thead>
       <tbody>
@@ -66,11 +67,11 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <td><b><?php echo $column_product; ?></b></td>
+          <td><b>Product Name</b></td>
           <td><b><?php echo $column_model; ?></b></td>
-          <td class="text-right"><b><?php echo $column_quantity; ?></b></td>
-          <td class="text-right"><b><?php echo $column_price; ?></b></td>
-          <td class="text-right"><b><?php echo $column_total; ?></b></td>
+          <td class="text-right"><b>Quantity</b></td>
+          <td class="text-right"><b>Unit Price</b></td>
+          <td class="text-right"><b>Amount</b></td>
         </tr>
       </thead>
       <tbody>
@@ -102,8 +103,13 @@
           <td class="text-right"><?php echo $total['text']; ?></td>
         </tr>
         <?php } ?>
+
       </tbody>
+
     </table>
+    <style media="print">
+      .noprint{display : none }
+    </style>
     <?php if ($order['comment']) { ?>
     <table class="table table-bordered">
       <thead>
