@@ -1825,7 +1825,7 @@
 	.pro_content .pro_ul li:nth-of-type(even){border-left:1px solid #eee;}
 	.pro_content .pro_ul .pic_img{width: 100%;overflow: hidden;margin-bottom: 0.2rem;}
 	.pro_content .pro_ul .pic_img img{display: block;width: 100% !important;height: auto !important;}
-	.pro_content .pro_ul .text span{font-family: helvetica;color: #333; font-size: 0.3rem;line-height: 32px; display: block;
+	.pro_content .pro_ul .text span{font-family: helvetica;color: #333; font-size: 0.3rem;line-height: 0.32rem; display: block;
 	padding: 0 0.1rem 0 0.1rem;position: relative;margin-top: 0.2rem;font-weight: bold;}
 	.pro_content .pro_ul .text span em{float: left;}
 	.pro_content .pro_ul .text span del{float: left;font-size: 0.18rem;color: #999;font-weight: normal;margin-left: 0.05rem;}
