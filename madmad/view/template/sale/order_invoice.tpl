@@ -16,6 +16,7 @@
   <div style="page-break-after: always; margin-top: 30px;">
    <!--<h1><?php echo $text_invoice; ?> #<?php echo $order['order_id']; ?></h1>-->
     <button type="button" class="dy_btn noprint" onclick=" window.print();">打印(转化为PDF)</button>
+    <button type="button" class="dy_btn noprint" onclick=" ">导出(转化为Excel)</button>
     <table class="table table-bordered">
       <thead>
         <tr>
