@@ -16,17 +16,17 @@
   <div style="page-break-after: always; margin-top: 30px;">
    <!--<h1><?php echo $text_invoice; ?> #<?php echo $order['order_id']; ?></h1>-->
     <button type="button" class="dy_btn noprint" onclick=" window.print();">打印(转化为PDF)</button>
-    <button type="button" class="dy_btn noprint" onclick=" ">导出(转化为Excel)</button>
-    <table class="table table-bordered">
+    <a type="button" class="dy_btn noprint" id="button" >导出(转化为Excel)</a>
+    <table class="table table-bordered"  border="1" cellspacing="0">
       <thead>
         <tr>
-          <td colspan="2" align="center"><b style="font-size: 32px;">Commercial Invoice</b></td>
+          <td colspan="5" align="center"><b style="font-size: 32px;">Commercial Invoice</b></td>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="width: 50%;"><address>
-            <strong>From: Hot Beauty Hair Products Co., Ltd.</strong><br />
+          <td colspan="2" ><address style="font-style: normal;">
+            <strong style="font-style: normal;">From: Hot Beauty Hair Products Co., Ltd.</strong><br />
            Add: <?php echo $order['store_address']; ?>
             </address>
             <b>Phone#:</b> <?php echo $order['store_telephone']; ?><br />
@@ -35,7 +35,7 @@
             <?php } ?>
             <b>Email:</b> <?php echo $order['store_email']; ?><br />
             <b>Website:</b> <?php echo $order['store_url']; ?></td>
-          <td style="width: 50%;"><b>Date:</b> <?php echo $order['date_added']; ?><br />
+          <td colspan="3"><b>Date:</b> <?php echo $order['date_added']; ?><br />
             <?php if ($order['invoice_no']) { ?>
             <b>Invoice No.:</b> <?php echo $order['invoice_no']; ?><br />
             <?php } ?>
@@ -45,28 +45,26 @@
             <b>Shipment Method:</b> <?php echo $order['shipping_method']; ?><br />
             <?php } ?></td>
         </tr>
-      </tbody>
-    </table>
-    <table class="table table-bordered">
-      <thead>
         <tr>
-          <td style="width: 50%;"><b>Payment Address:</b></td>
-          <td style="width: 50%;"><b>Shipping Address:</b></td>
+            <td colspan="2"  style="width:50%" >
+              <b style="height:20px;">Payment Address:</b>
+            </td>
+            <td colspan="3"  style="width:50%" >
+            <b>Shipping Address:</b>
+            </td>
         </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><address>
+         <tr>
+            <td  colspan="2" >
+           <address style="font-style: normal;">
             <?php echo $order['payment_address']; ?>
-            </address></td>
-          <td><address>
+            </address>
+            </td>
+            <td  colspan="3" >
+            <address style="font-style: normal;">
             <?php echo $order['shipping_address']; ?>
-            </address></td>
+            </address>
+            </td>
         </tr>
-      </tbody>
-    </table>
-    <table class="table table-bordered">
-      <thead>
         <tr>
           <td><b>Product Name</b></td>
           <td><b><?php echo $column_model; ?></b></td>
@@ -74,8 +72,6 @@
           <td class="text-right"><b>Unit Price</b></td>
           <td class="text-right"><b>Amount</b></td>
         </tr>
-      </thead>
-      <tbody>
         <?php foreach ($order['product'] as $product) { ?>
         <tr>
           <td><?php echo $product['name']; ?>
@@ -98,6 +94,11 @@
           <td class="text-right"><?php echo $voucher['amount']; ?></td>
         </tr>
         <?php } ?>
+      </tbody>
+    </table>
+
+    <table class="table table-bordered"  border="1">  
+       <thead>
         <?php foreach ($order['total'] as $total) { ?>
         <tr>
           <td class="text-right" colspan="4"><b><?php echo $total['title']; ?></b></td>
@@ -105,8 +106,7 @@
         </tr>
         <?php } ?>
 
-      </tbody>
-
+      </thead>
     </table>
     <style media="print">
       .noprint{display : none }
@@ -129,4 +129,12 @@
   <?php } ?>
 </div>
 </body>
+
 </html>
+<script>
+        var html = "<html><head><meta charset='utf-8'  /></head><body>" + document.getElementsByTagName("table")[0].outerHTML+ document.getElementsByTagName("table")[1].outerHTML +"</body></html>";
+        var blob = new Blob([html], { type: "application/vnd.ms-excel" });
+        var a = document.getElementsByTagName("a")[0];
+        a.href = URL.createObjectURL(blob);
+        a.download = "订单"+"<?php echo $order['order_id']; ?>"+".xlsx";
+</script>
