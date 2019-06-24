@@ -315,13 +315,13 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
-			if ($this->user->hasPermission('access', 'localisation/currency')) {
-				$localisation[] = array(
-					'name'	   => $this->language->get('text_currency'),
-					'href'     => $this->url->link('localisation/currency', 'token=' . $this->session->data['token'], true),
-					'children' => array()
-				);
-			}
+			// if ($this->user->hasPermission('access', 'localisation/currency')) {
+			// 	$localisation[] = array(
+			// 		'name'	   => $this->language->get('text_currency'),
+			// 		'href'     => $this->url->link('localisation/currency', 'token=' . $this->session->data['token'], true),
+			// 		'children' => array()
+			// 	);
+			// }
 
 			if ($this->user->hasPermission('access', 'localisation/stock_status')) {
 				$localisation[] = array(
