@@ -44,7 +44,7 @@
                   <?php if($payment_method['code'] == 'pp_express'){ ?>
                   <li class=" clearfix">
 						<label class="gx clearfix" for="payment_method_<?php echo $payment_method['code']; ?>">
-						  <input class="pay_dx"    type="hidden" name="payment_method" value="payment_method_<?php echo $payment_method['code']; ?>"  />
+						  <input class="pay_dx"    type="hidden" name="payment_method" value="<?php echo $payment_method['code']; ?>"  />
 							<div class="img"><img style="width: 200px;" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/new_10_3.png" /></div>
 							<p>Credit Card</p>
 						</label>
