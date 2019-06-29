@@ -24,7 +24,8 @@ class ControllerProductProduct extends Controller {
         $category_list = $this->model_catalog_product->getCatalogName($this->request->get['product_id']);
 
   
-
+        $data['category_id']=$category_list[0]['category_id'];
+        // print_r($data['category_id']);exit;
         //新
         foreach($category_list as $k => $row){
             if( $k==0 && !empty($category_list[$k]) ){       //父类
