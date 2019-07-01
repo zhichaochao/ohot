@@ -42,6 +42,9 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-option" data-toggle="tab">价格</a></li>
             <li><a href="#tab-special" data-toggle="tab"><?php echo $tab_special; ?></a></li>
+            <?php if($product_additionals){?>
+            <li><a href="#tab-rewards" data-toggle="tab">加购价</a></li>
+            <?php }?>
           </ul>
          
           <div class="tab-content">
@@ -335,6 +338,29 @@
                       <td class="text-left"><button type="button" onclick="addSpecial();" data-toggle="tooltip" title="<?php echo $button_special_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
                     </tr>
                   </tfoot>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-rewards">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <td class="text-left">加购区间</td>
+                      <td class="text-left">加购价格</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php if($product_additionals){?>
+                   <?php foreach ($product_additionals as $k=> $additional) { ?>
+                    <tr>
+                      <td class="text-left">满<input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][fullprice]" value="<?php echo $additional['fullprice']; ?>" class="form-control" style="width: 50%;margin-left:20px;" readonly="readonly" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][addprice]" value="<?php echo $additional['addprice']; ?>" class="form-control" readonly="readonly" /></td>
+                    </tr>
+                     <?php } ?>
+                     <?php } ?>
+                  
+                  </tbody>
                 </table>
               </div>
             </div>

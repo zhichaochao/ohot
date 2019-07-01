@@ -857,4 +857,9 @@ class ModelCatalogProduct extends Model {
 
         return $query->rows;
     }
+     public function getProductAdditional($product_id) {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_additional pa  WHERE product_id = '" . (int)$product_id. "' ");
+
+        return $query->rows;
+    }
 }
