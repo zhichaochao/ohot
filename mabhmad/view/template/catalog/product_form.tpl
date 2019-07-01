@@ -858,6 +858,7 @@
                     <tr>
                       <td class="text-left">加购区间</td>
                       <td class="text-left">加购价格</td>
+                      <td class="text-left">原价</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -866,20 +867,24 @@
                     <tr>
                       <td class="text-left">满<input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][fullprice]" value="<?php echo $additional['fullprice']; ?>" class="form-control" style="width: 50%;margin-left:20px;display;none;" /></td>
                       <td class="text-right"><input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][addprice]" value="<?php echo $additional['addprice']; ?>" class="form-control" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][originalprice]" value="<?php echo $additional['originalprice']; ?>" class="form-control" /></td>
                     </tr>
                      <?php } ?>
                   <?php }else{?>
                     <tr>
                       <td class="text-left">满<input type="text" name="product_additionals[0][fullprice]" value="300" class="form-control" style="width: 50%;margin-left:20px;" /></td>
                       <td class="text-right"><input type="text" name="product_additionals[0][addprice]" value="" class="form-control" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[0][originalprice]" value="" class="form-control" /></td>
                     </tr>
                     <tr>
                       <td class="text-left">满<input type="text" name="product_additionals[1][fullprice]" value="1000" class="form-control" style="width: 50%;margin-left:20px;" /></td>
                       <td class="text-right"><input type="text" name="product_additionals[1][addprice]" value="" class="form-control" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[1][originalprice]" value="" class="form-control" /></td>
                     </tr>
                     <tr>
                       <td class="text-left">满<input type="text" name="product_additionals[2][fullprice]" value="30000" class="form-control" style="width: 50%;margin-left:20px;" /></td>
                       <td class="text-right"><input type="text" name="product_additionals[2][addprice]" value="" class="form-control" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[2][originalprice]" value="" class="form-control" /></td>
                     </tr>
                      <?php } ?>
                   

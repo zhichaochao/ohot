@@ -228,7 +228,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape(
 		if (isset($data['product_additionals'])) {
 			foreach ($data['product_additionals'] as $product_additional => $value) {
 				if ((int)$value['addprice'] > 0) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "product_additional SET product_id = '" . (int)$product_id . "', addprice = '" . $value['addprice'] . "', fullprice = '" . $value['fullprice'] . "'");
+					$this->db->query("INSERT INTO " . DB_PREFIX . "product_additional SET product_id = '" . (int)$product_id . "', addprice = '" . $value['addprice'] . "', fullprice = '" . $value['fullprice'] . "', originalprice = '" . $value['originalprice'] . "'");
 				}
 			}
 		}
@@ -463,7 +463,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 		if (isset($data['product_additionals'])) {
 			foreach ($data['product_additionals'] as $product_additional => $value) {
 				if ((int)$value['addprice'] > 0) {
-					$this->querysql("INSERT INTO " . DB_PREFIX . "product_additional SET product_id = '" . (int)$product_id . "', addprice = '" . $value['addprice'] . "', fullprice = '" . $value['fullprice'] . "'");
+					$this->querysql("INSERT INTO " . DB_PREFIX . "product_additional SET product_id = '" . (int)$product_id . "', addprice = '" . $value['addprice'] . "', fullprice = '" . $value['fullprice'] . "', originalprice = '" . $value['originalprice'] . "'");
 				}
 			}
 		}
@@ -822,7 +822,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 		    $this->querysql("DELETE FROM " . DB_PREFIX . "product_additional WHERE product_id = '" . (int)$product_id . "'");
 			foreach ($data['product_additionals'] as $product_additional => $value) {
 				if ((int)$value['addprice'] > 0) {
-					$this->querysql("INSERT INTO " . DB_PREFIX . "product_additional SET product_id = '" . (int)$product_id . "', addprice = '" . $value['addprice'] . "', fullprice = '" . $value['fullprice'] . "'");
+					$this->querysql("INSERT INTO " . DB_PREFIX . "product_additional SET product_id = '" . (int)$product_id . "', addprice = '" . $value['addprice'] . "', fullprice = '" . $value['fullprice'] . "', originalprice = '" . $value['originalprice'] . "'");
 				}
 			}
 		}

@@ -46,6 +46,7 @@
             <li><a href="#tab-special" data-toggle="tab"><?php echo $tab_special; ?></a></li>
             <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
             <li><a href="#tab-reward" data-toggle="tab"><?php echo $tab_reward; ?></a></li>
+            <li><a href="#tab-rewards" data-toggle="tab">加购价</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -800,6 +801,47 @@
                       <td class="text-right"><input type="text" name="product_reward[<?php echo $customer_group['customer_group_id']; ?>][points]" value="<?php echo isset($product_reward[$customer_group['customer_group_id']]) ? $product_reward[$customer_group['customer_group_id']]['points'] : ''; ?>" class="form-control" /></td>
                     </tr>
                     <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-rewards">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <td class="text-left">加购区间</td>
+                      <td class="text-left">加购价格</td>
+                      <td class="text-left">原价</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php if($product_additionals){?>
+                   <?php foreach ($product_additionals as $k=> $additional) { ?>
+                    <tr>
+                      <td class="text-left">满<input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][fullprice]" value="<?php echo $additional['fullprice']; ?>" class="form-control" style="width: 50%;margin-left:20px;display;none;" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][addprice]" value="<?php echo $additional['addprice']; ?>" class="form-control" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][originalprice]" value="<?php echo $additional['originalprice']; ?>" class="form-control" /></td>
+                    </tr>
+                     <?php } ?>
+                  <?php }else{?>
+                    <tr>
+                      <td class="text-left">满<input type="text" name="product_additionals[0][fullprice]" value="300" class="form-control" style="width: 50%;margin-left:20px;" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[0][addprice]" value="" class="form-control" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[0][originalprice]" value="" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">满<input type="text" name="product_additionals[1][fullprice]" value="1000" class="form-control" style="width: 50%;margin-left:20px;" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[1][addprice]" value="" class="form-control" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[1][originalprice]" value="" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">满<input type="text" name="product_additionals[2][fullprice]" value="30000" class="form-control" style="width: 50%;margin-left:20px;" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[2][addprice]" value="" class="form-control" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[2][originalprice]" value="" class="form-control" /></td>
+                    </tr>
+                     <?php } ?>
+                  
                   </tbody>
                 </table>
               </div>

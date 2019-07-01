@@ -1541,6 +1541,14 @@ public function add() {
 
 		$data['customer_groups'] = $this->model_customer_customer_group->getCustomerGroups();
 
+		if (isset($this->request->post['product_additional'])) {
+			$data['product_additionals'] = $this->request->post['product_additional'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$data['product_additionals'] = $this->model_catalog_product->getProductAdditional($this->request->get['product_id']);
+		} else {
+			$data['product_additionals'] = array();
+		}
+
 		if (isset($this->request->post['product_discount'])) {
 			$product_discounts = $this->request->post['product_discount'];
 		} elseif (isset($this->request->get['product_id'])) {

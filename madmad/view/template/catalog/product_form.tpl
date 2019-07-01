@@ -348,6 +348,7 @@
                     <tr>
                       <td class="text-left">加购区间</td>
                       <td class="text-left">加购价格</td>
+                      <td class="text-left">原价</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -356,6 +357,7 @@
                     <tr>
                       <td class="text-left">满<input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][fullprice]" value="<?php echo $additional['fullprice']; ?>" class="form-control" style="width: 50%;margin-left:20px;" readonly="readonly" /></td>
                       <td class="text-right"><input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][addprice]" value="<?php echo $additional['addprice']; ?>" class="form-control" readonly="readonly" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][originalprice]" value="<?php echo $additional['originalprice']; ?>" class="form-control" readonly="readonly"/></td>
                     </tr>
                      <?php } ?>
                      <?php } ?>
