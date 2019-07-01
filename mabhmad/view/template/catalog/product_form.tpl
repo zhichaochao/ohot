@@ -46,6 +46,7 @@
             <li><a href="#tab-special" data-toggle="tab"><?php echo $tab_special; ?></a></li>
             <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
             <li><a href="#tab-reward" data-toggle="tab"><?php echo $tab_reward; ?></a></li>
+            <li><a href="#tab-rewards" data-toggle="tab">加购价</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -849,48 +850,44 @@
                 </table>
               </div>
             </div>
-            <div class="tab-pane" id="tab-design">
+
+            <div class="tab-pane" id="tab-rewards">
               <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <td class="text-left"><?php echo $entry_store; ?></td>
-                      <td class="text-left"><?php echo $entry_layout; ?></td>
+                      <td class="text-left">加购区间</td>
+                      <td class="text-left">加购价格</td>
                     </tr>
                   </thead>
                   <tbody>
+                  <?php if($product_additionals){?>
+                   <?php foreach ($product_additionals as $k=> $additional) { ?>
                     <tr>
-                      <td class="text-left"><?php echo $text_default; ?></td>
-                      <td class="text-left"><select name="product_layout[0]" class="form-control">
-                          <option value=""></option>
-                          <?php foreach ($layouts as $layout) { ?>
-                          <?php if (isset($product_layout[0]) && $product_layout[0] == $layout['layout_id']) { ?>
-                          <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
-                          <?php } else { ?>
-                          <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
-                          <?php } ?>
-                          <?php } ?>
-                        </select></td>
+                      <td class="text-left">满<input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][fullprice]" value="<?php echo $additional['fullprice']; ?>" class="form-control" style="width: 50%;margin-left:20px;display;none;" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[<?php echo $additional['additional_id']; ?>][addprice]" value="<?php echo $additional['addprice']; ?>" class="form-control" /></td>
                     </tr>
-                    <?php foreach ($stores as $store) { ?>
+                     <?php } ?>
+                  <?php }else{?>
                     <tr>
-                      <td class="text-left"><?php echo $store['name']; ?></td>
-                      <td class="text-left"><select name="product_layout[<?php echo $store['store_id']; ?>]" class="form-control">
-                          <option value=""></option>
-                          <?php foreach ($layouts as $layout) { ?>
-                          <?php if (isset($product_layout[$store['store_id']]) && $product_layout[$store['store_id']] == $layout['layout_id']) { ?>
-                          <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
-                          <?php } else { ?>
-                          <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
-                          <?php } ?>
-                          <?php } ?>
-                        </select></td>
+                      <td class="text-left">满<input type="text" name="product_additionals[0][fullprice]" value="300" class="form-control" style="width: 50%;margin-left:20px;" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[0][addprice]" value="" class="form-control" /></td>
                     </tr>
-                    <?php } ?>
+                    <tr>
+                      <td class="text-left">满<input type="text" name="product_additionals[1][fullprice]" value="1000" class="form-control" style="width: 50%;margin-left:20px;" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[1][addprice]" value="" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">满<input type="text" name="product_additionals[2][fullprice]" value="30000" class="form-control" style="width: 50%;margin-left:20px;" /></td>
+                      <td class="text-right"><input type="text" name="product_additionals[2][addprice]" value="" class="form-control" /></td>
+                    </tr>
+                     <?php } ?>
+                  
                   </tbody>
                 </table>
               </div>
             </div>
+
           </div>
         </form>
       </div>

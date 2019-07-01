@@ -225,6 +225,15 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape(
 			}
 		}
 
+		if (isset($data['product_additionals'])) {
+			foreach ($data['product_additionals'] as $product_additional => $value) {
+				if ((int)$value['addprice'] > 0) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "product_additional SET product_id = '" . (int)$product_id . "', addprice = '" . $value['addprice'] . "', fullprice = '" . $value['fullprice'] . "'");
+				}
+			}
+		}
+		
+
 		if (isset($data['product_layout'])) {
 			foreach ($data['product_layout'] as $store_id => $layout_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_layout SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
@@ -447,6 +456,14 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 			foreach ($data['product_reward'] as $customer_group_id => $product_reward) {
 				if ((int)$product_reward['points'] > 0) {
 					$this->querysql("INSERT INTO " . DB_PREFIX . "product_reward SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$customer_group_id . "', points = '" . (int)$product_reward['points'] . "'");
+				}
+			}
+		}
+
+		if (isset($data['product_additionals'])) {
+			foreach ($data['product_additionals'] as $product_additional => $value) {
+				if ((int)$value['addprice'] > 0) {
+					$this->querysql("INSERT INTO " . DB_PREFIX . "product_additional SET product_id = '" . (int)$product_id . "', addprice = '" . $value['addprice'] . "', fullprice = '" . $value['fullprice'] . "'");
 				}
 			}
 		}
@@ -801,6 +818,15 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 			}
 		}
 
+		if (isset($data['product_additionals'])) {
+		    $this->querysql("DELETE FROM " . DB_PREFIX . "product_additional WHERE product_id = '" . (int)$product_id . "'");
+			foreach ($data['product_additionals'] as $product_additional => $value) {
+				if ((int)$value['addprice'] > 0) {
+					$this->querysql("INSERT INTO " . DB_PREFIX . "product_additional SET product_id = '" . (int)$product_id . "', addprice = '" . $value['addprice'] . "', fullprice = '" . $value['fullprice'] . "'");
+				}
+			}
+		}
+
 		if (isset($data['product_layout'])) {
 		    $this->querysql("DELETE FROM " . DB_PREFIX . "product_to_layout WHERE product_id = '" . (int)$product_id . "'");
 			foreach ($data['product_layout'] as $store_id => $layout_id) {
@@ -848,6 +874,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 			$data['product_download'] = $this->getProductDownloads($product_id);
 			$data['product_layout'] = $this->getProductLayouts($product_id);
 			$data['product_store'] = $this->getProductStores($product_id);
+			$data['product_additionals'] = $this->getProductAdditional($product_id);
 			$data['product_recurrings'] = $this->getRecurrings($product_id);
 
 			$this->addProduct($data);
@@ -878,6 +905,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 			$data['product_option'] = $this->getProductOptions($product_id);
 			$data['product_related'] = $this->getProductRelated($product_id);
 			$data['product_reward'] = $this->getProductRewards($product_id);
+			$data['product_additionals'] = $this->getProductAdditional($product_id);
 			$data['product_special'] = $this->getProductSpecials($product_id);
 			$data['product_category'] = $this->getProductCategories($product_id);
 			$data['product_download'] = $this->getProductDownloads($product_id);
@@ -910,6 +938,7 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 		$this->querysql("DELETE FROM " . DB_PREFIX . "review WHERE product_id = '" . (int)$product_id . "'");
 		$this->querysql("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
 		$this->querysql("DELETE FROM " . DB_PREFIX . "coupon_product WHERE product_id = '" . (int)$product_id . "'");
+		$this->querysql("DELETE FROM " . DB_PREFIX . "product_additional WHERE product_id = '" . (int)$product_id . "'");
 
         //删除产品的询盘信息(dyl add)
 		$this->querysql("DELETE FROM " . DB_PREFIX . "product_inquiry WHERE product_id = '" . (int)$product_id . "'");
@@ -1777,6 +1806,11 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 
     public function getCategories($parent_id = 0) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_description cd ON (c.category_id = cd.category_id) LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON (c.category_id = c2s.category_id) WHERE c.parent_id = '" . (int)$parent_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "'  AND c.status = '1' ORDER BY c.sort_order, LCASE(cd.name)");
+
+		return $query->rows;
+	}
+	 public function getProductAdditional($product_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_additional pa  WHERE product_id = '" . (int)$product_id. "' ");
 
 		return $query->rows;
 	}
