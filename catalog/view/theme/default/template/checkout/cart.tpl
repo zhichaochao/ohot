@@ -249,29 +249,17 @@
 				<!-- 已添加换购产品 -->
 			<div class="hg_div clearfix">
 				<div class="top clearfix">
-					<h3>Extra Purchase Value + Products</h3>
+					<h3>Extra Purchase Value+ Products</h3>
+					 <?php if ($can_add){ ?>
 					<button class="hg_tc hg_btn">Reselect</button>
+					 <?php }?>
 				</div>
 				<div class="bot clearfix">
 					<ol class="yxhg_ol clearfix" id="yxhg_ol">
 						
 						
 						
-						<li>
-							<div class="close"></div>
-							<a href="###">
-								<img src="img/jpg/pro_det4.jpg" >
-							</a>
-							<div class="hg_tetx">
-								<div>
-									<span class="sp1">7FM-SPL-10-5T</span>
-								</div>
-								<span class="sp2">$48.00</span>
-								<span class="sp3">$48.00</span>
-								<span class="sp4">x1</span>
-							</div>
-							<hr>
-						</li>
+					
 
 						
 					</ol>
@@ -284,7 +272,7 @@
 			
 			
 				<div id="can_not_add"  class="repurchase hg_tc clearfix"  <?php if ($can_add){ ?>style="display: none;" <?php }else{?>style="display: block;" <?php }?>>
-				<p>Buy more <?=$need_add;?> to get <a href="/hair_promotion.html">the extra purchase hair>></a> with favorable price.    <span><a href="/all_hair_weft_collection.html">Add more producs>></a></span></p>
+				<p>Buy more <em><?=$need_add;?></em> to get <a href="/hair_promotion.html">the extra purchase hair>></a> with favorable price.    <span><a href="/all_hair_weft_collection.html">Add more producs>></a></span></p>
 			</div>
 			
 		</div>
@@ -308,12 +296,31 @@ getAddproduct() ;
 		        url: 'index.php?route=checkout/cart/get_add_product',
 		      
 		        success: function(html) {
-		        ;
+		        
 		        	$('#yxhg_ol').html(html);
+		        	getalltotal();
 		        	
 		        }
 		    })
 	}
+	// 购物车总价加上加购总价
+	function getalltotal() {
+		$.ajax({
+		        url: 'index.php?route=checkout/cart/getalltotal',
+		           type: 'post',
+		 
+		        dataType: 'json',
+		 
+		      
+		        success: function(json) {
+		        
+		        	$('.total_price').html(json['total']);
+		        
+		        	
+		        }
+		    })
+	}
+
 //判断左右滑动出现删除按钮
 	$('body').on('touchstart', '.shop2_content .shop2_ul>li', function(e) {
         var touch = e.originalEvent,
@@ -374,7 +381,7 @@ function wishlist(product_id) {
 }
 
 		//获取加购产品
-		$("#can_add span").click(function(){
+		$("#can_add span,.hg_tc.hg_btn").click(function(){
 			 $.ajax({
 		        url: 'index.php?route=checkout/cart/add_product',
 		        dataType: 'html',
@@ -510,7 +517,9 @@ function cart_removes(product_key){
         		$('#can_add').show();$('#can_not_add').hide();
         	}else{
         		$('#can_add').hide();$('#can_not_add').show();
+        		$('#can_not_add em').html(json['need_add']);
         	}
+        	getAddproduct();
         	// getOrder();
         	// location.reload()
         }
