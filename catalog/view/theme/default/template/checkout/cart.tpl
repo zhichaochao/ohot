@@ -254,6 +254,9 @@
 				</div>
 				<div class="bot clearfix">
 					<ol class="yxhg_ol clearfix" id="yxhg_ol">
+						
+						
+						
 						<li>
 							<div class="close"></div>
 							<a href="###">
@@ -269,81 +272,8 @@
 							</div>
 							<hr>
 						</li>
-						<li>
-							<div class="close"></div>
-							<a href="###">
-								<img src="img/jpg/pro_det4.jpg" >
-							</a>
-							<div class="hg_tetx">
-								<div>
-									<span class="sp1">7FM-SPL-10-5T</span>
-								</div>
-								<span class="sp2">$48.00</span>
-								<span class="sp3">$48.00</span>
-								<span class="sp4">x1</span>
-							</div>
-							<hr>
-						</li>
-						<li>
-							<div class="close"></div>
-							<a href="###">
-								<img src="img/jpg/pro_det4.jpg" >
-							</a>
-							<div class="hg_tetx">
-								<div>
-									<span class="sp1">7FM-SPL-10-5T</span>
-								</div>
-								<span class="sp2">$48.00</span>
-								<span class="sp3">$48.00</span>
-								<span class="sp4">x1</span>
-							</div>
-							<hr>
-						</li>
-						<li>
-							<div class="close"></div>
-							<a href="###">
-								<img src="img/jpg/pro_det4.jpg" >
-							</a>
-							<div class="hg_tetx">
-								<div>
-									<span class="sp1">7FM-SPL-10-5T</span>
-								</div>
-								<span class="sp2">$48.00</span>
-								<span class="sp3">$48.00</span>
-								<span class="sp4">x1</span>
-							</div>
-							<hr>
-						</li>
-						<li>
-							<div class="close"></div>
-							<a href="###">
-								<img src="img/jpg/pro_det4.jpg" >
-							</a>
-							<div class="hg_tetx">
-								<div>
-									<span class="sp1">7FM-SPL-10-5T</span>
-								</div>
-								<span class="sp2">$48.00</span>
-								<span class="sp3">$48.00</span>
-								<span class="sp4">x1</span>
-							</div>
-							<hr>
-						</li>
-						<li>
-							<div class="close"></div>
-							<a href="###">
-								<img src="img/jpg/pro_det4.jpg" >
-							</a>
-							<div class="hg_tetx">
-								<div>
-									<span class="sp1">7FM-SPL-10-5T</span>
-								</div>
-								<span class="sp2">$48.00</span>
-								<span class="sp3">$48.00</span>
-								<span class="sp4">x1</span>
-							</div>
-							<hr>
-						</li>
+
+						
 					</ol>
 				</div>
 			</div>

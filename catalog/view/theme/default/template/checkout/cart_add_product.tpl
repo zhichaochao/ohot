@@ -1,6 +1,6 @@
 
 	<div class="texts clearfix">
-					<h2>Extra Purchase Value + Products</h2>
+					<h2>Extra Purchase Value+ Products</h2>
 					<div class="close"></div>
 					<p class="p1">
 						<?php if(ADD_CART){?>
@@ -68,6 +68,11 @@
 
 
 <script type="text/javascript">
+	//隐藏换购弹窗
+		$(".hg_modal .close").click(function(){
+			$(".hg_modal").fadeOut();
+			$("body").css('overflow','');
+		})
 	 $(function(){
 	 
 	 	$('.sub').click(function(){
@@ -106,16 +111,9 @@
 	 })
 
 	 function UpdateAddcart(th) {
-	 	
-	 
 		 	 var num=$(th).val();
 		 	 var product_id=$(th).parents('.add_product').attr('data');
 		 	 var product_option_value_id=$(th).parents('.add_product').find('li').attr('data-id');
-		 	 	
-		 console.log(product_id);
-		 console.log(product_option_value_id);
-
-	
 	 	// 加购产品加入购物车
 	 	$.ajax({
 		        url: 'index.php?route=checkout/cart/add_product_to_addcart',
