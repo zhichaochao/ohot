@@ -22,9 +22,30 @@ class ModelCheckoutAddcart extends Model {
 	
 		return $query->row;
 	}
+	// 清空加购购物车
+	public function del_add_cart() {
+		if ($this->customer->getId()>0) {
+			
+		
+		$sql="DELETE FROM ".DB_PREFIX."cart_add  WHERE  customer_id = '" . (int)$this->customer->getId() . "'";
+
+		$query=$this->db->query($sql);
+		}
+	
+	}
+	// 删除加购购物车上产品
+	public function del_add_product_by_cart_id($cart_id) {
+			if ($this->customer->getId()>0) {
+		$sql="DELETE FROM ".DB_PREFIX."cart_add  WHERE cart_id=".$cart_id."  AND  customer_id = '" . (int)$this->customer->getId() . "'";
+
+		$query=$this->db->query($sql);
+		}
+	
+	}
 
 // 判断这个产品是否已经在加购购物车上
 	public function product_in_cart($product_id,$option) {
+			if ($this->customer->getId()>0) {
 		$option=json_encode($option);
 		$sql="SELECT  quantity FROM ".DB_PREFIX."cart_add WHERE product_id=".$product_id." AND  `option`='".$option."' AND  customer_id = '" . (int)$this->customer->getId() . "'";
 		$query=$this->db->query($sql);
@@ -34,10 +55,12 @@ class ModelCheckoutAddcart extends Model {
 		}else {
 			return false;
 		}
+	}
 
 	}
 	// 产品在加购购物车上，那么就更新数量
 	public function update_product_in_cart($product_id,$option,$num) {
+			if ($this->customer->getId()>0) {
 		$option=json_encode($option);
 		if ($num<1) {
 			$sql="DELETE FROM ".DB_PREFIX."cart_add  WHERE product_id=".$product_id." AND  `option`='".$option."' AND  customer_id = '" . (int)$this->customer->getId() . "'";
@@ -46,12 +69,14 @@ class ModelCheckoutAddcart extends Model {
 		}
 		// print_r($sql);exit();
 		$query=$this->db->query($sql);
+	}
 	
 	}
 	// cart_total是正常购物车的总价
 // 当前加购车上的总价
 	public function addcarttotal($cart_total)
 	{
+			if ($this->customer->getId()>0) {
 		$sql="SELECT  product_id,quantity FROM ".DB_PREFIX."cart_add WHERE customer_id = '" . (int)$this->customer->getId() . "'";
 		$query=$this->db->query($sql);
 		$total=0;
@@ -71,11 +96,13 @@ class ModelCheckoutAddcart extends Model {
 		}
 
 		return array('total'=>$total,'quantity'=>$quantity);
+	}
 		
 	}
 	// 加购车总数量
 		public function addcartquantity()
 	{
+			if ($this->customer->getId()>0) {
 		$sql="SELECT  product_id,quantity FROM ".DB_PREFIX."cart_add WHERE customer_id = '" . (int)$this->customer->getId() . "'";
 		$query=$this->db->query($sql);
 		$quantity=0;
@@ -86,13 +113,15 @@ class ModelCheckoutAddcart extends Model {
 		}
 
 		return $quantity;
+	}
 		
 	}
 
 	// 获取加购车的产品
 	public function addcartproducts()
 	{
-		$sql="SELECT  c.product_id,c.quantity,p.image,pd.name,c.option FROM ".DB_PREFIX."cart_add c LEFT JOIN ".DB_PREFIX."product p on c.product_id=p.product_id  LEFT JOIN ".DB_PREFIX."product_description  pd ON p.product_id = pd.product_id  WHERE c.customer_id = '" . (int)$this->customer->getId() . "'  AND pd.language_id = '" . $this->config->get('config_language_id') . "' ";
+			if ($this->customer->getId()>0) {
+		$sql="SELECT c.cart_id, c.product_id,c.quantity,p.image,pd.name,c.option FROM ".DB_PREFIX."cart_add c LEFT JOIN ".DB_PREFIX."product p on c.product_id=p.product_id  LEFT JOIN ".DB_PREFIX."product_description  pd ON p.product_id = pd.product_id  WHERE c.customer_id = '" . (int)$this->customer->getId() . "'  AND pd.language_id = '" . $this->config->get('config_language_id') . "' ";
 		$query=$this->db->query($sql);
 		$quantity=0;
 		$products=array();
@@ -103,6 +132,7 @@ class ModelCheckoutAddcart extends Model {
 			}
 		}
 		return $products;
+	}
 		
 	}
 	// 根据加购物车上的产品id和option,来或者本产品已经选好的选项

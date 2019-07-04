@@ -413,6 +413,19 @@ class ControllerCheckoutCart extends Controller {
         $this->response->setOutput(json_encode($json));
 
     }
+// 删除加购购物车上的产品
+    public function del_add_product()
+    {
+        $json=array();
+         if (isset($this->request->post['cart_id'])) {
+            $cart_id = (int)$this->request->post['cart_id'];
+              $this->load->model('checkout/addcart');
+              $this->model_checkout_addcart->del_add_product_by_cart_id( $cart_id );
+        }
+         $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+
+    }
 
 
    

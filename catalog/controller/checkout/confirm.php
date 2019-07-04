@@ -200,8 +200,25 @@ class ControllerCheckoutConfirm extends Controller {
 
         $data['cart_ids'] = $this->request->get['cart_ids'];
         $data['cart'] =isset( $this->request->get['cart'])?1:0;
-          $data['checkout_url'] =$this->url->link('checkout/cart');
+         $data['checkout_url'] =$this->url->link('checkout/cart');
 
+
+         // 加购产品
+          $products = $this->cart->getProducts();
+           $cart_total=0;
+            foreach ($products as $key => $value) {
+              $cart_total+=$value['total'];
+           
+            }
+
+        $this->load->model('checkout/addcart');
+          $lowestAmount=$this->model_checkout_addcart->lowestAmount();
+         $add_products=array();
+            if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])&&$cart_total>$lowestAmount['fullprice']) {
+            }
+
+
+		$data['add_products']
 		$this->response->setOutput($this->load->view('checkout/confirm', $data));
 	}
 
