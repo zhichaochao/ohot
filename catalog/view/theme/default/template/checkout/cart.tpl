@@ -305,6 +305,7 @@ getAddproduct() ;
 	}
 	// 购物车总价加上加购总价
 	function getalltotal() {
+		$('.total_price').html('calculating');
 		$.ajax({
 		        url: 'index.php?route=checkout/cart/getalltotal',
 		           type: 'post',
