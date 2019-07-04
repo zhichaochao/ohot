@@ -239,9 +239,128 @@
 					</label>
 				</div>
 			</div>
+
+			<?php if (ADD_CART){ ?>
+
+			<div id="hg_modal" class="modal hg_modal clearfix">
+				
+			
+			</div>
+				<!-- 已添加换购产品 -->
+			<div class="hg_div clearfix">
+				<div class="top clearfix">
+					<h3>Extra Purchase Value + Products</h3>
+					<button class="hg_tc hg_btn">Reselect</button>
+				</div>
+				<div class="bot clearfix">
+					<ol class="yxhg_ol clearfix" id="yxhg_ol">
+						<li>
+							<div class="close"></div>
+							<a href="###">
+								<img src="img/jpg/pro_det4.jpg" >
+							</a>
+							<div class="hg_tetx">
+								<div>
+									<span class="sp1">7FM-SPL-10-5T</span>
+								</div>
+								<span class="sp2">$48.00</span>
+								<span class="sp3">$48.00</span>
+								<span class="sp4">x1</span>
+							</div>
+							<hr>
+						</li>
+						<li>
+							<div class="close"></div>
+							<a href="###">
+								<img src="img/jpg/pro_det4.jpg" >
+							</a>
+							<div class="hg_tetx">
+								<div>
+									<span class="sp1">7FM-SPL-10-5T</span>
+								</div>
+								<span class="sp2">$48.00</span>
+								<span class="sp3">$48.00</span>
+								<span class="sp4">x1</span>
+							</div>
+							<hr>
+						</li>
+						<li>
+							<div class="close"></div>
+							<a href="###">
+								<img src="img/jpg/pro_det4.jpg" >
+							</a>
+							<div class="hg_tetx">
+								<div>
+									<span class="sp1">7FM-SPL-10-5T</span>
+								</div>
+								<span class="sp2">$48.00</span>
+								<span class="sp3">$48.00</span>
+								<span class="sp4">x1</span>
+							</div>
+							<hr>
+						</li>
+						<li>
+							<div class="close"></div>
+							<a href="###">
+								<img src="img/jpg/pro_det4.jpg" >
+							</a>
+							<div class="hg_tetx">
+								<div>
+									<span class="sp1">7FM-SPL-10-5T</span>
+								</div>
+								<span class="sp2">$48.00</span>
+								<span class="sp3">$48.00</span>
+								<span class="sp4">x1</span>
+							</div>
+							<hr>
+						</li>
+						<li>
+							<div class="close"></div>
+							<a href="###">
+								<img src="img/jpg/pro_det4.jpg" >
+							</a>
+							<div class="hg_tetx">
+								<div>
+									<span class="sp1">7FM-SPL-10-5T</span>
+								</div>
+								<span class="sp2">$48.00</span>
+								<span class="sp3">$48.00</span>
+								<span class="sp4">x1</span>
+							</div>
+							<hr>
+						</li>
+						<li>
+							<div class="close"></div>
+							<a href="###">
+								<img src="img/jpg/pro_det4.jpg" >
+							</a>
+							<div class="hg_tetx">
+								<div>
+									<span class="sp1">7FM-SPL-10-5T</span>
+								</div>
+								<span class="sp2">$48.00</span>
+								<span class="sp3">$48.00</span>
+								<span class="sp4">x1</span>
+							</div>
+							<hr>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<!-- 未添加换购产品 -->
+			<div id="can_add" class="repurchase hg_tc clearfix" <?php if ($can_add){ ?>style="display: block;" <?php }else{?>style="display: none;" <?php }?>>
+				<p>Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase >></span></p>
+			</div>	
+			
+			
+				<div id="can_not_add"  class="repurchase hg_tc clearfix"  <?php if ($can_add){ ?>style="display: none;" <?php }else{?>style="display: block;" <?php }?>>
+				<p>Buy more <?=$need_add;?> to get <a href="/hair_promotion.html">the extra purchase hair>></a> with favorable price.    <span><a href="/all_hair_weft_collection.html">Add more producs>></a></span></p>
+			</div>
+			
 		</div>
 				
-				
+				<!-- 是否开启换购 -->
+		<?php } ?>	
 			
 		<!--返回顶部-->
 		<div class="xf_right">
@@ -253,6 +372,18 @@
 </html>
 
 <script>
+getAddproduct() ;
+	function getAddproduct() {
+		$.ajax({
+		        url: 'index.php?route=checkout/cart/get_add_product',
+		      
+		        success: function(html) {
+		        ;
+		        	$('#yxhg_ol').html(html);
+		        	
+		        }
+		    })
+	}
 //判断左右滑动出现删除按钮
 	$('body').on('touchstart', '.shop2_content .shop2_ul>li', function(e) {
         var touch = e.originalEvent,
@@ -311,6 +442,22 @@ function wishlist(product_id) {
    })
  
 }
+
+		//获取加购产品
+		$("#can_add span").click(function(){
+			 $.ajax({
+		        url: 'index.php?route=checkout/cart/add_product',
+		        dataType: 'html',
+		 
+		        success: function(html) {
+		        	$('#hg_modal').html(html);
+		        	$('#hg_modal').show();
+		        }
+		    }) 	  
+
+
+		});
+
 
 		//多个收藏
 		$(".wishlist").click(function(){
@@ -428,6 +575,11 @@ function cart_removes(product_key){
         	$('#cart_count').html(json['text_cart_items']);
         	for (var i = json['products'].length - 1; i >= 0; i--) {
         		$('.price_'+json['products'][i].cart_id).html(json['products'][i].value);
+        	}
+        	if (json['can_add']) {
+        		$('#can_add').show();$('#can_not_add').hide();
+        	}else{
+        		$('#can_add').hide();$('#can_not_add').show();
         	}
         	// getOrder();
         	// location.reload()

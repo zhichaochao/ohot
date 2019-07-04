@@ -286,7 +286,20 @@ class ControllerCheckoutCart extends Controller {
                 );
             }
             // print_r($products);exit;
+            $this->load->model('checkout/addcart');
+            $lowestAmount=$this->model_checkout_addcart->lowestAmount();
+            if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])) {
+                $data['fullprice']=$this->currency->format($lowestAmount['fullprice'],$this->session->data['currency']);
+                $data['can_add']=$cart_total>$lowestAmount['fullprice']?true:false;
+                $need_add=$lowestAmount['fullprice']-$cart_total;
+                $data['need_add']=$this->currency->format( $need_add,$this->session->data['currency']);
+
+            }
+
             $data['cart_total']=$this->currency->format($cart_total, $this->session->data['currency']);
+          
+
+            
             $this->session->data['cart_total']=$cart_total;
             $data['paypal_checkout'] = HTTP_SERVER.'index.php?route=extension/payment/pp_express/express';
             $data['step_cart'] = $this->language->get('step_cart');
@@ -339,7 +352,64 @@ class ControllerCheckoutCart extends Controller {
         }
     }
 
-	public function add() {
+   
+// 获取参与加购的产品
+    public function add_product() {
+             $this->load->model('checkout/addcart');
+                $this->load->model('tool/image');
+                 $this->load->model('catalog/category');
+               $products = $this->cart->getProducts();
+            $total=array();
+           $cart_total=0;
+       
+            foreach ($products as $key => $value) {
+              $cart_total+=$value['total'];
+           
+            }
+
+            $lowestAmount=$this->model_checkout_addcart->lowestAmount();
+            if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])) {
+                $data['fullprice']=$this->currency->format($lowestAmount['fullprice'],$this->session->data['currency']);
+                $data['can_add']=$cart_total>$lowestAmount['fullprice']?true:false;
+                $need_add=$lowestAmount['fullprice']-$cart_total;
+                $data['need_add']=$this->currency->format( $need_add,$this->session->data['currency']);
+
+            }
+           
+            $products=$this->model_catalog_category->getAddProduct(ADD_CART_CATEGPRY_ID,$cart_total);
+            if ($products) {
+               foreach ($products as $key => $value) {
+                    if (isset($value['price']['addprice'])) {
+
+                        $products[$key]['image'] = $this->model_tool_image->resize($value['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+                         $products[$key]['price']['addprice_format']=$this->currency->format( $products[$key]['price']['addprice'],$this->session->data['currency']); 
+                         $products[$key]['price']['fullprice_format']=$this->currency->format( $products[$key]['price']['fullprice'],$this->session->data['currency']);
+                         $products[$key]['price']['originalprice_format']=$this->currency->format( $products[$key]['price']['originalprice'],$this->session->data['currency']);
+                         $products[$key]['href'] =$this->url->link('product/product', 'product_id=' . $value['product_id']);
+
+                         // 计算已经在加购购物车上的
+                    }else{
+                     
+                        unset( $products[$key]);
+
+                   }
+                }
+            }
+            $data['products']=$products;
+            // print_r($products);exit();
+
+             $this->response->setOutput($this->load->view('checkout/cart_add_product', $data));
+
+
+    }
+     // 加购产品加入购车
+    public function add_product_to_addcart() {
+        $data=$this->request->post;
+        print_r( $data);exit();
+
+    }
+
+    public function add() {
         // $products=$this->request->post['product_id'];
         // var_dump($products);die;
 		$this->load->language('checkout/cart');
@@ -495,6 +565,17 @@ class ControllerCheckoutCart extends Controller {
             }
             $json['total']=$this->currency->format($total['total'], $this->session->data['currency']);
             $json['totals']=$total['total'];
+            $this->load->model('checkout/addcart');
+            $lowestAmount=$this->model_checkout_addcart->lowestAmount();
+            if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])) {
+                $json['fullprice']=$this->currency->format($lowestAmount['fullprice'],$this->session->data['currency']);
+                $json['can_add']=$total['total']>$lowestAmount['fullprice']?true:false;
+                $need_add=$lowestAmount['fullprice']-$total['total'];
+                $json['need_add']=$this->currency->format( $need_add,$this->session->data['currency']);
+
+            }
+
+
             unset($total['total']);
              $json['products']=$total;
              $this->session->data['cart_total']=$json['totals'];

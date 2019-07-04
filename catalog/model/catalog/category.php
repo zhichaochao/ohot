@@ -128,4 +128,45 @@ class ModelCatalogCategory extends Model {
 	    return $query->rows;
     }
 
+// 获取加购产品
+
+	public function getAddProduct($category_id,$cart_total){
+	
+
+	    $product_id_sql = '(SELECT DISTINCT a.product_id FROM '.DB_PREFIX.'product_additional a LEFT JOIN '.DB_PREFIX.'product p on p.product_id=a.product_id JOIN th_product_to_category AS ptc ON ptc.product_id = p.product_id WHERE a.fullprice <'.$cart_total.' AND p.status=1 AND ptc.category_id='.$category_id.')';
+	   
+	    $sql="SELECT p.product_id, pd.name, p.image FROM ".DB_PREFIX."product p JOIN th_product_description AS pd ON p.product_id = pd.product_id  WHERE p.product_id in ".$product_id_sql;
+ 		$query = $this->db->query($sql);
+ 		$products=array();
+	   if ($query->rows) {
+	   	foreach ($query->rows as $key => $value) {
+	   		$value['options']=$this->getAddProductOptions($value['product_id']);
+	   		$value['price']=$this->getAddProductPrices($value['product_id'],$cart_total);
+	   		
+
+	   		$products[]=$value;
+	   	}
+	   }
+	   // print_r($products);exit();
+	    return $products;
+    }
+// 获取加购产品的选项
+    public function getAddProductOptions($product_id){
+    	$sql="SELECT pov.product_id,pov.product_option_value_id,pov.option_value_id,pov.quantity,pov.option_id,ovd.name FROM ".DB_PREFIX."product_option_value pov LEFT JOIN  ".DB_PREFIX."option_value_description ovd on ovd.option_value_id=pov.option_value_id WHERE pov.product_id='".$product_id."' AND pov.quantity >0 AND pov.option_id = ".ADD_CART_OPTION_ID." AND ovd.language_id=". $this->config->get('config_language_id') ;
+    	// print_r($sql);exit();
+    		$query = $this->db->query($sql);
+    		return $query->rows;
+    		// print_r($query->rows);exit();
+
+    }
+// 获取价位上的价格
+     public function getAddProductPrices($product_id,$cart_total){
+     	$sql="SELECT * FROM ".DB_PREFIX."product_additional a   WHERE a.product_id=".$product_id." AND a.fullprice < ".$cart_total." ORDER BY fullprice DESC limit 1 ";
+    	// print_r($sql);exit();
+    		$query = $this->db->query($sql);
+    		return $query->row;
+    		// print_r($query->rows);exit();
+
+     }
+
 }
