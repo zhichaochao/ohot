@@ -97,7 +97,34 @@
 					</div>
 				
 				</div>
-				
+				<?php if (ADD_CART){ ?>
+				<!-- 已添加换购产品 -->
+				<div class="hg_div clearfix hg_tc" id="can_ydadd">
+
+					<div class="top clearfix">
+						<h3>Extra Purchase Value + Products</h3>
+						
+						<a href="<?php echo $addproduct?>" class="hg_btn">Reselect</a>
+						
+					</div>
+					<div class="bot clearfix">
+						<ol class="yxhg_ol clearfix" id="yxhg_ydol">
+					</ol>
+					</div>
+				</div>
+
+
+				<div id="can_ydadd" class="repurchase hg_tc clearfix" <?php if ($can_add){ ?>style="display: block;" <?php }else{?>style="display: none;" <?php }?>>
+				<a href="<?php echo $addproduct?>">Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase</span></a>
+				<!-- <p>Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase >></span></p> -->
+				</div>	
+			
+			
+				<div id="can_not_ydadd"  class="repurchase hg_tc clearfix"  <?php if ($can_add){ ?>style="display: none;" <?php }else{?>style="display: block;" <?php }?>>
+				<a href="/all_hair_weft_collection.html">Buy more <em><?=$need_add;?></em> to get the extra purchase hair with favorable price.Add more producs>></a>
+				<!-- <p>Buy more <em><?=$need_add;?></em> to get <a href="/hair_promotion.html">the extra purchase hair>></a> with favorable price.    <span><a href="/all_hair_weft_collection.html">Add more producs>></a></span></p> -->
+				</div>
+				<?php } ?>
 				<div class="total  clearfix">
 					<label for="" class="qx_label">
 						<span>All</span>
@@ -256,12 +283,6 @@
 				</div>
 				<div class="bot clearfix">
 					<ol class="yxhg_ol clearfix" id="yxhg_ol">
-						
-						
-						
-					
-
-						
 					</ol>
 				</div>
 			</div>
@@ -290,7 +311,7 @@
 </html>
 
 <script>
-getAddproduct() ;
+	getAddproduct() ;
 	function getAddproduct() {
 		$.ajax({
 		        url: 'index.php?route=checkout/cart/get_add_product',
@@ -298,6 +319,19 @@ getAddproduct() ;
 		        success: function(html) {
 		        
 		        	$('#yxhg_ol').html(html);
+		        	getalltotal();
+		        	
+		        }
+		    })
+	}
+	getAddydproduct() ;
+	function getAddydproduct() {
+		$.ajax({
+		        url: 'index.php?route=checkout/cart/get_add_ydproduct',
+		      
+		        success: function(html) {
+		        
+		        	$('#yxhg_ydol').html(html);
 		        	getalltotal();
 		        	
 		        }
@@ -516,9 +550,14 @@ function cart_removes(product_key){
         	}
         	if (json['can_add']) {
         		$('#can_add').show();$('#can_not_add').hide();
+
+        		$('#can_ydadd').show();$('#can_not_ydadd').hide();
         	}else{
         		$('#can_add').hide();$('#can_not_add').show();
         		$('#can_not_add em').html(json['need_add']);
+
+        		$('#can_ydadd').hide();$('#can_not_ydadd').show();
+        		$('#can_not_ydadd em').html(json['need_add']);
         	}
         	getAddproduct();
         	// getOrder();
