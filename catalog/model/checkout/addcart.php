@@ -147,6 +147,10 @@ class ModelCheckoutAddcart extends Model {
 				   if ($option_query->num_rows) {  
                         $option_value_query = $this->db->query("SELECT pov.option_id,pov.option_value_id, pov.product_option_value_id, ovd.name, pov.quantity FROM " . DB_PREFIX . "product_option_value pov LEFT JOIN " . DB_PREFIX . "option_value ov ON (pov.option_value_id = ov.option_value_id) LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ov.option_value_id = ovd.option_value_id) WHERE pov.product_option_value_id = '" . (int)$value . "' AND pov.product_option_id = '" . (int)$product_option_id . "' AND ovd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
                         	if ($option_value_query->row&&$option_value_query->row['option_id']==ADD_CART_OPTION_ID) {
+                        		// 库存信息从主站来
+                        		$quantity=$this->getQuantityInwwwByProductOptionValueId($value);
+                        		$option_value_query->row['quantity'];
+
                         		$option_name=$option_value_query->row;
                         	}
 
@@ -160,5 +164,59 @@ class ModelCheckoutAddcart extends Model {
 
 		return $option_name;
 	}
+
+	// 查总站库存
+	public function getQuantityInwwwByProductOptionValueId($product_option_value_id)
+	{
+		$quantity=0;
+		$sql="SELECT quantity FROM ".DB_PREFIX."product_option_value WHERE product_option_value_id=".(int)$product_option_value_id;
+		$query= $this->db1->query($sql);
+		if ($query->row) {
+			$quantity=$query->row['quantity'];
+		}
+		return $quantity;
+	}
+	// 查加购车上的加购产品是不是够足够库存
+	// 返回没库存的cart_id数组
+	public function CheckStock()
+	{
+		$res=array();
+		$products=$this->addcartproducts();
+		foreach ($products as $key => $value) {
+			$quantity=$this->getQuantityInwwwByProductOptionValueId($value['option_name']['product_option_value_id']);
+			if ($quantity<$value['quantity']) {
+				$res[]=$value['cart_id'];
+			}
+		}
+		// print_r($products);exit();
+
+		return $res;
+	}
+	// 根据加购车更改主站库存
+	public function UpdateStock()
+	{
+		
+		$res=$this->CheckStock();
+		if ($res) {
+			return $res;
+		}else{
+			$this->db1->query("LOCK TABLES ".DB_PREFIX."product_option_value WRITE;");
+			$products=$this->addcartproducts();
+			foreach ($products as $key => $value) {
+				$quantity=$this->getQuantityInwwwByProductOptionValueId($value['option_name']['product_option_value_id']);
+				$quantity-=$value['quantity'];
+				$this->db1->query("UPDATE ".DB_PREFIX."product_option_value SET quantity=".$quantity." WHERE product_option_value_id=".$value['option_name']['product_option_value_id']);
+			}
+			$this->db1->query("UNLOCK TABLES");
+		}
+
+	}
+
+	// 取消订单，根据订单，恢复加购产品的库存
+	public function RecoveryStock($order_id)
+	{
+		# code...
+	}
+
 
 }

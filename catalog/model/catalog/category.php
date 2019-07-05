@@ -152,10 +152,25 @@ class ModelCatalogCategory extends Model {
     }
 // 获取加购产品的选项
     public function getAddProductOptions($product_id){
-    	$sql="SELECT pov.product_id,pov.product_option_value_id,pov.option_value_id,pov.quantity,pov.option_id,ovd.name FROM ".DB_PREFIX."product_option_value pov LEFT JOIN  ".DB_PREFIX."option_value_description ovd on ovd.option_value_id=pov.option_value_id WHERE pov.product_id='".$product_id."' AND pov.quantity >0 AND pov.option_id = ".ADD_CART_OPTION_ID." AND ovd.language_id=". $this->config->get('config_language_id') ;
+    	$rows=array();
+    	$sql="SELECT pov.product_id,pov.product_option_value_id,pov.option_value_id,pov.quantity,pov.option_id,ovd.name FROM ".DB_PREFIX."product_option_value pov LEFT JOIN  ".DB_PREFIX."option_value_description ovd on ovd.option_value_id=pov.option_value_id WHERE pov.product_id='".$product_id."'  AND pov.option_id = ".ADD_CART_OPTION_ID." AND ovd.language_id=". $this->config->get('config_language_id') ;
     	// print_r($sql);exit();
     		$query = $this->db->query($sql);
-    		return $query->rows;
+
+    		// 库存信息从主站来
+    		if ($query->rows) {
+    			foreach ($query->rows as $key => $value) {
+    				$quantity=$this->getQuantityInwwwByProductOptionValueId($value['product_option_value_id']);
+    				if ($quantity>0) {
+    					 $value['quantity']=$quantity;
+    					 $rows[]=$value;
+    				}
+    			}
+    		};
+
+    		
+    		return $rows;
+
     		// print_r($query->rows);exit();
 
     }
@@ -168,5 +183,17 @@ class ModelCatalogCategory extends Model {
     		// print_r($query->rows);exit();
 
      }
+     	// 查总站库存
+	public function getQuantityInwwwByProductOptionValueId($product_option_value_id)
+	{
+		$quantity=0;
+		$sql="SELECT quantity FROM ".DB_PREFIX."product_option_value WHERE product_option_value_id=".(int)$product_option_value_id;
+		$query= $this->db1->query($sql);
+		if ($query->row) {
+			$quantity=$query->row['quantity'];
+		}
+		return $quantity;
+	}
+
 
 }

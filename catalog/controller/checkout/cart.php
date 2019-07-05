@@ -316,7 +316,7 @@ class ControllerCheckoutCart extends Controller {
             $data['content_bottom'] = $this->load->controller('common/content_bottom');
             $data['footer'] = $this->load->controller('common/footer');
             $data['header'] = $this->load->controller('common/header');
-
+           
            
             $this->response->setOutput($this->load->view('checkout/cart', $data));
          
@@ -370,6 +370,8 @@ class ControllerCheckoutCart extends Controller {
              $this->load->model('catalog/category');
             $products=$this->model_checkout_addcart->addcartproducts();
             if ($products) {
+                // 检查库存
+                $p=$this->model_checkout_addcart->CheckStock();
                foreach ($products as $key => $value) {
                    $products[$key]['image']=$this->model_tool_image->resize($value['image'], $this->config->get($this->config->get('config_theme') . '_image_cart_width'), $this->config->get($this->config->get('config_theme') . '_image_cart_height'));
                     $products[$key]['href'] =$this->url->link('product/product', 'product_id=' . $value['product_id']);
@@ -378,6 +380,11 @@ class ControllerCheckoutCart extends Controller {
                    $products[$key]['price']['addprice_format']=$this->currency->format( $products[$key]['price']['addprice'],$this->session->data['currency']); 
                     $products[$key]['price']['fullprice_format']=$this->currency->format( $products[$key]['price']['fullprice'],$this->session->data['currency']);
                     $products[$key]['price']['originalprice_format']=$this->currency->format( $products[$key]['price']['originalprice'],$this->session->data['currency']);
+                    if ( in_array($value['cart_id'], $p)) {
+                         $products[$key]['stock']=true;
+                    }else{
+                        $products[$key]['stock']=false;
+                    }
 
 
                }
@@ -385,6 +392,8 @@ class ControllerCheckoutCart extends Controller {
         }
         $data['products']=$products;
 
+        
+      
         // print_r($products);exit();
 
         $this->response->setOutput($this->load->view('checkout/add_product', $data));
