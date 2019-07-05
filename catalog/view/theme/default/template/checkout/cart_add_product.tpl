@@ -86,10 +86,10 @@
 		 		$(this).siblings('.num').val(parseInt(num)-1);
 		 		UpdateAddcart($(this).siblings('.num'));
 		 		}else{
-		 				alert('Choose at least one product');return false;
+		 			tips('Choose at least one product','gantan');return false;
 		 		}
 		 	}else{
-		 		alert('Options must be selected');return false;
+		 		tips('Options must be selected','gantan');return false;
 
 		 	}
 	 	})
@@ -110,7 +110,7 @@
 		 	 			q+=parseInt($(this).val());
 		 			 })
 		 	 		if (q>most_quantity) {
-		 	 			alert('The total should not exceed '+most_quantity);
+		 	 			tips('The total should not exceed '+most_quantity,'gantan');
 		 	 			$(this).siblings('.num').val(num-1);
 		 	 			return false;
 		 	 		}
@@ -118,12 +118,11 @@
 
 			 		UpdateAddcart($(this).siblings('.num'));
 		 		}else{
-		 			alert('Insufficient stock');return false;
+		 			tips('Insufficient stock','gantan');return false;
 
 		 		}
 	 		}else{
-		 		alert('Options must be selected');return false;
-
+		 		tips('Options must be selected','gantan');return false;	
 		 	}
 	 	})
 
@@ -136,7 +135,7 @@
 	 	 	q+=parseInt($(this).val());
 	 	 })
 	 	 if (q>most_quantity) {
-	 	 	alert('The total should not exceed '+most_quantity);
+	 	 	tips('The total should not exceed '+most_quantity,'gantan');
 	 	 	return false;
 	 	 }
 
