@@ -492,9 +492,9 @@ class ControllerCheckoutCart extends Controller {
             $this->load->model('catalog/product');
             $product_options = $this->model_catalog_product->getAddcartProductOptions($product_id,$product_option_value_id);
              foreach($product_options as $key=>$value){
-                foreach($value['product_option_value'] as $k=>$v){
-                    $option[$value['product_option_id']] = $v['product_option_value_id'];
-                }
+                // foreach($value['product_option_value'] as $k=>$v){
+                    $option[$value['product_option_id']] = $value['product_option_value']['product_option_value_id'];
+                // }
             }
             return $option;
     }

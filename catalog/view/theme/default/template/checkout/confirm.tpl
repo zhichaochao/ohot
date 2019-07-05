@@ -31,6 +31,36 @@
                         <?php } ?>
                    
                     </ul>
+                    <?php if($add_products){ ?>
+                    <p>Extra Purchase Value+ Products</p>
+                     <ul class="cart_ul">
+                     <?php foreach ($add_products as $product) { ?>
+                        <li class="clearfix">
+                            <a href="<?php echo $product['href']; ?>">
+                                <div class="pic_img">
+                                    <img src="<?php echo $product['image']; ?>" />
+                                </div>
+                                <div class="text">
+                                    <h2><?php echo $product['name']; ?></h2>
+                                    
+                                   
+                                       <p>   <?php echo $product['option_name']['name']; ?> </p>
+                                        
+                            
+                                    
+                                     <span>  <?php echo $product['price']['addprice_format']; ?></span>
+                                     <p><span> X <?php echo $product['quantity']; ?></span></p>
+                                </div>
+                            </a>
+                        </li>
+                        <?php } ?>
+                         <?php foreach ($vouchers as $voucher) { ?>
+                         <?php echo $voucher['description']; ?>1<?php echo $voucher['amount']; ?>
+                        <?php } ?>
+                   
+                    </ul>
+                     <p class="p1">Value+ Products Total <span class="fr"><?php echo $add_total; ?></span></p>
+                    <?php }?>
                        <?php foreach ($totals as $k => $total) { ?>
                        <?php if($total['title']=='Total') { ?>
                         <p class="p2 cous" pid="<?php echo $couponornot; ?>"><?php echo $total['title']; ?> <span class="fr"><?php echo $total['text']; ?></span></p>

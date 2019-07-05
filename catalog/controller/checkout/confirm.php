@@ -185,9 +185,52 @@ class ControllerCheckoutConfirm extends Controller {
                         
 			$data['totals'] = array();
 			$data['couponornot']=0;
+
+
+         // 加购产品
+          $products = $this->cart->getProducts();
+           $cart_total=0;
+            foreach ($products as $key => $value) {
+              $cart_total+=$value['total'];
+           
+            }
+
+        $this->load->model('checkout/addcart');
+        $this->load->model('catalog/category');
+          $lowestAmount=$this->model_checkout_addcart->lowestAmount();
+          $add_total=array('total'=>0);
+         $products=array();
+            if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])&&$cart_total>$lowestAmount['fullprice']) {
+            	$add_total= $this->model_checkout_addcart->addcarttotal($cart_total);
+            	$products=$this->model_checkout_addcart->addcartproducts();
+            	  if ($products) {
+	               foreach ($products as $key => $value) {
+	                   $products[$key]['image']=$this->model_tool_image->resize($value['image'], $this->config->get($this->config->get('config_theme') . '_image_cart_width'), $this->config->get($this->config->get('config_theme') . '_image_cart_height'));
+	                    $products[$key]['href'] =$this->url->link('product/product', 'product_id=' . $value['product_id']);
+	                    // 获取价格
+	                   $products[$key]['price']=$this->model_catalog_category->getAddProductPrices($value['product_id'],$cart_total);
+	                   $products[$key]['price']['addprice_format']=$this->currency->format( $products[$key]['price']['addprice'],$this->session->data['currency']); 
+	                    $products[$key]['price']['fullprice_format']=$this->currency->format( $products[$key]['price']['fullprice'],$this->session->data['currency']);
+	                    $products[$key]['price']['originalprice_format']=$this->currency->format( $products[$key]['price']['originalprice'],$this->session->data['currency']);
+
+
+	               }
+	            }
+            }
+            // print_r($products);exit();
+
+
+		$data['add_total']=  $this->currency->format($add_total['total'], $this->session->data['currency']);
+		$data['add_products']= $products;
+
+		
 				foreach ($order_data['totals'] as $total) {
 					if($total['code']=='coupon'){
 						$data['couponornot']=1;
+					}
+					// 加上加价购的总价
+					if ($total['code']=='total') {
+						$total['value']+=$add_total['total'];
 					}
 					$data['totals'][] = array(
 					'title' => $total['title'],
@@ -203,22 +246,6 @@ class ControllerCheckoutConfirm extends Controller {
          $data['checkout_url'] =$this->url->link('checkout/cart');
 
 
-         // 加购产品
-          $products = $this->cart->getProducts();
-           $cart_total=0;
-            foreach ($products as $key => $value) {
-              $cart_total+=$value['total'];
-           
-            }
-
-        $this->load->model('checkout/addcart');
-          $lowestAmount=$this->model_checkout_addcart->lowestAmount();
-         $add_products=array();
-            if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])&&$cart_total>$lowestAmount['fullprice']) {
-            }
-
-
-		$data['add_products']
 		$this->response->setOutput($this->load->view('checkout/confirm', $data));
 	}
 
@@ -321,8 +348,38 @@ class ControllerCheckoutConfirm extends Controller {
 	        $sort_order = array();
 	        foreach ($totals as $key => $value) {
 	            $sort_order[$key] = $value['sort_order'];
+	            if ($value['code']=='sub_total') {
+	            	$cart_total=$value['value'];
+	            }
+	             $sort_order[]=2;
 	        }
+	        // 加购购物车
+	        $this->load->model('checkout/addcart');
+			$lowestAmount=$this->model_checkout_addcart->lowestAmount();
+			$add_cart=false;
+            if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])&&$cart_total>$lowestAmount['fullprice']) {
+    		$add_cart=true;
+				$add_total=$this->model_checkout_addcart->addcarttotal($cart_total);
+				$totals[]=array(
+					'code'=>'addcart',
+					'title'=>'Value+ Products Total',
+					'value'=>$add_total['total'],
+					'sort_order'=>2,
+				);
+				foreach ($totals as $key => $value) {
+		    
+		            if ($value['code']=='total') {
+		            	$totals[$key]['value']+=$add_total['total'];
+		            }
+		        
+		        }
+
+
+
+            }
+
 	        array_multisort($sort_order, SORT_ASC, $totals);
+	        // print_r( $totals);exit();
 	        $order_data['totals'] = $totals;
 	        $this->session->data['totals'] = $totals;
 	
@@ -456,6 +513,7 @@ class ControllerCheckoutConfirm extends Controller {
 	        }
 	
 	        $order_data['products'] = array();
+	       
 	        foreach ($this->cart->getProducts($this->request->get['cart_ids']) as $product) {
 	            $option_data = array();
 	
@@ -485,7 +543,54 @@ class ControllerCheckoutConfirm extends Controller {
 	                'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
 	                'reward'     => $product['reward']
 	            );
+	          
 	        }
+
+	        // // 加购购物车的
+	        if ($add_cart) {
+	        	 $this->load->model('catalog/product');
+	        	 $this->load->model('catalog/category');
+	        	$products=$this->model_checkout_addcart->addcartproducts();
+	        	foreach ($products as $key => $product) {
+	        		 $product_options = $this->model_catalog_product->getAddcartProductOptions($product['product_id'],$product['option_name']['product_option_value_id']);
+	        		  $option_data = array();
+	        		  // print_r( $product);exit();
+	
+			            foreach ($product_options as $option) {
+			                $option_data[] = array(
+			                    'product_option_id'       => $option['product_option_id'],
+			                    'product_option_value_id' => $option['product_option_value']['product_option_value_id'],
+			                    'option_id'               => $option['product_option_value']['option_id'],
+			                    'option_value_id'         => $option['product_option_value']['option_value_id'],
+			                    'name'                    => '',
+			                    'value'                   => $option['product_option_value']['name'],
+			                    'type'                    => ''
+			                );
+			            }
+			            $price=$this->model_catalog_category->getAddProductPrices($product['product_id'],$cart_total);
+			
+			            $order_data['products'][] = array(
+			                'product_id' => $product['product_id'],
+			                'name'       => $product['name'],
+			                'model'      => 'Plus Purchase',
+			                'option'     => $option_data,
+			                'download'   => '',
+			                'quantity'   => $product['quantity'],
+			                'subtract'   => '',
+			                'price'      => $price['addprice'],
+			                'original_price' => $price['originalprice'],
+			                'total'      => $price['addprice']*$product['quantity'],
+			                'tax'        => 0,
+			                'reward'     => 0
+			            );
+
+	        	}
+	        	// print_r($order_data);exit();
+	        	// 清空加购购物车
+	        	$this->model_checkout_addcart->del_add_cart();
+	        }
+
+
 	
 	        // Gift Voucher
 	        $order_data['vouchers'] = array();
