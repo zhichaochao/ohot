@@ -360,6 +360,7 @@ class ControllerCheckoutConfirm extends Controller {
             if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])&&$cart_total>$lowestAmount['fullprice']) {
     		$add_cart=true;
 				$add_total=$this->model_checkout_addcart->addcarttotal($cart_total);
+				
 				$totals[]=array(
 					'code'=>'addcart',
 					'title'=>'Value+ Products Total',
@@ -374,7 +375,7 @@ class ControllerCheckoutConfirm extends Controller {
 		        
 		        }
 
-
+				$total_data['total']+=$add_total['total'];
 
             }
 
@@ -587,7 +588,7 @@ class ControllerCheckoutConfirm extends Controller {
 	        	}
 	        	// print_r($order_data);exit();
 	        	// 清空加购购物车
-	        	$this->model_checkout_addcart->del_add_cart();
+	        	
 	        }
 
 
@@ -612,6 +613,7 @@ class ControllerCheckoutConfirm extends Controller {
 	            }
 	        }
                 优化 by hwh end */
+                // print_r($total_data);exit();
                 
 	        $order_data['comment'] = $this->session->data['comment'];
 	        $order_data['total'] = $total_data['total'];
@@ -681,11 +683,12 @@ class ControllerCheckoutConfirm extends Controller {
 	        $order_data['payment_type'] = $this->session->data['payment_type'];
 
 	        $this->load->model('checkout/order');
+	        // print_r($order_data);exit();
 	        $this->session->data['order_id'] = $this->model_checkout_order->addOrder($order_data);
 
 			//payment code
 			$this->session->data['payment_code'] = $this->session->data['payment_method']['code'];
-
+			$this->model_checkout_addcart->del_add_cart();
 	        //clear cart data
 	        $this->cart->clear($this->request->get['cart_ids']);
 	        unset($this->session->data['addresses']);
@@ -697,6 +700,7 @@ class ControllerCheckoutConfirm extends Controller {
 	        unset($this->session->data['payment_method']);
 	        unset($this->session->data['payment_methods']);
 	        //unset($this->session->data['guest']);
+
 	        unset($this->session->data['comment']);
 	        unset($this->session->data['coupon']);
 	        unset($this->session->data['reward']);
@@ -761,7 +765,9 @@ class ControllerCheckoutConfirm extends Controller {
 		$data['payment'] = $this->url->link('checkout/payment', '', true);
 		$data['submit_bank_receipt'] = $this->url->link('account/order/receipts', 'order_id='.$order_id, true);
         $this->load->model('checkout/order_total');
+        // print_r($order);exit();
 	    $data['totals'] = $this->model_checkout_order_total->getOrderTotal2($order_id,$payment_code);
+  // print_r(  $data['totals']);exit();
 	    $data['column_left'] = $this->load->controller('common/column_left');
 	    $data['column_right'] = $this->load->controller('common/column_right');
 	    $data['content_top'] = $this->load->controller('common/content_top');
