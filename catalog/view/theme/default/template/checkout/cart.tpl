@@ -302,10 +302,10 @@
 		<?php } ?>	
 			
 		<!--返回顶部-->
-		<div class="xf_right">
+		<!-- <div class="xf_right">
 			<div class="vip"><a href="<?php echo $vip?>"><span>VIP</span></a></div>
 			<div class="top"><span>TOP</span></div>
-		</div>
+		</div> -->
 
 	</body>
 </html>
@@ -560,6 +560,7 @@ function cart_removes(product_key){
         		$('#can_not_ydadd em').html(json['need_add']);
         	}
         	getAddproduct();
+        	getAddydproduct();
         	// getOrder();
         	// location.reload()
         }

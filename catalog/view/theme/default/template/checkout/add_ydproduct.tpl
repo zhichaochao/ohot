@@ -31,7 +31,7 @@
 		        success: function(json) {
 		        
 		        	
-		        	getAddproduct() ;
+		        	getAddydproduct() ;
 		        	
 		        }
 		    })

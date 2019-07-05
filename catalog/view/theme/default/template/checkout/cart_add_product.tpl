@@ -18,8 +18,8 @@
 						<li class="clearfix add_product" data="<?=$product['product_id'];?>">
 							<div class="div1 clearfix">
 								<label for="" class="dx_labels">
-									<input class="check_input" value="12" type="checkbox">
-									<i class="check_i"></i>
+									<!-- <input class="check_input" value="12" type="checkbox">
+									<i class="check_i"></i> -->
 								</label>
 								<a class="text" href="<?=$product['href'];?>">
 									<img class="img1" src="<?=$product['image'];?>" alt="" />
@@ -71,7 +71,24 @@
 
 
 <script type="text/javascript">
-
+//换购产品放大
+		$(".hg_modal .big").click(function(){
+			$(".hg_img_modal").fadeIn();
+			$("body").css('overflow','hidden');
+			$(".hg_img_modal .textss img").attr("src",$(this).siblings('.text').find('.img1').attr("src"))
+		})
+		//隐藏换购图片
+		$(".hg_img_modal .closes").click(function(){
+			$(".hg_img_modal").fadeOut();
+			$("body").css('overflow','');
+		})
+		$(".hg_img_modal").click(function(e){
+			var close = $('.hg_img_modal .textss'); 
+			if(!close.is(e.target) && close.has(e.target).length === 0){
+				$(".hg_img_modal").fadeOut();
+				$("body").css('overflow','');
+			}
+		})
 	//隐藏换购弹窗
 		$(".hg_modal .close,.hg_modal .close_btn").click(function(){
 			$(".hg_modal").fadeOut();
