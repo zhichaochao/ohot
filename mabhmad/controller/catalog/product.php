@@ -1539,7 +1539,7 @@ class ControllerCatalogProduct extends Controller {
 		} elseif (!empty($product_info)) {
 			$data['template_product'] = $product_info['template_product'];
 		} else {
-			$data['template_product'] = true;
+			$data['template_product'] = false;
 		}
         //是否主产品  dyl add
 		if (isset($this->request->post['is_main'])) {

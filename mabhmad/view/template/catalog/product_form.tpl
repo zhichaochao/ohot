@@ -137,7 +137,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-category"><span data-toggle="tooltip" title="<?php echo $help_category; ?>"><?php echo $entry_category; ?></span></label>
+                <label class="col-sm-2 control-label" for="input-category"><span style="color:red;" data-toggle="tooltip" title="<?php echo $help_category; ?>"><?php echo $entry_category; ?>(必填项)</span></label>
                 <div class="col-sm-10">
                   <input type="text" name="category" value="" placeholder="<?php echo $entry_category; ?>" id="input-category" class="form-control" />
                   <div id="product-category" class="well well-sm" style="height: 150px; overflow: auto;">
@@ -150,7 +150,7 @@
                 </div>
               </div>
                  <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-status"><span style="color:red;" data-toggle="tooltip" title="设置模板后请禁用产品">模板</span></label>
+                <label class="col-sm-2 control-label" for="input-status"><span style="color:red;" data-toggle="tooltip" title="设置模板后请禁用产品">模板(设置模板后请禁用产品!!!)</span></label>
                 <div class="col-sm-10">
                   <select name="template_product" id="input-template-product" class="form-control">
                     <?php if ($template_product) { ?>
