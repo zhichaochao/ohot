@@ -1,7 +1,7 @@
 					
 	<?php if($products)  {foreach ($products as $key => $product) { ?>
 							<li class="clearfix">
-								<div class="close_yg" onclick="del_add_product(<?=$product['cart_id'];?>);" data="<?=$product['product_id'];?>"></div>
+								<div class="close_yg" onclick="del_add_ydproduct(<?=$product['cart_id'];?>);" data="<?=$product['product_id'];?>"></div>
 								<a href="<?=$product['href'];?>">
 									<img alt="<?=$product['name'];?>" src="<?=$product['image'];?>" >
 								</a>
@@ -19,7 +19,7 @@
 
 		<script type="text/javascript">
 
-			function del_add_product(cart_id) {
+			function del_add_ydproduct(cart_id) {
 				$.ajax({
 		        url: 'index.php?route=checkout/cart/del_add_product',
 		           type: 'post',

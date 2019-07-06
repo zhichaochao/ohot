@@ -7,9 +7,10 @@
 <input type="hidden" name="order" value='<?=$order;?>' id='order'/>
 <input type="hidden" name="limit" value='<?=$limit;?>' id='limit'/>
 <input type="hidden" name="category_id" value='<?=$category_id;?>' id='category_id'/>
-      <img class="changeimage img_bnr pc_hide" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />
+      <!-- <img class="changeimage img_bnr" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/addpro.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />  -->
+       <img class="changeimage img_bnr" data-image='catalog/view/theme/default/img/jpg/addpro.jpg' data-mimage='catalog/view/theme/default/img/jpg/addpro.jpg'  />
       
-      <h1>DISCOUNTED GOODS</h1>
+      <h1>Plus Purchase Products</h1>
       <div class="pro_content clearfix">
     <div class="top clearfix"> <div class="s_page"><?php echo $pagination; ?></div></div> 
         <div class="pro_text clearfix">
@@ -37,12 +38,7 @@
                       <?php if($product['is_sale']==1) { ?>
                      <span class="new" style="float: left;font-size: 16px;text-align: center;">SALE</span>
                       <?php } ?>
-                      <!-- <?php if($product['modelling']) { ?>
-                      <i class="modelling"><?php echo $product['modelling']; ?></i>
-                        <?php } ?> -->
-                 <div class="fsbg_div">
-                    <i>-<?php echo $product['off']; ?>%</i>
-                  </div>
+              
                 </div>
               </a>
               <div class="sc_div <?=$product['wishlist']==1 ?'off':'';?>"
@@ -175,10 +171,10 @@
                                     // if (data.products[i].modelling) {
                                     //   result+='<i class="modelling">'+data.products[i].modelling+' </i>';
                                     // }
-                                     result+=' <div class="fsbg_div">'
-                                        +'<i>'+'-'+data.products[i].off+'%'    
-                                        +'</i>' 
-                                        + '</div>'
+                                     // result+=' <div class="fsbg_div">'
+                                     //    +'<i>'+'-'+data.products[i].off+'%'    
+                                     //    +'</i>' 
+                                     //    + '</div>'
                                      
                                    +'</a>';
                                    if (data.products[i].wishlist==1) {

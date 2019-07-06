@@ -381,11 +381,26 @@ class ControllerProductProduct extends Controller {
             }
             // print_r($product_info);exit();
 
-        
-            $data['price']=$this->currency->format($product_info['price'], $this->session->data['currency']);
-            if ($product_info['special']>0) {
-                 $data['special']=$this->currency->format($product_info['special'], $this->session->data['currency']);
+            if($data['category_id']==ADD_CART_CATEGPRY_ID){
+
+                $product_additionals = $this->model_catalog_product->getProductAdditional($this->request->get['product_id']);
+                    if(!empty($product_additionals)){
+                        
+                        $data['price']=$this->currency->format( $product_additionals[0]['originalprice'], $this->session->data['currency']);
+                        $data['special']=$this->currency->format($product_additionals[0]['addprice'], $this->session->data['currency']);
+                    }else{
+                        $data['price']= ''; 
+                        $data['special']='';    
+                    }
+            }else{
+
+                 $data['price']=$this->currency->format($product_info['price'], $this->session->data['currency']);
+                if ($product_info['special']>0) {
+                     $data['special']=$this->currency->format($product_info['special'], $this->session->data['currency']);
+                }
+
             }
+           
            
         
 
@@ -525,29 +540,65 @@ class ControllerProductProduct extends Controller {
             $data['faq']= html_entity_decode($faq['description'], ENT_QUOTES, 'UTF-8');
 
             //首页推荐商品
-            $recommend_products = $this->model_catalog_product->getRecommendProductsnew($this->request->get['product_id'],28);
-             // print_r($recommend_products);exit();
-            $i = 0;
-            foreach($recommend_products as $key=>$row){
-                $recommend_products[$key]['key_id'] = $i;   //作为索引值 dyl add
             
-                $recommend_products[$key]['description'] = utf8_substr(strip_tags(html_entity_decode($row['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..';
-            
-                if($recommend_products[$key]['image']){
-                    $recommend_products[$key]['image'] = $this->model_tool_image->resize($row['image'], 400, 400);
-                }else{
-                    $recommend_products[$key]['image'] = $this->model_tool_image->resize('placeholder.png', 400, 400);
-                }
-            
-                $recommend_products[$key]['product_link'] = $this->url->link('product/product','product_id='.$row['product_id']);
-                $recommend_products[$key]['texture'] = $this->model_catalog_product->getOptionDes('Texture',$row['product_id']);
-                $recommend_products[$key]['price'] = $this->currency->format($row['price'], $this->session->data['currency']);
-                if($row['special']!=0|| !empty($row['special'])){
-                    $recommend_products[$key]['special'] = $this->currency->format($row['special'], $this->session->data['currency']);
-                }
+            if($data['category_id']==ADD_CART_CATEGPRY_ID){
+                $recommend_products = $this->model_catalog_product->getRecommendProductsnews($data['category_id'],28);
+                 $i = 0;
+                foreach($recommend_products as $key=>$row){
 
-                $recommend_products[$key]['min_name'] = utf8_substr(strip_tags($row['name']),0,40).'...';
-                $i++;
+                    $product_additionals = $this->model_catalog_product->getProductAdditional($row['product_id']);
+                    if(!empty($product_additionals)){
+                        
+                        $recommend_products[$key]['price']=$this->currency->format( $product_additionals[0]['originalprice'], $this->session->data['currency']);
+                        $recommend_products[$key]['special']=$this->currency->format($product_additionals[0]['addprice'], $this->session->data['currency']);
+                    }else{
+                        $recommend_products[$key]['price']= ''; 
+                        $recommend_products[$key]['special']='';    
+                    }
+
+                    $recommend_products[$key]['key_id'] = $i;   //作为索引值 dyl add
+                
+                    $recommend_products[$key]['description'] = utf8_substr(strip_tags(html_entity_decode($row['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..';
+                     if(isset($recommend_products[$key]['image'])){
+                    if($recommend_products[$key]['image']){
+                        $recommend_products[$key]['image'] = $this->model_tool_image->resize($row['image'], 400, 400);
+                    }else{
+                        $recommend_products[$key]['image'] = $this->model_tool_image->resize('placeholder.png', 400, 400);
+                    }
+                    }else{$recommend_products[$key]['image'] = $this->model_tool_image->resize('placeholder.png', 400, 400);}
+
+                    $recommend_products[$key]['product_link'] = $this->url->link('product/product','product_id='.$row['product_id']);
+                    $recommend_products[$key]['texture'] = $this->model_catalog_product->getOptionDes('Texture',$row['product_id']);
+
+                    $recommend_products[$key]['name'] = utf8_substr(strip_tags($row['name']),0,40).'...';
+                    $i++;
+                }   
+
+            }else{
+
+                $recommend_products = $this->model_catalog_product->getRecommendProductsnew($this->request->get['product_id'],28);
+                $i = 0;
+                foreach($recommend_products as $key=>$row){
+                    $recommend_products[$key]['key_id'] = $i;   //作为索引值 dyl add
+                
+                    $recommend_products[$key]['description'] = utf8_substr(strip_tags(html_entity_decode($row['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..';
+                     if(isset($recommend_products[$key]['image'])){
+                    if($recommend_products[$key]['image']){
+                        $recommend_products[$key]['image'] = $this->model_tool_image->resize($row['image'], 400, 400);
+                    }else{
+                        $recommend_products[$key]['image'] = $this->model_tool_image->resize('placeholder.png', 400, 400);
+                    }
+                    }else{$recommend_products[$key]['image'] = $this->model_tool_image->resize('placeholder.png', 400, 400);}
+                    $recommend_products[$key]['product_link'] = $this->url->link('product/product','product_id='.$row['product_id']);
+                    $recommend_products[$key]['texture'] = $this->model_catalog_product->getOptionDes('Texture',$row['product_id']);
+                    $recommend_products[$key]['price'] = $this->currency->format($row['price'], $this->session->data['currency']);
+                    if($row['special']!=0|| !empty($row['special'])){
+                        $recommend_products[$key]['special'] = $this->currency->format($row['special'], $this->session->data['currency']);
+                    }
+
+                    $recommend_products[$key]['name'] = utf8_substr(strip_tags($row['name']),0,40).'...';
+                    $i++;
+                }
             }
             
             $data['recommend_products'] = $recommend_products;
@@ -636,7 +687,14 @@ class ControllerProductProduct extends Controller {
             $data['footer'] = $this->load->controller('common/footer');
             $data['header'] = $this->load->controller('common/header');
 //            var_dump($data['options']);die;
-            $this->response->setOutput($this->load->view('product/product', $data));
+            if($data['category_id']==ADD_CART_CATEGPRY_ID){ //线上27
+
+               $this->response->setOutput($this->load->view('product/addproduct', $data)); 
+            }else{
+
+              $this->response->setOutput($this->load->view('product/product', $data));  
+            }
+            
 
         } else {
             $url = '';

@@ -617,7 +617,7 @@ class ModelCatalogProduct extends Model {
 		foreach ($product_option_query->rows as $product_option) {
 			$product_option_value_data = array();
 
-			$product_option_value_query = $this->db->query("SELECT pov.option_value_id,pov.option_id, pov.product_option_value_id,pov.product_option_id,ovd.name  FROM " . DB_PREFIX . "product_option_value pov LEFT JOIN " . DB_PREFIX . "option_value ov ON (pov.option_value_id = ov.option_value_id) LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ov.option_value_id = ovd.option_value_id) WHERE pov.product_id = '" . (int)$product_id . "' AND pov.product_option_id = '" . (int)$product_option['product_option_id'] . "' AND (pov.product_option_value_id = '" . (int)$product_option_value_id . "' OR pov.option_id != '30'|| pov.product_option_value_id = '" . (int)$product_option_value_id . "' )AND ovd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY ov.sort_order");
+			$product_option_value_query = $this->db->query("SELECT pov.option_value_id,pov.option_id, pov.product_option_value_id,pov.product_option_id,ovd.name  FROM " . DB_PREFIX . "product_option_value pov LEFT JOIN " . DB_PREFIX . "option_value ov ON (pov.option_value_id = ov.option_value_id) LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ov.option_value_id = ovd.option_value_id) WHERE pov.product_id = '" . (int)$product_id . "' AND pov.product_option_id = '" . (int)$product_option['product_option_id'] . "' AND (pov.product_option_value_id = '" . (int)$product_option_value_id . "' OR pov.option_id != ".ADD_CART_OPTION_ID."|| pov.product_option_value_id = '" . (int)$product_option_value_id . "' )AND ovd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY ov.sort_order");
 		
 				// foreach ($product_option_value_query->row as $product_option_value) {
 					$product_option_value_data=$product_option_value_query->row ;
@@ -637,7 +637,14 @@ class ModelCatalogProduct extends Model {
 		return $product_option_data;
 	}
 	// end
+	
+	//获取产品加购价格
+	public function getProductAdditional($product_id) {
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_additional pa  WHERE product_id = '" . (int)$product_id. "' ");
 
+			return $query->rows;
+		}
+	// end
 	public function getProductOptions($product_id) {
 		$product_option_data = array();
 
@@ -1428,7 +1435,28 @@ class ModelCatalogProduct extends Model {
 		return $product_data;
 	}
 
-	public function getRecommendProductsnew($product_id,$limit=20){
+	public function getRecommendProductsnews($category_id,$limit=20){
+   //  	$sql = "SELECT c.category_id  From " . DB_PREFIX . "category c WHERE  c.category_id= (SELECT category_id From " . DB_PREFIX . "product_to_category where product_id= '".$product_id."' limit 1)";
+   //  	$qus=$this->db->query($sql);
+	 	// $querys =$qus->rows ;
+	 	// foreach ($querys as $key => $value) {
+		$sql = "select distinct p.product_id from " . DB_PREFIX . "product p
+			    left join " . DB_PREFIX . "product_to_category ptc on p.product_id = ptc.product_id
+			    left join " . DB_PREFIX . "category c on c.category_id = ptc.category_id
+			    left join " . DB_PREFIX . "product_to_store p2s on p.product_id = p2s.product_id
+			    where p.status = 1 and p.date_available <= NOW() and p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
+			    and c.category_id = '" . $category_id . "'
+			    and c.status = 1  order by p.date_modified desc limit ".$limit;
+			  
+		$query = $this->db->query($sql);
+		// print_r($sql);exit;
+		// }
+		foreach ($query->rows as $result) {
+			$product_data[] = $this->getProduct($result['product_id']);	
+		}
+		return $product_data;
+	}
+public function getRecommendProductsnew($product_id,$limit=20){
     	$sql = "SELECT c.category_id  From " . DB_PREFIX . "category c WHERE  c.category_id= (SELECT category_id From " . DB_PREFIX . "product_to_category where product_id= '".$product_id."' limit 1)";
     	$qus=$this->db->query($sql);
 	 	$querys =$qus->rows ;
@@ -1448,7 +1476,6 @@ class ModelCatalogProduct extends Model {
 		}
 		return $product_data;
 	}
-
 	/**
 	 * 获得产品的特价信息
 	 * @author yufeng

@@ -105,7 +105,11 @@ class ControllerProductPromotion extends Controller {
 			} else {
 				$image = $this->model_tool_image->resize('placeholder.png', $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
 			}
-			$off=floor((1-$result['special']/$result['price'])*100);
+			if($result['price']!=0){
+                	$off=floor((1-$result['special']/$result['price'])*100);
+                }else{
+                	$off='';
+                }
 
 			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
 				$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
@@ -401,7 +405,11 @@ class ControllerProductPromotion extends Controller {
 			} else {
 				$image = $this->model_tool_image->resize('placeholder.png', $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
 			}
-			$off=floor((1-$result['special']/$result['price'])*100);
+			if($result['price']!=0){
+                	$off=floor((1-$result['special']/$result['price'])*100);
+                }else{
+                	$off='';
+                }
 
 			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
 				$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
