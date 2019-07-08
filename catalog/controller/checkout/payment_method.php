@@ -303,6 +303,34 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		        	$total=$value['value'];
 		        }
 		    }
+		    	        // 加购购物车
+	        $this->load->model('checkout/addcart');
+			$lowestAmount=$this->model_checkout_addcart->lowestAmount();
+			$add_cart=false;
+            if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])&&$total>$lowestAmount['fullprice']) {
+    		$add_cart=true;
+				$add_total=$this->model_checkout_addcart->addcarttotal($total);
+				
+				$totals[]=array(
+					'code'=>'addcart',
+					'title'=>'Value+ Products Total',
+					'value'=>$add_total['total'],
+					'sort_order'=>2,
+				);
+				foreach ($totals as $key => $value) {
+		    
+		            if ($value['code']=='total') {
+		            	$totals[$key]['value']+=$add_total['total'];
+		            }
+		        
+		        }
+
+				$total+=$add_total['total'];
+
+            }
+
+
+
 		    // print_r($totals);exit();
 		    // array_multisort($sort_order, SORT_ASC, $totals);
 		   // $totals;
@@ -353,6 +381,32 @@ $data['comment'] = isset($this->session->data['comment'])?$this->session->data['
 		        	$total=$value['value'];
 		        }
 		    }
+		    // 加购购物车
+		   $this->load->model('checkout/addcart');
+			$lowestAmount=$this->model_checkout_addcart->lowestAmount();
+			$add_cart=false;
+            if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])&&$total>$lowestAmount['fullprice']) {
+    		$add_cart=true;
+				$add_total=$this->model_checkout_addcart->addcarttotal($total);
+				
+				$totals[]=array(
+					'code'=>'addcart',
+					'title'=>'Value+ Products Total',
+					'value'=>$add_total['total'],
+					'sort_order'=>2,
+				);
+				foreach ($totals as $key => $value) {
+		    
+		            if ($value['code']=='total') {
+		            	$totals[$key]['value']+=$add_total['total'];
+		            }
+		        
+		        }
+
+				$total+=$add_total['total'];
+
+            }
+
 		    // print_r($totals);exit();
 		    // array_multisort($sort_order, SORT_ASC, $totals);
 		   // $totals;

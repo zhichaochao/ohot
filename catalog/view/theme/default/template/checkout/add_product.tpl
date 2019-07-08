@@ -6,8 +6,9 @@
 								<img alt="<?=$product['name'];?>" src="<?=$product['image'];?>"  >
 							</a>
 							<div class="hg_tetx">
+
 								<div>
-									<span class="sp1"><?=$product['option_name']['name'];?></span>
+	<?php if(isset($product['option_name']['name'])){ ?><span class="sp1"><?=$product['option_name']['name'];?></span><?php }?>
 									<?php if($product['stock']){ ?><span class="ofs">OutofStock</span><?php }?>
 								</div>
 								<span class="sp2"><?=$product['price']['addprice_format'];?></span>

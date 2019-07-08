@@ -125,12 +125,14 @@ class ModelCheckoutAddcart extends Model {
 		$query=$this->db->query($sql);
 		$quantity=0;
 		$products=array();
+//		print_r($query->rows);
 		if ($query->row) {
 			foreach ($query->rows as $key => $value) {
 				$value['option_name']=$this->getoptionnamebyoption($value['product_id'],$value['option']);
 	    		$products[]=$value;
 			}
 		}
+//		print_r($products);exit();
 		return $products;
 	}
 		
@@ -144,12 +146,13 @@ class ModelCheckoutAddcart extends Model {
 		
 			foreach ($options as $product_option_id => $value) {
 				  $option_query = $this->db->query("SELECT po.product_option_id, po.option_id, od.name, o.type FROM " . DB_PREFIX . "product_option po LEFT JOIN `" . DB_PREFIX . "option` o ON (po.option_id = o.option_id) LEFT JOIN " . DB_PREFIX . "option_description od ON (o.option_id = od.option_id) WHERE po.product_option_id = '" . (int)$product_option_id . "' AND po.product_id = '" . (int)$product_id . "' AND od.language_id = '" . (int)$this->config->get('config_language_id') . "'");
-				   if ($option_query->num_rows) {  
+//				  print_r($option_query->rows);
+				   if ($option_query->num_rows&&$option_query->row['option_id']==ADD_CART_OPTION_ID) {
                         $option_value_query = $this->db->query("SELECT pov.option_id,pov.option_value_id, pov.product_option_value_id, ovd.name, pov.quantity FROM " . DB_PREFIX . "product_option_value pov LEFT JOIN " . DB_PREFIX . "option_value ov ON (pov.option_value_id = ov.option_value_id) LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ov.option_value_id = ovd.option_value_id) WHERE pov.product_option_value_id = '" . (int)$value . "' AND pov.product_option_id = '" . (int)$product_option_id . "' AND ovd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
                         	if ($option_value_query->row&&$option_value_query->row['option_id']==ADD_CART_OPTION_ID) {
                         		// 库存信息从主站来
                         		$quantity=$this->getQuantityInwwwByProductOptionValueId($value);
-                        		$option_value_query->row['quantity'];
+                        		$option_value_query->row['quantity']=$quantity;
 
                         		$option_name=$option_value_query->row;
                         	}
@@ -161,7 +164,7 @@ class ModelCheckoutAddcart extends Model {
 			
 			}
 		}
-
+//exit();
 		return $option_name;
 	}
 
@@ -183,10 +186,13 @@ class ModelCheckoutAddcart extends Model {
 		$res=array();
 		$products=$this->addcartproducts();
 		foreach ($products as $key => $value) {
-			$quantity=$this->getQuantityInwwwByProductOptionValueId($value['option_name']['product_option_value_id']);
-			if ($quantity<$value['quantity']) {
-				$res[]=$value['cart_id'];
+			if (isset($value['option_name']['product_option_value_id'])&&$value['option_name']['option_id']==ADD_CART_OPTION_ID) {
+				$quantity=$this->getQuantityInwwwByProductOptionValueId($value['option_name']['product_option_value_id']);
+				if ($quantity<$value['quantity']) {
+					$res[]=$value['cart_id'];
+				}
 			}
+			
 		}
 		// print_r($products);exit();
 

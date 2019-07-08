@@ -370,6 +370,7 @@ class ControllerCheckoutCart extends Controller {
             $this->load->model('tool/image');
              $this->load->model('catalog/category');
             $products=$this->model_checkout_addcart->addcartproducts();
+//            print_r( $products);exit();
             if ($products) {
                 // 检查库存
                 $p=$this->model_checkout_addcart->CheckStock();
@@ -395,7 +396,7 @@ class ControllerCheckoutCart extends Controller {
 
         
       
-        // print_r($products);exit();
+//         print_r($products);exit();
 
         $this->response->setOutput($this->load->view('checkout/add_product', $data));
              // print_r($data['addproducts']);exit;
@@ -606,9 +607,13 @@ class ControllerCheckoutCart extends Controller {
     {
             $this->load->model('catalog/product');
             $product_options = $this->model_catalog_product->getAddcartProductOptions($product_id,$product_option_value_id);
+//             print_r($product_options);exit();
              foreach($product_options as $key=>$value){
                 // foreach($value['product_option_value'] as $k=>$v){
+                if (isset($value['product_option_value']['product_option_value_id'])) {
                     $option[$value['product_option_id']] = $value['product_option_value']['product_option_value_id'];
+                }
+                    
                 // }
             }
             return $option;
@@ -647,7 +652,7 @@ class ControllerCheckoutCart extends Controller {
                     }
                     $option=$this->getoptionbyoptionvalueid($product_id,$product_option_value_id);
                  
-                    // print_r($option)
+//                     print_r($option);exit();
 
                 if ($this->model_checkout_addcart->product_in_cart($product_id,$option)) {
                    $this->model_checkout_addcart->update_product_in_cart($product_id,$option,$this->request->post['num']);
