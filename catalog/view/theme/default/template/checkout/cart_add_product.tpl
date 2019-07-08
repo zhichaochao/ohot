@@ -4,12 +4,12 @@
 					<div class="close"></div>
 					<p class="p1">
 						<?php if(ADD_CART){?>
-						Order>300$ / 1000$ / 3000$, can get extra purchase at 30% off / 37% off / 47% off price !  <br>
-						Can Add 6pcs max for each order ! <br>
+						Order>300$(or 1000$,or 3000$), can get extra purchase at 30% off(or 37% off , or 47% off).<br>
+						Can Add 6pcs max for each order.<br>
 						<?php }else{?>
 						This activity is over! <br>
 						<?php }?>
-						Order Time: 9th July to 19th July !
+						Order Time: 9th July to 20th July.
 					</p>
 					<?php if ($can_add){ ?>
 					<ul class="hg_shop_ul">

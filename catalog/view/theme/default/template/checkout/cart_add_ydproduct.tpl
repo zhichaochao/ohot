@@ -14,11 +14,10 @@
 						</div>
 						<div class="hg_nav clearfix">
 							<p>
-								Order>300$ / 1000$ / 3000$, can get extra purchase at 30% 
-								off / 37% off / 47% off price !
+								Order>300$(or 1000$,or 3000$), can get extra purchase at 30% off(or 37% off , or 47% off). 
 							</p>
-							<p>Can Add 6pcs max for each order !</p>
-							<p>Order Time: 9th July to 19th July !</p>
+							<p>Can Add 6pcs max for each order.</p>
+							<p>Order Time: 9th July to 20th July.</p>
 						</div>
 					</div>
 				</div>

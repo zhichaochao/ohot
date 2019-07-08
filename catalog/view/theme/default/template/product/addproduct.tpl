@@ -267,7 +267,7 @@
 											<span class="adds"></span>
 										</div>
 									</div>
-									<span class="length">Select Color And  Length&nbsp;&nbsp;></span>
+									<span class="length">Select Style&nbsp;&nbsp;></span>
 									<?php if($resultcoupon){?>
 									<button class="conpon_btn" type="button">GET COUPON CODE</button>
 									<ul class="get_ul clearfix">

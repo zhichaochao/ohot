@@ -121,7 +121,7 @@
 			
 			
 				<div id="can_not_ydadd"  class="repurchase hg_tc clearfix"  <?php if ($can_add){ ?>style="display: none;" <?php }else{?>style="display: block;" <?php }?>>
-				<a href="/all_hair_weft_collection.html">Buy more <em><?=$need_add;?></em> to get the extra purchase hair with favorable price.Add more producs>></a>
+				<a href="/all_hair_weft_collection.html">Buy more <em><?=$need_add;?></em> to get the extra purchase hair with favorable price.Add more products>></a>
 				<!-- <p>Buy more <em><?=$need_add;?></em> to get <a href="/hair_promotion.html">the extra purchase hair>></a> with favorable price.    <span><a href="/all_hair_weft_collection.html">Add more producs>></a></span></p> -->
 				</div>
 				<?php } ?>
@@ -293,7 +293,7 @@
 			
 			
 				<div id="can_not_add"  class="repurchase hg_tc clearfix"  <?php if ($can_add){ ?>style="display: none;" <?php }else{?>style="display: block;" <?php }?>>
-				<p>Buy more <em><?=$need_add;?></em> to get <a href="/hair_promotion.html">the extra purchase hair>></a> with favorable price.    <span><a href="/all_hair_weft_collection.html">Add more producs>></a></span></p>
+				<p>Buy more <em><?=$need_add;?></em> to get <a href="/hair_promotion.html">the extra purchase hair>></a> with favorable price.    <span><a href="/all_hair_weft_collection.html">Add more products>></a></span></p>
 			</div>
 			
 		</div>
