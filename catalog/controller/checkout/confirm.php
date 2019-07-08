@@ -362,6 +362,9 @@ class ControllerCheckoutConfirm extends Controller {
 			$add_cart=false;
             if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])&&$cart_total>$lowestAmount['fullprice']) {
     		$add_cart=true;
+    			if ($this->model_checkout_addcart->CheckStock()) {
+					$this->response->redirect($this->url->link('checkout/cart'));
+				}
 				$add_total=$this->model_checkout_addcart->addcarttotal($cart_total);
 				
 				$totals[]=array(
@@ -691,7 +694,13 @@ class ControllerCheckoutConfirm extends Controller {
 
 			//payment code
 			$this->session->data['payment_code'] = $this->session->data['payment_method']['code'];
+			if ($add_cart) {
+				// 加购购物车变动库存
+			$this->model_checkout_addcart->UpdateStock();
+			// 清除加购购物车
 			$this->model_checkout_addcart->del_add_cart();
+			}
+		
 	        //clear cart data
 	        $this->cart->clear($this->request->get['cart_ids']);
 	        unset($this->session->data['addresses']);
