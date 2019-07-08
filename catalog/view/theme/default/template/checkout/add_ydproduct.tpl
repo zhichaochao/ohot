@@ -7,7 +7,8 @@
 								</a>
 								<div class="hg_tetx">
 									<div>
-									<span class="sp1"><?=$product['option_name']['name'];?></span>
+										<?php if(isset($product['option_name']['name'])){ ?><span class="sp1"><?=$product['option_name']['name'];?></span><?php }?>
+									<?php if($product['stock']){ ?><span class="ofs">OutofStock</span><?php }?>
 									</div>
 									<span class="sp2"><?=$product['price']['addprice_format'];?></span>
 									<span class="sp3"><?=$product['price']['originalprice_format'];?></span>
@@ -18,7 +19,9 @@
 		<!-- 删除某个加购购物车上的产品 -->
 
 		<script type="text/javascript">
-
+				<?php if($outofstock){ ?>
+				alert('Value+ Products Out Of Stock');
+				<?php }?>
 			function del_add_ydproduct(cart_id) {
 				$.ajax({
 		        url: 'index.php?route=checkout/cart/del_add_product',

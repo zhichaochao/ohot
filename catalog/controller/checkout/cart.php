@@ -421,7 +421,11 @@ class ControllerCheckoutCart extends Controller {
             $this->load->model('tool/image');
              $this->load->model('catalog/category');
             $products=$this->model_checkout_addcart->addcartproducts();
+//            print_r( $products);exit();
+            $data['outofstock']=false;
             if ($products) {
+                // 检查库存
+                $p=$this->model_checkout_addcart->CheckStock();
                foreach ($products as $key => $value) {
                    $products[$key]['image']=$this->model_tool_image->resize($value['image'], $this->config->get($this->config->get('config_theme') . '_image_cart_width'), $this->config->get($this->config->get('config_theme') . '_image_cart_height'));
                     $products[$key]['href'] =$this->url->link('product/product', 'product_id=' . $value['product_id']);
@@ -430,6 +434,12 @@ class ControllerCheckoutCart extends Controller {
                    $products[$key]['price']['addprice_format']=$this->currency->format( $products[$key]['price']['addprice'],$this->session->data['currency']); 
                     $products[$key]['price']['fullprice_format']=$this->currency->format( $products[$key]['price']['fullprice'],$this->session->data['currency']);
                     $products[$key]['price']['originalprice_format']=$this->currency->format( $products[$key]['price']['originalprice'],$this->session->data['currency']);
+                    if ( in_array($value['cart_id'], $p)) {
+                         $products[$key]['stock']=true;
+                          $data['outofstock']=true;
+                    }else{
+                        $products[$key]['stock']=false;
+                    }
 
 
                }

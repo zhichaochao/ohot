@@ -729,7 +729,8 @@ select_cart();
 		        success: function(json) {
 		        	// console.log(json);
 		        	$('.total_price').html(json['total']);
-		        	getAddproduct()
+		        	getAddproduct();
+		        	getAddydproduct();
 		        	
 		        }
 		    })
