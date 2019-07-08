@@ -299,7 +299,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		    // $sort_order = array();
 		    foreach ($totals as $key => $value) {
 		        $sort_order[$key] = $value['sort_order'];
-		        if ($value['code']=='total') {
+		        if ($value['code']=='sub_total') {
 		        	$total=$value['value'];
 		        }
 		    }
@@ -377,7 +377,7 @@ $data['comment'] = isset($this->session->data['comment'])?$this->session->data['
 		    // $sort_order = array();
 		    foreach ($totals as $key => $value) {
 		        $sort_order[$key] = $value['sort_order'];
-		        if ($value['code']=='total') {
+		        if ($value['code']=='sub_total') {
 		        	$total=$value['value'];
 		        }
 		    }

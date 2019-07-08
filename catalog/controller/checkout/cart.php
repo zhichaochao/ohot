@@ -352,10 +352,9 @@ class ControllerCheckoutCart extends Controller {
         }
     }
     public function get_add_product() {
-
-           
-                    // $image = $this->model_tool_image->resize($addproduct['image'], $this->config->get($this->config->get('config_theme') . '_image_cart_width'), $this->config->get($this->config->get('config_theme') . '_image_cart_height'));
-        $products = $this->cart->getProducts();
+     
+        $cart_ids =isset($this->request->post['cart_ids'])?$this->request->post['cart_ids']:'';
+        $products = $this->cart->getProducts($cart_ids);
            $cart_total=0;
             foreach ($products as $key => $value) {
               $cart_total+=$value['total'];
@@ -371,6 +370,7 @@ class ControllerCheckoutCart extends Controller {
              $this->load->model('catalog/category');
             $products=$this->model_checkout_addcart->addcartproducts();
 //            print_r( $products);exit();
+            $data['outofstock']=false;
             if ($products) {
                 // 检查库存
                 $p=$this->model_checkout_addcart->CheckStock();
@@ -384,6 +384,7 @@ class ControllerCheckoutCart extends Controller {
                     $products[$key]['price']['originalprice_format']=$this->currency->format( $products[$key]['price']['originalprice'],$this->session->data['currency']);
                     if ( in_array($value['cart_id'], $p)) {
                          $products[$key]['stock']=true;
+                          $data['outofstock']=true;
                     }else{
                         $products[$key]['stock']=false;
                     }
@@ -404,8 +405,8 @@ class ControllerCheckoutCart extends Controller {
     public function get_add_ydproduct() {
 
            
-                    // $image = $this->model_tool_image->resize($addproduct['image'], $this->config->get($this->config->get('config_theme') . '_image_cart_width'), $this->config->get($this->config->get('config_theme') . '_image_cart_height'));
-        $products = $this->cart->getProducts();
+        $cart_ids =isset($this->request->post['cart_ids'])?$this->request->post['cart_ids']:'';
+        $products = $this->cart->getProducts($cart_ids);
            $cart_total=0;
             foreach ($products as $key => $value) {
               $cart_total+=$value['total'];
@@ -443,7 +444,8 @@ class ControllerCheckoutCart extends Controller {
     }
       public function getalltotal()
     {
-        $products = $this->cart->getProducts();
+        $cart_ids =isset($this->request->post['cart_ids'])?$this->request->post['cart_ids']:'';
+        $products = $this->cart->getProducts($cart_ids);
            $cart_total=0;
             foreach ($products as $key => $value) {
               $cart_total+=$value['total'];
@@ -484,7 +486,9 @@ class ControllerCheckoutCart extends Controller {
              $this->load->model('checkout/addcart');
                 $this->load->model('tool/image');
                  $this->load->model('catalog/category');
-               $products = $this->cart->getProducts();
+         
+        $cart_ids =isset($this->request->post['cart_ids'])?$this->request->post['cart_ids']:'';
+        $products = $this->cart->getProducts($cart_ids);
            $cart_total=0;
             foreach ($products as $key => $value) {
               $cart_total+=$value['total'];
@@ -542,7 +546,9 @@ class ControllerCheckoutCart extends Controller {
              $this->load->model('checkout/addcart');
                 $this->load->model('tool/image');
                  $this->load->model('catalog/category');
-               $products = $this->cart->getProducts();
+      
+        $cart_ids =isset($this->request->post['cart_ids'])?$this->request->post['cart_ids']:'';
+        $products = $this->cart->getProducts($cart_ids);
            $cart_total=0;
             foreach ($products as $key => $value) {
               $cart_total+=$value['total'];

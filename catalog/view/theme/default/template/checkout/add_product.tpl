@@ -1,4 +1,4 @@
-					
+
 	<?php if($products)  {foreach ($products as $key => $product) { ?>
 					<li>
 							<div class="close" onclick="del_add_product(<?=$product['cart_id'];?>);" data="<?=$product['product_id'];?>"></div>
@@ -21,6 +21,9 @@
 		<!-- 删除某个加购购物车上的产品 -->
 
 		<script type="text/javascript">
+			<?php if($outofstock){ ?>
+				alert('Value+ Products Out Of Stock');
+				<?php }?>
 
 			function del_add_product(cart_id) {
 				$.ajax({

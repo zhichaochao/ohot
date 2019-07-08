@@ -83,6 +83,9 @@ class ControllerCheckoutConfirm extends Controller {
 		    $sort_order = array();
 		    foreach ($totals as $key => $value) {
 		        $sort_order[$key] = $value['sort_order'];
+		        if ($value['code']=='sub_total') {
+		        	$cart_total=$value['value'];
+		        }
 		    }
 		    // print_r($totals);exit();
 		    array_multisort($sort_order, SORT_ASC, $totals);
@@ -187,13 +190,13 @@ class ControllerCheckoutConfirm extends Controller {
 			$data['couponornot']=0;
 
 
-         // 加购产品
-          $products = $this->cart->getProducts();
-           $cart_total=0;
-            foreach ($products as $key => $value) {
-              $cart_total+=$value['total'];
+         // // 加购产品
+         //  $products = $this->cart->getProducts();
+         //   $cart_total=0;
+         //    foreach ($products as $key => $value) {
+         //      $cart_total+=$value['total'];
            
-            }
+         //    }
 
         $this->load->model('checkout/addcart');
         $this->load->model('catalog/category');

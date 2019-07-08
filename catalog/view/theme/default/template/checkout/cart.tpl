@@ -313,8 +313,18 @@
 <script>
 	getAddproduct() ;
 	function getAddproduct() {
+		 var chk_value = '';
+        $("input:checkbox[name='product']:checked").each(function() { // 遍历name=test的多选框
+            chk_value += $(this).val() + ',';  // 每一个被选中项的值
+        });
+        chk_value = chk_value.substring(0,chk_value.length-1);
+
+
 		$.ajax({
 		        url: 'index.php?route=checkout/cart/get_add_product',
+		         type: 'post',
+		         data:{cart_ids:chk_value},
+		 
 		      
 		        success: function(html) {
 		        
@@ -326,8 +336,16 @@
 	}
 	getAddydproduct() ;
 	function getAddydproduct() {
+		var chk_value = '';
+        $("input:checkbox[name='product']:checked").each(function() { // 遍历name=test的多选框
+            chk_value += $(this).val() + ',';  // 每一个被选中项的值
+        });
+        chk_value = chk_value.substring(0,chk_value.length-1);
 		$.ajax({
 		        url: 'index.php?route=checkout/cart/get_add_ydproduct',
+		         type: 'post',
+		         data:{cart_ids:chk_value},
+		 
 		      
 		        success: function(html) {
 		        
@@ -340,11 +358,18 @@
 	// 购物车总价加上加购总价
 	function getalltotal() {
 		$('.total_price').html('calculating');
+		var chk_value = '';
+        $("input:checkbox[name='product']:checked").each(function() { // 遍历name=test的多选框
+            chk_value += $(this).val() + ',';  // 每一个被选中项的值
+        });
+        chk_value = chk_value.substring(0,chk_value.length-1);
 		$.ajax({
 		        url: 'index.php?route=checkout/cart/getalltotal',
-		           type: 'post',
+		         type: 'post',
+		         data:{cart_ids:chk_value},
 		 
 		        dataType: 'json',
+		      
 		 
 		      
 		        success: function(json) {
@@ -417,9 +442,17 @@ function wishlist(product_id) {
 
 		//获取加购产品
 		$("#can_add span,.hg_tc.hg_btn").click(function(){
+			 var chk_value = '';
+        $("input:checkbox[name='product']:checked").each(function() { // 遍历name=test的多选框
+            chk_value += $(this).val() + ',';  // 每一个被选中项的值
+        });
+        chk_value = chk_value.substring(0,chk_value.length-1);
+
 			 $.ajax({
 		        url: 'index.php?route=checkout/cart/add_product',
 		        dataType: 'html',
+		        type:'post',
+		        data:{cart_ids:chk_value},
 		 
 		        success: function(html) {
 		        	$('#hg_modal').html(html);
@@ -696,9 +729,11 @@ select_cart();
 		        success: function(json) {
 		        	// console.log(json);
 		        	$('.total_price').html(json['total']);
+		        	getAddproduct()
 		        	
 		        }
 		    })
+
 
 			// console.log(a);
 		}
