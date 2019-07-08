@@ -354,7 +354,7 @@ class ControllerCheckoutConfirm extends Controller {
 	            if ($value['code']=='sub_total') {
 	            	$cart_total=$value['value'];
 	            }
-	             $sort_order[]=2;
+	            
 	        }
 	        // 加购购物车
 	        $this->load->model('checkout/addcart');
@@ -378,6 +378,7 @@ class ControllerCheckoutConfirm extends Controller {
 		            if ($value['code']=='total') {
 		            	$totals[$key]['value']+=$add_total['total'];
 		            }
+		             $sort_order[]=2;
 		        
 		        }
 
