@@ -377,8 +377,9 @@ class ControllerCheckoutConfirm extends Controller {
 		    
 		            if ($value['code']=='total') {
 		            	$totals[$key]['value']+=$add_total['total'];
+		            	    $sort_order[]=2;
 		            }
-		             $sort_order[]=2;
+		         
 		        
 		        }
 
