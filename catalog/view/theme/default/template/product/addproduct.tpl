@@ -458,7 +458,7 @@
 						<a class="cart_a" href="<?=$shopping_cart;?>"><span class='cart_count'><?=$text_cart_items;?></span></a>
 						<button class="sc_btn <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"></button>
 					</div>
-					<button class="cart_btn cart_modal" id="buttonon-cart" >ADD TO CART</button>
+					<button class="cart_btn cart_modal" >NOT FOR SALE</button>
 				</div>
 					<!--购物车弹窗-->
 				<div class="cart_tc clearfix " id="products">
