@@ -10,9 +10,9 @@
       <!-- <img class="changeimage img_bnr" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/addpro.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />  -->
        <img class="changeimage img_bnr" data-image='catalog/view/theme/default/img/jpg/addpro.jpg' data-mimage='catalog/view/theme/default/img/jpg/addpro.jpg'  />
       
-      <h1>Plus Purchase Products</h1>
+      <h1 style="font-size: 31px;margin-bottom: -21px;">Plus Purchase Products</h1>
       <div class="pro_content clearfix">
-    <div class="top clearfix"> <div class="s_page"><?php echo $pagination; ?></div></div> 
+    <div class="top clearfix" style="margin: 0.83vw 0 0.25vw 0;"> <div class="s_page"><?php echo $pagination; ?></div></div> 
         <div class="pro_text clearfix">
           <ul class="pro_ul prolist clearfix">
             <?php foreach ($products as $product) { ?>
@@ -33,10 +33,10 @@
                   <?php } ?>
                 </span> 
                 <?php if($product['is_new']==0) { ?>
-                     <span class="new" style="float: left;font-size: 16px;text-align: center;">NEW</span>
+                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">NEW</span>
                       <?php } ?>
                       <?php if($product['is_sale']==1) { ?>
-                     <span class="new" style="float: left;font-size: 16px;text-align: center;">SALE</span>
+                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">SALE</span>
                       <?php } ?>
               
                 </div>

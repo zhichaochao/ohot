@@ -32,10 +32,10 @@
                   <?php } ?>
                 </span> 
                 <?php if($product['is_new']==0) { ?>
-                     <span class="new" style="float: left;font-size: 16px;text-align: center;">NEW</span>
+                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">NEW</span>
                       <?php } ?>
                       <?php if($product['is_sale']==1) { ?>
-                     <span class="new" style="float: left;font-size: 16px;text-align: center;">SALE</span>
+                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">SALE</span>
                       <?php } ?>
                       <!-- <?php if($product['modelling']) { ?>
                       <i class="modelling"><?php echo $product['modelling']; ?></i>
