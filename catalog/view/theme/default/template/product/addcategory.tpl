@@ -8,7 +8,7 @@
 <input type="hidden" name="limit" value='<?=$limit;?>' id='limit'/>
 <input type="hidden" name="category_id" value='<?=$category_id;?>' id='category_id'/>
       <!-- <img class="changeimage img_bnr" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/addpro.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />  -->
-       <img class="changeimage img_bnr" data-image='catalog/view/theme/default/img/jpg/addpro.jpg' data-mimage='catalog/view/theme/default/img/jpg/addpro.jpg'  />
+       <!-- <img class="changeimage img_bnr" data-image='catalog/view/theme/default/img/jpg/addpro.jpg' data-mimage='catalog/view/theme/default/img/jpg/addpro.jpg'  /> -->
       
       <h1 style="font-size: 31px;margin-bottom: -21px;">Plus Purchase Products</h1>
       <div class="pro_content clearfix">
@@ -33,10 +33,10 @@
                   <?php } ?>
                 </span> 
                 <?php if($product['is_new']==0) { ?>
-                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">NEW</span>
+                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;margin: 20px 0 8px 2px;">NEW</span>
                       <?php } ?>
                       <?php if($product['is_sale']==1) { ?>
-                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">SALE</span>
+                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;margin: 20px 0 8px 2px;">SALE</span>
                       <?php } ?>
               
                 </div>
@@ -162,10 +162,10 @@
 
                                     result+=   '</span>'
                                     if (data.products[i].is_new==0) {
-                                    result+='<span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">NEW</span>';
+                                    result+='<span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;margin: 20px 0 8px 2px;">NEW</span>';
                                     }
                                     if (data.products[i].is_sale==1) {
-                                      result+='<span class="sale" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">SALE</span>';
+                                      result+='<span class="sale" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;margin: 20px 0 8px 2px;">SALE</span>';
                                     }
 
                                     // if (data.products[i].modelling) {
