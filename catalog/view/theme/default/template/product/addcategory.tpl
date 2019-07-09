@@ -10,9 +10,9 @@
       <!-- <img class="changeimage img_bnr" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/addpro.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />  -->
        <img class="changeimage img_bnr" data-image='catalog/view/theme/default/img/jpg/addpro1.jpg' data-mimage='catalog/view/theme/default/img/jpg/addpro1.jpg'  />
       
-      <h1>Plus Purchase Products</h1>
+      <h1 style="line-height:4px;">Plus Purchase Products</h1>
       <div class="pro_content clearfix">
-    <div class="top clearfix"> <div class="s_page"><?php echo $pagination; ?></div></div> 
+  
         <div class="pro_text clearfix">
           <ul class="pro_ul prolist clearfix">
             <?php foreach ($products as $product) { ?>
