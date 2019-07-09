@@ -166,10 +166,10 @@
 
                                     result+=   '</span>'
                                     if (data.products[i].is_new==0) {
-                                    result+='<span class="new" style="float: left;font-size: 16px;text-align: center;">NEW</span>';
+                                    result+='<span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">NEW</span>';
                                     }
                                     if (data.products[i].is_sale==1) {
-                                      result+='<span class="sale" style="float: left;font-size: 16px;text-align: center;">SALE</span>';
+                                      result+='<span class="sale" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">SALE</span>';
                                     }
 
                                     // if (data.products[i].modelling) {
