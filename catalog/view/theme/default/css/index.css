@@ -155,7 +155,7 @@
 	.pro_content .pro_ul .text{background: #fff;padding-bottom: 0.94vw;padding-top: 0.1rem}
 	.pro_content .pro_ul .text span{font-family: san_r;font-size: 1.25vw;line-height: 1.25vw;height: 1.25vw; margin:10px 0 0.73vw 0;padding: 0 1.25vw;
 	display: block;color: #000;position: relative;overflow: hidden;}
-	.pro_content .pro_ul .text span em{display: inline-block;float: left;}
+	.pro_content .pro_ul .text span em{display: inline-block;float: left;font-size: 24px;color: #fe2a4d;text-align: left;line-height: 28px;}
 	.pro_content .pro_ul .text span del{display: inline-block;float: left;color: #999;text-decoration: line-through;margin-left: 0.2vw;font-size: 0.72vw;
 	height: 0.72vw;line-height: 0.72vw;position: relative;top: 0.5vw }
 	.pro_content .pro_ul .text span.new{margin: 0 0 0 0.8vw;display: inline-block;color: #fff;
@@ -225,6 +225,11 @@
 	}
 	.pro_det_content .top p.price{font-family: san_r;color: #333;font-size: 1.56vw;line-height: 1.8vw;display: block;margin-bottom: 1.5vw;}
 	.pro_det_content .top p.price i{color: #ccc;text-decoration: line-through;margin-left: 0.46vw;}
+	.pro_det_content .hg_tip{background: #fff3f2;border-radius: 5px;border: 1px dashed #f23030;padding: 10px 30px;margin-bottom: 25px;}
+	.pro_det_content .hg_tip p{font-size: 16px;line-height: 24px;display: inline-block;color: #333;}
+	.pro_det_content .hg_tips{background: #fff6e4;border-radius: 5px;padding:8px 40px;margin-top: 30px;}
+	.pro_det_content .hg_tips p{color: #ff8033;font-size: 18px;line-height: 22px;background: url(../img/png/hg_tip.png) no-repeat left top;padding-left: 30px;}
+	
 	.pro_det_content .hiar_color {margin-bottom: 1.04vw;display: inline-block;}
 	.pro_det_content .hiar_color span{font-size: 0.83vw;line-height: 2.08vw;color: #666; float: left;}
 	.pro_det_content .hiar_color .select_btn{float: left;margin-left: 5px;padding-left: 10px;box-sizing: border-box;}
@@ -458,7 +463,19 @@
 	.gwc_pc .repurchase{position: fixed;bottom: 0.7rem;left: calc(50% - 580px); width: 1160px;height: 0.7rem;background: #fff6e4;
 	z-index: 100;display: block;margin: 0 auto;border: 1px solid #fff6e4;cursor: pointer;}
 	.gwc_pc .repurchase p{color: #ff8033;font-size: 20px;line-height: 0.7rem;padding: 0 20px;display: block;}
-	.gwc_pc .repurchase p span{float: right;display: inline-block;text-decoration: underline;}
+	.gwc_pc .repurchase p span{float: right;display: inline-block;text-decoration: underline;width: 240px;}
+	.gwc_pc .repurchase p span i{animation: shake 2.5s .5s infinite both;display: inline-block;height: 20px;margin-left: 5px;}
+	@keyframes shake {
+		0%,30%,100%{
+		-webkit-transform:translateX(0);
+		}
+		10% {
+		-webkit-transform:translateX(-10px);
+		}
+		20%{
+		-webkit-transform:translateX(10px);
+		}
+	}
 	.gwc_pc .total{position: fixed;bottom: 0;left: 0;width: 100%;height: 0.7rem;box-shadow: 0 0 10px 1px rgba(0,0,0,.2);background: #fff;z-index: 100;}
 	.gwc_pc .total .qx{max-width: 1200px;margin: auto;padding: 0 0.2rem;border: none;background: transparent;}
 	.gwc_pc .total .qx .qx_label{height: 0.7rem;line-height: 0.74rem;}
@@ -1655,13 +1672,14 @@
 	
 	/********promotion********/
 	.promotion .img_bnr{display: block;margin:0 auto 65px auto;}
-	.promotion h1{font-size: 24px;font-family: bau;color: #000;line-height: 34px;margin-bottom: 40px;text-align: center;font-weight: normal;}
+	.promotion h1{font-size: 32px;font-family: bau;color: #000;line-height: 34px;margin-bottom: 40px;text-align: center;font-weight: normal;}
 	.promotion .pro_content {background: #fff;padding: 0;}
 	.promotion .pro_text .pro_ul .pic_img{border: 1px solid #f6f0f0;}
 	.promotion .pro_text .pro_ul .text{padding: 0 10px 20px 10px;}
 	.promotion .pro_text .pro_ul .text p{margin-top: 16px;text-align: left;padding: 0;font-size: 14px;line-height: 16px;}
 	.promotion .pro_text .pro_ul .text .price{width: 50%;float: left;}	
-	.promotion .pro_text .pro_ul .text span{display:block;line-height: 32px; margin: 20px 0 8px 0;text-align: left;font-size: 24px;color: #fe2a4d;padding: 0;}
+	.promotion .pro_text .pro_ul .text span{display:block;margin: 20px 0 8px 0;text-align: center;
+	font-size: 16px;color: #fff;padding: 0;float: left;}
 	.promotion .pro_text .pro_ul .text .price i {font-size: 16px;color: #999;text-decoration: line-through;
 	display: block;float: left;text-align: left;}
 	.promotion .pro_text .pro_ul .text .modelling{background: #a89d9b;display: inline-block;font-size: 0.72vw;margin: 20px 0 8px 0;color:#fff;
@@ -1914,8 +1932,8 @@
 	padding: 0 0.1rem 0 0.1rem;position: relative;margin-top: 0.2rem;font-weight: bold;}
 	.pro_content .pro_ul .text span em{float: left;}
 	.pro_content .pro_ul .text span del{float: left;font-size: 0.18rem;color: #999;font-weight: normal;margin-left: 0.05rem;}
-	.pro_content .pro_ul .text span.new{display: inline-block;width: 0.5rem;height: 0.3rem;text-align: center;
-	background: #1faf85;color: #fff;font-size: 0.22rem;font-family: helvetica;margin: 0 0 0 0.1rem;font-weight: normal;float: left;}
+	.pro_content .pro_ul .text span.new{display: inline-block !important;width: auto;height: 0.3rem !important;text-align: center !important;padding: 0 0.1rem !important;
+	background: #1faf85 !important;color: #fff !important;font-size: 0.22rem !important;font-family: helvetica;margin: 0 0 0 0.1rem;font-weight: normal;float: left;}
 	.pro_content .pro_ul .text span.sale{display: inline-block;width: 0.5rem;height: 0.3rem;text-align: center;
 	background: #f74d59;color: #fff;font-size: 0.22rem;font-family: helvetica;margin: 0 0 0 0.1rem;font-weight: normal;float: left;}
 	.pro_content .pro_ul .text .modelling{font-size: 0.18rem;display: inline-block;float: left;background: #a89d9b;color: #fff;
@@ -1943,9 +1961,14 @@
 	.pro_big_img .swiper-button-next,.pro_big_img .swiper-button-prev{display: none;}
 	.pro_det_content .top .top_text{border-top: 1px solid #fafafa;}
 	.pro_det_content .top .right a{font-family: helvetica; font-size: 0.24rem;color: #333;display: block;text-align: center;padding: 0.25rem 0 0.15rem 0;}
-	.pro_det_content .top p.price{display: block;text-align: center;border-bottom: 0.2rem solid #f5f5f5;padding-bottom: 0.35rem;}
+	.pro_det_content .top p.price{display: block;text-align: center;padding-bottom: 0.35rem;}
 	.pro_det_content .top p.price span{font-size: 0.3rem;color: #f23030;font-family: helvetica;}
 	.pro_det_content .top p.price i{font-family: helveticae; color: #aaa;text-decoration: line-through;margin-left: 0.12rem;font-size: 0.24rem;}
+	.pro_det_content .hg_tip{background: #fff3f2;border-radius: 5px;border: 1px dashed #f23030;padding: 10px 30px;margin:0 0.3rem 0.3rem 0.3rem;}
+	.pro_det_content .hg_tip p{font-size: 0.22rem;line-height: 0.3rem;display:block;color: #333;}
+	.pro_det_content .hg_tips{background: #fff6e4;border-radius: 5px;padding:8px 40px;margin-top: 30px;position: fixed;bottom: 0.98rem;left: 0;z-index: 99;}
+	.pro_det_content .hg_tips p{color: #ff8033;font-size: 18px;line-height: 22px;background: url(../img/png/hg_tip.png) no-repeat left top;padding-left: 30px;}
+	
 	
 	.pro_det_content .pro_det_dl{display: block;clear: both;}
 	.pro_det_content .pro_det_dl dt{font-size: 0.26rem;color: #333;line-height: 0.56rem;}
@@ -1956,7 +1979,7 @@
 	.pro_det_content .pro_det_dl dd p.active{background: #d6af74 ;color: #fff;}
 	
 	.pro_det_content .yd_hide{display: none;}
-	.pro_det_content .yd_show{display: block;}
+	.pro_det_content .yd_show{display: block;border-top: 0.2rem solid #f5f5f5;}
 	.pro_det_content .cart_attr{padding: 0.2rem 0.3rem;position: relative;}
 	.cart_attr .conpon_btn{width: 2.88rem;height: 0.5rem;border: 1px dashed #fc0059;background: #fff;float: right;
 	font-size: 0.2rem;color: #333;position: absolute;right: 0.3rem;bottom: 0.4rem;}		  

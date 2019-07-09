@@ -101,7 +101,7 @@
 				<!-- 已添加换购产品 -->
 				<div class="hg_div clearfix hg_tc" id="can_ydadd">
 
-					<div class="top clearfix">
+					<div class="top clearfix top_ys" <?php if ($can_add){ ?>style="display: block;" <?php }else{?>style="display: none;" <?php }?> >
 						<h3>Extra Purchase Value + Products</h3>
 						
 						<a href="<?php echo $addproduct?>" class="hg_btn">Reselect</a>
@@ -115,7 +115,7 @@
 
 
 				<div id="can_ydadd" class="repurchase hg_tc clearfix" <?php if ($can_add){ ?>style="display: block;" <?php }else{?>style="display: none;" <?php }?>>
-				<a href="<?php echo $addproduct?>">Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase</span></a>
+				<a href="<?php echo $addproduct?>">Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase<i>>></i></span></a>
 				<!-- <p>Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase >></span></p> -->
 				</div>	
 			
@@ -275,7 +275,7 @@
 			</div>
 				<!-- 已添加换购产品 -->
 			<div class="hg_div clearfix">
-				<div class="top clearfix">
+				<div class="top clearfix top_ys" <?php if ($can_add){ ?>style="display: block;" <?php }else{?>style="display: none;" <?php }?> >
 					<h3>Extra Purchase Value+ Products</h3>
 					 <?php if ($can_add){ ?>
 					<button class="hg_tc hg_btn">Reselect</button>
@@ -288,7 +288,7 @@
 			</div>
 			<!-- 未添加换购产品 -->
 			<div id="can_add" class="repurchase hg_tc clearfix" <?php if ($can_add){ ?>style="display: block;" <?php }else{?>style="display: none;" <?php }?>>
-				<p>Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase >></span></p>
+				<p>Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase <i>>></i></span></p>
 			</div>	
 			
 			
@@ -327,8 +327,9 @@
 		 
 		      
 		        success: function(html) {
-		        
+		        	
 		        	$('#yxhg_ol').html(html);
+		        	$('.top_ys').css('display','block');
 		        	getalltotal();
 		        	
 		        }
@@ -350,6 +351,7 @@
 		        success: function(html) {
 		        
 		        	$('#yxhg_ydol').html(html);
+		        	$('.top_ys').css('display','block');
 		        	getalltotal();
 		        	
 		        }
@@ -575,7 +577,7 @@ function cart_removes(product_key){
         success: function(json) {
         // 	var win =$(window).width();
       		// if(win<920){tips("Successfully Modify Shopping Cart",'');}
-        	console.log(json);
+        	// console.log(json);
         	$('.total_price').html(json['total']);
         	$('#cart_count').html(json['text_cart_items']);
         	for (var i = json['products'].length - 1; i >= 0; i--) {
@@ -585,12 +587,15 @@ function cart_removes(product_key){
         		$('#can_add').show();$('#can_not_add').hide();
 
         		$('#can_ydadd').show();$('#can_not_ydadd').hide();
+
+        		$('.top_ys').css('display','block');
         	}else{
         		$('#can_add').hide();$('#can_not_add').show();
         		$('#can_not_add em').html(json['need_add']);
 
         		$('#can_ydadd').hide();$('#can_not_ydadd').show();
         		$('#can_not_ydadd em').html(json['need_add']);
+        		$('.top_ys').css('display','none');
         	}
         	getAddproduct();
         	getAddydproduct();

@@ -384,13 +384,24 @@ class ControllerProductProduct extends Controller {
             if($data['category_id']==ADD_CART_CATEGPRY_ID){
 
                 $product_additionals = $this->model_catalog_product->getProductAdditional($this->request->get['product_id']);
+
+               // print_r( $data['product_additionals']);exit;
                     if(!empty($product_additionals)){
                         
                         $data['price']=$this->currency->format( $product_additionals[0]['originalprice'], $this->session->data['currency']);
                         $data['special']=$this->currency->format($product_additionals[0]['addprice'], $this->session->data['currency']);
+
+                        foreach($product_additionals as $product_additional){
+                                 $product_additi[] = array(
+                                    'fullprice' =>$this->currency->format($product_additional['fullprice'],$this->session->data['currency']),
+                                    'addprice'    => $this->currency->format($product_additional['addprice'],$this->session->data['currency'])
+                        );
+                        }
+                        $data['product_additionals']= $product_additi;
                     }else{
                         $data['price']= ''; 
-                        $data['special']='';    
+                        $data['special']='';  
+                        $data['product_additionals'] =''; 
                     }
             }else{
 

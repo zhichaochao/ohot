@@ -882,7 +882,7 @@
                       <td class="text-right"><input type="text" name="product_additionals[1][originalprice]" value="" class="form-control" /></td>
                     </tr>
                     <tr>
-                      <td class="text-left">满<input type="text" name="product_additionals[2][fullprice]" value="30000" class="form-control" style="width: 50%;margin-left:20px;" /></td>
+                      <td class="text-left">满<input type="text" name="product_additionals[2][fullprice]" value="3000" class="form-control" style="width: 50%;margin-left:20px;" /></td>
                       <td class="text-right"><input type="text" name="product_additionals[2][addprice]" value="" class="form-control" /></td>
                       <td class="text-right"><input type="text" name="product_additionals[2][originalprice]" value="" class="form-control" /></td>
                     </tr>

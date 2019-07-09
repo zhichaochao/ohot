@@ -104,9 +104,18 @@
 									</p>
 						
 								<?php } ?>
+								<?php if($product_additionals){?>
+								<div class="hg_tip">
+								 
+                   					<?php foreach ($product_additionals as $additional) { ?>
+								<p>Order><?php echo $additional['fullprice']?>, get this at <?php echo $additional['addprice']?>.</p>
+								
+									<?php } ?>
+								</div>
+								<?php  }?>
 								<div class="yd_hide clearfix">
 
-								<label class="num_label clearfix"  >
+								<!-- <label class="num_label clearfix"  >
 									<span>Quantity:</span>
 									<div class="price_input clearfix">
 											<span class="sub" ></span>
@@ -116,7 +125,7 @@
 								</label>
 								<span class="measurement">
 									About Measurement
-								</span>
+								</span> -->
 							<div class="label_div clearfix" id="form-product">
 								<?php if ($options) { ?>
 								<?php foreach ($options as $option) { ?>	
@@ -159,8 +168,14 @@
 									<img class=" changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
 									<div class="close"></div>
 								</div>
-								<button class="xyd_btn  <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"><span>WISHLIST</span></button>
+								<!-- <button class="xyd_btn  <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"><span>WISHLIST</span></button> -->
 							</div>
+								<div class="hg_tips">
+									<p>
+										You have the qualification to attend plus purchase 
+										activity, go to shopping cart to add them.
+									</p>
+								</div>
 
 								<?php if (!isset($logins)) { ?>
 
@@ -208,6 +223,12 @@
 						</div>
 
 						<div class="yd_show clearfix">
+								<div class="hg_tips">
+									<p>
+										You have the qualification to attend plus purchase 
+										activity, go to shopping cart to add them.
+									</p>
+								</div>
 								<div class="cart_attr cart_modal clearfix">
 									<ol class="clearfix">
 
@@ -259,14 +280,14 @@
 										</li>
  -->
 									</ol>
-									<div class="price_input clearfix">
+									<!-- <div class="price_input clearfix">
 										<p>Quantity:</p>
 										<div class="text clearfix">
 											<span class="subs"></span>
 											<input class="num" type="text" value="1" >
 											<span class="adds"></span>
 										</div>
-									</div>
+									</div> -->
 									<span class="length">Select Style&nbsp;&nbsp;></span>
 									<?php if($resultcoupon){?>
 									<button class="conpon_btn" type="button">GET COUPON CODE</button>
@@ -456,7 +477,7 @@
 				<div class="cart_fixed clearfix">
 					<div class="left clearfix">
 						<a class="cart_a" href="<?=$shopping_cart;?>"><span class='cart_count'><?=$text_cart_items;?></span></a>
-						<button class="sc_btn <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"></button>
+						<!-- <button class="sc_btn <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"></button> -->
 					</div>
 					<button class="cart_btn cart_modal" >NOT FOR SALE</button>
 				</div>
@@ -534,7 +555,7 @@
 								<?php }} ?><?php }} ?>
 								<!-- </div> -->
 
-							<li class="clearfix">
+							<!-- <li class="clearfix">
 								<span class="bt_span">Quantity:</span>
 								<div class="price_input clearfix">
 											<span class="sub" ></span>
@@ -545,8 +566,8 @@
 									<span class="sub"></span>
 									<input class="num" type="text" value="1" readonly="readonly">
 									<span class="add"></span>
-								</div> -->
-							</li>
+								</div>
+							</li> -->
 						</ol>
 					</div>
 					<div class="meas_img">

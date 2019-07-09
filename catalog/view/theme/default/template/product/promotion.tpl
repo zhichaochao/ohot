@@ -22,7 +22,7 @@
                 </div>
                 <div class="text clearfix" >
                 <p><?php echo $product['name']; ?></p>
-                <span class="price" style="line-height: 1.25vw;">
+                <span class="price"">
                   <?php if($product['special']) { ?>
                   <em> <?php echo $product['special']; ?></em>
                      <del><?php echo $product['price']; ?></del>
@@ -32,10 +32,10 @@
                   <?php } ?>
                 </span> 
                 <?php if($product['is_new']==0) { ?>
-                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">NEW</span>
+                     <span class="new">NEW</span>
                       <?php } ?>
                       <?php if($product['is_sale']==1) { ?>
-                     <span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">SALE</span>
+                     <span class="new">SALE</span>
                       <?php } ?>
                       <!-- <?php if($product['modelling']) { ?>
                       <i class="modelling"><?php echo $product['modelling']; ?></i>
@@ -166,10 +166,10 @@
 
                                     result+=   '</span>'
                                     if (data.products[i].is_new==0) {
-                                    result+='<span class="new" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">NEW</span>';
+                                    result+='<span class="new">NEW</span>';
                                     }
                                     if (data.products[i].is_sale==1) {
-                                      result+='<span class="sale" style="float: left;font-size: 16px;text-align: center;line-height: 1.25vw;color: #fff;">SALE</span>';
+                                      result+='<span class="sale">SALE</span>';
                                     }
 
                                     // if (data.products[i].modelling) {
