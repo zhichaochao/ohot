@@ -7,6 +7,8 @@
 								</a>
 								<div class="hg_tetx">
 									<div>
+	<?php $name=explode("-",$product['name']); ?>
+	<p><?=isset($name[0])?substr($name[0],-16):'';?></p>
 										<?php if(isset($product['option_name']['name'])){ ?><span class="sp1"><?=$product['option_name']['name'];?></span><?php }?>
 									<?php if($product['stock']){ ?><span class="ofs">OutofStock</span><?php }?>
 									</div>

@@ -29,6 +29,8 @@
 								</div>
 							</div>
 							<div class="div_ol clearfix">
+								<?php $name=explode("-",$product['name']); ?>
+								<p><?=isset($name[0])?substr($name[0],-16):'';?></p>
 								<ol class="type_ol clearfix">
 									
 									<!-- class="active" -->

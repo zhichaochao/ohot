@@ -135,7 +135,7 @@ class ModelCatalogCategory extends Model {
 
 	    $product_id_sql = '(SELECT DISTINCT a.product_id FROM '.DB_PREFIX.'product_additional a LEFT JOIN '.DB_PREFIX.'product p on p.product_id=a.product_id JOIN th_product_to_category AS ptc ON ptc.product_id = p.product_id WHERE a.fullprice <'.$cart_total.' AND p.status=1 AND ptc.category_id='.$category_id.')';
 	   
-	    $sql="SELECT p.product_id, pd.name, p.image FROM ".DB_PREFIX."product p JOIN th_product_description AS pd ON p.product_id = pd.product_id  WHERE p.product_id in ".$product_id_sql;
+	    $sql="SELECT p.product_id, pd.name, p.image FROM ".DB_PREFIX."product p JOIN th_product_description AS pd ON p.product_id = pd.product_id  WHERE p.product_id in ".$product_id_sql ." ORDER BY p.sort_order ASC";
  		$query = $this->db->query($sql);
  		$products=array();
 	   if ($query->rows) {
@@ -153,7 +153,7 @@ class ModelCatalogCategory extends Model {
 // 获取加购产品的选项
     public function getAddProductOptions($product_id){
     	$rows=array();
-    	$sql="SELECT pov.product_id,pov.product_option_value_id,pov.option_value_id,pov.quantity,pov.option_id,ovd.name FROM ".DB_PREFIX."product_option_value pov LEFT JOIN  ".DB_PREFIX."option_value_description ovd on ovd.option_value_id=pov.option_value_id WHERE pov.product_id='".$product_id."'  AND pov.option_id = ".ADD_CART_OPTION_ID." AND ovd.language_id=". $this->config->get('config_language_id') ;
+    	$sql="SELECT pov.product_id,pov.product_option_value_id,pov.option_value_id,pov.quantity,pov.option_id,ovd.name FROM ".DB_PREFIX."product_option_value pov LEFT JOIN  ".DB_PREFIX."option_value_description ovd on ovd.option_value_id=pov.option_value_id WHERE pov.product_id='".$product_id."'  AND pov.option_id = ".ADD_CART_OPTION_ID." AND ovd.language_id=". $this->config->get('config_language_id')."  ORDER BY ovd.name ASC" ;
     	// print_r($sql);exit();
     		$query = $this->db->query($sql);
 

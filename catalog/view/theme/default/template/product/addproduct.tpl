@@ -228,10 +228,14 @@
 
 						<div class="yd_show clearfix">
 								<div class="hg_tips">
+									<?php if($can_add){ ?>
 									<p>
-										You have the qualification to attend plus purchase 
+										You have the qualification to attend plus purchase
 										activity, go to shopping cart to add them.
 									</p>
+									<?php }else{ ?>
+									<p>Buy more <?=$need_add;?>, to earn the qualification to attend plus purchase activity.</p>
+									<?php }?>
 								</div>
 								<div class="cart_attr cart_modal clearfix">
 									<ol class="clearfix">
