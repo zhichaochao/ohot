@@ -25,22 +25,23 @@
 	</style>
 
 	<body style="background: #f5f5f5;min-height: inherit !important; "><!--内容-->
-		<div class="shopcart2 pc_hide clearfix new_in_content">
+		<div class="shopcart2 pc_hide clearfix ">
 			<div class="content  shop2_content clearfix">
 				<div class="shop2_text  clearfix">
 					<div class="left">
 						<div class="new_nav pc_hide clearfix">
 							<a class="fh" href="<?php echo $continueshopping?>"></a>
 							<p>MY PRODUCTS</p>
-						</div>
-						<div class="del delete clearfix">
+							<div class="del delete clearfix">
 							<svg t="1539766974948" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5269" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
 								<path d="M793.6 998.4H220.16c-51.2 0-97.28-40.96-97.28-97.28V261.12c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v645.12c0 25.6 20.48 46.08 46.08 46.08h573.44c25.6 0 46.08-20.48 46.08-46.08v-563.2c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v563.2c0 46.08-46.08 92.16-97.28 92.16z" p-id="5270" fill="#333"></path>
 								<path d="M51.2 266.24c-10.24 0-20.48-10.24-25.6-25.6 0-15.36 10.24-25.6 25.6-25.6l916.48-81.92c15.36 0 25.6 10.24 25.6 25.6s-10.24 25.6-25.6 25.6L51.2 266.24c5.12 0 0 0 0 0z" p-id="5271" fill="#333"></path>
 								<path d="M343.04 230.4c-10.24 0-20.48-10.24-25.6-25.6l-5.12-76.8C307.2 87.04 337.92 51.2 378.88 46.08l225.28-20.48c20.48 0 40.96 5.12 56.32 15.36 15.36 10.24 25.6 30.72 25.6 51.2l5.12 81.92c0 15.36-10.24 25.6-25.6 25.6s-25.6-10.24-25.6-25.6l-5.12-81.92c0-10.24-10.24-20.48-25.6-20.48l-225.28 25.6c-5.12 0-10.24 5.12-15.36 10.24-5.12 0-5.12 10.24-5.12 15.36L368.64 204.8c0 10.24-10.24 25.6-25.6 25.6 5.12 0 0 0 0 0zM435.2 768c-15.36 0-25.6-15.36-25.6-30.72V399.36c0-15.36 10.24-40.96 25.6-40.96s25.6 25.6 25.6 35.84v337.92c0 15.36-10.24 35.84-25.6 35.84zM588.8 768c-15.36 0-25.6-15.36-25.6-30.72V465.92c0-15.36 10.24-25.6 25.6-25.6s25.6 10.24 25.6 25.6v271.36c0 15.36-10.24 30.72-25.6 30.72z" p-id="5272" fill="#333"></path>
 							</svg>	
 						</div>
-						<ul class="shop2_ul">
+						</div>
+						
+						<ul class="shop2_ul" <?php if ($can_add){ ?>style="margin: 1.1rem 0 0.2rem 0;" <?php }else{?>style="margin: 1.1rem 0 2.17rem 0;" <?php }?> >
 
 						<?php foreach($products as $product){ ?>
 							<li class="clearfix">
@@ -114,7 +115,7 @@
 				</div>
 
 
-				<div id="can_ydadd" class="repurchase hg_tc clearfix" <?php if ($can_add){ ?>style="display: block;" <?php }else{?>style="display: none;" <?php }?>>
+				<div id="can_ydadds" class="repurchase hg_tc clearfix" <?php if ($can_add){ ?>style="display: block;" <?php }else{?>style="display: none;" <?php }?>>
 				<a href="<?php echo $addproduct?>">Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase<i>>></i></span></a>
 				<!-- <p>Order><?=$fullprice;?>, can get extra purchase at 30%-47% off price !       <span>Browse & Purchase >></span></p> -->
 				</div>	
@@ -586,15 +587,18 @@ function cart_removes(product_key){
         	if (json['can_add']) {
         		$('#can_add').show();$('#can_not_add').hide();
 
-        		$('#can_ydadd').show();$('#can_not_ydadd').hide();
+        		$('#can_ydadd').show();$('#can_ydadds').show();$('#can_not_ydadd').hide();
 
+        		$('.shop2_ul').css('margin','1.1rem 0 0.2rem 0');
         		$('.top_ys').css('display','block');
         	}else{
         		$('#can_add').hide();$('#can_not_add').show();
         		$('#can_not_add em').html(json['need_add']);
 
-        		$('#can_ydadd').hide();$('#can_not_ydadd').show();
+        		$('#can_ydadd').hide();$('#can_ydadds').hide();$('#can_not_ydadd').show();
         		$('#can_not_ydadd em').html(json['need_add']);
+
+        		$('.shop2_ul').css('margin','1.1rem 0 2.17rem 0');
         		$('.top_ys').css('display','none');
         	}
         	getAddproduct();
