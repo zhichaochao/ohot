@@ -171,10 +171,14 @@
 								<!-- <button class="xyd_btn  <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"><span>WISHLIST</span></button> -->
 							</div>
 								<div class="hg_tips">
+									<?php if($can_add){ ?>
 									<p>
 										You have the qualification to attend plus purchase 
 										activity, go to shopping cart to add them.
 									</p>
+									<?php }else{ ?>
+									<p>Buy more <?=$need_add;?>, to earn the qualification to attend plus purchase activity.</p>
+									<?php }?>
 								</div>
 
 								<?php if (!isset($logins)) { ?>
@@ -182,7 +186,7 @@
 								<a class="a_btn clearfix" href="<?php echo $login; ?>">PLEASE LOGIN FIRST&nbsp;&nbsp;&nbsp;&nbsp;></a>
 								<!-- 和线上不一样 本地26线上27 -->
 								<?php }else if($category_id==ADD_CART_CATEGPRY_ID){ ?> 
-								<a class="a_btn clearfix">NOT FOR SALE</a>
+								<a class="a_btn clearfix">NOT FOR SEPERATE SALE</a>
 									<?php }else{ ?>
 								<a class="a_btn clearfix" id="button-cart" >ADD TO SHOPPING CART&nbsp;&nbsp;&nbsp;&nbsp;></a>
 								<?php }?>
@@ -479,7 +483,7 @@
 						<a class="cart_a" href="<?=$shopping_cart;?>"><span class='cart_count'><?=$text_cart_items;?></span></a>
 						<!-- <button class="sc_btn <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"></button> -->
 					</div>
-					<button class="cart_btn cart_modal" >NOT FOR SALE</button>
+					<button class="cart_btn cart_modal" >NOT FOR SEPERATE SALE</button>
 				</div>
 					<!--购物车弹窗-->
 				<div class="cart_tc clearfix " id="products">

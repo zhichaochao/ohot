@@ -699,7 +699,25 @@ class ControllerProductProduct extends Controller {
             $data['header'] = $this->load->controller('common/header');
 //            var_dump($data['options']);die;
             if($data['category_id']==ADD_CART_CATEGPRY_ID){ //线上27
+//                判断是否可以添加加购产品了
+                $can_add=false;
+                $products = $this->cart->getProducts();
+                $total=array();
+                $total['total']=0;
 
+                foreach ($products as $key => $value) {
+
+                    $total['total']+=$value['total'];
+
+                }
+                $this->load->model('checkout/addcart');
+                $lowestAmount=$this->model_checkout_addcart->lowestAmount();
+                if (ADD_CART&&$lowestAmount&&isset($lowestAmount['fullprice'])&&$total['total']>$lowestAmount['fullprice']) {
+                    $can_add=true;
+                }
+                $data['can_add']=$can_add;
+                $need_add=$lowestAmount['fullprice']-$total['total'];
+                $data['need_add']=$this->currency->format( $need_add,$this->session->data['currency']);
                $this->response->setOutput($this->load->view('product/addproduct', $data)); 
             }else{
 

@@ -154,9 +154,10 @@
             <div class="input-group">
               <div style="float:left;">                                
                 <button type="button" style="margin-left:10px;" data-toggle="tooltip" title="Export Order Data" class="btn btn-primary" onclick="confirm('<?php echo $text_confirm; ?>') ? formSubmit('export') : false;"> <i class="fa fa-file-excel-o"></i> </button>
-              </div>
+              </div>    暂时有加购产品的订单最好不要编辑，可以查看，修改状态，上传运单号，过两天上线加购产品的订单编辑功能
             </div>
           </div> 
+
           <!-- end 导出订单 -->
         
           <div class="table-responsive">

@@ -167,7 +167,7 @@
 								<a class="a_btn clearfix" href="<?php echo $login; ?>">PLEASE LOGIN FIRST&nbsp;&nbsp;&nbsp;&nbsp;></a>
 								<!-- 和线上不一样 -->
 								<?php }else if($category_id==ADD_CART_CATEGPRY_ID){ ?> 
-								<a class="a_btn clearfix">NOT FOR SALE</a>
+								<a class="a_btn clearfix">NOT FOR SEPERATE SALE</a>
 									<?php }else{ ?>
 								<a class="a_btn clearfix" id="button-cart" >ADD TO SHOPPING CART&nbsp;&nbsp;&nbsp;&nbsp;></a>
 								<?php }?>

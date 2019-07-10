@@ -692,7 +692,7 @@ class ControllerCheckoutConfirm extends Controller {
 
 	        $this->load->model('checkout/order');
 	        // print_r($order_data);exit();
-	        $this->session->data['order_id'] = $this->model_checkout_order->addOrder($order_data);
+	        $this->session->data['order_id'] = $this->model_checkout_order->addOrderNew($order_data);
 
 			//payment code
 			$this->session->data['payment_code'] = $this->session->data['payment_method']['code'];
