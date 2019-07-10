@@ -463,8 +463,8 @@
 	.gwc_pc .repurchase{position: fixed;bottom: 0.7rem;left: calc(50% - 580px); width: 1160px;height: 0.7rem;background: #fff6e4;
 	z-index: 100;display: block;margin: 0 auto;border: 1px solid #fff6e4;cursor: pointer;}
 	.gwc_pc .repurchase p{color: #ff8033;font-size: 20px;line-height: 0.7rem;padding: 0 20px;display: block;}
-	.gwc_pc .repurchase p span{float: right;display: inline-block;text-decoration: underline;width: 240px;}
-	.gwc_pc .repurchase p span i{animation: shake 2.5s .5s infinite both;display: inline-block;height: 20px;margin-left: 5px;}
+	.gwc_pc .repurchase p span{float: right;display: inline-block;text-decoration: underline;width: 240px;animation: shake 2.5s .5s infinite both;}
+	.gwc_pc .repurchase p span i{display: inline-block;height: 20px;margin-left: 5px;}
 	@keyframes shake {
 		0%,30%,100%{
 		-webkit-transform:translateX(0);
@@ -2382,7 +2382,18 @@
 	.shop2_content .repurchase{position: fixed;bottom: 0.98rem;left: 0; width: 100%;background: #fff6e4;
 	z-index: 100;display: block;margin: 0 auto;border: 1px solid #fff6e4;}
 	.shop2_content .repurchase a{color: #ff8033;font-size: 0.24rem;line-height: 0.3rem; padding: 0.28rem 0.3rem;display: block;}
-	.shop2_content .repurchase a span{display:block;text-decoration: underline;}
+	.shop2_content .repurchase a span{display:block;text-decoration: underline;animation: shake 2.5s .5s infinite both;}
+	@keyframes shake {
+		0%,30%,100%{
+		-webkit-transform:translateX(0);
+		}
+		10% {
+		-webkit-transform:translateX(-10px);
+		}
+		20%{
+		-webkit-transform:translateX(10px);
+		}
+	}
 	.shop2_content .total{height: 0.98rem;width: 100%;display: block; background: #fff;position: fixed;bottom: 0;left: 0;z-index: 99;border-top: 1px solid #ddd;}
 	.shop2_content .qx_label{display: inline-block;height: 0.98rem;line-height: 0.98rem;float: left;position: relative;margin-left: 0.3rem;}
 	.shop2_content .qx_label span{font-size: 0.3rem;color: #333;display: block;font-family: helvetica;margin-left: 0.5rem;}
@@ -2429,10 +2440,11 @@
 	.shop2_content .hg_shop_ul .big{width: 0.6rem;height: 0.6rem;padding: 0.1rem 0 0 0.1rem;position: absolute;left: 2rem;top:1.5rem;}
 	.shop2_content .hg_shop_ul .big span{width: 0.5rem;height: 0.5rem;display: block;background: rgba(0,0,0,.8) url(../img/png/fdj.png) no-repeat center;}
 	.shop2_content .hg_shop_ul .div_ol{width:4.6rem;float: right;border-bottom: 1px solid #eee;padding-bottom: 0.4rem;}
+	.shop2_content .hg_shop_ul .div_ol>p{padding-left: 0.15rem;margin-bottom: 0.05rem;}
 	.shop2_content .hg_shop_ul ol li{display: block;float: left;font-size: 0.22rem;color: #333;padding: 0 0.2rem;margin-left: 0.2rem;margin-bottom: 0.2rem;
 	border-radius: 50px;border: 1px solid #f5f5f5;background: #f5f5f5;height: 0.5rem;line-height: 0.5rem;cursor: pointer;}
 	.shop2_content .hg_shop_ul ol li.active,.shop2_content .hg_shop_ul ol li:hover{border: 1px solid #f23030;color: #f23030;background: #fffbfb;}
-	.shop2_content .hg_shop_ul .price{width: 2rem;position: inherit;margin-top: 0.2rem;}
+	.shop2_content .hg_shop_ul .price{width: 2rem;position: inherit;margin-top: 0.1rem;}
 	.shop2_content .hg_shop_ul .price .sp1{font-size: 0.28rem;color: #f23030;display: inline-block;margin-left: 0.2rem;line-height: 0.28rem;}
 	.shop2_content .hg_shop_ul .price .sp2{font-size: 0.22rem;color: #999;display: inline-block;margin-left: 0.2rem;line-height: 0.28rem;text-decoration: line-through;}
 	.shop2_content .hg_shop_ul .pre_div{bottom: 0.3rem;}
