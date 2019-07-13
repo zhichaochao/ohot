@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/common.css" />
         <!-- <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/index.css" /> -->
         <!-- https://mad.hotbeautyhairmall.com/ -->
-        <link rel="stylesheet" href="catalog/view/theme/default/css/index.css" />
+        <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/index.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/swiper.min.css" />
         <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/jquery.min.js" ></script>
         <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/common.js" ></script>

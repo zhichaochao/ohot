@@ -1,205 +1,243 @@
-<?php echo $header; ?>
-<!--内容-->
-    <div class="content in_content product promotion">
-    <input type="hidden" name="allpage" value='<?=$allpage;?>' id='allpage'/>
-<input type="hidden" name="page" value='1' id='page'/>
-<input type="hidden" name="sort" value='<?=$sort;?>' id='sort'/>
-<input type="hidden" name="order" value='<?=$order;?>' id='order'/>
-<input type="hidden" name="limit" value='<?=$limit;?>' id='limit'/>
-<input type="hidden" name="category_id" value='<?=$category_id;?>' id='category_id'/>
-      <!-- <img class="changeimage img_bnr" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/addpro.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />  -->
-       <img class="changeimage img_bnr" data-image='catalog/view/theme/default/img/jpg/addpro1.jpg' data-mimage='catalog/view/theme/default/img/jpg/addpro1.jpg'  />
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="catalog/view/theme/default/css/ttf.css" />
+        <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/common.css" />
+    
+        <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/index.css" />
+      <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/jquery.min.js" ></script>
+        <script type="text/javascript" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/js/common.js" ></script>
+    <title>ACTIVITY</title>
+  </head>
+  <style type="text/css">
+    @media only screen and (min-width:1201px){
+      .activity_con .img{display: block;}
+      .activity_con .ac_bg{background: url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/ac_text_bg.jpg) no-repeat 100% 100%;}
+      .activity_con .ac_text{width: 80%;margin: auto;}
+      .activity_con .top_ul{margin: 80px -18px 100px -18px;}
+      .activity_con .top_ul li{width: calc(33.33% - 36px);display: block;float: left;height: 260px;text-align: center;
+      border-radius: 9px;background: #f7ebee;margin: 0 18px;position: relative;}
+      .activity_con .top_ul li span{font-family: helvetica;font-weight: bold;font-size: 80px;position: absolute;display: block;width: 100%;
+      height: 40px;overflow: hidden;}
+      .activity_con .top_ul li span.sp1 {color: #fff;line-height: 80px;top: -38px;}
+      .activity_con .top_ul li span.sp2 {color: #e8c4cd;line-height: 4px;}
+      .activity_con .top_ul li h1{font-family: helvetica;font-size: 30px;line-height: 30px;margin: 75px 0 0 0;}
+      .activity_con .top_ul li .p_div{height: 155px;line-height: 155px;}
+      .activity_con .top_ul li .center{display: inline-block;vertical-align: middle;}
+      .activity_con .top_ul li p{font-family: helvetica;font-size: 16px;line-height: 20px;color: #666;padding: 0 20px;}
+      .activity_con .btn_div{border-radius: 9px;margin-bottom: 120px;padding: 0 80px;}
+      .activity_con .btn_div.bg_f{background: #eccfd8;}
+      .activity_con .btn_div.bg_b{background: #fff;}
+      .activity_con .btn_div .bt_div{display: inline-block;padding: 0 58px;font-size: 40px;line-height: 80px;height: 80px;color: #fff;
+        border-radius: 9px;border: 1px solid #eccfd8;position: relative;left: 50%;transform: translateX(-50%);top: -40px;
+        background: -webkit-linear-gradient(45deg, #ff8fa4, #ff497c); background: -o-linear-gradient(45deg, #ff8fa4, #ff497c); 
+        background: -moz-linear-gradient(45deg, #ff8fa4, #ff497c); background: linear-gradient(45deg, #ff8fa4, #ff497c);
+      }
+      .activity_con .center_ul{margin: 0 -10px;padding-bottom: 20px;}
+      .activity_con .center_ul li{display: block;float: left;width: calc(20% - 20px);margin: 0 10px;}
+      .activity_con .center_ul li .img_a{display: block;width: 100%;overflow: hidden;border-radius: 9px;border: 3px solid #dca8b8;box-sizing: border-box;}
+      .activity_con .center_ul li .img_a img{width: 100%;height: 100%;display: block;}
+      .activity_con .center_ul li p{font-size: 18px;color: #b37085;font-family: helvetica;line-height: 24px;padding: 5px 0; margin-bottom: 10px;}
+      .activity_con .center_ul li .click_a{display: inline-block;padding: 0 33px;height: 40px;line-height: 40px;color: #b37085;
+      border-radius:3px;margin-bottom: 40px;background: #fff;font-size: 18px;}
+      .activity_con .center_ul li .click_a:hover{color: #fff;
+        background: -webkit-linear-gradient(45deg, #ff8fa4, #ff497c); background: -o-linear-gradient(45deg, #ff8fa4, #ff497c); 
+        background: -moz-linear-gradient(45deg, #ff8fa4, #ff497c); background: linear-gradient(45deg, #ff8fa4, #ff497c);
+      }
       
-      <h1 style="line-height:4px;">Plus Purchase Products</h1>
-      <div class="pro_content clearfix">
-  
-        <div class="pro_text clearfix">
-          <ul class="pro_ul prolist clearfix">
-            <?php foreach ($products as $product) { ?>
-             <li>
-              <a href="<?php echo $product['href']; ?>">
-                <div class="pic_img" >
-                  <img src="<?php echo $product['thumb']; ?>"   />
+      .bot_lf{float: left;width: calc(100% - 480px);}
+      .bot_lf dl{margin-bottom: 30px;}
+      .bot_lf dl dt{font-size: 20px;line-height: 24px;font-family: helvetica;color: #d27284;margin-bottom: 20px;font-weight: bold;}
+      .bot_lf dl dd{font-size: 18px;line-height: 24px;font-family: helvetica;color: #333;margin-bottom: 10px;}
+      .bot_rf{float: right;width: 480px;background: url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/ac_bg2.jpg) no-repeat;height: 606px;padding: 0 40px;}
+      .bot_rf h1{font-size: 30px;height: 30px;line-height: 30px; font-weight: bold;color: #fff;text-align: center;display: block;margin: 70px 0 30px 0;font-family: helvetica;}
+      .bot_rf span{display: block;width: 50px;height: 3px;background: #fff;margin:0 auto 80px auto;}
+      .bot_rf p{font-size: 18px;line-height: 24px;font-family: helvetica;color: #fff;padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.2);margin-bottom: 40px;}
+      
+    }
+    
+    @media only screen and (min-width:1px) and (max-width: 1200px) {
+      .activity_con .img{display: block;}
+      .activity_con .ac_bg{background: url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/ac_text_bg_yd.jpg) no-repeat left top/100% 100%;}
+      .activity_con .ac_text{margin: auto;}
+      .activity_con .top_ul{margin: 0.7rem auto 0.6rem auto;background: transparent;width: 6.6rem;}
+      .activity_con .top_ul li{width:100%;display: block;float: left;text-align: center;
+      border-radius: 9px;background: #f7ebee;position: relative;margin-bottom: 0.7rem;}
+      .activity_con .top_ul li span{font-family: helvetica;font-weight: bold;font-size: 0.8rem;position: absolute;display: block;width: 100%;
+      height: 40px;overflow: hidden;}
+      .activity_con .top_ul li span.sp1 {color: #fff;line-height: 0.8rem;top: -0.38rem;}
+      .activity_con .top_ul li span.sp2 {color: #e8c4cd;line-height: 0.04rem;}
+      .activity_con .top_ul li h1{font-family: helvetica;font-size: 0.3rem;line-height: 0.3rem;margin: 0.7rem 0 0 0;}
+      .activity_con .top_ul li .p_div{height: 1.7rem;line-height: 1.7rem;}
+      .activity_con .top_ul li .center{display: inline-block;vertical-align: middle;}
+      .activity_con .top_ul li p{font-family: helvetica;font-size: 0.22rem;line-height: 0.24rem;color: #666;padding: 0 0.1rem;}
+      .activity_con .top_ul li p br{display: none;}
+      
+      
+      .activity_con .btn_div{border-radius: 9px;padding: 0 0.3rem;margin: 0 0.3rem 0.9rem 0.3rem;}
+      .activity_con .btn_div.bg_f{background: #eccfd8;}
+      .activity_con .btn_div.bg_b{background: #fff;}
+      .activity_con .btn_div .bt_div{display: inline-block;padding: 0 0.5rem;font-size: 0.36rem;line-height: 0.7rem;height: 0.7rem;color: #fff;
+        border-radius: 9px;border: 1px solid #eccfd8;position: relative;left: 50%;transform: translateX(-50%);top: -40px;
+        background: -webkit-linear-gradient(45deg, #ff8fa4, #ff497c); background: -o-linear-gradient(45deg, #ff8fa4, #ff497c); 
+        background: -moz-linear-gradient(45deg, #ff8fa4, #ff497c); background: linear-gradient(45deg, #ff8fa4, #ff497c);
+      }
+      .activity_con .center_ul{margin: 0 -0.15rem;}
+      .activity_con .center_ul li{display: block;float: left;width: calc(50% - 0.3rem);margin: 0 0.15rem;}
+      .activity_con .center_ul li .img_a{display: block;width: 100%;overflow: hidden;border-radius: 9px;border: 3px solid #dca8b8;box-sizing: border-box;}
+      .activity_con .center_ul li .img_a img{width: 100%;height: 100%;display: block;}
+      .activity_con .center_ul li p{font-size: 0.2rem;color: #b37085;font-family: helvetica;line-height: 0.22rem;padding: 0.05rem 0; margin-bottom: 0.4rem;}
+      .activity_con .center_ul li .click_a{display: none;}
+      .bot_lf{width: 100%;}
+      .bot_lf dl{margin-bottom: 0.3rem;}
+      .bot_lf dl dt{font-size: 0.26rem;line-height: 0.3rem;font-family: helvetica;color: #d27284;margin-bottom: 0.15rem;font-weight: bold;}
+      .bot_lf dl dd{font-size: 0.24rem;line-height: 0.3rem;font-family: helvetica;color: #333;margin-bottom: 0.1rem;}
+      .bot_rf{background: url(<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/ac_bg2_yd.jpg) no-repeat 100%;padding: 0 0.4rem;width: 6.2rem;margin:0 auto 0.4rem auto;}
+      .bot_rf h1{font-size: 0.3rem;height: 0.3rem;line-height: 0.3rem; font-weight: bold;color: #fff;text-align: center;
+      display: block;margin: 0.6rem 0 0.25rem 0;font-family: helvetica;}
+      .bot_rf span{display: block;width: 0.5rem;height: 3px;background: #fff;margin:0 auto 1rem auto;}
+      .bot_rf p{font-size: 0.24rem;line-height: 0.26rem;font-family: helvetica;color: #fff;padding-bottom: 0.2rem;
+      border-bottom: 1px solid rgba(255,255,255,.2);margin-bottom: 0.5rem;}
+    }
+    
+  </style>
+  <body>
+    <div class="activity_con clearfix">
+      
+      <div class="ac_bg clearfix">
+        <!-- banner -->
+        <img class="img changeimage lazyLoad" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/active.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/active_yd.jpg'/>
+        <div class="ac_text clearfix">
+          <!-- 01 02 03 -->
+          <ul class="top_ul clearfix">
+            <li>
+              <span class="sp1">01</span>
+              <span class="sp2">01</span>
+              <h1>Overview</h1>
+              <div class="p_div">
+                <div class="center">
+                  <p>
+                    For celebrating our 10th Aniversary, <br />
+                    hot beauty hair give the profit to our regular  <br />
+                    clients and new clients.
+                  </p>
                 </div>
-                <div class="text clearfix" >
-                <p><?php echo $product['name']; ?></p>
-                <span class="price"">
-                  <?php if($product['special']) { ?>
-                  <em> <?php echo $product['special']; ?></em>
-                     <del><?php echo $product['price']; ?></del>
-                  <?php }else{ ?>
-                     <em class="price-single"><?php echo $product['price']; ?>
-                     </em>
-                  <?php } ?>
-                </span> 
-                <?php if($product['is_new']==0) { ?>
-                     <span class="new">NEW</span>
-                      <?php } ?>
-                      <?php if($product['is_sale']==1) { ?>
-                     <span class="new">SALE</span>
-                      <?php } ?>
-              
-                </div>
-              </a>
-              <div class="sc_div <?=$product['wishlist']==1 ?'off':'';?>"
-               onclick="wishlist('<?php echo $product['product_id']; ?>',this);" ></div>
+              </div>
             </li>
-            <?php } ?>
+            <li>
+              <span class="sp1">02</span>
+              <span class="sp2">02</span>
+              <h1>What to Expect  </h1>
+              <div class="p_div">
+                <div class="center">
+                  <p>
+                    When you make any order which amount is <br />
+                    over 300$, you could add those extra value product <br />
+                    to your cart with a very lower price.<br />
+                    Each client or each order can order 6pcs in maximum.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <span class="sp1">03</span>
+              <span class="sp2">03</span>
+              <h1>Activitiy Duration </h1>
+              <div class="p_div">
+                <div class="center">
+                  <p>
+                    12 days <br />
+                    ( July 9th-July 20th, 2019 )
+                  </p>
+                </div>
+              </div>
+            </li>
           </ul>
-        </div>
-
-        <div class="bot clearfix">
-        <div class="left"><?php echo $pagination; ?></div>
-          <div class="right">
-            <p><?php echo $results; ?></p>
+        
+          <!-- Activitiy Products -->
+          <div class="btn_div bg_f clearfix">
+            <span class="bt_div">Activitiy Products</span>
+            <ul class="center_ul clearfix">
+                <?php if($products){ foreach ($products as $product) { ?>
+              <li>
+                <a class="img_a" href="<?php echo $product['href']; ?>">
+                  <img src="<?php echo $product['thumb']; ?>" alt="">
+                </a>
+                <?php $name=explode("-",$product['name']); ?>
+              <p><?=isset($name[0])?$name[0]:'';?></p>
+                <a class="click_a" href="<?php echo $product['href']; ?>">CLICK</a>
+              </li>
+                <?php }} ?>
+            </ul>
           </div>
+          
+          <!-- About the Plus Purchase -->
+          <div class="btn_div bg_b clearfix">
+            <span class="bt_div">About the Plus Purchase</span>
+            
+            <div class="bot_lf clearfix">
+              <dl>
+                <dt>1. Available time: </dt>
+                <dd>July 9th-July 20th, 2019</dd>
+              </dl>
+              <dl>
+                <dt>2. Who can attend: </dt>
+                <dd>Anybody who can sign in our site</dd>
+              </dl>
+              <dl>
+                <dt>3. How to take part in: </dt>
+                <dd>
+                  <p>
+                    a) Add other products to cart (order must >$300) </br>    
+                    -->shopping cart--> browse & purchase -->slect products-->confirm-->check out 
+                  </p>
+                </dd>
+                <dd>
+                  <p>
+                    b) Add other products to cart（order must >$300) </br> 
+                    -->go to product category Plus Purchase -->slect products-->confirm-->check out 
+                  </p>
+                </dd>
+              </dl>
+              <dl>
+                <dt>4. Discount Percentage:</dt>
+                <dd>Order>300$, get extra purchase products with 30% off！</dd>
+                <dd>Order>1000$, get extra purchase products with 37% off！</dd>
+                <dd>Order>3000$, get extra purchase products with 45% off！</dd>
+              </dl>
+              <dl>
+                <dt>5. Maximum Order Quantity:</dt>
+                <dd>6 pcs of the extra value products for each order.</dd>
+                <dd>When it sold out, no more new stock in future.</dd>
+              </dl>
+            </div>
+          
+            <div class="bot_rf clearfix">
+              <h1>Important Information:</h1>
+              <span></span>
+              <p>
+                1) These plus purchase products are not for 
+                individual sale, it has to match other products.
+              </p>
+              <p>
+                2) Other products order value must over $300. 
+                Then you have the qualification to attend this 
+                activity.
+              </p>
+              <p>
+                3) When your order value(not including activity 
+                product value) reach a different price level, 
+                you'll see different price of these activity products.
+              </p>
+            </div>  
+          </div>
+          
         </div>
-
       </div>
-    </div>    
-<div>
-<script>
- function wishlist(product_id,e) {
-  if ($(e).hasClass('off')) {
-       $.ajax({
-    url:'<?php echo $delewishlist ;?>',
-    type:'post',
-    data:{'product_id':product_id},
-    dataType: 'json',
-    success:function(data){
-      if (data.success) {
-        $('#wishlist_count').html(data.total);
-      }
-               // location.reload(); 
-    }
-   })
-
-  }else{
-  //alert(product_id);die;
-   $.ajax({
-    url:'<?php echo $wishlist ;?>',
-    type:'post',
-    data:{'product_id':product_id},
-    dataType: 'json',
-    success:function(data){
-      if (data.success) {
-        $('#wishlist_count').html(data.total);
-      }
-               // location.reload(); 
-    }
-   })
- }
-}
-  $(function(){
-    
-    //sortby
-    $(".sortby").click(function(){
-      if($(this).hasClass("off")){
-        $(this).removeClass("off");
-        $(this).find("span").text("+");
-        $(this).siblings(".sortby_ol").slideUp();
-      }else{
-        $(this).addClass("off");
-        $(this).find("span").text("-");
-        $(this).siblings(".sortby_ol").slideDown();
-      }
-    })
-    
-  //收藏
-    $(".pro_content .pro_ul .sc_div").click(function(){
-      if($(this).hasClass("off")){
-        $(this).removeClass("off");
-        tips('Moved out from collection','');
-      }else{
-        $(this).addClass("off");
-        tips('Save to collection','');
-      }
-    })
-  })
-</script>
-
-<script>
-    function loadmore(obj){
-      var allpage=$('#allpage').val();
-      var page=$('#page').val();
-      var sort=$('#sort').val();
-      var category_id=$('#category_id').val();
-      var limit=$('#limit').val();
-      var win =$(window).width();
-        if(win<920){
-             var scrollTop = $(obj).scrollTop();
-            var scrollHeight = $(document).height();
-            var windowHeight = $(obj).height();
-            if (allpage>page) {
-             if (scrollHeight-scrollTop - windowHeight<=250 ) {
-              page++;
-              $('#page').val(page);
-               $.ajax({
-                          url: 'index.php?route=product/category/loadpage&page='+page+'&sort='+sort+'&category_id='+category_id+'&limit='+limit ,
-                          dataType: 'json',
-                          success: function(data) {
-                            var result="";
-                            // console.log( data);
-                           for (var i =0; i < data.products.length ; i++) {
-                            var addwinst="wishlist('"+data.products[i].product_id+"'";
-                               result+='<li>'
-                                  +'<a href="'+data.products[i].href+'">'
-                                    +'<div class="pic_img" >'
-                                        +'<img src="'+data.products[i].thumb+'"   />'
-                                    + '</div>'
-                                      + '<div class="text clearfix" >'
-                                      +'<p>'+data.products[i].name+'</p>'
-                                       + '<span class="price">';
-                              if (data.products[i].special) {
-                                 result += '  <span>'+data.products[i].special
-                                           +' <del>'+data.products[i].price
-                                            +'</del>'
-                                          + '</span>';
-                             }else{
-                                      result+= '<span class="price-single">'+data.products[i].price+'</span>';
-                              }
-                                
-
-                                    result+=   '</span>'
-                                    if (data.products[i].is_new==0) {
-                                    result+='<span class="new" >NEW</span>';
-                                    }
-                                    if (data.products[i].is_sale==1) {
-                                      result+='<span class="sale" >SALE</span>';
-                                    }
-
-                                    // if (data.products[i].modelling) {
-                                    //   result+='<i class="modelling">'+data.products[i].modelling+' </i>';
-                                    // }
-                                     // result+=' <div class="fsbg_div">'
-                                     //    +'<i>'+'-'+data.products[i].off+'%'    
-                                     //    +'</i>' 
-                                     //    + '</div>'
-                                     
-                                   +'</a>';
-                                   if (data.products[i].wishlist==1) {
-                                    result+='<div class="sc_div off" onclick="'+addwinst+',this);" >';
-                                   }else{
-                                    result+='<div class="sc_div" onclick="'+addwinst+',this);" >';
-                                   }
-                                  +'</div>'
-                                  +'</li>';
-                                   }
-                                  // console.log(result);
-                           $('.prolist').append(result);
-                          }
-                       })
-                      } 
-                    }
-                    // else if(!$(".pro_text ").hasClass('over')){
-                    //   $(".pro_text ").addClass('over')
-                    //    $(".pro_text ").append("<p>加载完成</p>");
-                    // }
-                }
-              }
-    //页面滚动执行事件
-    $(window).scroll(function (){
-        loadmore($(this));
-    });
-</script>
-<?php echo $footer; ?>
+    </div>
+  </body> 
+</html>
