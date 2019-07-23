@@ -3,14 +3,14 @@ class ModelCheckoutOrder extends Model {
 	private function querysql($sql)
 	{
 		$dbs= unserialize($this->config->get('db_database_data'));
-		foreach ($dbs as $key => $value) {
-			if($key==0){
+		// foreach ($dbs as $key => $value) {
+		// 	if($key==0){
 				$this->db->query($sql);
-			}else{
-				$d='db'.$key;
-				$this->$d->query($sql);
-			}
-		}
+		// 	}else{
+		// 		$d='db'.$key;
+		// 		$this->$d->query($sql);
+		// 	}
+		// }
 		
 	}
 	public function addOrder($data) {
