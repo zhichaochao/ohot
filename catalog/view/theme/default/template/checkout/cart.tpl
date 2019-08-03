@@ -41,7 +41,7 @@
 						</div>
 						</div>
 						
-						<ul class="shop2_ul" <?php if ($can_add){ ?>style="margin: 1.1rem 0 0.2rem 0;" <?php }else{?>style="margin: 1.1rem 0 2.17rem 0;" <?php }?> >
+						<ul class="shop2_ul" <?php if (ADD_CART){ ?> <?php if ($can_add){ ?>style="margin: 1.1rem 0 0.2rem 0;" <?php }else{?>style="margin: 1.1rem 0 2.17rem 0;" <?php } }?> >
 
 						<?php foreach($products as $product){ ?>
 							<li class="clearfix">
