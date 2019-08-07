@@ -918,7 +918,7 @@ var product_id = "<?php echo $product_id; ?>";
 		                var quantity=parseInt(json['quantity']);
 		                // console.log($('#numss').val());
 		                // console.log(json['quantity']);
-		                if (num<quantity) {
+		                if (num<=quantity) {
 		                    $('#button-cart').html('ADD TO SHOPPING CART&nbsp;&nbsp;&nbsp;&nbsp;>');
 		                }else{
 		                   $('#button-cart').html('SOLD OUT');
