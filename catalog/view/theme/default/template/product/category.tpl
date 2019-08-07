@@ -78,6 +78,15 @@
     </div>
   </div>
 </div>
+<style>
+@media (max-width: 750px) {
+  
+
+  .sale,.new{float: none !important;}
+  .modelling{margin-left:0 !important;clear: both !important;}
+
+}
+</style>
 <script>
  function wishlist(product_id,e) {
   if ($(e).hasClass('off')) {
