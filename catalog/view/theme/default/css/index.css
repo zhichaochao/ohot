@@ -1,4 +1,13 @@
 
+
+
+
+
+
+
+
+
+
 .banner {position: relative;height: 37.52vw;overflow: hidden;}
 .banner #swiper1{width: 100%;height: 100%;border: 1px solid #fff;box-sizing: content-box;}
 .banner .swiper-slide{width: 100%;box-sizing:content-box;}
@@ -155,9 +164,9 @@
 	.pro_content .pro_ul .text{background: #fff;padding-bottom: 0.94vw;padding-top: 0.1rem}
 	.pro_content .pro_ul .text span{font-family: san_r;font-size: 1.25vw;line-height: 1.25vw;height: 1.25vw; margin:10px 0 0.73vw 0;padding: 0 1.25vw;
 	display: block;color: #000;position: relative;overflow: hidden;}
-	.pro_content .pro_ul .text span em{display: inline-block;float: left;font-size: 24px;color: #fe2a4d;text-align: left;line-height: 28px;}
+	.pro_content .pro_ul .text span em{display: inline-block;float: left;font-size: 1.25vw;color: #fe2a4d;text-align: left;line-height: 1.25vw;}
 	.pro_content .pro_ul .text span del{display: inline-block;float: left;color: #999;text-decoration: line-through;margin-left: 0.2vw;font-size: 0.72vw;
-	height: 0.72vw;line-height: 0.72vw;position: relative;top: 0.5vw }
+	height: 0.72vw;line-height: 1vw;position: relative;top: 0.5vw }
 	.pro_content .pro_ul .text span.new{margin: 0 0 0 0.8vw;display: inline-block;color: #fff;
 	background: #1faf85;font-size: 0.93vw;width: 2.8vw;height: 1.25vw;text-align: center;padding: 0;}
 	.pro_content .pro_ul .text span.sale{margin: 0 0 0 0.8vw;display: inline-block;color: #fff;
@@ -435,7 +444,7 @@
 	.gwc_pc .div2 p{display: inline-block;background: #f5f5f5;font-size:0.16rem;color: #666;border-radius: 20px;padding: 0 0.15rem;
 	height: 0.3rem;line-height: 0.3rem; margin: 0 0.52vw 0.73vw 0;float: left;}
 	.gwc_pc .div3{display: inline-block;float: left;width: 1.2rem ;height: 1.6rem;line-height: 1.6rem; position: absolute;left: 50%;text-align: center;}
-	.gwc_pc .div3 span.price{display: inline-block;font-size: 0.2rem;vertical-align: middle;height: 56px;text-align: center;}
+	.gwc_pc .div3 span.price{display: inline-block;font-size: 0.2rem;vertical-align: middle;/* height: 56px; */text-align: center;}
 	.gwc_pc .div3 span.price i{width: 100%; line-height: 28px;display: inline-block;float: left;}
 	.gwc_pc .div3 span.price em{width: 100%; line-height: 28px;display: inline-block;float: left;color: #999;text-decoration: line-through;}
 	
@@ -3691,8 +3700,8 @@ width: 2.6rem;height: 0.5rem;line-height: 0.5rem;font-size: 0.2rem;color: #333;m
 	.activity_con .center_ul li .img_a{display: block;width: 100%;overflow: hidden;border-radius: 9px;border: 3px solid #dca8b8;box-sizing: border-box;}
 	.activity_con .center_ul li .img_a img{width: 100%;height: 100%;display: block;}
 	.activity_con .center_ul li p{font-size: 18px;color: #b37085;font-family: helvetica;line-height: 24px;padding: 5px 0; margin-bottom: 10px;}
-	.activity_con .center_ul li .click_a{display: inline-block;padding: 0 33px;height: 40px;line-height: 40px;color: #b37085;
-	border-radius:3px;margin-bottom: 40px;background: #fff;font-size: 18px;}
+	.activity_con .center_ul li .click_a{display: block;height: 40px;line-height: 40px;color: #b37085;width: 120px;text-align: center;
+	border-radius:3px;margin:0 auto 40px auto;background: #fff;font-size: 18px;}
 	.activity_con .center_ul li .click_a:hover{color: #fff;
 		background: -webkit-linear-gradient(45deg, #ff8fa4, #ff497c); background: -o-linear-gradient(45deg, #ff8fa4, #ff497c); 
 		background: -moz-linear-gradient(45deg, #ff8fa4, #ff497c); background: linear-gradient(45deg, #ff8fa4, #ff497c);
