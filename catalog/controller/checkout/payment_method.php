@@ -52,7 +52,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 
 			foreach ($results as $result) {
 				// 只有尼日利亚才显示尼日利亚支付
-				if ($this->config->get($result['code'] . '_status')&&($result['code']!='naria_account'||($result['code']=='naria_account'&&$country_id==156))) {
+				if ($this->config->get($result['code'] . '_status')&&($result['code']!='naria_account'||($result['code']=='naria_account'&&$country_id==156))&&($result['code']!='ghanaian_cedi'||($result['code']=='ghanaian_cedi'&&$country_id==82))) {
 					$this->load->model('extension/payment/' . $result['code']);
 
 					$method = $this->{'model_extension_payment_' . $result['code']}->getMethod($this->session->data['payment_address'], $total);
@@ -190,7 +190,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 
 			foreach ($results as $result) {
 				// 只有尼日利亚才显示尼日利亚支付
-				if ($this->config->get($result['code'] . '_status')&&($result['code']!='naria_account'||($result['code']=='naria_account'&&$country_id==156))) {
+				if ($this->config->get($result['code'] . '_status')&&($result['code']!='naria_account'||($result['code']=='naria_account'&&$country_id==156))&&($result['code']!='ghanaian_cedi'||($result['code']=='ghanaian_cedi'&&$country_id==82))) {
 					$this->load->model('extension/payment/' . $result['code']);
 
 					$method = $this->{'model_extension_payment_' . $result['code']}->getMethod($this->session->data['payment_address'], $total);

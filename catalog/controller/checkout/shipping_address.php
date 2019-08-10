@@ -225,12 +225,12 @@ class ControllerCheckoutShippingAddress extends Controller {
 		}
 
 		// Validate cart has products and has stock.
-		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
+		if ((!$this->cart->hasProducts($this->session->data['cart_ids']) && empty($this->session->data['vouchers'])) || (!$this->cart->hasStocks($this->session->data['cart_ids']) && !$this->config->get('config_stock_checkout'))) {
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 
 		// Validate minimum quantity requirements.
-		$products = $this->cart->getProducts();
+		$products = $this->cart->getProducts($this->session->data['cart_ids']);
 
 		foreach ($products as $product) {
 			$product_total = 0;
