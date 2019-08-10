@@ -112,7 +112,7 @@ class ControllerCheckoutCheckout extends Controller {
 		$data['header'] = $this->load->controller('common/header');
 
 		$data['cart_ids'] = $this->request->get['cart_ids'];
-
+//        print_r($this->session->data['cart_ids']);exit();
 		$this->response->setOutput($this->load->view('checkout/checkout', $data));
 	}
 

@@ -298,7 +298,7 @@ class ControllerCheckoutConfirm extends Controller {
     	    }
     	
     	    // Validate cart has products and has stock.
-    	    elseif ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
+    	    elseif ((!$this->cart->hasProducts($this->session->data['cart_ids']) && empty($this->session->data['vouchers'])) || (!$this->cart->hasStocks($this->session->data['cart_ids']) && !$this->config->get('config_stock_checkout'))) {
     	        $json['redirect'] = $this->url->link('checkout/cart');
     	    }
 	    }
@@ -318,6 +318,7 @@ class ControllerCheckoutConfirm extends Controller {
 	            break;
 	        }
 	    }
+//	    print_r($json);exit();
 	
 	    if (!$json) {
 	        $order_data = array();

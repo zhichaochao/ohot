@@ -427,7 +427,7 @@ $data['comment'] = isset($this->session->data['comment'])?$this->session->data['
 
 	public function save() {
 		$this->load->language('checkout/checkout');
-
+//        print_r($this->session->data);exit();
 		$json = array();
 
 		// Validate if payment address has been set.
@@ -436,12 +436,15 @@ $data['comment'] = isset($this->session->data['comment'])?$this->session->data['
 		}
 
 		// Validate cart has products and has stock.
-		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
+//        print_r(!$this->cart->hasStock($this->session->data['cart_ids']));
+//        exit();
+		if ((!$this->cart->hasProducts($this->session->data['cart_ids']) && empty($this->session->data['vouchers'])) || (!$this->cart->hasStocks($this->session->data['cart_ids']) && !$this->config->get('config_stock_checkout'))) {
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 
 		// Validate minimum quantity requirements.
-		$products = $this->cart->getProducts();
+		$products = $this->cart->getProducts($this->session->data['cart_ids']);
+//		print_r($products);exit();
 
 		foreach ($products as $product) {
 			$product_total = 0;
