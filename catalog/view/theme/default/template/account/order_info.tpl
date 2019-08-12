@@ -275,7 +275,7 @@
           <li class="clearfix" style="padding: 0;">
             <div class="zf_img clearfix">
               <!-- <a class="zf_a" href="###">Re Submit Receipt</a> -->
-              <img src="<?=$bank_receipt;?>" alt="" />  
+              <!-- <img src="<?=$bank_receipt;?>" alt="" />   -->
                <?php foreach ($bank_receipt as $k=>$bankvalue) { ?>
               <img src="<?php echo $bankvalue['bank_receipt'];?>" alt="" /> 
               <?php } ?>           
