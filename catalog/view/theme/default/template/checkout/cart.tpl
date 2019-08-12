@@ -66,7 +66,11 @@
 			                        <?php } ?>
 			                  
 								</div>
-								<?php if(!$product['stock']) { ?><p class="bg"><i></i>No Stock</p><?php }else{ ?> <p class="bg"><i></i><?php echo $product['qty']?> Pcs only</p><?php } ?>
+								<?php if(!$product['stock']) { ?>
+								<p class="bg"><i></i>No Stock</p>
+								<?php }else{ ?>
+								 <p class="bg" style="display: none;" data="<?php echo $product['qtys']?>" id="stock_<?php echo $product['cart_id']; ?>"><i></i><?php echo $product['qty']?> Pcs only</p>
+								 <?php } ?>
 								<div class="price clearfix">
 										<?php if($product['original_price']) { ?>
 											<p><?php echo $product['price']; ?><span><?php echo $product['original_price']; ?></span></p>
@@ -220,7 +224,7 @@
 								<?php if(!$product['stock']) { ?>
 								<p class="bg">No Stock</p>
 							     <?php }else{ ?>
-							     <p class="bg"><?php echo $product['qty']?> Pcs only</p>
+							     <p class="bg" style="display: none;" data="<?php echo $product['qtys']?>" id="stock_<?php echo $product['cart_id']; ?>"><?php echo $product['qty']?> Pcs only</p>
 								 <?php } ?>	
 							</div>
 						</div>
@@ -555,6 +559,12 @@ function cart_removes(product_key){
         window.location='index.php?route=checkout/checkout&cart_ids=' + chk_value;
     }
 	function updateQty(obj,type){
+	// if(!$(this).parents('li').hasClass("no")){
+	// 			var num  = $(this).siblings(".num").val();
+	// 			num++;
+	// 			$(this).siblings(".num").val(num);
+	// 			in_num();
+	// 		}	
 	// var num= $(obj).parent().find('input').val();
 	var cart_id= $(obj).parent().find('input').attr('aid');
 	// console.log(num);
@@ -568,16 +578,19 @@ function cart_removes(product_key){
 	            if(qty == 0){tips('At least 1 product','gantan'); return false;};
 	          
 	            $('.input_'+cart_id).val(qty);
-	            console.log(cart_id);
+	            // console.log(qty);
 	          // document.getElementById('cart-form').submit();
 	            break;
 	        case 2:
 	            qty = parseInt($(obj).prev('input[type="text"]').val()) + 1;
-	            // $(obj).prev('input[type="text"]').val(qty);
-	       
-	            $('.input_'+cart_id).val(qty);
-	               console.log(cart_id);
-	        //document.getElementById('cart-form').submit();
+	            var stock = $('#stock_'+cart_id).attr('data');
+	       		if(qty<=stock){
+	       			$('.input_'+cart_id).val(qty);
+	       		}else{
+	       			$('#stock_'+cart_id).css('display','block');
+	       			return false;
+	       		}
+	               // console.log(stock);
 	            break;
 	    }
 
