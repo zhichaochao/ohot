@@ -1,10 +1,11 @@
+
 <div class="yd_hide" ><?php echo $header; ?></div>
 
-<?php  if($order['payment_code']=='tt_bank_transfer'){ ?>
-            <div class="new_nav pc_hide clearfix">
-                <a class="fh" href="<?php echo $home?>"></a>
-                <p>BANK ACCOUNT</p>
-            </div>
+            <?php  if($order['payment_code']=='tt_bank_transfer'){ ?>
+                <div class="new_nav pc_hide clearfix">
+                    <a class="fh" href="<?php echo $home?>"></a>
+                    <p>BANK ACCOUNT</p>
+                </div>
              <!-- <p class="p1">Please transfer to the following bank account</p> -->
                 <?php }elseif($order['payment_code']=='money_gram'){?>
                 <div class="new_nav pc_hide clearfix">
@@ -28,6 +29,11 @@
                 <a class="fh" href="<?php echo $home?>"></a>
                 <p>Naira Account Information</p>
                 </div>
+            <?php }elseif($order['payment_code']=='ghanaian_cedi'){?>
+                <div class="new_nav pc_hide clearfix">
+                <a class="fh" href="<?php echo $home?>"></a>
+                <p>Our Ghana Bank Account </p>
+                </div>
             <?php }?>
 
             
@@ -43,6 +49,8 @@
                <p class="p1">Please transfer to the following names</p>  
             <?php }elseif($order['payment_code']=='naria_account'){ ?>
                <p class="p1">Please transfer to the following bank account</p>  
+            <?php }elseif($order['payment_code']=='ghanaian_cedi'){ ?>
+               <p class="p1">Please transfer to the following bank account</p>  
             <?php }?>
                 <!-- <p class="p1">Please transfer to the following <?php  if($order['payment_code']=='naria_account'){?>NAIRA<?php } ?> bank account</p> -->
                 <?php  if($order['payment_code']=='tt_bank_transfer'){ ?>
@@ -55,6 +63,8 @@
                 <p class="p3">Our HangSeng Bank</p>
                 <?php }elseif($order['payment_code']=='naria_account'){ ?>
                 <p class="p3">Our Naira Bank Account</p>
+                <?php }elseif($order['payment_code']=='ghanaian_cedi'){ ?>
+                <p class="p3">Our Ghana Bank Account </p>
                 <?php }?>
 
                 <table class="pay_tb1 pay_tb2">
