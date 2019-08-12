@@ -135,7 +135,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 
 	public function wap() {
 		$this->load->language('checkout/checkout');
-		if ((!$this->cart->hasProducts() && empty($this->session->data['payment_address'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
+		if ((!$this->cart->hasProducts() && empty($this->session->data['payment_address'])) || (!$this->cart->hasStocks($this->session->data['cart_ids']) && !$this->config->get('config_stock_checkout'))) {
 			$this->response->redirect($this->url->link('checkout/checkout'));
 		}
 		$this->session->data['shipping_address']['cart_ids']=$this->session->data['cart_ids'];

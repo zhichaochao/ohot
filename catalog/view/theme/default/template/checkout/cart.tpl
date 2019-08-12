@@ -44,8 +44,8 @@
 						<ul class="shop2_ul" <?php if (ADD_CART){ ?> <?php if ($can_add){ ?>style="margin: 1.1rem 0 0.2rem 0;" <?php }else{?>style="margin: 1.1rem 0 2.17rem 0;" <?php } }?> >
 
 						<?php foreach($products as $product){ ?>
-							<li class="clearfix">
-								      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>Stockout &nbsp&nbsp(Please delete this product!)</span></div><?php }?>
+							<li class="clearfix <?php if(!$product['stock']) { ?>no<?php }?>">
+								      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>No inventory，no selection</span></div><?php }?>
 							<label for="" class="dx_label">
 									 <input <?php if($product['stock']) { ?> checked="checked"<?php }?>  pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
 									 <i class="check_i  <?php if($product['stock']) { ?>active<?php }?>"></i>
@@ -66,6 +66,7 @@
 			                        <?php } ?>
 			                  
 								</div>
+								<?php if(!$product['stock']) { ?><p class="bg"><i></i>No Stock</p><?php }else{ ?> <p class="bg"><i></i><?php echo $product['qty']?> Pcs only</p><?php } ?>
 								<div class="price clearfix">
 										<?php if($product['original_price']) { ?>
 											<p><?php echo $product['price']; ?><span><?php echo $product['original_price']; ?></span></p>
@@ -142,7 +143,7 @@
 		
 		
 		<div class="gwc_pc yd_hide clearfix in_content">
-			<div class="text">
+			<div class="text" <?php if (!ADD_CART){ ?>style="margin-bottom:1rem;"<?php } ?> >
 				<h1><a class="fh" href="<?php echo $continueshopping?>">Continue Shopping</a> SHOPPING CART</h1>
 				
 				<div class="qx">
@@ -170,8 +171,8 @@
 
 
 					<?php foreach($products as $product){ ?>
-					<li class="clearfix">
-						      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>stockout</span></div><?php }?>
+					<li class="clearfix <?php if(!$product['stock']) { ?>no<?php }?> ">
+						      	<!-- <?php if(!$product['stock']) { ?><div class="li_modal"> <span>stockout</span></div><?php }?> -->
 						<div class="div1 clearfix">
 
 							<label for="" class="dx_label">
@@ -216,6 +217,11 @@
 								<!-- <input class="num" type="text" value="1" readonly="readonly"> -->
 								<input class="product_quantity input_<?php echo $product['cart_id']; ?>" readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
 								<span class="add" onclick="javascript:updateQty(this,2);"></span>
+								<?php if(!$product['stock']) { ?>
+								<p class="bg">No Stock</p>
+							     <?php }else{ ?>
+							     <p class="bg"><?php echo $product['qty']?> Pcs only</p>
+								 <?php } ?>	
 							</div>
 						</div>
 						<!-- <div class="pre_div">
@@ -307,7 +313,13 @@
 			<div class="vip"><a href="<?php echo $vip?>"><span>VIP</span></a></div>
 			<div class="top"><span>TOP</span></div>
 		</div> -->
-
+<!-- 弹窗提示 -->
+		<div class="popup_tips clearfix" style="display: none;">
+			<div class="text clearfix" style="min-height: auto;background: rgba(0,0,0,.5);width: 2.75rem;padding: 0.3rem 0;">
+				<p style="line-height: 0.36rem;display: block;font-size: 0.24rem;">No inventory </p>	
+				<p style="line-height: 0.36rem;display: block;font-size: 0.24rem;">No selection</p>	  
+			</div>
+		</div>
 	</body>
 </html>
 
@@ -684,6 +696,23 @@ function cart_removes(product_key){
     })
     //单选
     $(".dx_label input").click(function(){
+
+    		var this_par = $(this).parents('li');
+			if(this_par.hasClass('no')){
+				if($(window).width()<=920){
+					this_par.find('.li_modal').fadeIn();
+					setTimeout(function(){
+						this_par.find('.li_modal').fadeOut();
+					},2000);
+				}else{
+					$(".popup_tips").fadeIn()
+					setTimeout(function(){
+						$(".popup_tips").fadeOut();
+					},2000);
+				}
+					return false;
+			}
+
       const this_index = $(this).parents("li").index();
       
       if($(this).prop("checked")){
@@ -747,40 +776,47 @@ select_cart();
 
 			// console.log(a);
 		}
-
+// $(".add").click(function(){
+// 			if(!$(this).parents('li').hasClass("no")){
+// 				var num  = $(this).siblings(".num").val();
+// 				num++;
+// 				$(this).siblings(".num").val(num);
+// 				in_num();
+// 			}
+// 		})
 
 		//单选
 //单选
-		$(".dx_label input").click(function(){
-			const this_index = $(this).parents("li").index();
-			if($(this).prop("checked")){
-				$(".shop_ul>li").eq(this_index).find(".check_i").addClass("active");
-				$(".shop2_ul>li").eq(this_index).find(".check_i").addClass("active");
-				$(".shop_ul>li").eq(this_index).find("input").prop("checked",true);
-				$(".shop2_ul>li").eq(this_index).find("input").prop("checked",true);
+		// $(".dx_label input").click(function(){
+		// 	const this_index = $(this).parents("li").index();
+		// 	if($(this).prop("checked")){
+		// 		$(".shop_ul>li").eq(this_index).find(".check_i").addClass("active");
+		// 		$(".shop2_ul>li").eq(this_index).find(".check_i").addClass("active");
+		// 		$(".shop_ul>li").eq(this_index).find("input").prop("checked",true);
+		// 		$(".shop2_ul>li").eq(this_index).find("input").prop("checked",true);
 					
-				var len = $(".dx_label .check_i").length;
-				var i=0;
-				$(".dx_label .check_i").each(function(){
-					if($(this).hasClass("active")){
-						i++;
-						console.log($(this).siblings("input").val())
-					}
-					return i;
-				})
-				if(i>=len){
-					$(".qx_label input").prop("checked",true);
-					$(".qx_label .check_i").addClass("active");
-				}
-			}else{
-				$(".shop_ul>li").eq(this_index).find(".check_i").removeClass("active");
-				$(".shop2_ul>li").eq(this_index).find(".check_i").removeClass("active");
-				$(".shop_ul>li").eq(this_index).find("input").prop("checked",false);
-				$(".shop2_ul>li").eq(this_index).find("input").prop("checked",false);
-				$(".qx_label .check_i").removeClass("active");
-				$(".qx_label input").prop("checked","");
-			}
-		})
+		// 		var len = $(".dx_label .check_i").length;
+		// 		var i=0;
+		// 		$(".dx_label .check_i").each(function(){
+		// 			if($(this).hasClass("active")){
+		// 				i++;
+		// 				console.log($(this).siblings("input").val())
+		// 			}
+		// 			return i;
+		// 		})
+		// 		if(i>=len){
+		// 			$(".qx_label input").prop("checked",true);
+		// 			$(".qx_label .check_i").addClass("active");
+		// 		}
+		// 	}else{
+		// 		$(".shop_ul>li").eq(this_index).find(".check_i").removeClass("active");
+		// 		$(".shop2_ul>li").eq(this_index).find(".check_i").removeClass("active");
+		// 		$(".shop_ul>li").eq(this_index).find("input").prop("checked",false);
+		// 		$(".shop2_ul>li").eq(this_index).find("input").prop("checked",false);
+		// 		$(".qx_label .check_i").removeClass("active");
+		// 		$(".qx_label input").prop("checked","");
+		// 	}
+		// })
 
 </script>
 

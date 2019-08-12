@@ -187,6 +187,7 @@ class ControllerCheckoutCart extends Controller {
                     'option'    => $option_data,
                     'recurring' => $recurring,
                     'quantity'  => $product['quantity'],
+                    'qty'  => $product['qty']>=1000?'999+':$product['qty'],
                     'stock'     => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
                     'reward'    => ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
                     'price'     => $price,
