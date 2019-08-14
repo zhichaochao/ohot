@@ -44,7 +44,7 @@
 						<ul class="shop2_ul" <?php if (ADD_CART){ ?> <?php if ($can_add){ ?>style="margin: 1.1rem 0 0.2rem 0;" <?php }else{?>style="margin: 1.1rem 0 2.17rem 0;" <?php } }?> >
 
 						<?php foreach($products as $product){ ?>
-							<li class="clearfix <?php if(!$product['stock']) { ?>no<?php }?>">
+							<li class="clearfix <?php if(!$product['stock']) { ?>no<?php }?>" id="noyd_<?php echo $product['cart_id']; ?>">
 								      	<?php if(!$product['stock']) { ?><div class="li_modal"> <span>No inventory，no selection</span></div><?php }?>
 							<label for="" class="dx_label">
 									 <input <?php if($product['stock']) { ?> checked="checked"<?php }?>  pid='<?php echo $product['product_id']; ?>' class="check_input check_<?php echo $product['cart_id']; ?>" autocomplete="off" name="product" type="checkbox" value="<?php echo $product['cart_id']; ?>">
@@ -67,7 +67,16 @@
 			                  
 								</div>
 								<?php if(!$product['stock']) { ?>
+
+								<?php if($product['qtys']<$product['quantity'] && $product['qtys']!=0) { ?>
+								<p class="bg"  data="<?php echo $product['qtys']?>" id="stocks_<?php echo $product['cart_id']; ?>"><i></i><?php echo $product['qty']?> Pcs only</p>
+								<?php }else{ ?>	
 								<p class="bg"><i></i>No Stock</p>
+								<?php } ?>	
+
+
+
+
 								<?php }else{ ?>
 								 <p class="bg" style="display: none;" data="<?php echo $product['qtys']?>" id="stocks_<?php echo $product['cart_id']; ?>"><i></i><?php echo $product['qty']?> Pcs only</p>
 								 <?php } ?>
@@ -175,7 +184,7 @@
 
 
 					<?php foreach($products as $product){ ?>
-					<li class="clearfix <?php if(!$product['stock']) { ?>no<?php }?> ">
+					<li class="clearfix <?php if(!$product['stock']) { ?>no<?php }?> " id="no_<?php echo $product['cart_id']; ?>">
 						      	<!-- <?php if(!$product['stock']) { ?><div class="li_modal"> <span>stockout</span></div><?php }?> -->
 						<div class="div1 clearfix">
 
@@ -222,7 +231,13 @@
 								<input class="product_quantity input_<?php echo $product['cart_id']; ?>" readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
 								<span class="add" onclick="javascript:updateQty(this,2);"></span>
 								<?php if(!$product['stock']) { ?>
+
+								<?php if($product['qtys']<$product['quantity'] && $product['qtys']!=0) { ?>
+								<p class="bg"  data="<?php echo $product['qtys']?>" id="stock_<?php echo $product['cart_id']; ?>"><?php echo $product['qty']?> Pcs only</p>
+								<?php }else{ ?>	
 								<p class="bg">No Stock</p>
+								<?php } ?>
+
 							     <?php }else{ ?>
 							     <p class="bg" style="display: none;" data="<?php echo $product['qtys']?>" id="stock_<?php echo $product['cart_id']; ?>"><?php echo $product['qty']?> Pcs only</p>
 								 <?php } ?>	
@@ -576,22 +591,35 @@ function cart_removes(product_key){
 	        case 1:
 	            qty = $(obj).next('input[type="text"]').val() - 1;
 	            if(qty == 0){tips('At least 1 product','gantan'); return false;};
-	          
-	            $('.input_'+cart_id).val(qty);
-	            console.log(qty);
+	          	var stock = $('#stock_'+cart_id).attr('data');
+	          	if(qty<=stock){	
+	          		$('.input_'+cart_id).val(qty);
+	          		$('#stock_'+cart_id).css('background','#8fc31f');
+	          		$('#stocks_'+cart_id).css('color','#8fc31f');
+	          		$('#no_'+cart_id).removeClass("no");
+	          		$('#noyd_'+cart_id).removeClass("no");
+
+	          		$('.check_'+cart_id).siblings(".check_i").addClass("active");
+	          		 $('.check_'+cart_id).prop("checked",true);
+	          	}else{
+	          		$('.input_'+cart_id).val(qty);
+	          	}
+	            
+	            console.log(stock);
 	          // document.getElementById('cart-form').submit();
 	            break;
 	        case 2:
 	            qty = parseInt($(obj).prev('input[type="text"]').val()) + 1;
 	            var stock = $('#stock_'+cart_id).attr('data');
-	       		if(qty<=stock){
+	            var stocks = $('#stocks_'+cart_id).attr('data');
+	       		if(qty<=stock || qty<=stocks){
 	       			$('.input_'+cart_id).val(qty);
 	       		}else{
 	       			$('#stock_'+cart_id).css('display','block');
 	       			$('#stocks_'+cart_id).css('display','block');
 	       			return false;
 	       		}
-	               console.log(stock);
+	               console.log(stocks);
 	            break;
 	    }
 
