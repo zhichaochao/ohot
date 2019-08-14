@@ -29,8 +29,8 @@
           <!-- start 自定义图片的展示 -->
           <div class="form-group">
             <label class="col-sm-2 control-label"><?php echo $entry_image; ?></label>
-            <div class="col-sm-10"><a href="" id="naria-account-thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $ghanaian_cedi_thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
-              <input type="hidden" name="ghanaian_cedi_image" value="<?php echo $ghanaian_cedi_image; ?>" id="input-naria-account-image" />
+            <div class="col-sm-10"><a href="" id="ghanaian_cedi-thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $ghanaian_cedi_thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
+              <input type="hidden" name="ghanaian_cedi_image" value="<?php echo $ghanaian_cedi_image; ?>" id="input-ghanaian_cedi-image" />
             </div>
           </div>
           <!-- end 自定义图片的展示 -->
@@ -60,7 +60,7 @@
           <div class="tab-content">
             <?php $row = 0; ?>
 
-              <table id="naria-account" class="table table-striped table-bordered table-hover">
+              <table id="ghanaian_cedi" class="table table-striped table-bordered table-hover">
                 <thead>
                   <tr>
                     <td class="text-left"><?php echo $entry_text; ?></td>
@@ -78,7 +78,7 @@
 
                     <td class="text-right" style="width: 10%;"><input type="text" name="ghanaian_cedi_attributes[<?php echo $row; ?>][sort_order]" value="<?php echo $ghanaian_cedi_attribute['sort_order']; ?>" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>
 
-                    <td class="text-left"><button type="button" onclick="$('#naria-account-row<?php echo $row; ?>, .tooltip').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                    <td class="text-left"><button type="button" onclick="$('#ghanaian_cedi-row<?php echo $row; ?>, .tooltip').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
                   </tr>
                   <?php $row++; ?>
                   <?php } ?>
@@ -104,15 +104,15 @@
 var row = <?php echo $row; ?>;
 
 function addAttribute() {
-  html  = '<tr id="naria-account-row' + row + '">';
+  html  = '<tr id="ghanaian_cedi-row' + row + '">';
   html += '  <td class="text-left"><input type="text" name="ghanaian_cedi_attributes[' + row + '][text]" value="" placeholder="<?php echo $entry_text; ?>" class="form-control" /></td>';  
   html += '  <td class="text-left" style="width: 30%;"><input type="text" name="ghanaian_cedi_attributes[' + row + '][value]" value="" placeholder="<?php echo $entry_value; ?>" class="form-control" /></td>';  
  
   html += '  <td class="text-right" style="width: 10%;"><input type="text" name="ghanaian_cedi_attributes[' + row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" class="form-control" /></td>';
-  html += '  <td class="text-left"><button type="button" onclick="$(\'#naria-account-row' + row  + ', .tooltip\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+  html += '  <td class="text-left"><button type="button" onclick="$(\'#ghanaian_cedi-row' + row  + ', .tooltip\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
   html += '</tr>';
   
-  $('#naria-account tbody').append(html);
+  $('#ghanaian_cedi tbody').append(html);
   
   row++;
 }
