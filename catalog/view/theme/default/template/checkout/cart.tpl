@@ -605,7 +605,7 @@ function cart_removes(product_key){
 	          		$('.input_'+cart_id).val(qty);
 	          	}
 	            
-	            console.log(stock);
+	            // console.log(stock);
 	          // document.getElementById('cart-form').submit();
 	            break;
 	        case 2:
@@ -617,9 +617,14 @@ function cart_removes(product_key){
 	       		}else{
 	       			$('#stock_'+cart_id).css('display','block');
 	       			$('#stocks_'+cart_id).css('display','block');
+	       			if(stock){
+	       				tips(stock +' Pcs only','gantan');	
+	       			}else{
+	       				tips('No Stock','gantan');
+	       			}
 	       			return false;
 	       		}
-	               console.log(stocks);
+	               // console.log(stocks);
 	            break;
 	    }
 
