@@ -90,8 +90,8 @@
 								<div class="pre_div">
 
 							<div class="num_div clearfix">
-								<span class="sub active"onclick="javascript:updateQty(this,1);"></span>
-								<input class="product_quantity input_<?php echo $product['cart_id']; ?>"  readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
+								<span class="sub active" onclick="javascript:updateQty(this,1);"></span>
+								<input class="product_quantity   input_<?php echo $product['cart_id']; ?>" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1"  />
 								<span class="add" onclick="javascript:updateQty(this,2);"></span>
 							</div>
 
@@ -228,7 +228,7 @@
 							<div class="price_input clearfix">
 								<span class="sub active"onclick="javascript:updateQty(this,1);"></span>
 								<!-- <input class="num" type="text" value="1" readonly="readonly"> -->
-								<input class="product_quantity input_<?php echo $product['cart_id']; ?>" readonly="readonly" type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" onchange="updateQty(this,0);" />
+								<input class="product_quantity input_<?php echo $product['cart_id']; ?>"  type="text" aid="<?php echo $product['cart_id']; ?>" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1"  onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9]+/,'');}).call(this)" onblur="this.v();"/>
 								<span class="add" onclick="javascript:updateQty(this,2);"></span>
 								<?php if(!$product['stock']) { ?>
 
@@ -573,20 +573,135 @@ function cart_removes(product_key){
 //        alert(chk_value);die;
         window.location='index.php?route=checkout/checkout&cart_ids=' + chk_value;
     }
+	$(".div4 .product_quantity").change(function(){
+		var qty  =Number($(this).val()) ;
+		if(qty === "" || qty ==null){
+        	return false;
+		}
+	    	var cart_id= $(this).parent().find('input').attr('aid');
+	        var stock = Number($('#stock_'+cart_id).attr('data'));
+	       	 console.log(qty);
+	       	 console.log(stock);
+	       		if( qty <=stock ){
+	       			$('#no_'+cart_id).removeClass("no");
+	          		$('#noyd_'+cart_id).removeClass("no");
+	          		$('.check_'+cart_id).siblings(".check_i").addClass("active");
+	          		 $('.check_'+cart_id).prop("checked",true);
+	       		}else{
+	       			$('#stock_'+cart_id).css('display','block');
+	       			$('#stocks_'+cart_id).css('display','block');
+	       			$('#no_'+cart_id).addClass("no");
+	          		$('#noyd_'+cart_id).addClass("no");
+	          		$('.check_'+cart_id).siblings(".check_i").removeClass("active");
+        			$('.check_'+cart_id).prop("checked",false);
+	       		}
+	       $.ajax({
+        url: 'index.php?route=checkout/cart/edit_ajax',
+        type: 'post',
+        data: {cart_id:cart_id,num:qty},
+        dataType: 'json',
+ 
+        success: function(json) {
+        	$('.total_price').html(json['total']);
+        	$('#cart_count').html(json['text_cart_items']);
+        	for (var i = json['products'].length - 1; i >= 0; i--) {
+        		$('.price_'+json['products'][i].cart_id).html(json['products'][i].value);
+        	}
+        	if (json['can_add']) {
+        		$('#can_add').show();$('#can_not_add').hide();
+
+        		$('#can_ydadd').show();$('#can_ydadds').show();$('#can_not_ydadd').hide();
+
+        		$('.shop2_ul').css('margin','1.1rem 0 0.2rem 0');
+        		$('.top_ys').css('display','block');
+        	}else{
+        		$('#can_add').hide();$('#can_not_add').show();
+        		$('#can_not_add em').html(json['need_add']);
+
+        		$('#can_ydadd').hide();$('#can_ydadds').hide();$('#can_not_ydadd').show();
+        		$('#can_not_ydadd em').html(json['need_add']);
+
+        		$('.shop2_ul').css('margin','1.1rem 0 2.17rem 0');
+        		$('.top_ys').css('display','none');
+        	}
+        	getAddproduct();
+        	getAddydproduct();
+        }
+    })
+	    // }else{
+	    //     return false;
+	    // }
+
+
+	})
+		$(".num_div .product_quantity").change(function(){
+		var qty  =Number($(this).val()) ;
+		if(qty === "" || qty ==null){
+        	return false;
+		}
+		if(!isNaN(qty)){
+	    	var cart_id= $(this).parent().find('input').attr('aid');
+	        var stock = Number($('#stock_'+cart_id).attr('data'));
+	       	 console.log(qty);
+	       	 console.log(stock);
+	       		if( qty <=stock ){
+	       			$('#no_'+cart_id).removeClass("no");
+	          		$('#noyd_'+cart_id).removeClass("no");
+	          		$('.check_'+cart_id).siblings(".check_i").addClass("active");
+	          		 $('.check_'+cart_id).prop("checked",true);
+	       		}else{
+	       			$('#stock_'+cart_id).css('display','block');
+	       			$('#stocks_'+cart_id).css('display','block');
+	       			$('#no_'+cart_id).addClass("no");
+	          		$('#noyd_'+cart_id).addClass("no");
+	          		$('.check_'+cart_id).siblings(".check_i").removeClass("active");
+        			$('.check_'+cart_id).prop("checked",false);
+	       		}
+	       $.ajax({
+        url: 'index.php?route=checkout/cart/edit_ajax',
+        type: 'post',
+        data: {cart_id:cart_id,num:qty},
+        dataType: 'json',
+ 
+        success: function(json) {
+        	$('.total_price').html(json['total']);
+        	$('#cart_count').html(json['text_cart_items']);
+        	for (var i = json['products'].length - 1; i >= 0; i--) {
+        		$('.price_'+json['products'][i].cart_id).html(json['products'][i].value);
+        	}
+        	if (json['can_add']) {
+        		$('#can_add').show();$('#can_not_add').hide();
+
+        		$('#can_ydadd').show();$('#can_ydadds').show();$('#can_not_ydadd').hide();
+
+        		$('.shop2_ul').css('margin','1.1rem 0 0.2rem 0');
+        		$('.top_ys').css('display','block');
+        	}else{
+        		$('#can_add').hide();$('#can_not_add').show();
+        		$('#can_not_add em').html(json['need_add']);
+
+        		$('#can_ydadd').hide();$('#can_ydadds').hide();$('#can_not_ydadd').show();
+        		$('#can_not_ydadd em').html(json['need_add']);
+
+        		$('.shop2_ul').css('margin','1.1rem 0 2.17rem 0');
+        		$('.top_ys').css('display','none');
+        	}
+        	getAddproduct();
+        	getAddydproduct();
+        }
+    })
+	    }else{
+	        return false;
+	    }
+
+
+	})
 	function updateQty(obj,type){
-	// if(!$(this).parents('li').hasClass("no")){
-	// 			var num  = $(this).siblings(".num").val();
-	// 			num++;
-	// 			$(this).siblings(".num").val(num);
-	// 			in_num();
-	// 		}	
-	// var num= $(obj).parent().find('input').val();
+
 	var cart_id= $(obj).parent().find('input').attr('aid');
 	// console.log(num);
 	    switch(type){
-	        case 0:
-	        	//document.getElementById('cart-form').submit();
-	            // document.getElementById('cart-form').submit();
+	        case 0:	   
 	            break;
 	        case 1:
 	            qty = $(obj).next('input[type="text"]').val() - 1;
@@ -594,8 +709,9 @@ function cart_removes(product_key){
 	          	var stock = $('#stock_'+cart_id).attr('data');
 	          	if(qty<=stock){	
 	          		$('.input_'+cart_id).val(qty);
-	          		$('#stock_'+cart_id).css('background','#8fc31f');
-	          		$('#stocks_'+cart_id).css('color','#8fc31f');
+	       			$('.input_'+cart_id).attr("value",qty);
+	          		// $('#stock_'+cart_id).css('background','#8fc31f');
+	          		// $('#stocks_'+cart_id).css('color','#8fc31f');
 	          		$('#no_'+cart_id).removeClass("no");
 	          		$('#noyd_'+cart_id).removeClass("no");
 
@@ -603,6 +719,7 @@ function cart_removes(product_key){
 	          		 $('.check_'+cart_id).prop("checked",true);
 	          	}else{
 	          		$('.input_'+cart_id).val(qty);
+	       			$('.input_'+cart_id).attr("value",qty);
 	          	}
 	            
 	            // console.log(stock);
@@ -614,6 +731,7 @@ function cart_removes(product_key){
 	            var stocks = $('#stocks_'+cart_id).attr('data');
 	       		if(qty<=stock || qty<=stocks){
 	       			$('.input_'+cart_id).val(qty);
+	       			$('.input_'+cart_id).attr("value",qty);
 	       		}else{
 	       			$('#stock_'+cart_id).css('display','block');
 	       			$('#stocks_'+cart_id).css('display','block');
