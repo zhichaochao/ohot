@@ -113,7 +113,7 @@ $(".img_ol .cart_li").click(function(){
                 
                 <!--pc导航-->
                 <ul class="nav_ul clearfix">
-                    <li  <?php if($is_home=='/index.php?route=common/home'||$is_home=='/'||$is_home=='/index.php'||$is_home=='/common-home'){ ?>class="active"<?php } ?>><a href="<?php echo $home; ?>">Home</a></li>
+                    <li  <?php if($is_home=='/index.php?route=common/home'||$is_home=='/'||$is_home=='/index.php'||$is_home=='/common-home'){ ?>class="active"<?php } ?>><a href="<?=HTTPS_SERVER;?>">Home</a></li>
                        <?php if($navs){ foreach ($navs as $k => $nav) { ?>
                     <li class="<?php if($nav['this_page']){ ?>active<?php } ?>">
                         <a  href="<?php echo $nav['url']; ?>"  <?=$nav['is_target']==1?'target="_blank"':''; ?> ><?=$nav['name'];?></a>
