@@ -34,6 +34,16 @@
                 <a class="fh" href="<?php echo $home?>"></a>
                 <p>Our Ghana Bank Account </p>
                 </div>
+            <?php }elseif($order['payment_code']=='ghanabanktransfer'){?>
+                <div class="new_nav pc_hide clearfix">
+                <a class="fh" href="<?php echo $home?>"></a>
+                <p>Our Ghana Bank Account </p>
+                </div>
+            <?php }elseif($order['payment_code']=='ghanamobiletransfer'){?>
+                <div class="new_nav pc_hide clearfix">
+                <a class="fh" href="<?php echo $home?>"></a>
+                <p>Our Ghana Mobile Account </p>
+                </div>
             <?php }?>
 
             
@@ -65,6 +75,10 @@
                 <p class="p3">Our Naira Bank Account</p>
                 <?php }elseif($order['payment_code']=='ghanaian_cedi'){ ?>
                 <p class="p3">Our Ghana Bank Account </p>
+                <?php }elseif($order['payment_code']=='ghanabanktransfer'){ ?>
+                <p class="p3">Our Ghana Bank Account </p>
+                <?php }elseif($order['payment_code']=='ghanamobiletransfer'){ ?>
+              <p class="p3">Our Ghana Mobile Account </p>
                 <?php }?>
 
                 <table class="pay_tb1 pay_tb2">
