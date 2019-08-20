@@ -47,7 +47,7 @@ class ControllerInformationProfile extends Controller {
 				
 						foreach ($videos as $key => $value) {
 							//$videos[$key]['video']=HTTP_SERVERS. $value['video'];
-							$videos[$key]['video']=HTTPS_SERVERS.'/image/video/hairclub/'. $value['video'];
+							$videos[$key]['video']=HTTPS_SERVERS.'image/video/hairclub/'. $value['video'];
 							$videos[$key]['title']=$value['title'];
 							$videos[$key]['image']=$this->model_tool_image->resize($value['image'],380,215);
 						}
@@ -125,7 +125,7 @@ class ControllerInformationProfile extends Controller {
 				
 						foreach ($videos as $key => $value) {
 							// $videos[$key]['video']=HTTP_SERVERS. $value['video'];
-							$videos[$key]['video']=HTTPS_SERVERS.'/image/video/hairclub/'. $value['video'];
+							$videos[$key]['video']=HTTPS_SERVERS.'image/video/hairclub/'. $value['video'];
 							$videos[$key]['title']=$value['title'];
 							$videos[$key]['image']=$this->model_tool_image->resize($value['image'],380,215);
 						}
@@ -238,7 +238,7 @@ class ControllerInformationProfile extends Controller {
 					// print_r($videos);exit();
 					foreach ($videos as $key => $value) {
 							// $videos[$key]['video']=HTTP_SERVERS. $value['video'];
-							$videos[$key]['video']=HTTPS_SERVERS.'/image/video/hairclub/'. $value['video'];
+							$videos[$key]['video']=HTTPS_SERVERS.'image/video/hairclub/'. $value['video'];
 							$videos[$key]['title']=$value['title'];
 							$videos[$key]['image']=$this->model_tool_image->resize($value['image'],380,215);
 					}
@@ -327,7 +327,7 @@ class ControllerInformationProfile extends Controller {
 				
 						foreach ($videos as $key => $value) {
 							// $videos[$key]['video']=$http_type . $_SERVER['HTTP_HOST'].'/image/video/hairclub/'. $value['video'];
-							$videos[$key]['video']=HTTPS_SERVERS.'/image/video/hairclub/'. $value['video'];
+							$videos[$key]['video']=HTTPS_SERVERS.'image/video/hairclub/'. $value['video'];
 							$videos[$key]['title']=$value['title'];
 							$videos[$key]['image']=$this->model_tool_image->resize($value['image'],380,215);
 						}
