@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+         <link rel='canonical' href='https://www.hotbeautyhairmall.com<?=$_SERVER["REQUEST_URI"]?>' />
     <!--      <link rel="stylesheet" href="catalog/view/theme/default/css/ttf.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/common.css" />
         <link rel="stylesheet" href="<?=HTTPS_SERVERS;?>catalog/view/theme/default/css/index.css" />
@@ -104,12 +105,12 @@ $(".img_ol .cart_li").click(function(){
                 <div class="logo">
                     <!-- href="<?php echo $root_home; ?>" -->
                     <a href="<?=HTTPS_SERVER;?>" >
-                        <img class="changeimage" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" data-image="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/logo.png" data-mimage="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_logo.png"  src='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/logo.png'  />
+                        <img alt="hotbeautyhairmall" class="changeimage" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" data-image="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/logo.png" data-mimage="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_logo.png"  src='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/logo.png'  />
                     </a>
                 </div>  
                 
                 <!--whatApp-->
-                <p class="whatapp"><a  target="_blank"  href="https://api.whatsapp.com/send?phone=<?=$whatappphone;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/phone.png"/>WhatsApp:+<?=$whatappphone;?></a></p>
+                <p class="whatapp"><a  target="_blank"  href="https://api.whatsapp.com/send?phone=<?=$whatappphone;?>"><img alt="whatapp" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/phone.png"/>WhatsApp:+<?=$whatappphone;?></a></p>
                 
                 <!--pc导航-->
                 <ul class="nav_ul clearfix">
@@ -146,7 +147,7 @@ $(".img_ol .cart_li").click(function(){
                     <div class="lg_hover clearfix">
                         <div class="text clearfix">
                           <em></em>
-                          <i><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/vip1.png"/></i>
+                          <i><img alt="VIP"  src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/vip1.png"/></i>
                           <p><a href="<?=$vip;?>"><?=$account_vip;?></a></p>
                          <a href="<?=$logout;?>"> <button>Logout</button></a>
                         </div>
@@ -158,7 +159,7 @@ $(".img_ol .cart_li").click(function(){
             <form method='post' action='<?php echo $search_url;?>'  class="search fl" >
                     <input class="btn_in" type="submit" value="">
                     <input class="text_in"  type="text" name="new_search" placeholder="Search">
-                    <img class="close" src="catalog/view/theme/default/img/png/close2.png"/>
+                    <img alt="close" class="close" src="catalog/view/theme/default/img/png/close2.png"/>
              </form>
              <!-- <form class="search fl">
               <input id="header-search" value="" type="" name="new_search" placeholder="Search">
@@ -178,8 +179,8 @@ $(".img_ol .cart_li").click(function(){
                 <!--移动导航-->
                 <div class="yd_nav">
                     <div class="top">
-                        <img class="menu" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/menu.png"  />
-                        <img class="close" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/close2.png"/>
+                        <img alt="menu" class="menu" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/menu.png"  />
+                        <img class="close" alt="close" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/close2.png"/>
                     </div>
                     
                     <ul>

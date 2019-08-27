@@ -18,7 +18,7 @@
       
       <div class="ac_bg clearfix">
         <!-- banner -->
-        <img class="img changeimage lazyLoad" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/active.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/active_yd.jpg'/>
+        <img alt="active" class="img changeimage lazyLoad" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/active.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/active_yd.jpg'/>
         <div class="ac_text clearfix">
           <!-- 01 02 03 -->
           <ul class="top_ul clearfix">
@@ -73,7 +73,7 @@
                 <?php if($products){ foreach ($products as $product) { ?>
               <li>
                 <a class="img_a" href="<?php echo $product['href']; ?>">
-                  <img src="<?php echo $product['thumb']; ?>" alt="">
+                  <img alt="<?=$product['name'];?>" src="<?php echo $product['thumb']; ?>" alt="">
                 </a>
                 <?php $name=explode("-",$product['name']); ?>
               <p><?=isset($name[0])?$name[0]:'';?></p>

@@ -11,12 +11,12 @@
             <div class="banner">
                 <div class="swiper-container" id="swiper1">
                     <div class="swiper-wrapper" style="cursor:-webkit-grab;">
-                        <?php foreach ($banners as $k=> $banner) { ?>
+                        <?php foreach ($banners as $k=> $banner) {  ?>
                         <div class="swiper-slide ban_img">
                            <?php if ($banner['link']) { ?>
-                             <a href="<?php echo $banner['link']; ?>"><img class="ban<?=$k+1;?> changeimage" data-image="<?php echo $banner['image']; ?>" data-mimage="<?php echo $banner['mimage']; ?>"  /></a>
+                             <a href="<?php echo $banner['link']; ?>"><img alt="<?php echo $banner['title']; ?>" class="ban<?=$k+1;?> changeimage" data-image="<?php echo $banner['image']; ?>" data-mimage="<?php echo $banner['mimage']; ?>"  /></a>
                               <?php } else { ?>
-                            <img class="ban<?=$k+1;?> changeimage" data-image="<?php echo $banner['image']; ?>" data-mimage="<?php echo $banner['mimage']; ?>"  />
+                            <img  alt="<?php echo $banner['title']; ?>" class="ban<?=$k+1;?> changeimage" data-image="<?php echo $banner['image']; ?>" data-mimage="<?php echo $banner['mimage']; ?>"  />
                               <?php } ?>
                         </div>
                         <?php } ?>

@@ -8,7 +8,7 @@
       <?php foreach($nav['child'] as $child => $childs) {?>
         <li class="clearfix">
           <a href="<?php echo $childs['url']; ?>"><div class="pic_img">
-            <img class="lazyLoad" src="" srcs="<?php echo $childs['m_image']; ?>"/><p>
+            <img alt="<?php echo $childs['name']; ?>" class="lazyLoad" src="" srcs="<?php echo $childs['m_image']; ?>"/><p>
             <div class="zzc_div"></div></p>
           </div></a>
         </li>

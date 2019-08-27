@@ -51,7 +51,7 @@
 									 <i class="check_i  <?php if($product['stock']) { ?>active<?php }?>"></i>
 							</label>
 								<div class="pic_img">
-									<a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="" /></a>
+									<a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
 								</div>
 								<div class="text">
 									<a class="a_bt" href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
@@ -196,7 +196,7 @@
 							<?php if ($product['thumb']) { ?>
 
 							<a class="text" href="<?php echo $product['href']; ?>">
-								<img class="img1" src="<?php echo $product['thumb']; ?>" alt="" />
+								<img class="img1" src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" />
 							</a>
 			                <?php } ?>
 

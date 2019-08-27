@@ -17,12 +17,12 @@
       <div class="company_right_mian cf">
         <h2 class="company_right_h2">Company Introduction</h2>
         <dl class="company_right_dl">
-          <dt><img width="300" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/company/company_img.jpg"></dt>
+          <dt><img alt="<?=$meta_description?>" width="300" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/company/company_img.jpg"></dt>
           <dd>
               <p> <?=$meta_description?></p>
               <p>
                 <button name="submit1" id="submit1" onclick="location.href='<?php echo $action; ?>#conus'">
-                <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/company/icon_4_w.png">Contact Us
+                <img alt="<?=$meta_description?>" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/images/tzx/company/icon_4_w.png">Contact Us
                 </button>
               </p>
           </dd>

@@ -31,7 +31,7 @@
 							<div class="div1 clearfix">
 								
 								<a class="text" href="<?=$product['href'];?>">
-									<img class="img1" src="<?=$product['image'];?>" alt="">
+									<img class="img1" src="<?=$product['image'];?>" alt="<?=$product['name']; ?>" >
 								</a>
 								<div class="big clearfix">
 									<span></span>

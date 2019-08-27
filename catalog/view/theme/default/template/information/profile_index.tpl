@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 		
 			<div class="content in_content hairclub clearfix">
-				<img class="changeimage bnr_img" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/hairclub1.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_hairclub1.jpg'  />
+				<img alt="hairclub" class="changeimage bnr_img" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/hairclub1.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_hairclub1.jpg'  />
 				<h1>HAIR TUTORIAL</h1>
 				<p>“Best and easiest hair tutorials start from here!”</p>
 				
@@ -9,7 +9,7 @@
 					<?php foreach ($profile_video['videos'] as $key => $child) {?>
 					<li>
 						<video src="<?=$child['video'];?>" class="video_li" poster="<?=$child['image'];?>"></video>
-						<img class="bf" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bf.png"/>
+						<img alt="<?=$child['title'];?> " class="bf" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bf.png"/>
 						<div class="text_vd clearfix">
 						<div class="bg_div">
 							<p><?=$child['title'];?> </p>
@@ -26,7 +26,7 @@
 					<li>
 						<div class="pic_img">
 							<a href="<?=$child['href']?>">
-								<img class="changeimage" data-image="<?=$child['image']?>" data-mimage="<?=$child['images']?>"  />
+								<img alt="<?=$child['title'];?>" class="changeimage" data-image="<?=$child['image']?>" data-mimage="<?=$child['images']?>"  />
 								<div class="div_p">
 									<p><?=$child['title'];?></p>
 								</div>
@@ -48,7 +48,7 @@
 					<li>
 						<div class="pic_img">
 							<a href="<?=$child['href']?>">
-								<img class="changeimage" data-image="<?=$child['image']?>" data-mimage="<?=$child['images']?>" />
+								<img alt="<?=$child['title'];?>" class="changeimage" data-image="<?=$child['image']?>" data-mimage="<?=$child['images']?>" />
 								<div class="div_p">
 									<p><?=$child['title'];?></p>
 								</div>

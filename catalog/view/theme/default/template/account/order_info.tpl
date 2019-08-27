@@ -90,7 +90,7 @@
                 <li class="clearfix">
                 <a href="<?php echo $product['href']; ?>">
                   <div class="pic_img">
-                    <img src="<?php echo $product['order_image']; ?>" alt="" />                   
+                    <img src="<?php echo $product['order_image']; ?>" alt="<?php echo $product['name']; ?>" />                   
                   </div>
                   <p class="ov_text"><?php echo $product['name']; ?>
                   </p>
@@ -214,7 +214,7 @@
             <?php foreach ($products as $product) { ?>
               <li class="clearfix">
                 <a href="<?php echo $product['href']; ?>">
-                  <div class="pic_img"><img src="<?php echo $product['order_image']; ?>"/></div>
+                  <div class="pic_img"><img alt="<?php echo $product['name']; ?>" src="<?php echo $product['order_image']; ?>"/></div>
                   <div class="text">
                     <p><?php echo $product['name']; ?></p>
                      <?php foreach ($product['option'] as $option) { ?>

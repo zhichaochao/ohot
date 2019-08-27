@@ -22,7 +22,7 @@
 									<i class="check_i"></i> -->
 								</label>
 								<a class="text" href="<?=$product['href'];?>">
-									<img class="img1" src="<?=$product['image'];?>" alt="" />
+									<img class="img1" src="<?=$product['image'];?>" alt="<?=$product['name']; ?>" />
 								</a>
 								<div class="big clearfix">
 									<span></span>

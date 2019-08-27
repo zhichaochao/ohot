@@ -1,7 +1,7 @@
 <?php echo $header; ?>
   <!--内容-->
     <div class="content in_content false">
-      <img src="catalog/view/theme/default/img/jpg/404.png"/>
+      <img alt="404 page" src="catalog/view/theme/default/img/jpg/404.png"/>
       <p>
         <span>Oops!</span>
         <span>The page you are looking for is going to another planet </span>

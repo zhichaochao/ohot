@@ -14,7 +14,7 @@
             <li >
               <a class="one_a"  href="<?php echo $product['href']; ?>">
                 <div class="pic_img">
-                  <img src="<?php echo $product['thumb']; ?>"/>
+                  <img src="<?php echo $product['thumb']; ?>" alt='<?php echo $product['name']; ?>'/>
                 </div>
                 <div class="text clearfix">
                 <p><?php echo $product['name']; ?> </p>

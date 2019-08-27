@@ -7,7 +7,7 @@
 <input type="hidden" name="order" value='<?=$order;?>' id='order'/>
 <input type="hidden" name="limit" value='<?=$limit;?>' id='limit'/>
 <input type="hidden" name="category_id" value='<?=$category_id;?>' id='category_id'/>
-      <img class="changeimage img_bnr pc_hide" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />
+      <img alt="promotion" class="changeimage img_bnr pc_hide" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/promotions.jpg'  />
       
       <h1>DISCOUNTED GOODS</h1>
       <div class="pro_content clearfix">
@@ -18,7 +18,7 @@
              <li>
               <a href="<?php echo $product['href']; ?>">
                 <div class="pic_img" >
-                  <img src="<?php echo $product['thumb']; ?>"   />
+                  <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>"   />
                 </div>
                 <div class="text clearfix" >
                 <p><?php echo $product['name']; ?></p>

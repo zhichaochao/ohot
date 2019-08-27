@@ -11,7 +11,7 @@
 					<?php foreach ($profile_video['videos'] as $key => $child) {?>
 					<li>
 						<video src="<?=$child['video'];?>" class="video_li" poster="<?=$child['image'];?>"></video>
-						<img class="bf" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bf.png"/>
+						<img alt="<?=$child['title'];?>" class="bf" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/bf.png"/>
 						<div class="text_vd clearfix">
 						<div class="bg_div">
 							<p><?=$child['title'];?> </p>

@@ -28,7 +28,7 @@
             <li>
               <a href="<?php echo $product['href']; ?>">
                 <div class="pic_img" >
-                  <img  class="lazyLoad" src="" srcs="<?php echo $product['thumb']; ?>"  />
+                  <img alt="<?php echo $product['name']; ?>"  class="lazyLoad" src="" srcs="<?php echo $product['thumb']; ?>"  />
                 </div>
                 <div class="text clearfix" >
                 <p><?php echo $product['name']; ?></p>

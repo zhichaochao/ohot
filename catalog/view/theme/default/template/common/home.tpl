@@ -88,7 +88,7 @@
                     <li>
                         <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage lazyLoad" data-image="<?=$val['image'];?>"  data-mimage="<?=$val['image'];?>"  />
+                                <img alt="<?=$val['name'];?>" class="changeimage lazyLoad" data-image="<?=$val['image'];?>"  data-mimage="<?=$val['image'];?>"  />
                                 <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -115,7 +115,7 @@
                                 <a href="<?=$homes[1]['category_url'];?>" class="a_btn" style="margin: 2.8vw auto 0 auto;">VIEW MORE &nbsp;&nbsp;&gt;<span class="triangle"><em></em></span></a>
                             </div>
                         </div>
-                    <img class="top2_img changeimage" data-image="<?=$homes[1]['image'];?>"  data-mimage="<?=$homes[1]['mimage'];?>"  />
+                    <img alt="<?=$homes[1]['title'];?>" class="top2_img changeimage" data-image="<?=$homes[1]['image'];?>"  data-mimage="<?=$homes[1]['mimage'];?>"  />
                     </div>
 
                 
@@ -126,7 +126,7 @@
                     <li>
                         <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage lazyLoad" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
+                                <img alt="<?=$val['name'];?>" class="changeimage lazyLoad" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
                                 <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -155,7 +155,7 @@
                         </div>
 
                    
-                    <img class="top3_img changeimage" data-image="<?=$homes[2]['image'];?>"  data-mimage="<?=$homes[2]['mimage'];?>"  />
+                    <img alt="<?=$homes[2]['title'];?>" class="top3_img changeimage" data-image="<?=$homes[2]['image'];?>"  data-mimage="<?=$homes[2]['mimage'];?>"  />
                 </div>
 
                     <?php if(isset($homes[2]['child'])){ ?>
@@ -164,7 +164,7 @@
                     <li>
                        <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage lazyLoad" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
+                                <img alt="<?=$val['name'];?>" class="changeimage lazyLoad" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>"  />
                                  <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">
@@ -191,7 +191,7 @@
                 
                 <div class="top top4">
                     
-                    <img class="top4_img changeimage lazyLoad" data-image="<?=$homes[3]['image'];?>" " data-mimage="<?=$homes[3]['mimage'];?>"  />
+                    <img alt="<?=$homes[3]['category']['name'];?>" class="top4_img changeimage lazyLoad" data-image="<?=$homes[3]['image'];?>" " data-mimage="<?=$homes[3]['mimage'];?>"  />
                 </div>
                    <?php if(isset($homes[3]['child'])){ ?>
                 <ol class="ol_img5 ol_img clearfix">
@@ -199,7 +199,7 @@
                     <li>
                        <a href="<?=$val['url'];?>">
                             <div class="pic">
-                                <img class="changeimage lazyLoad" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>" />
+                                <img alt="<?=$val['name'];?>" class="changeimage lazyLoad" data-image="<?=$val['image'];?>"   data-mimage="<?=$val['image'];?>" />
                               <p><?=$val['name'];?></p>
                             </div>
                             <div class="text">

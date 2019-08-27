@@ -40,9 +40,9 @@
                     <button type="submit" class="btn1" onClick="return subscribe();">SUBMIT</button>
 
                     <ol class="clearfix">
-                      <li><a target="_blank"  href="https://www.facebook.com/<?=$facebook;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fot_1.png" alt=""></a></li>
-                      <li><a target="_blank"  href="https://www.instagram.com/<?=$instagram;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fot_2.png" alt=""></a></li>
-                      <li><a target="_blank"  href="https://api.whatsapp.com/send?phone=<?=$whatsapp;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fot_3.png" alt=""></a></li>
+                      <li><a target="_blank"  href="https://www.facebook.com/<?=$facebook;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fot_1.png" alt="facebook"></a></li>
+                      <li><a target="_blank"  href="https://www.instagram.com/<?=$instagram;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fot_2.png" alt="instagram"></a></li>
+                      <li><a target="_blank"  href="https://api.whatsapp.com/send?phone=<?=$whatsapp;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/fot_3.png" alt="whatsapp"></a></li>
                     </ol>
                       </li>
               </ul>
@@ -60,7 +60,7 @@
         <ul class="ul_ydfot clearfix">
               <?php foreach($informations as $key => $information) { ?>
            <li>
-                  <h4><?php echo $information['title']; ?> <div class="pic_img"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png" data-img='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png' data-imgs='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao_white.png'/></div></h4>
+                  <h4><?php echo $information['title']; ?> <div class="pic_img"><img alt="<?php echo $information['title']; ?>" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png" data-img='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png' data-imgs='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao_white.png'/></div></h4>
                   <div class="slide_div">
                     <ol>    <?php foreach($information['child'] as $subkey=>$subval) { ?> 
                       <li><a href="<?php echo $subval['url']; ?>"><?php echo $subval['title']; ?></a></li>
@@ -72,7 +72,7 @@
         <?php } ?>
        
                     <li>
-                      <h4>CONTACT<div class="pic_img"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png" data-img='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png' data-imgs='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao_white.png'/></div></h4>
+                      <h4>CONTACT<div class="pic_img"><img alt="CONTACT" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png" data-img='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jiahao_white.png' data-imgs='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/jianhao_white.png'/></div></h4>
                       <div class="slide_div">
                         <ol>
                       <li><a target="_blank" href="https://tel://<?=$telephone;?>"><span>Call Us:</span><?=$telephone;?></li></a>  
@@ -91,10 +91,10 @@
                     <input type="email" name="txtemail" id="txtemail" value="" placeholder="Your Email Address" class="text1">
                     <button type="submit" class="btn1" onClick="return subscribe();">SUBMIT</button>
                     <ol class="fot_img clearfix">
-                      <li><a href="https://www.facebook.com/<?=$facebook;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_fot1.png" alt=""></a></li>
-                      <li><a href="https://www.instagram.com/<?=$instagram;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_fot2.png" alt=""></a></li>
-                      <li><a href="https://api.whatsapp.com/send?phone=<?=$whatsapp;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_fot3.png" alt=""></a></li>
-                      <li><a href="skype:<?=$skype;?>?chat" target="blank"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_fot4.png" alt=""></a></li>
+                      <li><a href="https://www.facebook.com/<?=$facebook;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_fot1.png" alt="facebook"></a></li>
+                      <li><a href="https://www.instagram.com/<?=$instagram;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_fot2.png" alt="instagram"></a></li>
+                      <li><a href="https://api.whatsapp.com/send?phone=<?=$whatsapp;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_fot3.png" alt="whatsapp"></a></li>
+                      <li><a href="skype:<?=$skype;?>?chat" target="blank"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/yd_fot4.png" alt="skype"></a></li>
                     </ol>
                       </div>
                     </li>
@@ -148,9 +148,9 @@
             <p>CONTACT</p>
           </a>
           <div class="a_text">
-            <a href="tel://<?=$telephone;?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/fot_con1.jpg"/></a>
-            <a href="skype:<?=$skype;?>?chat"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/fot_con2.jpg"/></a>
-            <a href="mailto:<?php echo $email; ?>"><img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/fot_con3.jpg"/></a>
+            <a href="tel://<?=$telephone;?>"><img alt="telephone" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/fot_con1.jpg"/></a>
+            <a href="skype:<?=$skype;?>?chat"><img alt="skype" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/fot_con2.jpg"/></a>
+            <a href="mailto:<?php echo $email; ?>"><img alt="email" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/fot_con3.jpg"/></a>
           </div>
         </li>
        <!--  <li>

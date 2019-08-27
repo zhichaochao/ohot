@@ -20,7 +20,7 @@
 								    <div class="swiper-wrapper">
 									   <?php foreach ($images as $k => $image) {?>
 										<div class="swiper-slide" <?php if($k==0 && !$video){ ?>class="on"<?php } ?>>
-											<img onclick="productInfoImg(this)" data-img="<?php echo $image['thumb2']; ?>" style="cursor: pointer !important;" src="<?php echo $image['thumb']; ?>"  title='<?php echo $heading_title; ?>'>
+											<img alt="<?php echo $heading_title; ?>" onclick="productInfoImg(this)" data-img="<?php echo $image['thumb2']; ?>" style="cursor: pointer !important;" src="<?php echo $image['thumb']; ?>"   title='<?php echo $heading_title; ?>'>
 										</div>
 										<?php } ?>
 							  		</div>
@@ -67,13 +67,13 @@
 										<!-- 产品后台上传视频 -->
 										 <?php foreach ($images as $k => $image) {  if($k > 0) {?>
 							    		<div class="swiper-slide ban_img">
-													<img class="lazyLoad" src="" srcs="<?php echo $image['image']; ?>" title='<?php echo $heading_title; ?>'  />
+													<img class="lazyLoad" src="" srcs="<?php echo $image['image']; ?>" alt='<?php echo $heading_title; ?>'  title='<?php echo $heading_title; ?>'  />
 										</div>
 								    	<?php } } ?>
 											<?php } elseif ($thumb) { ?>
 									   	<?php foreach ($images as $k => $image) { ?>
 								    		<div class="swiper-slide ban_img">
-													<img class="lazyLoad" src="" srcs="<?php echo $image['image']; ?>" title='<?php echo $heading_title; ?>'  />
+													<img alt="<?php echo $heading_title; ?>" class="lazyLoad" src="" srcs="<?php echo $image['image']; ?>" title='<?php echo $heading_title; ?>'  />
 											</div>
 								    	<?php } ?>
 							    	<?php } ?>
@@ -165,7 +165,7 @@
 							
 								
 								<div class="meas_img">
-									<img class=" changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
+									<img alt="change image" class=" changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
 									<div class="close"></div>
 								</div>
 								<!-- <button class="xyd_btn  <?=$wishlist==1 ?'off':'';?>" onclick="wishlist('<?php echo $product_id; ?>',this);"><span>WISHLIST</span></button> -->
@@ -364,7 +364,7 @@
 							<div class="xxk_text">
 								<div class="ul_top clearfix">
 									<div class="left">
-										<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/map.jpg"/>
+										<img alt="map" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/map.jpg"/>
 									</div>
 									<div class="right clearfix">
 										<ul class="ul_text clearfix">
@@ -408,11 +408,11 @@
 										<span>Our express</span>
 										<ol class="clearfix">
 											<li>
-												<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_det2.jpg"/>
+												<img alt="FedEx" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_det2.jpg"/>
 												<p>FedEx</p>
 											</li>
 											<li>
-												<img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_det3.jpg"/>
+												<img alt="DHL" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_det3.jpg"/>
 												<p>DHL</p>
 											</li>
 										</ol>
@@ -421,12 +421,12 @@
 										<span>Package</span>
 										<ol class="clearfix">
 											<li>
-											<img class="changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/proo.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_pro.jpg'  />
+											<img alt="Package" class="changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/proo.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_pro.jpg'  />
 												<!-- <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro.jpg" style="height:263px;width: 298px;" /> -->
 												<p>Product Packaging</p>
 											</li>
 											<li>
-											<img class="changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_dett.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/ydpro_det.jpg'  />
+											<img alt="Package" class="changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_dett.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/ydpro_det.jpg'  />
 												<!-- <img src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pro_det.jpg" style="height:263px;width: 298px;"/> -->
 												<p>The Outer Packing</p>
 											</li>
@@ -458,7 +458,7 @@
 						<li class="swiper-slide ">
 							<a href="<?php echo $product['product_link']; ?>"> 
 								<div class="pic_img" >
-									<img src="<?php echo $product['image']; ?>"  />
+									<img alt="<?php echo $product['name']; ?>" src="<?php echo $product['image']; ?>"  />
 								</div>
 								<div class="text">
 								<p class="p2"><?php echo $product['name']; ?> </p>
@@ -496,7 +496,7 @@
 					<div class="text clearfix">
 						<div class="close_tc"></div>
 						<div class="img clearfix">
-							<img src="<?php echo $thumb?>" alt="" />
+							<img src="<?php echo $thumb?>" alt="<?php echo $product['name']; ?>" />
 							<!-- <span  id="money">$31.50</span> -->
 							<?php if ($price) { ?>
 									<span   class="money" >
@@ -579,7 +579,7 @@
 						</ol>
 					</div>
 					<div class="meas_img">
-						<img class=" changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
+						<img alt="<?php echo $product['name']; ?>" class=" changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/size_guid.jpg' data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_size_guid.jpg'  />
 						<div class="close"></div>
 					</div>	
 				</div>

@@ -23,8 +23,8 @@
         
         <div class="right m_vip clearfix">
           <div class="bnr_img">
-            <img class="changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pc_vip.jpg'  data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_vip.jpg'  />
-            <img class="vip_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/vip1.png"/>
+            <img alt="VIP" class="changeimage" data-image='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/pc_vip.jpg'  data-mimage='<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/jpg/yd_vip.jpg'   />
+            <img  alt="VIP" class="vip_img" src="<?=HTTPS_SERVERS;?>catalog/view/theme/default/img/png/vip1.png"/>
             <p class="p1">Your VIP level:<?php echo $grade; ?></p>
             <p class="p2"><?php echo $user_name; ?></p>
           </div>

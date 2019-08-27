@@ -74,7 +74,7 @@
             <li>
               <a href="<?php echo $product['href']; ?>">
                 <div class="pic_img">
-                  <img src="<?php echo $product['thumb']; ?>" />
+                  <img alt="<?php echo $product['name']; ?>" src="<?php echo $product['thumb']; ?>" />
                 </div>
                 <div class="text clearfix">
                 <?php if($product['special']) { ?>
