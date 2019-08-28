@@ -728,7 +728,7 @@ $(function(){
 			// console.log(tmp);
 			$(this).find('span').text(tmp);
 		})
-		changeprice();
+		// changeprice();
 		$(".select_btn").click(function(){
 			if($(this).hasClass("off")){
 				$(this).removeClass("off");

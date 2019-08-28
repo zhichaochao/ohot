@@ -152,6 +152,9 @@ $(document).delegate('#button-register', 'click', function() {
               if(json['error']['warning']){
                $('#erroremail').show().html( json['error']['warning'] );
               }
+              if(json['error']['email']){
+               $('#erroremail').show().html( json['error']['email'] );
+              }
                $(".zzc_li").css("display","none");
               $("div").removeClass("hidden");
             }   
@@ -180,11 +183,15 @@ $(document).delegate('#button-register', 'click', function() {
     
     $(".name").change(function(){
       var text=$(this).val();
+      var conStr = text.replace(/\s+/g,"");
+      // console.log(conStr);
       var re=/^[a-zA-Z]+$/;
-      if(!re.test(text) && text !=""){
+      if(!re.test(conStr) && text !=""){
+        // console.log(11);
         $(this).siblings(".ts_p").addClass("off");
         $(this).siblings(".ts_p").text("Letters Only, No Space or Digit");
       }else{
+        // console.log(22);
         $(this).siblings(".ts_p").removeClass("off");
       }
     })
@@ -200,8 +207,9 @@ $(document).delegate('#button-register', 'click', function() {
     })
     $(".email").change(function(){
       var text=$(this).val();
+      var conStr = text.replace(/\s+/g,"");
       var re=/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
-      if(!re.test(text) && text !=""){
+      if(!re.test(conStr) && text !=""){
         $(this).siblings(".ts_p").addClass("off");
         $(this).siblings(".ts_p").text("The email address you entered is incorrect");
       }else{

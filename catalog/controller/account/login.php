@@ -265,6 +265,8 @@ class ControllerAccountLogin extends Controller {
 		$this->load->model('account/customer');
 		$this->load->model('account/activity');
 
+		$str = $this->request->post['email'];
+		$newStr = str_replace(' ', '', $str);
 		$json = array();
 
 		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
@@ -275,11 +277,11 @@ class ControllerAccountLogin extends Controller {
 			$json['error']['lastname'] = $this->language->get('error_lastname');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
-			$json['error']['email'] = $this->language->get('error_email');
-		}
+		// if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+		// 	$json['error']['email'] = $this->language->get('error_email');
+		// }
 
-		if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
+		if ($this->model_account_customer->getTotalCustomersByEmail($newStr)) {
 			$json['error']['warning'] = $this->language->get('error_exists');
 		}
 
@@ -298,10 +300,10 @@ class ControllerAccountLogin extends Controller {
 	    // $res = $this->makeRequest('https://www.hotbeautyhairmall.com//index.php?route=account/login/getcustomerbytotal'.'&email='.$this->request->post['email']);
 	    // file_get_contents($res);
 	    // $reqData = json_decode($res['result'], true);
-	   $counts=file_get_contents('https://mad.hotbeautyhairmall.com/index.php?route=account/login/getcustomerbytotal'.'&email='.$this->request->post['email']);
-	    if($counts>0){
-	    	$json['error']['warning'] = $this->language->get('error_exists');
-	    }
+	   // $counts=file_get_contents('https://mad.hotbeautyhairmall.com/index.php?route=account/login/getcustomerbytotal'.'&email='.$newStr);
+	   //  if($counts>0){
+	   //  	$json['error']['warning'] = $this->language->get('error_exists');
+	   //  }
 	    // print_r($json['error']['warning']);exit;
 		// Agree to terms
 		if ($this->config->get('config_account_id')) {
