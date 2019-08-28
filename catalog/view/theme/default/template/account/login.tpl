@@ -197,8 +197,9 @@ $(document).delegate('#button-register', 'click', function() {
     })
      $(".nameemail").change(function(){
       var text=$(this).val();
+      var conStr = text.replace(/\s+/g,"");
       var re=/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
-      if(!re.test(text) && text !=""){
+      if(!re.test(conStr) && text !=""){
         $(this).siblings(".ts_p").addClass("off");
         $(this).siblings(".ts_p").text("Special Symbols Are Not Supported");
       }else{
