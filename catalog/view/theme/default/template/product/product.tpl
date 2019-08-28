@@ -211,53 +211,24 @@
 								<div class="cart_attr cart_modal clearfix">
 									<ol class="clearfix">
 
-									<?php if ($options) { ?>
-								<?php foreach ($options as $option) { ?>	
+									<?php if ($options_options) { ?>
+								<?php foreach ($options_options as $option) { ?>	
 								<?php if ($option['product_option_value']) { ?>
 								<?php if ($option['type'] == 'radio') { ?> 
 								<li class="clearfix">
 					                <span class="bt_span"><?php if($option['required']) { ?>*<?php } ?><?=$option['name']?>:</span>
-					               <!--  <input type="hidden" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php if(isset($shareoption[$option['product_option_id']])){ echo $shareoption[$option['product_option_id']];}else{ echo $option['product_option_value'][0]['product_option_value_id'];} ?>" /> -->
 									<ul class="attr_ul clearfix">
-					                <?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
-								
-					                 <em class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"><?php echo $option_value['name']; ?></em>
-
-					                 <?php } ?>
+					                 <em class="active attr_ul_attr"><?php echo $option['product_option_value']; ?></em>
 					                 </ul>
 					              </li>
 								<?php }elseif ($option['type'] == 'select') { ?>
 								<li class="clearfix" for="">
 									<span  class="bt_span"><?php if($option['required']) { ?>*<?php } ?><?=$option['name']?>:</span>
-									<ul class="attr_ul clearfix" id="input-option<?php echo $option['product_option_id']; ?>">
-									<!-- <div class="select_div" id="input-option<?php echo $option['product_option_id']; ?>"> -->
-										<!-- <input type="hidden" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php if(isset($shareoption[$option['product_option_id']])){ echo $shareoption[$option['product_option_id']];}else{ echo $option['product_option_value'][0]['product_option_value_id'];} ?>" /> -->
-										<!-- <button class="select_btn"><span></span></button> -->
-										<!-- <div class="select_ul"> -->
-											<!-- <ul> -->
-												<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
-												<em class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></em>
-											<?php } ?>
-										</ul>
-									<!-- </div> -->
-									<ul style="display: none;" class="clearfix select_ulk">
-											<?php foreach ($option['product_option_value'] as $k=> $option_value) { ?>
-												<em class="<?php if(isset($shareoption[$option['product_option_id']])){ if($shareoption[$option['product_option_id']]==$option_value['product_option_value_id']) echo 'active';} else if($k==0) echo 'active'; ?>" value="<?php echo $option_value['product_option_value_id']; ?>"   ><?php echo $option_value['name']; ?></em>
-											<?php } ?>
-									</ul>
-									
+									<ul class="attr_ul clearfix">
+										<em class="active <?php if($option['option_id']==14||$option['option_id']==26) { echo 'cart_attr_em';}else{echo 'cart_attr_eam';}?>"><?php echo $option['product_option_value']; ?></em>
+									</ul> 
 								</li>
-								<?php }} ?><?php }} ?>
-
-										<!-- <li class="clearfix">
-											<span>Color:</span>
-											<em>Black</em>
-										</li>
-										<li class="clearfix">
-											<span>Black:</span>
-											<em>10 Inch 100g</em>
-										</li>
- -->
+								<?php }}}} ?>
 									</ol>
 									<div class="price_input clearfix">
 										<p>Quantity:</p>
@@ -1033,8 +1004,19 @@ function yd_coupon(coupon_id) {
 		
 		/***属性选择***/
 		$(".attr_ul>li").click(function(){
+
+			console.log();
 			if(!$(this).hasClass("hui")){
 				$(this).addClass("active").siblings().removeClass("active");
+				
+
+				if($(this).parents('li').index()===0){
+					$(".attr_ul_attr").text($(this).text());
+				}else if($(this).parents('li').index()===1){
+					$(".cart_attr_em").text($(this).text());
+				}else{
+					$(".cart_attr_eam").text($(this).text());
+				}
 			}
 			let li_val = $(this).attr("value");
 			$(this).siblings('input').val(li_val);
