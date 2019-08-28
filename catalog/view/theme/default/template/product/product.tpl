@@ -915,6 +915,7 @@ var product_id = "<?php echo $product_id; ?>";
             success: function(json) {
                // console.log(json);
                 $('.money').html(json['html']);
+                $('#money').html(json['html']);
             }
         });
     }
