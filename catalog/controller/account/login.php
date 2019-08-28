@@ -300,10 +300,10 @@ class ControllerAccountLogin extends Controller {
 	    // $res = $this->makeRequest('https://www.hotbeautyhairmall.com//index.php?route=account/login/getcustomerbytotal'.'&email='.$this->request->post['email']);
 	    // file_get_contents($res);
 	    // $reqData = json_decode($res['result'], true);
-	   // $counts=file_get_contents('https://mad.hotbeautyhairmall.com/index.php?route=account/login/getcustomerbytotal'.'&email='.$newStr);
-	   //  if($counts>0){
-	   //  	$json['error']['warning'] = $this->language->get('error_exists');
-	   //  }
+	   $counts=file_get_contents('https://mad.hotbeautyhairmall.com/index.php?route=account/login/getcustomerbytotal'.'&email='.$newStr);
+	    if($counts>0){
+	    	$json['error']['warning'] = $this->language->get('error_exists');
+	    }
 	    // print_r($json['error']['warning']);exit;
 		// Agree to terms
 		if ($this->config->get('config_account_id')) {
