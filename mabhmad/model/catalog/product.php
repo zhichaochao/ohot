@@ -32,6 +32,16 @@ class ModelCatalogProduct extends Model {
 		}
 		
 	}
+	public function editProductenable($product_id) {
+		  $sql = "UPDATE " . DB_PREFIX . "product SET status=1 WHERE product_id = '" . (int)$product_id . "'";
+		  $this->querysql($sql);
+		  
+	}
+	public function editProductprohibit($product_id) {
+		  $sql = "UPDATE " . DB_PREFIX . "product SET status=0 WHERE product_id = '" . (int)$product_id . "'";
+		  $this->querysql($sql);
+	}
+	
 	public function addProduct($data) {
 		
 		//加载Model

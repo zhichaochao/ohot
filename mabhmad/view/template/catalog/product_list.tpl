@@ -3,6 +3,8 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
+      <a  class="btn btn-success"  id="btn-successesqi" formaction="<?php echo $enable; ?>">批量启用</a>
+      <a  class="btn btn-success" style="background-color: #f56b6b;border-color: #f56b6b" id="btn-successesjin" formaction="<?php echo $prohibit; ?>">批量禁用</a>
       <a  class="btn btn-success" id="btn-successes" formaction="<?php echo $explodes; ?>">副站批量导出</a>
       <a  class="btn btn-success" id="btn-success" formaction="<?php echo $explode; ?>">主站批量导出</a>
 	<a href="<?php echo $importSpecial; ?>" data-toggle="tooltip" title="Import Products" class="btn btn-primary">导入价格</a>
@@ -355,6 +357,18 @@ $('#btn-successproduct').on('click', function(e) {
   } else {
     return false;
   }
+});
+$('#btn-successesqi').on('click', function(e) {
+  $('#form-product').attr('action', this.getAttribute('formAction'));
+  
+    $('#form-product').submit();
+
+});
+$('#btn-successesjin').on('click', function(e) {
+  $('#form-product').attr('action', this.getAttribute('formAction'));
+  
+    $('#form-product').submit();
+  
 });
 //--></script></div>
 <?php echo $footer; ?>

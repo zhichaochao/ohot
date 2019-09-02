@@ -636,6 +636,8 @@ class ControllerCatalogProduct extends Controller {
 		$data['explode'] = $this->url->link('catalog/product/exportComment', 'token=' . $this->session->data['token'], true);
 		$data['explodes'] = $this->url->link('catalog/product/exportCommentes', 'token=' . $this->session->data['token'], true);
 		$data['synchronizationproducts'] = $this->url->link('catalog/product/synchronizationProducts', 'token=' . $this->session->data['token'], true);
+		$data['enable'] = $this->url->link('catalog/product/exportenable', 'token=' . $this->session->data['token'], true);
+		$data['prohibit'] = $this->url->link('catalog/product/editProductprohibit', 'token=' . $this->session->data['token'], true);
 
 
 		$data['categories'] = array();
@@ -1059,6 +1061,40 @@ class ControllerCatalogProduct extends Controller {
         $excel->data = $data['productprice'];
         $excel->toString();
   }
+    public function exportenable(){
+    	$this->load->language('catalog/product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('catalog/product');
+    	if (isset($this->request->post['selected'])) {
+    		$product_ids=$this->request->post['selected'];
+    		// print_r($product_ids);exit;
+    		foreach ($product_ids as $product_id) {
+
+    			$this->model_catalog_product->editProductenable($product_id);
+    		}
+    		$this->response->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] , true));
+    	}
+    	$this->getList();
+    }
+       public function editProductprohibit(){
+    	$this->load->language('catalog/product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('catalog/product');
+    	if (isset($this->request->post['selected'])) {
+    		$product_ids=$this->request->post['selected'];
+    		// print_r($product_ids);exit;
+    		foreach ($product_ids as $product_id) {
+
+    			$this->model_catalog_product->editProductprohibit($product_id);
+    		}
+    		$this->response->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] , true));
+    	}
+    	$this->getList();
+    }
    public function exportCommentes(){
       	require_once DIR_SYSTEM.'common/SimpleExcel.php';
       	$this->load->model('catalog/product');
