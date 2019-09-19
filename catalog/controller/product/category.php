@@ -91,7 +91,7 @@ class ControllerProductCategory extends Controller {
 				}
 			}
 		} else {
-			$category_id = 0;
+			$category_id = $this->request->get['category_id'];
 		}
 
 		$category_info = $this->model_catalog_category->getCategory($category_id);
@@ -114,10 +114,10 @@ class ControllerProductCategory extends Controller {
 			$data['text_tax'] = $this->language->get('text_tax');
 			$data['text_points'] = $this->language->get('text_points');
 
-			$data['sort_sort_order'] = $this->url->link('product/category', 'token='  . '&sort=p.price' . $url, true);
-			$data['sort_sort_order_d'] = $this->url->link('product/category', 'token='  . '&sort=p.price&order=DESC' . $url, true);
-			$data['sort_sort_add'] = $this->url->link('product/category', 'token='  . '&sort=p.date_added' . $url, true);
-			$data['sort_sort_rating'] = $this->url->link('product/category', 'token='  . '&sort=rating' . $url, true);
+			$data['sort_sort_order'] = $this->url->link('product/category', 'category_id=' . $category_id.'&token='  . '&sort=p.price' . $url, true);
+			$data['sort_sort_order_d'] = $this->url->link('product/category','category_id=' . $category_id. '&token='  . '&sort=p.price&order=DESC' . $url, true);
+			$data['sort_sort_add'] = $this->url->link('product/category', 'category_id=' . $category_id.'&token='  . '&sort=p.date_added' . $url, true);
+			$data['sort_sort_rating'] = $this->url->link('product/category','category_id=' . $category_id. '&token='  . '&sort=rating' . $url, true);
 			//产品对比按钮
 			//$data['text_compare'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
 			$data['text_sort'] = $this->language->get('text_sort');

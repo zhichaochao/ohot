@@ -246,7 +246,6 @@
     }
     
 </style> 
- <?php echo $footer; ?> 
 <script>
 function cancel_order(url){
 	if(confirm('Are You Sure?')){

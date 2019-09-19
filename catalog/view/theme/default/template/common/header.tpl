@@ -68,6 +68,7 @@
     var win = $(window).innerWidth();
 
      if(win>=920){
+        if(!$(".cart_li").hasClass("active")){
 $(".img_ol .cart_li").click(function(){
         $(".nav_cart").fadeIn();
         $.ajax({
@@ -85,7 +86,7 @@ $(".img_ol .cart_li").click(function(){
             }
         });  
     })
-}   
+} }  
 });
 
 </script>
@@ -141,7 +142,7 @@ $(".img_ol .cart_li").click(function(){
                         <li class="login_li"><a href="<?php echo $login_li?>"></a>Account</li>
                         <?php } ?>
                         <li><a href="<?=$wishlist;?>"><span id='wishlist_count'><?php echo $text_wishlist; ?></span></a>Wish List</li>
-                        <li class="cart_li"><span  id='cart_count'><?=$text_cart_items;?></span>Cart</li>
+                        <li class="cart_li <?=strpos($thispage,'checkout') !== false ?'active':'';?> "><span  id='cart_count'><?=$text_cart_items;?></span>Cart</li>
                     </ol>
                       <?php if ($logged) { ?>
                     <div class="lg_hover clearfix">

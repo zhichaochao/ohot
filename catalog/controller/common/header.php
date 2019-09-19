@@ -37,6 +37,7 @@ class ControllerCommonHeader extends Controller {
 		$data['lang'] = $this->language->get('code');
 		$data['direction'] = $this->language->get('direction');
 
+		$data['thispage']=$_SERVER['QUERY_STRING'].$_SERVER['REQUEST_URI'];
 		$data['name'] = $this->config->get('config_name');
 
 		if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
