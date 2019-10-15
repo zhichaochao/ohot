@@ -231,6 +231,14 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+			if ($this->user->hasPermission('access', 'sale/order')) {
+				$sale[] = array(
+					'name'	   => '各站销售数据',
+					'href'     => $this->url->link('sale/salesdata', 'token=' . $this->session->data['token'].'&key=0', true),
+					'children' => array()
+				);
+			}
+
 			if ($this->user->hasPermission('access', 'sale/recurring')) {
 				$sale[] = array(
 					'name'	   => $this->language->get('text_recurring'),
