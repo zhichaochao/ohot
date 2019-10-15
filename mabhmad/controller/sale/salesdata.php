@@ -88,7 +88,7 @@ class ControllerSaleSalesdata extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => '各站销售数据',
-			'href' => $this->url->link('sale/salesdata', 'token=' . $this->session->data['token'] . $url, true)
+			'href' => $this->url->link('sale/salesdata', 'token=' . $this->session->data['token'] . $url.'&key=0', true)
 		);
 
 		$data['add'] = $this->url->link('customer/customer/add', 'token=' . $this->session->data['token'] . $url, true);
