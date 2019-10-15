@@ -64,7 +64,7 @@
               <div class="form-group">
                 <label class="control-label" for="input-date-added">查询开始日期<em style="color: red;">**</em></label>
                 <div class="input-group date">
-                  <input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" placeholder="开始日期" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+                  <input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" placeholder="开始日期" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" readonly="readonly"/>
                   <span class="input-group-btn">
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span>
@@ -75,7 +75,7 @@
               <div class="form-group">
                 <label class="control-label" for="input-date-added">查询结束日期<em style="color: red;">**</em></label>
                 <div class="input-group date">
-                  <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" placeholder="结束日期" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+                  <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" placeholder="结束日期" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" readonly="readonly"/>
                   <span class="input-group-btn">
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span>
