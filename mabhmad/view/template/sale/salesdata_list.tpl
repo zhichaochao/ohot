@@ -44,7 +44,7 @@
                   <?php foreach ($order_statuses as $order_status) { ?>
                   
                   <?php
-                      $orderstatus=array("Pending","Paid","Shipped","Complete","Canceled","Refunded");  
+                      $orderstatus=array("Pending","Shipped","Complete","Canceled","Refunded");  
                       if( in_array($order_status['name'],$orderstatus) ){    
                   ?>
                   
