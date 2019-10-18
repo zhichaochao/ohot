@@ -132,6 +132,14 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+			if ($this->user->hasPermission('access', 'sale/order')) {
+				$sale[] = array(
+					'name'	   => '销售数据',
+					'href'     => $this->url->link('sale/salesdata', 'token=' . $this->session->data['token'].'&key=0', true),
+					'children' => array()
+				);
+			}
+
 			
 			//Product Inquiry,end
 
