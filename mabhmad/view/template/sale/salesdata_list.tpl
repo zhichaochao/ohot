@@ -39,7 +39,7 @@
             <div class="col-sm-3">
               <div class="form-group">
                 <label class="control-label" for="input-order-status">订单状态</label>
-                <select name="filter_order_status" id="input-order-status" class="form-control">
+               <!--  <select name="filter_order_status" id="input-order-status" class="form-control">
                   <option value="*"></option>
                   <?php foreach ($order_statuses as $order_status) { ?>
                   
@@ -56,7 +56,25 @@
                   
                   <?php } ?> 
                   <?php } ?>
-                </select>
+                </select> -->
+                  <?php foreach ($order_statuses as $order_status) { ?>
+                  
+                  <?php
+                      $orderstatus=array("Pending","Shipped","Paid","Complete","Canceled","Refunded");  
+                      if( in_array($order_status['name'],$orderstatus) ){    
+                  ?>
+                  
+                  <?php if ($order_status['order_status_id'] == $filter_order_status|| in_array($order_status['order_status_id'],$filter_order_status)  ) { ?>
+
+                   <input class='order_status_ids' type="checkbox" name="id[]" value="<?php echo $order_status['order_status_id']; ?>" checked="checked">
+                  <em ><?php echo $order_status['name']; ?></em>
+                <?php } else { ?>
+                     <input class='order_status_ids' type="checkbox" name="id[]"  value="<?php echo $order_status['order_status_id']; ?>">
+                  <em ><?php echo $order_status['name']; ?></em>
+                  <?php } ?>
+                  
+                  <?php } ?> 
+                  <?php } ?>
               </div> 
               
             </div>
@@ -149,11 +167,26 @@ function jump(href) {
 $('#button-filter').on('click', function() {
 	url = 'index.php?route=sale/salesdata&token=<?php echo $token; ?>&key=<?php echo $key; ?>';
 
-  var filter_order_status = $('select[name=\'filter_order_status\']').val();
-  if (filter_order_status != '*') {
-    url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
-  }
-		
+ //  var filter_order_status = $('select[name=\'filter_order_status\']').val();
+ //  if (filter_order_status != '*') {
+ //    url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
+ //  }
+  var k=0;
+  var status='';
+   $('.order_status_ids').each( function( ) {
+    $(this).val();
+    if ($(this).is(":checked")) {
+      if (k==0) {status+=$(this).val();}else{
+        status+=','+$(this).val();
+      }
+      k++;
+     }
+   }
+   )
+
+  if (status) {
+    url += '&filter_order_status=' + encodeURIComponent(status);
+  }		
 	var filter_date_added = $('input[name=\'filter_date_added\']').val();
 	
 	if (filter_date_added) {
@@ -167,47 +200,7 @@ $('#button-filter').on('click', function() {
 	location = url;
 });
 //--></script> 
-  <script type="text/javascript"><!--
-// $('input[name=\'filter_name\']').autocomplete({
-// 	'source': function(request, response) {
-// 		$.ajax({
-// 			url: 'index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-// 			dataType: 'json',			
-// 			success: function(json) {
-// 				response($.map(json, function(item) {
-// 					return {
-// 						label: item['name'],
-// 						value: item['customer_id']
-// 					}
-// 				}));
-// 			}
-// 		});
-// 	},
-// 	'select': function(item) {
-// 		$('input[name=\'filter_name\']').val(item['label']);
-// 	}	
-// });
 
-// $('input[name=\'filter_email\']').autocomplete({
-// 	'source': function(request, response) {
-// 		$.ajax({
-// 			url: 'index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_email=' +  encodeURIComponent(request),
-// 			dataType: 'json',			
-// 			success: function(json) {
-// 				response($.map(json, function(item) {
-// 					return {
-// 						label: item['email'],
-// 						value: item['customer_id']
-// 					}
-// 				}));
-// 			}
-// 		});
-// 	},
-// 	'select': function(item) {
-// 		$('input[name=\'filter_email\']').val(item['label']);
-// 	}	
-// });
-//--></script> 
   <script type="text/javascript"><!--
 $('.date').datetimepicker({
 	pickTime: false

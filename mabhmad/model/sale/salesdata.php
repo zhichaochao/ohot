@@ -10,9 +10,9 @@ class ModelSaleSalesdata  extends Model {
 		$sql = "SELECT o.order_id, CONCAT(o.firstname, '', o.lastname) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS order_status, o.shipping_code, o.total, o.currency_code, o.currency_value, o.date_added, o.date_modified, o.order_no FROM `" . DB_PREFIX . "order` o";
 
 		if (isset($data['filter_order_status'])) {
-			if($data['filter_order_status']==3){
-				$sql .= " WHERE (o.order_status_id = 3 OR o.order_status_id = 2)";
-			}else{
+			// if($data['filter_order_status']==3){
+			// 	$sql .= " WHERE (o.order_status_id = 3 OR o.order_status_id = 2)";
+			// }else{
 
 				$implode = array();
 
@@ -26,7 +26,7 @@ class ModelSaleSalesdata  extends Model {
 				$sql .= " WHERE (" . implode(" OR ", $implode) . ")";
 			}
 
-			}
+			// }
 
 		} else {
 			$sql .= " WHERE o.order_status_id > '0'";
@@ -86,9 +86,9 @@ class ModelSaleSalesdata  extends Model {
 
 
 		if (isset($data['filter_order_status'])) {
-			if($data['filter_order_status']==3){
-				$sql .= " WHERE (o.order_status_id = 3 OR o.order_status_id = 2)";
-			}else{
+			// if($data['filter_order_status']==3){
+			// 	$sql .= " WHERE (o.order_status_id = 3 OR o.order_status_id = 2)";
+			// }else{
 				$implode = array();
 
 				$order_statuses = explode(',', $data['filter_order_status']);
@@ -100,7 +100,7 @@ class ModelSaleSalesdata  extends Model {
 				if ($implode) {
 					$sql .= " WHERE (" . implode(" OR ", $implode) . ")";
 				}
-			}
+			// }
 		} else {
 			$sql .= " WHERE o.order_status_id > '0'";
 		}

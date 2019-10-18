@@ -14,7 +14,7 @@ class ControllerSaleSalesdata extends Controller {
 
 
 	public function getList() {
-		
+				
 		if (isset($this->request->get['filter_order_status'])) {
 			$filter_order_status = $this->request->get['filter_order_status'];
 		} else {
@@ -91,8 +91,6 @@ class ControllerSaleSalesdata extends Controller {
 			'href' => $this->url->link('sale/salesdata', 'token=' . $this->session->data['token'] . $url.'&key=0', true)
 		);
 
-		$data['add'] = $this->url->link('customer/customer/add', 'token=' . $this->session->data['token'] . $url, true);
-		$data['delete'] = $this->url->link('customer/customer/delete', 'token=' . $this->session->data['token'] . $url, true);
 
 		$data['salesdatas'] = array();
 
@@ -276,8 +274,8 @@ class ControllerSaleSalesdata extends Controller {
 // print_r($data['results'] );exit;
 		// $data['filter_name'] = $filter_name;
 		$data['SalesStationtotal'] = $SalesStation_total;
-		$data['filter_order_status'] = $filter_order_status;
-		
+		$a=explode(',',$filter_order_status);
+		$data['filter_order_status'] = (array)$a;
 		$data['filter_date_added'] = $filter_date_added;
 		$data['filter_date_end'] = $filter_date_end;
 
