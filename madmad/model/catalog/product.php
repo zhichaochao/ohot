@@ -51,13 +51,18 @@ class ModelCatalogProduct extends Model {
         }
 
 
+// print_r($product_id);
+
+// print_r($data['product_special']);
+$sp_id=array();
         
                 if (isset($data['product_special'])) {
             //是否同步同类产品的折扣信息
         
             foreach ($data['product_special'] as $key => $product_special) {
             
-                    if (isset($product_special['product_special_id'])){
+                    if (isset($product_special['product_special_id'])&&$product_special['product_special_id']>0){
+                        $sp_id[]=$product_special['product_special_id'];
                         if (isset($product_special['date_end']) && !empty($product_special['date_end'])) {
                            $this->db->query("UPDATE " . DB_PREFIX . "product_special SET
                             customer_group_id = '" . (int)$product_special['customer_group_id'] . "',
@@ -74,6 +79,7 @@ class ModelCatalogProduct extends Model {
                     }
                     else {
                          if (isset($product_special['date_end']) && !empty($product_special['date_end'])) {
+                          
                        $this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET
                         product_id = '" . (int)$product_id . "',
                         customer_group_id = '" . (int)$product_special['customer_group_id'] . "',
@@ -83,12 +89,22 @@ class ModelCatalogProduct extends Model {
                         percent = '" . (float)$product_special['percent'] . "',
                         date_start = '" . $this->db->escape($product_special['date_start']) . "',
                         date_end = '" . $this->db->escape($product_special['date_end']) . "'");
+                       $sp_id[]= $this->db->getLastId();
                         }
                     }
                 
         
         }
+        if ( $sp_id) {
+           $this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' AND product_special_id not in(".implode(',',  $sp_id).")");
+        }else{
+              $this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'");
+                       
+        }
     }
+     // $q=$this->db->query('SELECT * from th_product_special  WHERE product_id='.(int)$product_id);
+    //  print_r($q->rows);
+    // exit();
 
         $price=$this->getProductSpecials($product_id);
         // print_r($price);exit();
