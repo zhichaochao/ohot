@@ -32,6 +32,28 @@ class ModelCatalogProduct extends Model {
 		}
 		
 	}
+		private function copsql2($table_name,$row)
+	{
+		$dbs= unserialize($this->config->get('db_database_data'));
+		foreach ($dbs as $key => $value) {
+				if($key>0){
+					$d='db'.$key;
+				}else{
+					$d='db';
+				}
+					$sql= "INSERT INTO " . DB_PREFIX . $table_name." SET ";
+					foreach ($row as $k => $val) {
+					
+							$sql.=  $k."='".$val."',";
+					}
+				$sql = substr( $sql,0, strlen($sql)-1 );
+				// print_r($sql);exit;
+				$this->$d->query($sql);
+			
+		}
+		
+	}
+
 	public function editProductenable($product_id) {
 		  $sql = "UPDATE " . DB_PREFIX . "product SET status=1 WHERE product_id = '" . (int)$product_id . "'";
 		  $this->querysql($sql);
@@ -767,8 +789,9 @@ $sp_id=array();
 
  	$this->querysql("DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'");
 	 if ( $q->rows) {
+
 	 	foreach ($q->rows as $key => $row) {
-	 		$this->copsql('product_special',$row);
+	 		$this->copsql2('product_special',$row);
 	 	}
 	 	
 	 }
