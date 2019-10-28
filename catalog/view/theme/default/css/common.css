@@ -616,12 +616,12 @@ position: absolute;top: 50%;left: 50%;margin-top: -0.16rem;margin-left: -0.16rem
 	.hwm_one span{display: block;text-align: center;margin:0 auto 40px;cursor: pointer;}
 	.hwm_one p{display: block;font-size: 18px;text-align: center;margin: auto;color: #f23030;}
 	
-	.has .price_input{border: 1px solid #ccc;width: 0.96rem;position: relative;display: inline-block;vertical-align: top;background: #ffffff;}
-	.has .price_input span{display: block;float: left; width: 0.32rem;height: 0.3rem;cursor: pointer;position: absolute;top:0;}
-	.has .price_input span.sub{background: url(../img/png/new_3_.png) no-repeat center/0.14rem 0.03rem;left: 0;}
-	.has .price_input span.sub.active{opacity: .5;}
-	.has .price_input span.add{background: url(../img/png/new_3.png) no-repeat center/0.14rem 0.14rem;right: 0;}
-	.has .price_input input{display: inline-block;width: 0.32rem;height: 0.3rem;line-height: 0.3rem; float: left;margin-left: 0.32rem;
+	.price_input{border: 1px solid #ccc;width: 0.96rem;position: relative;display: inline-block;vertical-align: top;background: #ffffff;}
+	.price_input span{display: block;float: left; width: 0.32rem;height: 0.3rem;cursor: pointer;position: absolute;top:0;}
+	.price_input span.sub{background: url(../img/png/new_3_.png) no-repeat center/0.14rem 0.03rem;left: 0;cursor: pointer;}
+	.price_input span.sub.active{opacity: .5;}
+	.price_input span.add{background: url(../img/png/new_3.png) no-repeat center/0.14rem 0.14rem;right: 0;cursor: pointer;}
+	.price_input input{display: inline-block;width: 0.32rem;height: 0.3rem;line-height: 0.3rem; float: left;margin-left: 0.32rem;
 	border-right: 1px solid#ccc;border-left: 1px solid#ccc;text-align: center;font-size: 0.2rem;background: #ffffff;}
 	
 	
@@ -743,7 +743,7 @@ position: absolute;top: 50%;left: 50%;margin-top: -0.16rem;margin-left: -0.16rem
 	/* 弹窗 */
 	.hwm_pc{display: none;}
 	.ydh_sern{position: fixed;background: rgba(0,0,0,0.5);top: 0;bottom: 0;left: 0;right: 0;z-index: 999;display: none;}
-	.ydh_hide{width: 100%;background: #FFFFFF;border-radius: 0.4rem 0.4rem 0 0;overflow-y: auto;height: 80%;position: absolute;bottom: 0;padding:0 0.4rem;overflow: hidden;}
+	.ydh_hide{width: 100%;background: #FFFFFF;border-radius: 0.4rem 0.4rem 0 0;overflow-y: auto;height: 80%;position: absolute;bottom: 0;padding:0 0.4rem;/* overflow: hidden; */}
 	.ydh_hide .yd_close{line-height: 0.46rem;position: relative;padding-top: 0.4rem;}
 	.ydh_hide .yd_close>div{display: inline-block;vertical-align: middle;}
 	.ydh_hide .yd_close>div img{display: block;width: 100%;}
@@ -759,7 +759,7 @@ position: absolute;top: 50%;left: 50%;margin-top: -0.16rem;margin-left: -0.16rem
 	
 	.ydh_sxu{z-index: 1000;}
 	.ydh_sxu .ydh_hide .yd_bur{margin-top: 0.4rem;height: 80%;}
-	.ydh_sxu .ydh_hide .yd_bur .yd_bur_each{height:70%;overflow: auto;display: block;padding-right: 10px;margin-top: 0.2rem;}
+	.ydh_sxu .ydh_hide .yd_bur .yd_bur_each{/* height:70%; */overflow: auto;display: block;padding-right: 10px;margin-top: 0.2rem;}
 	.yd_bur_each::-webkit-scrollbar {display: none;}
 	.ydh_sxu .ydh_hide .yd_bur .yd_bur_a{display: flex;}
 	.ydh_sxu .ydh_hide .yd_bur .yd_bur_a>span{display: block;width: 1.24rem;height: 1.24rem;border: 1px solid #dddddd;}
@@ -771,11 +771,12 @@ position: absolute;top: 50%;left: 50%;margin-top: -0.16rem;margin-left: -0.16rem
 	.ydh_sxu .ydh_hide .yd_bur .yd_bur_b{border-bottom: 1px solid #eeeeee;padding:0.3rem 0;}
 	.ydh_sxu .ydh_hide .yd_bur .yd_bur_b p{font-size: 0.24rem;color: #666666;margin-bottom: 0.24rem;}
 	.ydh_sxu .ydh_hide .yd_bur .yd_bur_b ul{display: flex;flex-wrap: wrap;margin-right: 0.2rem;margin-bottom: -0.2rem;}
-	.ydh_sxu .ydh_hide .yd_bur .yd_bur_b ul li{margin-bottom: 0.2rem;margin-right: 0.2rem;}
-	.ydh_sxu .ydh_hide .yd_bur .yd_bur_b ul li a{font-size:0.24rem ;color: #333;display: block;height: 0.6rem;line-height: 0.6rem;border: 1px solid #ffffff;padding: 0 0.24rem;border-radius: 10px;background: #f5f5f5;}
-	.ydh_sxu .ydh_hide .yd_bur .yd_bur_b ul li a:hover{border: 1px solid #f23030;background: #fff3f3;color: #f23030;}
+	/* .ydh_sxu .ydh_hide .yd_bur .yd_bur_b ul li{} */
+	.ydh_sxu .ydh_hide .yd_bur .yd_bur_b ul li{margin-bottom: 0.2rem;margin-right: 0.2rem;font-size:0.24rem ;color: #333;display: block;height: 0.6rem;line-height: 0.6rem;border: 1px solid #ffffff;padding: 0 0.24rem;border-radius: 10px;background: #f5f5f5;cursor: pointer;}
+	.ydh_sxu .ydh_hide .yd_bur .yd_bur_b ul li.yd_on{border: 1px solid #f23030;background: #fff3f3;color: #f23030;}
+	.ydh_sxu .ydh_hide .yd_bur .yd_bur_b ul li.yd_hui{color: #bababa;}
 
-	.ydh_sxu .ydh_hide .yd_bur .yd_bur_c{border-bottom: 1px solid #eeeeee;padding:0.3rem 0;}
+	.ydh_sxu .ydh_hide .yd_bur .yd_bur_c{border-bottom: 1px solid #eeeeee;padding:0.3rem 0;margin-bottom: 1.3rem;}
 	.ydh_sxu .ydh_hide .yd_bur .yd_bur_c p{font-size: 0.24rem;color: #666666;line-height: 0.6rem;}
 	.yd_bur_c .yd_dl{overflow: hidden;float: right;margin-top: -0.6rem;}
 	.yd_bur_c .yd_dl dd{float: left;}
@@ -784,7 +785,7 @@ position: absolute;top: 50%;left: 50%;margin-top: -0.16rem;margin-left: -0.16rem
 	.yd_bur_c .yd_dl .num-jian{border-radius: 8px 0 0 8px;background: #F5F5F5;color: #666;}
 	.yd_bur_c .yd_dl .num-jia{border-radius:0 8px 8px 0;background: #F5F5F5;color: #666;}
 	
-	.ydh_sxu .yd_bur_d{position: absolute;width: 6.7rem;bottom: 0;padding: 0.3rem 0rem;background: #ffffff;}
+	.ydh_sxu .yd_bur_d{position: fixed;width: 6.7rem;bottom: 0;padding: 0.3rem 0rem;background: #ffffff;}
 	.ydh_sxu .yd_bur_d a{display: block;font-size: 0.24rem;height: 0.7rem;line-height: 0.7rem;text-align: center;margin: auto;width: 100%;background: #F23030;color: #fff;border-radius: 0.35rem;}
 
 	.ydh_faun .ydh_hide{height: 80%;}
@@ -799,30 +800,30 @@ position: absolute;top: 50%;left: 50%;margin-top: -0.16rem;margin-left: -0.16rem
 	.ydh_faun .ydh_hide .yd_bur ul li>a .yd_bur_list span{position: absolute;bottom: 0;display: block;bottom: 0;font-size: 0.2rem;color: #f23030;}
 	.ydh_faun .ydh_hide .yd_bur ul li>a .yd_bur_list button{display: block;height: 0.5rem;line-height: 0.5rem;border: 1px solid #F23030;color: #F23030;background: #fff3f3;min-width: 1.4rem;border-radius: 5px;position: absolute;right: 0;bottom: 0;}
 	
-	.has .price_input{border: 1px solid #ccc;width: 1.2rem;position: relative;display: inline-block;vertical-align: top;background: #ffffff;}
-	.has .price_input span{display: block;float: left; width: 0.4rem;height: 0.4rem;cursor: pointer;position: absolute;top:0;}
-	.has .price_input span.sub{background: url(../img/png/new_3_.png) no-repeat center/0.14rem 0.03rem;left: 0;}
-	.has .price_input span.sub.active{opacity: .5;}
-	.has .price_input span.add{background: url(../img/png/new_3.png) no-repeat center/0.14rem 0.14rem;right: 0;}
-	.has .price_input input{display: inline-block;width: 0.4rem;height: 0.4rem;line-height: 0.4rem; float: left;margin-left: 0.4rem;
+	.price_input{border: 1px solid #ccc;width: 1.2rem;position: relative;display: inline-block;vertical-align: top;background: #ffffff;}
+	.price_input span{display: block;float: left; width: 0.4rem;height: 0.4rem;cursor: pointer;position: absolute;top:0;}
+	.price_input span.sub{background: url(../img/png/new_3_.png) no-repeat center/0.14rem 0.03rem;left: 0;cursor: pointer;}
+	.price_input span.sub.active{opacity: .5;}
+	.price_input span.add{background: url(../img/png/new_3.png) no-repeat center/0.14rem 0.14rem;right: 0;cursor: pointer;}
+	.price_input input{display: inline-block;width: 0.4rem;height: 0.4rem;line-height: 0.4rem; float: left;margin-left: 0.4rem;
 	border-right: 1px solid#ccc;border-left: 1px solid#ccc;text-align: center;font-size: 0.2rem;background: #ffffff;}
 	
-
+	.yd_hui{}
 }	
 
 @media (min-width:320px) and (max-width:390px) {
 	.ydh_sxu .ydh_hide .yd_bur{height: 80%;}
-	.ydh_sxu .ydh_hide .yd_bur .yd_bur_each{height: 77%;}
+	/* .ydh_sxu .ydh_hide .yd_bur .yd_bur_each{height: 77%;} */
 }
 
 @media (min-width:390px) and (max-width:450px) {
 	.ydh_sxu .ydh_hide .yd_bur{height: 80%;}
-	.ydh_sxu .ydh_hide .yd_bur .yd_bur_each{height: 80%;}
+	/* .ydh_sxu .ydh_hide .yd_bur .yd_bur_each{height: 80%;} */
 }
 
 @media (min-width:450px) and (max-width:530px) {
 	.ydh_sxu .ydh_hide .yd_bur{height: 80%;}
-	.ydh_sxu .ydh_hide .yd_bur .yd_bur_each{height: 75%;}
+	/* .ydh_sxu .ydh_hide .yd_bur .yd_bur_each{height: 75%;} */
 }
 
 @media (min-width:530px) and (max-width:650px) {
