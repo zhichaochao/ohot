@@ -41,7 +41,7 @@
 						</div>
 						</div>
 						
-						<ul class="shop2_ul" <?php if (ADD_CART){ ?> <?php if ($can_add){ ?>style="margin: 1.1rem 0 0.2rem 0;" <?php }else{?>style="margin: 1.1rem 0 2.17rem 0;" <?php } }?> >
+						<ul class="shop2_ul"<?php if (CUSTOM_CART){ ?>style="margin: 1.1rem 0 0.2rem 0;" <?php }?> <?php if (ADD_CART){ ?> <?php if ($can_add){ ?>style="margin: 1.1rem 0 0.2rem 0;" <?php }?> <?php } ?> >
 
 						<?php foreach($products as $product){ ?>
 							<li class="clearfix <?php if(!$product['stock']) { ?>no<?php }?>" id="noyd_<?php echo $product['cart_id']; ?>">
@@ -109,6 +109,12 @@
 			                <?php } ?>
 
 						</ul>
+				<!-- 移动端定制单显示 -->
+						<div id="custom_ydgetproducts">
+						
+						</div>
+				<!--移动端定制单显示end -->
+
 					</div>
 				
 				</div>
@@ -947,8 +953,8 @@ select_cart();
 			// console.log(a);
 		}
 
-// 获取pc定制单
-getcustomproducts();
+	// 获取pc定制单
+	getcustomproducts();
 	function getcustomproducts() {
 			 // var chk_value = '';
 	   //      $("input:checkbox[name='product']:checked").each(function() { // 遍历name=test的多选框
@@ -969,6 +975,28 @@ getcustomproducts();
 			        }
 			    })
 		}
+		// 获取pc定制单
+		getcustomydproducts();
+		function getcustomydproducts() {
+				 // var chk_value = '';
+		   //      $("input:checkbox[name='product']:checked").each(function() { // 遍历name=test的多选框
+		   //          chk_value += $(this).val() + ',';  // 每一个被选中项的值
+		   //      });
+		   //      chk_value = chk_value.substring(0,chk_value.length-1);
+				$.ajax({
+				        url: 'index.php?route=checkout/cart/getcustomydcart',
+				         dataType: 'html',
+				         // data:{cart_ids:chk_value},
+				 
+				      
+				        success: function(html) {
+				        	
+				        	$('#custom_ydgetproducts').html(html);
+				        	// getalltotal();
+				        	
+				        }
+				    })
+			}
 </script>
 
 <script type="text/javascript">

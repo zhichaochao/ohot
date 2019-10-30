@@ -19,7 +19,7 @@
 										<?php foreach ($productcart['product_value'] as $key => $productvalue) {   ?>
 											<li>
 												<div class="hop1">
-													<a href="###"><img src="<?php echo $productvalue['product_thumb']; ?>"></a>
+													<a href="<?php echo $productvalue['href']; ?>"><img src="<?php echo $productvalue['product_thumb']; ?>"></a>
 												</div>
 												<div class="hop2">
 													<p><?php echo $productvalue['product_name']; ?></p>

@@ -1133,7 +1133,7 @@ $json['text_cart_items'] = $this->cart->countProducts() + (isset($this->session-
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($url));
     }
-    // 显示定制单
+    // 显示pc定制单
     public function getcustomcart()
     {
          $this->load->model('catalog/customized'); 
@@ -1172,6 +1172,7 @@ $json['text_cart_items'] = $this->cart->countProducts() + (isset($this->session-
                     $product_values[$k]=array(
                        'product_id'             =>$product_value['product_id'],
                        'product_name'           =>$product_info['name'],
+                       'href'                   => $this->url->link('product/product', 'product_id=' . $product_value['product_id']),
                        'product_thumb'          =>$thumb,
                        'quantity'               =>$product_value['quantity'],
                        'total'             =>$this->currency->format($product_value['option_name_value']['total'], $this->session->data['currency']), //产品总价
@@ -1204,6 +1205,81 @@ $json['text_cart_items'] = $this->cart->countProducts() + (isset($this->session-
          }
          // print_r($data['resultdata']);exit;
          $this->response->setOutput($this->load->view('checkout/custom_product', $data));
+     
+    }
+
+    // 显示移动端定制单
+    public function getcustomydcart()
+    {
+         $this->load->model('catalog/customized'); 
+         $this->load->model('catalog/product'); 
+         $this->load->model('tool/image');  
+         $resultdatas=$this->model_catalog_customized->getcustomcartproducts();
+
+         // 制作一个产品的价格（$3.5 从后台取）
+        $single_price=$this->config->get('single_price');
+        // 制作价格20美金（后台取）
+        $custom_total=$this->config->get('custom_total');
+        
+         foreach ($resultdatas as $value) {
+            $totals=0;
+            $colortotal=0;
+            $qty=0;
+            foreach ($value['option_name_values'] as $k=> $product_value) {
+               
+                    $product_info = $this->model_catalog_product->getProduct($product_value['product_id']);
+                    if ($product_info['image']) {
+                        $thumb = $this->model_tool_image->resize($product_info['image'], 200, 200);
+                    } else {
+                        $thumb = '';
+                    }
+                    
+
+                        foreach ($product_value['option_name_value']['option_name'] as $key=>$option_snames) {
+                                    // foreach ($option_names as $key => $option_aname) {
+                                        $option_name_value[$key]=array(
+                                       'option_name'             =>$option_snames['name'],
+                                       'option_value'           =>$option_snames['value']
+                                    );
+                                // }                                 
+                        }
+
+                    $product_values[$k]=array(
+                       'product_id'             =>$product_value['product_id'],
+                       'product_name'           =>$product_info['name'],
+                       'href'                   => $this->url->link('product/product', 'product_id=' . $product_value['product_id']),
+                       'product_thumb'          =>$thumb,
+                       'quantity'               =>$product_value['quantity'],
+                       'total'             =>$this->currency->format($product_value['option_name_value']['total'], $this->session->data['currency']), //产品总价
+                       'product_option_value'   =>$option_name_value
+
+                 );
+                    $totals+=$product_value['option_name_value']['total']; //所有产品的总价格
+                    $qty+=$product_value['quantity']; //所有产品的数量
+                    $colortotal+=$product_value['quantity']*$single_price; //所有产品的染色价格
+            }
+            // 总价=产品价格+颜色价格+制作价格
+            $zongtotal=$totals+$colortotal+$custom_total;
+
+             $data['ydresultdata'][]=array(
+                   'cart_id'            =>$value['cart_id'],
+                   'product_value'      =>$product_values,
+                    'color'             =>$value['color'],
+                    'custom_sise'       =>$value['custom_sise'],
+                    'custom_parting'    =>$value['custom_parting'],
+                    'message'           =>$value['message'],
+                    'image'             =>$value['image'],
+                    'zongtotal'         =>$this->currency->format($zongtotal, $this->session->data['currency']),     
+                    'custom_total'      =>$this->currency->format($custom_total, $this->session->data['currency']),
+                    'qty'               =>$qty,
+                    'single_price'      =>$this->currency->format($single_price, $this->session->data['currency']),
+                    'colortotal'        =>$this->currency->format($colortotal, $this->session->data['currency'])
+
+             );
+
+         }
+         // print_r($data['resultdata']);exit;
+         $this->response->setOutput($this->load->view('checkout/custom_ydproduct', $data));
      
     }
     
