@@ -345,7 +345,31 @@ class ModelCatalogCustomized extends Model {
 	// 更改定制产品数量
 	public function update_custom($custom_product_id, $quantity) {
 		$this->db->query("UPDATE " . DB_PREFIX . "custom_products SET quantity = '" . (int)$quantity . "' WHERE custom_product_id = '" . (int)$custom_product_id . "'  AND customer_id = '" . (int)$this->customer->getId() . "' ");
-		// print_r("UPDATE " . DB_PREFIX . "custom_products SET quantity = '" . (int)$quantity . "' WHERE custom_product_id = '" . (int)$custom_product_id . "'  AND customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "'");exit;
+		
 	}
+	//定制单加入购物车
+	public function addcartproduct($data=array())
+	{
+		// print_r($data);exit;
+	     $this->db->query("INSERT " . DB_PREFIX . "custom_cart SET customer_id = '" . (int)$this->customer->getId() . "', api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "', recurring_id = '0', color = '" .$data['color'] . "', `custom_sise` = '" . $data['custom_sise'] . "', custom_parting = '" . $data['custom_parting']. "', date_added = NOW(),message = '" . $data['message'] . "',image = '" . $data['path'] . "'");
+	     $cart_id = $this->db->getLastId();
+	     // print_r($cart_id);exit;
+	     if($cart_id){
 
+	     	$q=  $this->db->query("SELECT cp.product_id,cp.option,cp.quantity FROM " . DB_PREFIX . "custom_products cp WHERE customer_id = '" . (int)$this->customer->getId() . "' ");
+
+	     	$this->db->query("DELETE FROM " . DB_PREFIX . "custom_products WHERE customer_id = '" .(int)$this->customer->getId() . "'");
+
+	     	 if ( $q->rows) {
+
+			 	foreach ($q->rows as $key => $row) {
+
+			 		$this->db->query("INSERT " . DB_PREFIX . "custom_cart_product SET cart_id = '" . (int)$cart_id . "',product_id = '" .$row['product_id'] . "', quantity = '" . $row['quantity'] . "', `option` = '" . $this->db->escape(json_encode(json_decode($row['option']))). "'");
+			
+			 	}
+			 	
+			 }
+	     	
+	     }
+	}
 }

@@ -298,4 +298,57 @@ class ControllerInformationSelecatalogproduct extends Controller {
             
         }
 	}
+	public function addcarts() {
+			$json = array();
+			$this->load->model('catalog/customized');
+
+			if (isset($this->request->post['color'])) {
+            $data['color'] =$this->request->post['color'];
+	        } else {
+	        $data['color'] = '';
+	        }
+
+	        if (isset($this->request->post['message'])) {
+            $data['message'] = $this->request->post['message'];
+	        } else {
+	        $data['message'] = '';
+	        }
+
+	        if (isset($this->request->post['custom_option'])) {
+	         $a=explode(',',$this->request->post['custom_option']);		
+
+	         $data['custom_sise'] =$a[0];
+	         $data['custom_parting'] =$a[1];
+	        } else {
+	        $data['custom_sise'] = '';
+	        $data['custom_parting'] = '';
+	        }
+
+	        if(!empty($_FILES['file1'])){
+
+	        	$file['file']=$_FILES['file1'];
+
+	        	$extend = pathinfo($file['file']['name']); //获取文件名数组
+
+                $extend = strtolower($extend["extension"]);                //获取文件的扩展名
+								// 
+                $filename = date("YmdHis").substr(md5(mt_rand(0,1000)),0,2).".".$extend;              //文件的新名称
+                           
+                $directory = DIR_IMAGE . 'custompictures/';
+                             
+                $data['path'] = '../image/custompictures/' . $filename;
+						
+                $moveRes= move_uploaded_file($_FILES['file1']['tmp_name'],$directory.$filename);
+	        	
+	        }else{
+	        	 $data['path'] = '';
+	        }
+			
+			$this->model_catalog_customized->addcartproduct($data);
+			
+			$json['success'] ="success";
+            
+            $this->response->addHeader('Content-Type: application/json');
+    		$this->response->setOutput(json_encode($json));
+	}
 }

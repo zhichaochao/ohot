@@ -15,7 +15,6 @@
 								
 								<?php foreach($resultdata as $productdata){ ?>
 								<li class="<?=$productdata['status']==1 ?'lian':'kuai';?>">
-									<input type="hidden" name="product_id[]" value="<?php echo $productdata['product_id']; ?>">
 									<i onclick="delcustom('<?php echo $productdata['custom_product_id']; ?>',this);" ><img src="catalog/view/theme/default/img/png/close2.png"></i>
 									<span><img src="<?php echo $productdata['thumb']; ?>"></span>
 									<div class="hwm_super">
@@ -29,9 +28,7 @@
 					                           <?php if(!empty($option['name'])){ ?>
 					                             <?php echo $option['value']; ?>
 					                           <?php } ?> 
-					                          </span>
-					                          <!-- 产品属性（暂留） -->
-					                          <!-- <input type="hidden" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php echo $option['product_option_value_id']; ?>">   -->                      
+					                          </span>           
 					                         <?php } ?>  
 					                         </p> 
 
@@ -62,9 +59,11 @@
 								<p>Select <?=$option['option_name']?>:</p>
 								<ul>
 									<?php foreach ($option['option_value_data'] as $k=> $option_value) { ?>
-									<li class="<?php if($k==0){echo'on';}?>" data="<?=$option_value['option_value_id']?>"><?=$option_value['name']?></li>
+									<li class="<?php if($k==0){echo'on';}?>" data="<?=$option_value['name']?>"><?=$option_value['name']?></li>
 									<?php }?>
-									<input type="hidden" name="custom_option[<?=$option['option_id']?>]"  value="<?php echo $option['option_value_data'][0]['option_value_id'];?>">
+									<input type="hidden" id="custom_option" name="custom_option"  value="<?php echo $option['option_value_data'][0]['name'];?>">
+									<!-- <input type="hidden" id="custom_option" name="custom_option[<?=$option['option_id']?>]"  value="<?php echo $option['option_value_data'][0]['option_value_id'];?>"> -->
+
 								</ul>
 							</div>
 							
@@ -72,20 +71,22 @@
 
 							<div class="hwm_color hwm_ty">
 								<p>Re-Color:<span><?php echo $colortotal; ?>( <?php echo $single_price; ?> * <?php echo $qty; ?> pcs )</span></p>
-								<select>
+								<select name="color" id="color">
 								  <option value ="Orange">Orange</option>
+								  <option value ="Orange1">Orange1</option>
+								  <option value ="Orange2">Orange2</option>
 								</select>
 							</div>
 
 							<div class="hwm_pohot hwm_ty">
 								<p>Upload pictures</p>
 								<span class="file">
-									<input type="file" name="image" value="" />
+									<input type="file" name="file" id="file1" id="file1"  accept="image/gif,image/jpeg,image/jpg,image/png" />
 								</span>
 							</div>
 							<div class="msg hwm_ty">
 								<p>Leave us a msg:</p>
-								<textarea name="message"></textarea>
+								<textarea name="message" id="message" value=""></textarea>
 								<p class="msg_p">Wig Making Fee: <?php echo $custom_total; ?></p>
 							</div>
 							<div class="hwm_bot">
@@ -219,8 +220,45 @@
 					    })
 
 					}
-					// 定制产品加入购物车
-					// $(document).delegate('#button-sub', 'click', function() { 
+					
+					 //PC端定制产品加入购物车
+					 $('#button-sub').on('click', function() {
 
-					//   });
+							var color         = $("#color").val();
+							var message         = $("#message").val();
+							var fileObj1 = document.getElementById("file1").files[0]; 
+					        var $inputArr = $("input[name='custom_option']");
+					        var result = [];
+					        $inputArr.each(function(){
+
+					            result.push($(this).val());
+					        });
+							var formFile = new FormData();
+							formFile.append("color",color);
+							formFile.append("message",message);
+							formFile.append("file1", fileObj1);
+							formFile.append("custom_option", result);
+							
+					    		$.ajax({
+					            url: 'index.php?route=information/selecatalogproduct/addcarts',
+					            type: 'post',
+					            dataType: 'json',
+					            processData :false, 
+    							contentType :false,
+					            data:formFile,
+					            success: function(data) {
+					            	if (data.success) {
+								        tips('Successful Shopping Cart','');
+								        getaddproduct();
+							      	}
+					            },
+					            error: function(xhr, ajaxOptions, thrownError) {
+					                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+					            }
+					        });
+					    	
+				        
+				    	});
+
+					   
 					</script>	
