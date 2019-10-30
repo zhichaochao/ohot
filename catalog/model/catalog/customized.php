@@ -240,70 +240,77 @@ class ModelCatalogCustomized extends Model {
      	 return $products;
      } 
 
-	// 根据产品id和option,来或取本产品已经选好的选项  (购物车也可使用)
-	// public function getoptionnamebyoption($product_id,$option)
-	// {
-	// 	$price_type=$this->customer->isLogged()?(int)$this->config->get('config_customer_group_id'):'';
+	// 根据加购物车上的产品id和option,单价 ，总价 
+	public function getoptionnamebyoption($product_id,$option,$quantity)
+	{
+		$options=json_decode($option);
+		$option_name=array();
+		$price_type=$this->customer->isLogged()?(int)$this->config->get('config_customer_group_id'):'';
+		$option_price = 0;
+		$option_data = array();
+		$product_option_value_ids='0';
+		if ($options) {
+		
+			foreach ($options as $product_option_id => $value) {
 
-	// 	// $option_price = 0;
-	// 	$option_data = array();
- //        $product_option_value_ids='0';
-	// 	 foreach (json_decode($option) as $product_option_id => $value) {
-	// 	$product_option_value_ids.=','.$value;
- //                    $option_query = $this->db->query("SELECT po.product_option_id, po.option_id, od.name, o.type FROM " . DB_PREFIX . "product_option po LEFT JOIN `" . DB_PREFIX . "option` o ON (po.option_id = o.option_id) LEFT JOIN " . DB_PREFIX . "option_description od ON (o.option_id = od.option_id) WHERE po.product_option_id = '" . (int)$product_option_id . "' AND po.product_id = '" . (int)$product_id . "' AND od.language_id = '" . (int)$this->config->get('config_language_id') . "'");         
- // 				if ($option_query->num_rows) {
-	// 				if ($option_query->row['type'] == 'select' || $option_query->row['type'] == 'radio') {
- //                            $option_value_query = $this->db->query("SELECT pov.option_value_id, ovd.name, pov.quantity, pov.subtract, pov.price".$price_type." as price, pov.price_prefix, pov.points, pov.points_prefix, pov.weight, pov.weight_prefix FROM " . DB_PREFIX . "product_option_value pov LEFT JOIN " . DB_PREFIX . "option_value ov ON (pov.option_value_id = ov.option_value_id) LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ov.option_value_id = ovd.option_value_id) WHERE pov.product_option_value_id = '" . (int)$value . "' AND pov.product_option_id = '" . (int)$product_option_id . "' AND ovd.language_id = '" . (int)$this->config->get('config_language_id') . "' ");
- //                            if ($option_value_query->num_rows) {
+					$option_query = $this->db->query("SELECT po.product_option_id, po.option_id, od.name, o.type FROM " . DB_PREFIX . "product_option po LEFT JOIN `" . DB_PREFIX . "option` o ON (po.option_id = o.option_id) LEFT JOIN " . DB_PREFIX . "option_description od ON (o.option_id = od.option_id) WHERE po.product_option_id = '" . (int)$product_option_id . "' AND po.product_id = '" . (int)$product_id . "' AND od.language_id = '" . (int)$this->config->get('config_language_id') . "'");         
+				 				if ($option_query->num_rows) {
+									if ($option_query->row['type'] == 'select' || $option_query->row['type'] == 'radio') {
+				                            $option_value_query = $this->db->query("SELECT pov.option_value_id, ovd.name, pov.quantity, pov.subtract, pov.price".$price_type." as price, pov.price_prefix, pov.points, pov.points_prefix, pov.weight, pov.weight_prefix FROM " . DB_PREFIX . "product_option_value pov LEFT JOIN " . DB_PREFIX . "option_value ov ON (pov.option_value_id = ov.option_value_id) LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ov.option_value_id = ovd.option_value_id) WHERE pov.product_option_value_id = '" . (int)$value . "' AND pov.product_option_id = '" . (int)$product_option_id . "' AND ovd.language_id = '" . (int)$this->config->get('config_language_id') . "' ");
+				                            if ($option_value_query->num_rows) {
 
- //                            	// $option_price += $option_value_query->row['price'];
+				                            	$option_price += $option_value_query->row['price'];
 
- //                            	// $price = $option_price ;
+				                            	$price = $option_price ;
+				                                $values['option_name'][] = array(
+				                                    'product_option_id'       => $product_option_id,
+				                                    'product_option_value_id' => $value,
+				                                    'name'                    => $option_query->row['name'],
+				                                    'value'                   => $option_value_query->row['name'],
+				                                    'type'                    => $option_query->row['type']
+				                                    // 'price'                   => $option_value_query->row['price'],  
+				                                    // 'option_id'               => $option_query->row['option_id'],
+				                                    // 'option_value_id'         => $option_value_query->row['option_value_id']
+				                                   
+				                                );
+				                            }
+				                    }
 
-                            	
- //                    //         	$original_price = $option_price;
+				                }
+			}
+												$original_price = $option_price;
 
-	//                 			// // Product Specials
-	// 			                //  if($this->customer->isLogged()){
-	// 			               	// 	 $product_special_query = $this->db->query("SELECT price,percent FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' AND product_option_value_id in(".$product_option_value_ids.") AND customer_group_id in (0, " . (int)$this->config->get('config_customer_group_id') . ") AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY priority ASC, price ASC LIMIT 1");
-	// 			                // }else{
-	// 		                 //   	 	$product_special_query = $this->db->query("SELECT price,percent FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' AND product_option_value_id in(".$product_option_value_ids.")  AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY priority ASC, price ASC LIMIT 1");
+					                			// Product Specials
+								                 if($this->customer->isLogged()){
+								               		 $product_special_query = $this->db->query("SELECT price,percent FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' AND product_option_value_id in(".$product_option_value_ids.") AND customer_group_id in (0, " . (int)$this->config->get('config_customer_group_id') . ") AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY priority ASC, price ASC LIMIT 1");
+								                }else{
+							                   	 	$product_special_query = $this->db->query("SELECT price,percent FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' AND product_option_value_id in(".$product_option_value_ids.")  AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY priority ASC, price ASC LIMIT 1");
 
-	// 		               		//  }
-
-
-	// 			                // if ($product_special_query->num_rows) {
-	// 			                //     if ( $product_special_query->row['percent']) {
-	// 			                //        $price =$price *$product_special_query->row['percent']/100;
-	// 			                //     }else{
-	// 			                //     $price -= $product_special_query->row['price'];
-	// 			                //     }
-	// 			                // }
-
-	// 			                // if($original_price==$price) $original_price = 0;
+							               		 }
 
 
- //                                $option_data[] = array(
- //                                    'product_option_id'       => $product_option_id,
- //                                    'product_option_value_id' => $value,
- //                                    'name'                    => $option_query->row['name'],
- //                                    'value'                   => $option_value_query->row['name'],
- //                                    'type'                    => $option_query->row['type'],
- //                                    'price'                   => $option_value_query->row['price'],  //单个属性价格
- //                                    'option_id'               => $option_query->row['option_id'],
- //                                    'option_value_id'         => $option_value_query->row['option_value_id'],
- //                                    'quantity'                => $option_value_query->row['quantity']
-                                   
- //                                );
- //                            }
- //                    }
+								                if ($product_special_query->num_rows) {
+								                    if ( $product_special_query->row['percent']) {
+								                       $price =$price *$product_special_query->row['percent']/100;
+								                    }else{
+								                    $price -= $product_special_query->row['price'];
+								                    }
+								                }
 
- //                }
+								                if($original_price==$price) $original_price = 0;
+								          $values['productprice'] =$price ;
+								         
+								          $values['original_price'] =$original_price;  
+								          $values['total'] =  $price  * $quantity;  
+								          $option_name_value=$values;
 
- //        }
- //                return  $option_data;
+		}
 
-	// }
+		return $option_name_value;
+	}
+
+
+
 	// 删除 定制产品
 	public function delcustom_del($custom_product_id) {
 
@@ -371,5 +378,42 @@ class ModelCatalogCustomized extends Model {
 			 }
 	     	
 	     }
+	}
+
+	public function getcustomcartproducts()
+	{
+
+		$cart_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "custom_cart WHERE api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "' AND customer_id = '" . (int)$this->customer->getId() . "' ");
+		foreach ($cart_query->rows as $cart) {
+
+			$product_value_query = $this->db->query("SELECT ccp.product_id,ccp.option,ccp.quantity FROM " . DB_PREFIX . "custom_cart_product ccp LEFT JOIN " . DB_PREFIX . "custom_cart cc ON (ccp.cart_id = cc.cart_id) WHERE ccp.cart_id = '" . (int)$cart['cart_id'] . "'");
+// print_r($product_value_query);exit;
+			foreach ($product_value_query->rows as $key => $product_value) {
+
+				$option_name=$this->getoptionnamebyoption($product_value['product_id'],$product_value['option'],$product_value['quantity']);
+				
+				$option_names[$key] = array(
+                   'product_id'       		=> $product_value['product_id'],
+                   'quantity'              => $product_value['quantity'],
+                   'option_name_value'  => $option_name
+                );
+			}
+
+// print_r($option_names);exit;
+
+			$customproduct_data[] = array(
+                   'cart_id'       		=> $cart['cart_id'],
+                   'option_name_values'  => $option_names,
+                   'color'              => $cart['color'],
+                   'custom_sise'        => $cart['custom_sise'],
+                   'custom_parting'     => $cart['custom_parting'],
+                   'message'            => $cart['message'],
+                   'image'              => $cart['image']
+                );
+			
+		}
+		 // print_r($customproduct_data);exit;
+return $customproduct_data;
+		
 	}
 }

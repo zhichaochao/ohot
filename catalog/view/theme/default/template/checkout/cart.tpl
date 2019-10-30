@@ -268,7 +268,12 @@
 			     <?php } ?>
 					
 				</ul>
-				
+				<!-- pc定制产品显示 -->
+				<!-- pc定制 -->
+				<div class="scur" id="custom_getproducts">
+					
+				</div>
+				<!-- pc定制产品显示end -->
 			</div>
 			
 			<div class="total">
@@ -941,48 +946,29 @@ select_cart();
 
 			// console.log(a);
 		}
-// $(".add").click(function(){
-// 			if(!$(this).parents('li').hasClass("no")){
-// 				var num  = $(this).siblings(".num").val();
-// 				num++;
-// 				$(this).siblings(".num").val(num);
-// 				in_num();
-// 			}
-// 		})
 
-		//单选
-//单选
-		// $(".dx_label input").click(function(){
-		// 	const this_index = $(this).parents("li").index();
-		// 	if($(this).prop("checked")){
-		// 		$(".shop_ul>li").eq(this_index).find(".check_i").addClass("active");
-		// 		$(".shop2_ul>li").eq(this_index).find(".check_i").addClass("active");
-		// 		$(".shop_ul>li").eq(this_index).find("input").prop("checked",true);
-		// 		$(".shop2_ul>li").eq(this_index).find("input").prop("checked",true);
-					
-		// 		var len = $(".dx_label .check_i").length;
-		// 		var i=0;
-		// 		$(".dx_label .check_i").each(function(){
-		// 			if($(this).hasClass("active")){
-		// 				i++;
-		// 				console.log($(this).siblings("input").val())
-		// 			}
-		// 			return i;
-		// 		})
-		// 		if(i>=len){
-		// 			$(".qx_label input").prop("checked",true);
-		// 			$(".qx_label .check_i").addClass("active");
-		// 		}
-		// 	}else{
-		// 		$(".shop_ul>li").eq(this_index).find(".check_i").removeClass("active");
-		// 		$(".shop2_ul>li").eq(this_index).find(".check_i").removeClass("active");
-		// 		$(".shop_ul>li").eq(this_index).find("input").prop("checked",false);
-		// 		$(".shop2_ul>li").eq(this_index).find("input").prop("checked",false);
-		// 		$(".qx_label .check_i").removeClass("active");
-		// 		$(".qx_label input").prop("checked","");
-		// 	}
-		// })
-
+// 获取pc定制单
+getcustomproducts();
+	function getcustomproducts() {
+			 // var chk_value = '';
+	   //      $("input:checkbox[name='product']:checked").each(function() { // 遍历name=test的多选框
+	   //          chk_value += $(this).val() + ',';  // 每一个被选中项的值
+	   //      });
+	   //      chk_value = chk_value.substring(0,chk_value.length-1);
+			$.ajax({
+			        url: 'index.php?route=checkout/cart/getcustomcart',
+			         dataType: 'html',
+			         // data:{cart_ids:chk_value},
+			 
+			      
+			        success: function(html) {
+			        	
+			        	$('#custom_getproducts').html(html);
+			        	// getalltotal();
+			        	
+			        }
+			    })
+		}
 </script>
 
 <script type="text/javascript">
