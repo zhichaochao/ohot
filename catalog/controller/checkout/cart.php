@@ -1145,7 +1145,7 @@ $json['text_cart_items'] = $this->cart->countProducts() + (isset($this->session-
         $single_price=$this->config->get('single_price');
         // 制作价格20美金（后台取）
         $custom_total=$this->config->get('custom_total');
-        
+        $data=array();
          foreach ($resultdatas as $value) {
             $totals=0;
             $colortotal=0;
@@ -1211,6 +1211,7 @@ $json['text_cart_items'] = $this->cart->countProducts() + (isset($this->session-
     // 显示移动端定制单
     public function getcustomydcart()
     {
+         $data=array();
          $this->load->model('catalog/customized'); 
          $this->load->model('catalog/product'); 
          $this->load->model('tool/image');  
@@ -1282,5 +1283,25 @@ $json['text_cart_items'] = $this->cart->countProducts() + (isset($this->session-
          $this->response->setOutput($this->load->view('checkout/custom_ydproduct', $data));
      
     }
-    
+            // 删除添加的定制产品
+            public function cart_remove()
+            {
+
+                $json = array();
+
+                if (isset($this->request->post['key'])) {
+                    $custom_cart_id = $this->request->post['key'];
+                } else {
+                    $custom_cart_id = 0;
+                }
+
+                $this->load->model('catalog/customized');
+
+                $this->model_catalog_customized->delcustomcart_del($custom_cart_id);
+
+                $json['success'] = "success";
+
+                $this->response->addHeader('Content-Type: application/json');
+                $this->response->setOutput(json_encode($json));
+            }
 }

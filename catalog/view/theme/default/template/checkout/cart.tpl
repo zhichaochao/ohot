@@ -448,6 +448,27 @@
         }).on('touchend', function() {
         $(this).off('touchmove');
     });	
+        $('body').on('touchstart', '.shop2_content .copt_ul>li', function(e) {
+					    var touch = e.originalEvent,
+						startX = touch.changedTouches[0].pageX;
+					    $(this).on('touchmove', function(e) {
+					    		e.preventDefault();
+					    		touch = e.originalEvent.touches[0] ||
+					    		    e.originalEvent.changedTouches[0];
+					    		if (touch.pageX - startX > 20) {//向左
+					    			$(this).find(".shanchu").animate({right:"-0.72rem"},function(){
+					    			});
+					    		    $(this).off('touchmove');
+					    		} else if (touch.pageX - startX < -20) {//向右
+					    			$(this).find(".shanchu").animate({right:"0px"},function(){
+					    			});
+					    		    $(this).off('touchmove');
+						    		};
+						    });
+					 
+					    }).on('touchend', function() {
+					    $(this).off('touchmove');
+					});
 // 	getOrder();
 // 	function getOrder(){
 // //    console.log();
@@ -786,7 +807,8 @@ function cart_removes(product_key){
         		$('#can_ydadd').hide();$('#can_ydadds').hide();$('#can_not_ydadd').show();
         		$('#can_not_ydadd em').html(json['need_add']);
 
-        		$('.shop2_ul').css('margin','1.1rem 0 2.17rem 0');
+        		// $('.shop2_ul').css('margin','1.1rem 0 2.17rem 0');
+        		$('.shop2_ul').css('margin','1.1rem 0 0.2rem 0');
         		$('.top_ys').css('display','none');
         	}
         	getAddproduct();
@@ -997,6 +1019,25 @@ select_cart();
 				        }
 				    })
 			}
+			function cart_custom_remove(product_key){
+
+				   	     $.ajax({
+					        url: 'index.php?route=checkout/cart/cart_remove',
+					        type: 'post',
+					        data: {key:product_key},
+					        dataType: 'json',
+					 
+					        success: function(data) {
+					        	if (data.success) {
+						        // tips('Delete successful','');
+						        getcustomproducts();
+						        getcustomydproducts();
+						      }
+					        	// if (json['link']) { location.reload();}
+					        }
+					    })
+				 
+					}
 </script>
 
 <script type="text/javascript">

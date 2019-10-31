@@ -81,8 +81,14 @@
 							<div class="hwm_pohot hwm_ty">
 								<p>Upload pictures</p>
 								<span class="file">
-									<input type="file" name="file" id="file1" id="file1"  accept="image/gif,image/jpeg,image/jpg,image/png" />
+									<input type="file" name="file" id="file1" value="" title="Upload Photos" accept="image/gif,image/jpeg,image/jpg,image/png" onchange="getphoto(this)" class="flie_in"/>
+									<i class="file_i"><em class="file_img"><img src=""></em></i>
 								</span>
+							<!-- 	<span class="file">
+
+									<input type="file" name="file" id="file1" id="file1"  accept="image/gif,image/jpeg,image/jpg,image/png" />
+									<i class="file_i"><img src="img/jpg/index1_1.jpg"></i>
+								</span> -->
 							</div>
 							<div class="msg hwm_ty">
 								<p>Leave us a msg:</p>
@@ -260,5 +266,40 @@
 				        
 				    	});
 
-					   
+					  //调取上传框
+						function getphoto(node) {
+							var imgURL = "";
+							try{
+								var file = null;
+								if(node.files && node.files[0] ){
+									file = node.files[0];
+								}else if(node.files && node.files.item(0)) {
+									file = node.files.item(0);
+								}
+								try{
+									imgURL =  file.getAsDataURL();
+								}catch(e){
+									imgRUL = window.URL.createObjectURL(file);
+								}
+							}catch(e){
+								if (node.files && node.files[0]) {
+									var reader = new FileReader();
+									reader.onload = function (e) {
+										imgURL = e.target.result;
+									};
+									reader.readAsDataURL(node.files[0]);
+								}
+							}
+							creatImg(imgRUL);
+					//	        $(".text_div").css("display","inline-block");
+					//	        $(".file_div").css("display","none");
+							return imgURL;
+						}
+					 
+						//上传选中的图片 显示页面
+						function creatImg(imgRUL){
+							const img = '<img src="'+imgRUL+'" alt="">';
+							$(".file_i img").remove();
+							$(".file_img").before(img);
+						} 
 					</script>	

@@ -102,7 +102,7 @@ class ControllerInformationCustomized extends Controller {
 			// 制作价格20美金（后台设置）
 			$data['custom_total'] =$this->currency->format( $this->config->get('custom_total'), $this->session->data['currency']);
 
-			$custom_total=$data['custom_total'] ;
+			$custom_total=$this->config->get('custom_total') ;
 			// 总价=产品价格+颜色价格+制作价格
 			$zongtotal=$totals+$colortotal+$custom_total;
 			$data['zongtotal']=$this->currency->format($zongtotal, $this->session->data['currency']);
@@ -188,7 +188,7 @@ class ControllerInformationCustomized extends Controller {
 					// 制作价格20美金（后台设置）
 					$data['custom_total'] =$this->currency->format( $this->config->get('custom_total'), $this->session->data['currency']);
 
-					$custom_total=$data['custom_total'];
+					$custom_total=$this->config->get('custom_total');
 					// 总价=产品价格+颜色价格+制作价格
 					$zongtotal=$totals+$colortotal+$custom_total;
 					$data['zongtotal']=$this->currency->format($zongtotal, $this->session->data['currency']);

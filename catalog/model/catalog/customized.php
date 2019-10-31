@@ -382,7 +382,7 @@ class ModelCatalogCustomized extends Model {
 
 	public function getcustomcartproducts()
 	{
-
+		 $customproduct_data=array();
 		$cart_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "custom_cart WHERE api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "' AND customer_id = '" . (int)$this->customer->getId() . "' ");
 		foreach ($cart_query->rows as $cart) {
 
@@ -416,4 +416,13 @@ class ModelCatalogCustomized extends Model {
 return $customproduct_data;
 		
 	}
+	// 购物车删除 定制单产品
+	public function delcustomcart_del($custom_cart_id) {
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "custom_cart WHERE customer_id = '" . (int)$this->customer->getId() . "' AND cart_id = '" . (int)$custom_cart_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "custom_cart_product WHERE  cart_id = '" . (int)$custom_cart_id . "'");
+		
+		 
+	}
+	
 }

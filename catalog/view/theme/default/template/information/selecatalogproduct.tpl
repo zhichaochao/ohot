@@ -4,7 +4,7 @@
 <?php  if($products){?>
 <div class="hwm_hide">
 				<div class="close"></div>
-				<p>All Hair Weft Collections > <a href="###">Super Double Drawn Funmi Hair</a></p>
+				<!-- <p>All Hair Weft Collections > <a href="###">Super Double Drawn Funmi Hair</a></p> -->
 				<div class="hwm_over">
 					<ul class="hwm_ul">
 
