@@ -358,7 +358,7 @@ class ModelCatalogCustomized extends Model {
 	public function addcartproduct($data=array())
 	{
 		// print_r($data);exit;
-	     $this->db->query("INSERT " . DB_PREFIX . "custom_cart SET customer_id = '" . (int)$this->customer->getId() . "', api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "', recurring_id = '0', color = '" .$data['color'] . "', `custom_sise` = '" . $data['custom_sise'] . "', custom_parting = '" . $data['custom_parting']. "', date_added = NOW(),message = '" . $data['message'] . "',image = '" . $data['path'] . "'");
+	     $this->db->query("INSERT " . DB_PREFIX . "custom_cart SET customer_id = '" . (int)$this->customer->getId() . "', api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "', recurring_id = '0', color = '" .$data['color'] . "', `custom_sise` = '" . $data['custom_sise'] . "', custom_parting = '" . $data['custom_parting']. "', date_added = NOW(),message = '" . $data['message'] . "',total = '" . $data['zongtotals'] . "',image = '" . $data['path'] . "'");
 	     $cart_id = $this->db->getLastId();
 	     // print_r($cart_id);exit;
 	     if($cart_id){

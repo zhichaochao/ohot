@@ -97,6 +97,7 @@
 							</div>
 							<div class="hwm_bot">
 								<p><span>Total:</span><span><?php echo $zongtotal; ?></span></p>
+								<input type="hidden" name="zongtotals" value="<?php echo $zongtotals; ?>" id="zongtotals">
 								<button id="button-sub">ADD TO SHOPPING CART</button>
 							</div>
 						</div>	
@@ -232,6 +233,7 @@
 
 							var color         = $("#color").val();
 							var message         = $("#message").val();
+							var zongtotals         = $("#zongtotals").val();
 							var fileObj1 = document.getElementById("file1").files[0]; 
 					        var $inputArr = $("input[name='custom_option']");
 					        var result = [];
@@ -242,6 +244,7 @@
 							var formFile = new FormData();
 							formFile.append("color",color);
 							formFile.append("message",message);
+							formFile.append("zongtotals",zongtotals);
 							formFile.append("file1", fileObj1);
 							formFile.append("custom_option", result);
 							

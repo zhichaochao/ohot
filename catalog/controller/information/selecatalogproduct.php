@@ -308,6 +308,12 @@ class ControllerInformationSelecatalogproduct extends Controller {
 	        $data['color'] = '';
 	        }
 
+	        if (isset($this->request->post['zongtotals'])) {
+            $data['zongtotals'] =$this->request->post['zongtotals'];
+	        } else {
+	        $data['zongtotals'] = '';
+	        }
+	        
 	        if (isset($this->request->post['message'])) {
             $data['message'] = $this->request->post['message'];
 	        } else {
