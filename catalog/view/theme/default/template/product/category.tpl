@@ -38,12 +38,13 @@
                      <del><?php echo $product['price']; ?></del>
                   <?php }else{ ?>
                      <em class="price-single"><?php echo $product['price']; ?>
-
-                     
                      </em>
                   <?php } ?>
+                  <?php if(!empty($product['special'])) { ?>
 
-                  <?php if($product['is_new']==0) { ?>
+                    <span class="sale">-<?php echo $product['off']; ?>%</span>
+                   <?php }else{ ?>   
+                    <?php if($product['is_new']==0) { ?>
                      <span class="new">NEW</span>
                       <?php } ?>
                       <?php if($product['is_sale']==1) { ?>
@@ -52,6 +53,7 @@
                       <?php if($product['modelling']) { ?>
                       <i class="modelling"><?php echo $product['modelling']; ?></i>
                         <?php } ?>
+                    <?php } ?>      
                 </span>
                   <!-- <span>$35.30</span> -->
                   <p class="p1"><?php echo $product['texture']; ?></p>
@@ -200,16 +202,21 @@
                              }else{
                                       result+= '<span class="price-single">'+data.products[i].price+'</span>';
                               }
-                                if (data.products[i].is_new==0) {
-                                  result+='<span class="new">NEW</span>';
-                                }
-                                if (data.products[i].is_sale==1) {
-                                  result+='<span class="sale">SALE</span>';
-                                }
+                               if (data.products[i].special) {   
+                                   result+='<span class="sale">'+'-'+data.products[i].off+'%' +'</span>';
+                                }else{
+                                  if (data.products[i].is_new==0) {
+                                    result+='<span class="new">NEW</span>';
+                                  }
+                                  if (data.products[i].is_sale==1) {
+                                    result+='<span class="sale">SALE</span>';
+                                  }
 
-                                if (data.products[i].modelling) {
-                                  result+='<i class="modelling">'+data.products[i].modelling+' </i>';
+                                  if (data.products[i].modelling) {
+                                    result+='<i class="modelling">'+data.products[i].modelling+' </i>';
+                                  }
                                 }
+                                
 
                                     result+=   '</span>'
                                         +' <p class="p1">'+data.products[i].texture

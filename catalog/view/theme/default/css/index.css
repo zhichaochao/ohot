@@ -166,7 +166,7 @@
 	display: block;color: #000;position: relative;overflow: hidden;}
 	.pro_content .pro_ul .text span em{display: inline-block;float: left;font-size: 1.25vw;color: #fe2a4d;text-align: left;line-height: 1.25vw;}
 	.pro_content .pro_ul .text span del{display: inline-block;float: left;color: #999;text-decoration: line-through;margin-left: 0.2vw;font-size: 0.72vw;
-	height: 0.72vw;line-height: 1vw;position: relative;top: 0.5vw }
+	height: 0.72vw;line-height: 1vw;position: relative;top: 0.3vw }
 	.pro_content .pro_ul .text span.new{margin: 0 0 0 0.8vw;display: inline-block;color: #fff;
 	background: #1faf85;font-size: 0.93vw;width: 2.8vw;height: 1.25vw;text-align: center;padding: 0;}
 	.pro_content .pro_ul .text span.sale{margin: 0 0 0 0.8vw;display: inline-block;color: #fff;
