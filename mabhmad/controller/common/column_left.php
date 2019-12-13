@@ -59,6 +59,14 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+			if ($this->user->hasPermission('access', 'catalog/productlog')) {
+				$catalog[] = array(
+					'name'	   => '修改日志',
+					'href'     => $this->url->link('catalog/productlog', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
 			if ($this->user->hasPermission('access', 'catalog/templateproduct')) {
 				$catalog[] = array(
 					'name'	   => '模板管理',

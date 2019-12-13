@@ -161,7 +161,8 @@
                     <a href="<?php echo $sort_browse; ?>"><?php echo $column_browse; ?></a>
                     <?php } ?></td>
 
-                  <!-- <td class="text-center">浏览量</td> -->
+                  <td class="text-center">添加时间</td>
+                  <td class="text-center">修改时间</td>
                   <td class="text-right"><?php echo $column_action; ?></td>
                 </tr>
               </thead>
@@ -207,6 +208,8 @@
                     <?php } ?>
                   </td>
                   <td class="text-left"><?php echo $product['browse']; ?></td>
+                  <td class="text-left"><?php echo $product['date_added']; ?></td>
+                  <td class="text-left"><?php echo $product['date_modified']; ?></td>
                   <td class="text-right"><a href="<?php echo $product['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
                 <?php } ?>

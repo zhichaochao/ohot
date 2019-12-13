@@ -50,6 +50,14 @@ class ModelCatalogProduct extends Model {
             }
         }
 
+        $datas=array(
+
+        'product_id'=>$product_id, //产品id
+        'content'=>'修改产品', //内容备注
+        'type'=>'2',  //1,添加，2，修改，3，复制，4，批量导入,5,同步
+    
+        );
+         $this->changeProductLogs($datas);
 
 // print_r($product_id);
 
@@ -877,5 +885,100 @@ $sp_id=array();
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_additional pa  WHERE product_id = '" . (int)$product_id. "' ");
 
         return $query->rows;
+    }
+
+    public function changeProductLogs($datas)
+    {
+            $ip=$this->getIp();
+
+            $user_id=$this->session->data['user_id'];
+            $query = $this->db->query("SELECT u.username FROM " . DB_PREFIX . "user u  WHERE user_id = '" . (int)$user_id. "' ");
+            if($query->row){
+                $username=$query->row['username'];
+            }
+
+        $sql="INSERT INTO " . DB_PREFIX . "product_logs SET ip = '" . $ip . "',username = '" . $username . "', product_id = '" . $this->db->escape($datas['product_id']) . "',user_id = '" . $user_id . "', type = '" . $this->db->escape($datas['type']) . "',content = '" . $this->db->escape($datas['content']) . "',data_added=NOW()";
+
+        $this->db->query($sql);
+                    
+
+    }
+
+    function getIp()
+    {
+        if (isset($_SERVER["HTTP_CLIENT_IP"]) &&$_SERVER["HTTP_CLIENT_IP"] && strcasecmp($_SERVER["HTTP_CLIENT_IP"], "unknown")) {
+            $ip = $_SERVER["HTTP_CLIENT_IP"];
+        } else {
+            if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) &&$_SERVER["HTTP_X_FORWARDED_FOR"] && strcasecmp($_SERVER["HTTP_X_FORWARDED_FOR"], "unknown")) {
+                $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+            } else {
+                if (isset($_SERVER["REMOTE_ADDR"]) &&$_SERVER["REMOTE_ADDR"] && strcasecmp($_SERVER["REMOTE_ADDR"], "unknown")) {
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                } else {
+                    if (isset ($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'],
+                            "unknown")
+                    ) {
+                        $ip = $_SERVER['REMOTE_ADDR'];
+                    } else {
+                        $ip = "unknown";
+                    }
+                }
+            }
+        }
+        return ($ip);
+    }
+    public function getProductslog($data = array()) {
+
+        $sql = "SELECT *  FROM " . DB_PREFIX . "product_logs pl WHERE 1";
+
+        if (!empty($data['filter_name'])) {
+            $sql .= " AND  (pl.content LIKE '%" . $this->db->escape($data['filter_name']) . "%' OR pl.content LIKE '%" . $this->db->escape($data['filter_name'])  . "%')";
+        }
+
+        $sort_data = array(
+            'pl.data_added'
+        );
+
+        if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+            $sql .= " ORDER BY pl.data_added";
+        } else {
+            $sql .= " ORDER BY pl.data_added";
+        }
+
+        if (isset($data['order']) && ($data['order'] == 'DESC')) {
+            $sql .= " DESC";
+        } else {
+            $sql .= " ASC";
+        }
+
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
+
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
+
+            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+        }
+        
+
+        $query = $this->db->query($sql);
+
+        return $query->rows;
+    }
+    public function getTotalProductslog($data = array()) {
+        $sql = "SELECT COUNT(DISTINCT pl.id) AS total FROM " . DB_PREFIX . "product_logs pl WHERE 1";
+
+
+        if (!empty($data['filter_name'])) {
+            $sql .= " AND pl.content LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+        }
+
+
+        $query = $this->db->query($sql);
+
+        return $query->row['total'];
     }
 }

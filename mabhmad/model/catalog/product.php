@@ -1132,7 +1132,60 @@ $sp_id=array();
 
 		return $query->rows;
 	}
+	public function getProductslog($data = array()) {
 
+		$sql = "SELECT *  FROM " . DB_PREFIX . "product_logs pl WHERE 1";
+
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND  (pl.content LIKE '%" . $this->db->escape($data['filter_name']) . "%' OR pl.content LIKE '%" . $this->db->escape($data['filter_name'])  . "%')";
+		}
+
+		$sort_data = array(
+			'pl.data_added'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY pl.data_added";
+		} else {
+			$sql .= " ORDER BY pl.data_added";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+		
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+	public function getTotalProductslog($data = array()) {
+		$sql = "SELECT COUNT(DISTINCT pl.id) AS total FROM " . DB_PREFIX . "product_logs pl WHERE 1";
+
+
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND pl.content LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+
+		$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
 	public function getTemplateProducts($data = array()) {
 		$sql = "SELECT *  FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON ( p.product_id=p2c.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.template_product = '1'";
 

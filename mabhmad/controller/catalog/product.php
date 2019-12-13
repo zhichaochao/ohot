@@ -2318,7 +2318,7 @@ class ControllerCatalogProduct extends Controller {
 
 						$datas=array(
 						'product_id'=>'', //产品id
-						'content'=>'导入产品pov_id:'.$product_option_value_id.'数量:'.$data['quantity'].'价格分别为'.$data['price'].','.$data['price1'].','.$data['price2'].','.$data['price3'].','.$data['price4'].','.$data['price5'].','.$data['price6'].','.$data['price7'], //内容备注
+						'content'=>'导入产品pov_id:'.$product_option_value_id.'数量:'.$data['quantity'].'价格:'.$data['price'].'VIP:'.$data['price1'].'Silver VIP：'.$data['price2'].'Gold VIP：'.$data['price3'].'Dianond VIP：'.$data['price4'].'Special Price 1:'.$data['price5'].'Special Price 2:'.$data['price6'].'Special Price 3:'.$data['price7'], //内容备注
 						'type'=>'6',  //1,添加，2，修改，3，复制，4，批量导出,5,同步 6.导入
 					
 						);

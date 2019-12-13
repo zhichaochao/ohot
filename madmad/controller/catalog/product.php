@@ -446,7 +446,9 @@ class ControllerCatalogProduct extends Controller {
 				'special'    => isset($special_price) ?$special_price : 0,
 				'free_postage' => $result['free_postage'],
 				'quantity'   => $result['quantity'],
-				'browse'   => $result['viewed'],
+				'browse'   => $result['browse'],
+				'date_added'   => $result['date_added'],
+				'date_modified'   => $result['date_modified'],
 				'sort_order'   => $result['sort_order'],
 				'relation_product'   => $result['relation_product'],
 				'status'     => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
@@ -1499,6 +1501,14 @@ class ControllerCatalogProduct extends Controller {
 				          }
 		      		}
 				}
+			$content = implode(",", $product_ids);
+			$datas=array(
+			'product_id'=>'', //产品id
+			'content'=>'副站批量导出产品'.$content, //内容备注
+			'type'=>'4',  //1,添加，2，修改，3，复制，4，批量导出,5,同步
+		
+			);
+		 $this->model_catalog_product->changeProductLogs($datas);
       	// if (isset($this->request->post['selected'])) {
       			// print_r($product_ids);exit;
 			foreach ($product_ids as $product_id) {
@@ -1700,6 +1710,14 @@ class ControllerCatalogProduct extends Controller {
 	            		$data['price5']=floatval($v[4]);
 	            		$data['price6']=floatval($v[5]);
 	            		$data['price7']=floatval($v[6]);
+
+	            		$datas=array(
+						'product_id'=>'', //产品id
+						'content'=>'导入产品pov_id:'.$product_option_value_id.'Special Price 1:'.$data['price5'].'Special Price 2:'.$data['price6'].'Special Price 3:'.$data['price7'], //内容备注
+						'type'=>'6',  //1,添加，2，修改，3，复制，4，批量导出,5,同步 6.导入
+					
+						);
+						 $this->model_catalog_product->changeProductLogs($datas);
 
 	           			  $this->model_catalog_product->UpdateOptionVluePrice($product_option_value_id,$data);
 
