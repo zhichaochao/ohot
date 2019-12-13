@@ -38,12 +38,14 @@ class ControllerCatalogProduct extends Controller {
 				}
 
 			}
+			if(isset($data['image'])){
 			if (is_file(DIR_IMAGE . $data['image'])) {
 						$image = $this->model_tool_image->resize($data['image'], 50, 50);
 						$image = $this->model_tool_image->resize($data['image'], 100, 100);
 						$image = $this->model_tool_image->resize($data['image'], 200, 200);
 						$image = $this->model_tool_image->resize($data['image'], 400, 400);
 						$image = $this->model_tool_image->resize($data['image'], 800, 800);
+			}
 			}
 
 
@@ -138,6 +140,7 @@ class ControllerCatalogProduct extends Controller {
 				}
 
 			}
+			if(isset($data['image'])){
 			if (is_file(DIR_IMAGE . $data['image'])) {
 						$image = $this->model_tool_image->resize($data['image'], 50, 50);
 						$image = $this->model_tool_image->resize($data['image'], 100, 100);
@@ -145,7 +148,7 @@ class ControllerCatalogProduct extends Controller {
 						$image = $this->model_tool_image->resize($data['image'], 400, 400);
 						$image = $this->model_tool_image->resize($data['image'], 800, 800);
 			}
-
+			}
 
 //			不用再保存视频
 			if(isset($data['files'])) unset($data['files']);
@@ -529,7 +532,7 @@ class ControllerCatalogProduct extends Controller {
 			$category_id = $this->request->get['category_id'];
 			$data['category_id'] = $this->request->get['category_id'];
 		} else {
-			$category_id = null;
+			$category_id = '';
 		}
 
 
@@ -708,8 +711,7 @@ class ControllerCatalogProduct extends Controller {
 		$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
 
 		$results = $this->model_catalog_product->getProducts($filter_data);
-		// print_r($results);
-// exit();
+		
 		foreach ($results as $result) {
 			if (is_file(DIR_IMAGE . $result['image'])) {
 				$image = $this->model_tool_image->resize($result['image'], 50, 50);
@@ -754,7 +756,9 @@ class ControllerCatalogProduct extends Controller {
 				'special'    => isset($special_price) ?$special_price : 0,
 				'free_postage' => $result['free_postage'],
 				'quantity'   => $result['quantity'],
-				'browse'   => $result['viewed'],
+				'browse'   => $result['browse'],
+				'date_added'   => $result['date_added'],
+				'date_modified'   => $result['date_modified'],
 				'sort_order'   => $result['sort_order'],
 				'relation_product'   => $result['relation_product'],
 				'status'     => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
@@ -968,6 +972,14 @@ class ControllerCatalogProduct extends Controller {
 				          }
 		      		}
 				}
+		$content = implode(",", $product_ids);
+		$datas=array(
+		'product_id'=>'', //产品id
+		'content'=>'主站批量导出产品'.$content, //内容备注
+		'type'=>'4',  //1,添加，2，修改，3，复制，4，批量导出,5,同步
+	
+		);
+		 $this->model_catalog_product->changeProductLogs($datas);	
       	// if (isset($this->request->post['selected'])) {
       			// print_r($this->request->post['selected']);exit;
 			foreach ($product_ids as $product_id) {
@@ -1120,6 +1132,14 @@ class ControllerCatalogProduct extends Controller {
 				          }
 		        	}
 		        }
+		$content = implode(",", $product_ids);
+		$datas=array(
+		'product_id'=>'', //产品id
+		'content'=>'副站批量导出产品'.$content, //内容备注
+		'type'=>'4',  //1,添加，2，修改，3，复制，4，批量导出,5,同步
+	
+		);
+		 $this->model_catalog_product->changeProductLogs($datas);		        
       	// if (isset($this->request->post['selected'])) {
       			// print_r($this->request->post['selected']);exit;
 			foreach ($product_ids as $product_id) {
@@ -1335,6 +1355,12 @@ class ControllerCatalogProduct extends Controller {
 			$data['error_model'] = $this->error['model'];
 		} else {
 			$data['error_model'] = '';
+		}
+
+		if (isset($this->error['product_category'])) {
+			$data['error_product_category'] = $this->error['product_category'];
+		} else {
+			$data['error_product_category'] = '';
 		}
 
 		if (isset($this->error['keyword'])) {
@@ -1609,7 +1635,7 @@ class ControllerCatalogProduct extends Controller {
 		} elseif (!empty($product_info)) {
 			$data['modelling'] = $product_info['modelling'];
 		} else {
-			$data['modelling'] = true;
+			$data['modelling'] = '';
 		}
 // print_r($data['is_sale']);exit;
         //是否首页显示
@@ -2095,6 +2121,10 @@ class ControllerCatalogProduct extends Controller {
 			}
 		}
 
+		if(!isset($this->request->post['product_category'])){
+			$this->error['product_category'] = '分类必填';
+		}
+
 		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');
 		}
@@ -2286,6 +2316,13 @@ class ControllerCatalogProduct extends Controller {
 	            		$data['price6']=floatval($v[10]);
 	            		$data['price7']=floatval($v[11]);
 
+						$datas=array(
+						'product_id'=>'', //产品id
+						'content'=>'导入产品pov_id:'.$product_option_value_id.'数量:'.$data['quantity'].'价格分别为'.$data['price'].','.$data['price1'].','.$data['price2'].','.$data['price3'].','.$data['price4'].','.$data['price5'].','.$data['price6'].','.$data['price7'], //内容备注
+						'type'=>'6',  //1,添加，2，修改，3，复制，4，批量导出,5,同步 6.导入
+					
+						);
+						 $this->model_catalog_product->changeProductLogs($datas);	
 	           			  $this->model_catalog_product->UpdateOptionVluePrice($product_option_value_id,$data);
 
 					$this->session->data['success'] = 'Import success!';

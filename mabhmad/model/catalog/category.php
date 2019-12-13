@@ -93,8 +93,24 @@ class ModelCatalogCategory extends Model {
 				 pc_show_title = '" . $data['pc_show_title'] . "',
 				 status = '" . (int)$data['status'] . "',
 				 date_modified = NOW() WHERE category_id = '" . (int)$category_id . "'");
-
-		if (isset($data['m_image'])) {
+// 分类禁用 此分类下所有产品禁用
+		$res=$this->db->query("SELECT product_id FROM " . DB_PREFIX . "product_to_category pc WHERE  category_id = '" . (int)$category_id . "' ");
+			if(!empty($res->rows)){
+				if($data['status']==1){
+					foreach ($res->rows as $products) {
+						$sql = "UPDATE " . DB_PREFIX . "product SET status=1 WHERE template_product=0 AND product_id = '".$products['product_id']."'";
+				  		$this->querysql($sql);
+					}
+					
+				}else{
+					foreach ($res->rows as $products) {
+						$sql = "UPDATE " . DB_PREFIX . "product SET status=0 WHERE template_product=0 AND product_id = '".$products['product_id']."'";
+				  		$this->querysql($sql);
+					}
+				}
+			}
+// end
+				if (isset($data['m_image'])) {
 			$this->querysql("UPDATE " . DB_PREFIX . "category SET m_image = '" . $this->db->escape($data['m_image']) . "' WHERE category_id = '" . (int)$category_id . "'");
 		}
 		

@@ -88,6 +88,14 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape(
 
 		$product_id = $this->db->getLastId();
 
+		$datas=array(
+
+		'product_id'=>$product_id, //产品id
+		'content'=>'添加新产品', //内容备注
+		'type'=>'1',  //1,添加，2，修改，3，复制，4，批量导入,5,同步
+	
+		);
+		 $this->changeProductLogs($datas);
 		/*
 		//同步option表中的color和length
 		if(isset($data['color_id'])){
@@ -309,11 +317,20 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
           width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "',
           length_class_id = '" . (int)$data['length_class_id'] . "', status = '" . (int)$data['status'] . "',
           tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW(),date_added = NOW(),
-          relation_product = '" . $this->db->escape($data['relation_product'])."', discount_percentage = 0, is_main = ".(int)$data['is_main'] .", is_new = ".(int)$data['is_new']. ", is_sale = ".(int)$data['is_sale']. ", modelling = '".$data['modelling']. "', is_home = " .(int)$data['is_home'].", 
+          relation_product = '" . $this->db->escape($data['relation_product'])."', discount_percentage = 0, is_main = ".(int)$data['is_main'] .", is_new = ".(int)$data['is_new']. ", is_sale = ".(int)$data['is_sale']. ", browse = '".$this->db->escape($data['browse']). "', modelling = '".$data['modelling']. "', is_home = " .(int)$data['is_home'].", 
             free_postage = ".(int)$data['free_postage'] . ", video_link = '" .$this->db->escape($data['video_link']) ."', template_product = '" .$this->db->escape($data['template_product']) ."'";
 		$this->querysql($sql);
 
 		$product_id = $data['product_id'];
+
+		$datas=array(
+
+		'product_id'=>$product_id, //产品id
+		'content'=>'同步产品', //内容备注
+		'type'=>'5',  //1,添加，2，修改，3，复制，4，批量导入,5,同步
+	
+		);
+		 $this->changeProductLogs($datas);
 
 		/*
 		//同步option表中的color和length
@@ -559,6 +576,15 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 		        . ", free_postage = ".(int)$data['free_postage'] ." WHERE product_id = '" . (int)$product_id . "'";
 
 		$this->querysql($sql);
+
+		$datas=array(
+
+		'product_id'=>$product_id, //产品id
+		'content'=>'修改产品', //内容备注
+		'type'=>'2',  //1,添加，2，修改，3，复制，4，批量导入,5,同步
+	
+		);
+		 $this->changeProductLogs($datas);
 
 		// if (isset($data['image'])) {
 		// 	$this->querysql("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
@@ -931,6 +957,15 @@ $sp_id=array();
 			$data['product_recurrings'] = $this->getRecurrings($product_id);
 
 			$this->addProduct($data);
+
+			$datas=array(
+
+			'product_id'=>$product_id, //产品id
+			'content'=>'复制原产品'.$product_id, //内容备注
+			'type'=>'3',  //1,添加，2，修改，3，复制，4，批量导入,5,同步
+		
+			);
+			 $this->changeProductLogs($datas);
 		}
 	}
 	// 同步
@@ -947,8 +982,7 @@ $sp_id=array();
 			$data['product_id'] =$product_id;
 
 			$keywordres=$this->db->query("SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
-			
-			$data['keyword']=$keywordres->row['keyword'];
+			$data['keyword']=!empty($keywordres->row)?$keywordres->row['keyword']:'';
 
 			$data['product_attribute'] = $this->getProductAttributes($product_id);
 			$data['product_description'] = $this->getProductDescriptions($product_id);
@@ -1006,7 +1040,7 @@ $sp_id=array();
 	}
 
 	public function getProducts($data = array()) {
-		$sql = "SELECT *  FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON ( p.product_id=p2c.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.template_product = '0'";
+		$sql = "SELECT *,p.product_id as product_id  FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON ( p.product_id=p2c.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.template_product = '0'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND (pd.name LIKE '%" . $this->db->escape($data['filter_name']) . "%' OR pd.name LIKE '%" . $this->db->escape($data['filter_name'])  . "%')";
@@ -1868,4 +1902,46 @@ $sp_id=array();
 		return $query->rows;
 	}
     
+
+	public function changeProductLogs($datas)
+	{
+			$ip=$this->getIp();
+
+			$user_id=$this->session->data['user_id'];
+			$query = $this->db->query("SELECT u.username FROM " . DB_PREFIX . "user u  WHERE user_id = '" . (int)$user_id. "' ");
+			if($query->row){
+				$username=$query->row['username'];
+			}
+
+		$sql="INSERT INTO " . DB_PREFIX . "product_logs SET ip = '" . $ip . "',username = '" . $username . "', product_id = '" . $this->db->escape($datas['product_id']) . "',user_id = '" . $user_id . "', type = '" . $this->db->escape($datas['type']) . "',content = '" . $this->db->escape($datas['content']) . "',data_added=NOW()";
+
+		$this->db->query($sql);
+					
+
+	}
+
+	function getIp()
+	{
+	    if (isset($_SERVER["HTTP_CLIENT_IP"]) &&$_SERVER["HTTP_CLIENT_IP"] && strcasecmp($_SERVER["HTTP_CLIENT_IP"], "unknown")) {
+	        $ip = $_SERVER["HTTP_CLIENT_IP"];
+	    } else {
+	        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) &&$_SERVER["HTTP_X_FORWARDED_FOR"] && strcasecmp($_SERVER["HTTP_X_FORWARDED_FOR"], "unknown")) {
+	            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+	        } else {
+	            if (isset($_SERVER["REMOTE_ADDR"]) &&$_SERVER["REMOTE_ADDR"] && strcasecmp($_SERVER["REMOTE_ADDR"], "unknown")) {
+	                $ip = $_SERVER["REMOTE_ADDR"];
+	            } else {
+	                if (isset ($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'],
+	                        "unknown")
+	                ) {
+	                    $ip = $_SERVER['REMOTE_ADDR'];
+	                } else {
+	                    $ip = "unknown";
+	                }
+	            }
+	        }
+	    }
+	    return ($ip);
+	}
+
 }

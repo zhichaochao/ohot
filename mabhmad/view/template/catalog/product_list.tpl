@@ -104,7 +104,7 @@
               <div class="form-group">
             <label class="control-label" for="input-status">分类</label>
              <select name="category_id" class="form-control">
-            <option value="0">选择分类</option>
+            <option value="">选择分类</option>
             <?php foreach ($categories as $category_1) { ?>
     
             <option value="<?php echo $category_1['category_id']; ?>"><?php echo $category_1['name']; ?></option>
@@ -170,7 +170,8 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_browse; ?>"><?php echo $column_browse; ?></a>
                     <?php } ?></td>
-                  <!-- <td class="text-center">浏览量</td> -->
+                  <td class="text-center">添加时间</td>
+                  <td class="text-center">修改时间</td>
                   <td class="text-right"><?php echo $column_action; ?></td>
                 </tr>
               </thead>
@@ -216,6 +217,8 @@
                     <?php } ?>
                   </td>
                   <td class="text-left"><?php echo $product['browse']; ?></td>
+                  <td class="text-left"><?php echo $product['date_added']; ?></td>
+                  <td class="text-left"><?php echo $product['date_modified']; ?></td>
                   <td class="text-right"><a href="<?php echo $product['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                 </tr>
                 <?php } ?>

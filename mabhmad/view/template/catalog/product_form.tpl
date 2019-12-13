@@ -136,7 +136,7 @@
                 
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-category"><span style="color:red;" data-toggle="tooltip" title="<?php echo $help_category; ?>"><?php echo $entry_category; ?>(必填项)</span></label>
                 <div class="col-sm-10">
                   <input type="text" name="category" value="" placeholder="<?php echo $entry_category; ?>" id="input-category" class="form-control" />
@@ -147,6 +147,10 @@
                     </div>
                     <?php } ?>
                   </div>
+                  
+                    <?php if ($error_product_category) { ?>
+                    <div class="text-danger"><?php echo $error_product_category; ?></div>
+                    <?php } ?>
                 </div>
               </div>
                  <div class="form-group">
