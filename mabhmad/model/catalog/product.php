@@ -1031,6 +1031,17 @@ $sp_id=array();
 		$this->querysql("DELETE FROM " . DB_PREFIX . "product_inquiry WHERE product_id = '" . (int)$product_id . "'");
 
 		$this->cache->delete('product');
+
+		$product_id = $data['product_id'];
+
+		$datas=array(
+
+		'product_id'=>$product_id, //产品id
+		'content'=>'删除产品', //内容备注
+		'type'=>'7',  //1,添加，2，修改，3，复制，4，批量导入,5,同步
+	
+		);
+		 $this->changeProductLogs($datas);
 	}
 
 	public function getProduct($product_id) {
