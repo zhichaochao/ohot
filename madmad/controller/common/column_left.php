@@ -148,6 +148,22 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+			if ($this->user->hasPermission('access', 'sale/customer')) {
+				$sale[] = array(
+					'name'	   => '客户月度销售统计',
+					'href'     => $this->url->link('sale/customer', 'token=' . $this->session->data['token'].'&key=0', true),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'sale/customercart')) {
+				$sale[] = array(
+					'name'	   => '客户购物车',
+					'href'     => $this->url->link('sale/customercart', 'token=' . $this->session->data['token'].'&key=0', true),
+					'children' => array()
+				);
+			}
+
 			
 			//Product Inquiry,end
 

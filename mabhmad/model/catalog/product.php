@@ -1032,7 +1032,7 @@ $sp_id=array();
 
 		$this->cache->delete('product');
 
-		$product_id = $data['product_id'];
+		// $product_id = $data['product_id'];
 
 		$datas=array(
 
