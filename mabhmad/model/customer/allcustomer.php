@@ -20,7 +20,31 @@ class ModelCustomerAllcustomer extends Model {
 				}
 			// print_r($sql);exit;
 					$queryk = $this->$todb->query($sql);
+					$customer_ids = $this->$todb->getLastId(); //转后的cu_id
+
+					// 删除原customer
 					$q=$this->$fromdb->query("DELETE FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
+
+					//查询客户原站的购物车
+					$fromdbquery = $this->$fromdb->query("SELECT DISTINCT * FROM " . DB_PREFIX . "cart c WHERE c.customer_id = '" . (int)$customer_id . "'");
+					
+					if ($fromdbquery->rows) {
+						foreach ($fromdbquery->rows as $key => $values) {
+							unset($values['cart_id']);
+							unset($values['customer_id']);
+						$fromdbsql="INSERT INTO " . DB_PREFIX . "cart SET customer_id='".$customer_ids."',`option`='".json_encode(json_decode($values['option']))."'";
+							unset($values['option']);
+							foreach ($values as $key => $valuee) {
+								$fromdbsql.=",".$key."='".$valuee."'";
+								
+							}
+							// 同步购物车
+							$queryk = $this->$todb->query($fromdbsql);
+						}
+						// 删除原购物车
+						$q=$this->$fromdb->query("DELETE FROM " . DB_PREFIX . "cart WHERE customer_id = '" . (int)$customer_id . "'");
+					}
+					
 			}
 			return $data;
 	
