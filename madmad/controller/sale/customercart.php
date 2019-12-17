@@ -314,8 +314,19 @@ class ControllerSaleCustomercart extends Controller {
 		$data['column_price'] = $this->language->get('column_price');
 		$data['column_total'] = $this->language->get('column_total');
 
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}
+
+		$url = '';
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
 		
-		$data['cancel'] = $this->url->link('sale/customercart', 'token=' . $this->session->data['token'] , true);
+		$data['cancel'] = $this->url->link('sale/customercart', 'token=' . $this->session->data['token'].$url, true);
 
 		$data['token'] = $this->session->data['token'];
 

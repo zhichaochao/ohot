@@ -11,9 +11,10 @@ class ModelCustomerAllcustomer extends Model {
 				$data = $query->row;
 
 				unset($data['customer_id']);
-				$sql="INSERT INTO " . DB_PREFIX . "customer SET store_id=".$data['store_id'];
+				$sql="INSERT INTO " . DB_PREFIX . "customer SET store_id=".$data['store_id'].',address_id=0';
 				//print_r($sql);exit;
 				unset($data['store_id']);
+				unset($data['address_id']);
 				foreach ($data as $key => $value) {
 					$sql.=",".$key."='".$value."'";
 					//print_r($sql);exit;
