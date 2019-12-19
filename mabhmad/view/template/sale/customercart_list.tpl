@@ -74,8 +74,28 @@
                 <label class="control-label" for="input-telephone">手机号</label>
                 <input type="text" name="telephone" value="" placeholder="手机号" id="input-telephone" class="form-control" />
               </div>
-              <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+              
             </div>
+            <div class="col-sm-3"> 
+               <div class="form-group">
+                  <label class="control-label" for="input-null">购物车内容</label>
+                  <select name="filter_null" id="input-null" class="form-control">
+                    <option value="*"></option>
+                    <?php if ($filter_null) { ?>
+                    <option value="1" selected="selected">有</option>
+                    <?php } else { ?>
+                    <option value="1">有</option>
+                    <?php } ?>
+                    <?php if (!$filter_null && !is_null($filter_null)) { ?>
+                    <option value="0" selected="selected">无</option>
+                    <?php } else { ?>
+                    <option value="0">无</option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+            </div>
+
           </div>
         </div>
         <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-customer">
@@ -177,6 +197,13 @@ $('#button-filter').on('click', function() {
 	if (filter_status != '*') {
 		url += '&filter_status=' + encodeURIComponent(filter_status); 
 	}	
+
+    var filter_null = $('select[name=\'filter_null\']').val();
+  
+  if (filter_null != '*') {
+    url += '&filter_null=' + encodeURIComponent(filter_null); 
+  } 
+
    var telephone = $('input[name=\'telephone\']').val();
   if (telephone) {
     url += '&telephone=' + encodeURIComponent(telephone);

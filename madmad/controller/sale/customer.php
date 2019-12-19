@@ -18,7 +18,6 @@ class ControllerSaleCustomer extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('sale/customer');
-		// $orderReading = $this->model_sale_order->getOrderReading($this->request->get['order_id']);
 
 		$this->getForm();
 	}
@@ -191,41 +190,25 @@ class ControllerSaleCustomer extends Controller {
 			);
 		}
 
-		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
-		$data['text_yes'] = $this->language->get('text_yes');
-		$data['text_no'] = $this->language->get('text_no');
-		$data['text_default'] = $this->language->get('text_default');
 		$data['text_no_results'] = $this->language->get('text_no_results');
-		$data['text_confirm'] = $this->language->get('text_confirm');
 
 		$data['column_name'] = $this->language->get('column_name');
 		$data['column_email'] = $this->language->get('column_email');
 		$data['column_customer_group'] = $this->language->get('column_customer_group');
 		$data['column_status'] = $this->language->get('column_status');
-		$data['column_approved'] = $this->language->get('column_approved');
-		$data['column_ip'] = $this->language->get('column_ip');
 		$data['column_date_added'] = $this->language->get('column_date_added');
-		$data['column_action'] = $this->language->get('column_action');
 
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_email'] = $this->language->get('entry_email');
 		$data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$data['entry_status'] = $this->language->get('entry_status');
-		$data['entry_approved'] = $this->language->get('entry_approved');
-		$data['entry_ip'] = $this->language->get('entry_ip');
 		$data['entry_date_added'] = $this->language->get('entry_date_added');
 
-		$data['button_approve'] = $this->language->get('button_approve');
-		$data['button_add'] = $this->language->get('button_add');
-		$data['button_edit'] = $this->language->get('button_edit');
-		$data['button_delete'] = $this->language->get('button_delete');
 		$data['button_filter'] = $this->language->get('button_filter');
-		$data['button_login'] = $this->language->get('button_login');
-		$data['button_unlock'] = $this->language->get('button_unlock');
 
 		$data['token'] = $this->session->data['token'];
 
@@ -356,7 +339,7 @@ class ControllerSaleCustomer extends Controller {
 	}
 
 	protected function getForm() {
-		$data['heading_title'] = '上月订单';
+		$data['heading_title'] = '全部订单';
 
 		$data['text_list'] = $this->language->get('text_list');
 		$data['text_no_results'] = $this->language->get('text_no_results');
@@ -430,7 +413,18 @@ class ControllerSaleCustomer extends Controller {
 			$page = 1;
 		}
 
+		if (isset($this->request->get['customer_id'])) {
+			$customer_id= $this->request->get['customer_id'];
+		} else {
+			$customer_id = 0;
+		}
+
 		$url = '';
+
+		if (isset($this->request->get['customer_id'])) {
+			$url .= '&customer_id=' . $this->request->get['customer_id'];
+		}
+
 
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
@@ -453,13 +447,7 @@ class ControllerSaleCustomer extends Controller {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
 		}
 
-		if (isset($this->request->get['sort'])) {
-			$url .= '&sort=' . $this->request->get['sort'];
-		}
-
-		if (isset($this->request->get['order'])) {
-			$url .= '&order=' . $this->request->get['order'];
-		}
+		
 
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
@@ -468,15 +456,39 @@ class ControllerSaleCustomer extends Controller {
 		$data['cancel'] = $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . $url, true);
 
 		$data['token'] = $this->session->data['token'];
+		$data['url'] = $url;
 
-		if (isset($this->request->get['customer_id'])) {
-			$customer_id= $this->request->get['customer_id'];
+
+	
+
+		if (isset($this->request->get['filter_order_status'])) {
+			$filter_order_status = $this->request->get['filter_order_status'];
 		} else {
-			$customer_id = 0;
+			$filter_order_status = null;
 		}
 
-		$last_monthorder = $this->model_sale_customer->getlastCustomerOrders($customer_id);
+		if (isset($this->request->get['filter_orderdate_added'])) {
+			$filter_orderdate_added = $this->request->get['filter_orderdate_added'];
+		} else {
+			$filter_orderdate_added = null;
+		}
+
+		if (isset($this->request->get['filter_orderdate_end'])) {
+			$filter_orderdate_end = $this->request->get['filter_orderdate_end'];
+		} else {
+			$filter_orderdate_end = null;
+		}
+
+		$filter_data = array(
+			'customer_id'          => $customer_id,
+			'filter_order_status'          => $filter_order_status,
+			'filter_orderdate_added'        => $filter_orderdate_added,
+			'filter_orderdate_end'        => $filter_orderdate_end
+		);
+
+		$last_monthorder = $this->model_sale_customer->getlastCustomerOrders($filter_data);
 		$data['orders'] = array();
+		$a=0;
 			foreach ($last_monthorder as $result) {
 			$data['orders'][] = array(
 				'order_id'       => $result['order_id'],
@@ -492,8 +504,17 @@ class ControllerSaleCustomer extends Controller {
 				'reading' => $result['reading'],
 				'view'           => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] , true)
 			);
+			$a+=$result['total'];
 		}
-		
+		$data['zquantitys']=$a;
+		$this->load->model('localisation/order_status');
+		$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
+		// print_r($data['order_statuses']);exit;
+		$a=explode(',',$filter_order_status);
+		$data['filter_order_status'] = (array)$a;
+		// $data['customer_id'] = $customer_id;
+		$data['filter_orderdate_added'] = $filter_orderdate_added;
+		$data['filter_orderdate_end'] = $filter_orderdate_end;
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');

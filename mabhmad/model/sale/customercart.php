@@ -36,6 +36,14 @@ class ModelSaleCustomercart extends Model {
 			$implode[] = "c.customer_id IN (SELECT customer_id FROM " . DB_PREFIX . "customer_ip WHERE ip = '" . $this->db->escape($data['filter_ip']) . "')";
 		}
 
+		
+		if($data['filter_null']==1 && !is_null($data['filter_null'])){
+				$implode[] = "c.customer_id IN (SELECT customer_id FROM " . DB_PREFIX . "cart )";
+		}else if($data['filter_null']==0 && !is_null($data['filter_null'])){
+				$implode[] = "c.customer_id NOT IN (SELECT customer_id FROM " . DB_PREFIX . "cart )";
+		}
+		
+
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 			$implode[] = "c.status = '" . (int)$data['filter_status'] . "'";
 		}
@@ -97,7 +105,7 @@ class ModelSaleCustomercart extends Model {
 	}
 
 	public function getTotalCustomers($data = array()) {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer";
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer c";
 
 		$implode = array();
 
@@ -106,36 +114,42 @@ class ModelSaleCustomercart extends Model {
 		}
 
 		if (!empty($data['filter_email'])) {
-			$implode[] = "email LIKE '" . $this->db->escape($data['filter_email']) . "%'";
+			$implode[] = "c.email LIKE '" . $this->db->escape($data['filter_email']) . "%'";
 		}
 
 		if (isset($data['filter_newsletter']) && !is_null($data['filter_newsletter'])) {
-			$implode[] = "newsletter = '" . (int)$data['filter_newsletter'] . "'";
+			$implode[] = "c.newsletter = '" . (int)$data['filter_newsletter'] . "'";
 		}
 
 		if (!empty($data['filter_customer_group_id'])) {
-			$implode[] = "customer_group_id = '" . (int)$data['filter_customer_group_id'] . "'";
+			$implode[] = "c.customer_group_id = '" . (int)$data['filter_customer_group_id'] . "'";
 		}
 
 		if (!empty($data['filter_ip'])) {
-			$implode[] = "customer_id IN (SELECT customer_id FROM " . DB_PREFIX . "customer_ip WHERE ip = '" . $this->db->escape($data['filter_ip']) . "')";
+			$implode[] = "c.customer_id IN (SELECT customer_id FROM " . DB_PREFIX . "customer_ip WHERE ip = '" . $this->db->escape($data['filter_ip']) . "')";
+		}
+
+		if($data['filter_null']==1 && !is_null($data['filter_null'])){
+			$implode[] = "c.customer_id IN (SELECT customer_id FROM " . DB_PREFIX . "cart )";
+		}else if($data['filter_null']==0 && !is_null($data['filter_null'])){
+			$implode[] = "c.customer_id NOT IN (SELECT customer_id FROM " . DB_PREFIX . "cart )";
 		}
 
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
-			$implode[] = "status = '" . (int)$data['filter_status'] . "'";
+			$implode[] = "c.status = '" . (int)$data['filter_status'] . "'";
 		}
 
 		if (isset($data['telephone']) && !is_null($data['telephone'])) {
-			$implode[] = "telephone = '" . (int)$data['telephone'] . "'";
+			$implode[] = "c.telephone = '" . (int)$data['telephone'] . "'";
 		}
 
 
 		if (isset($data['filter_approved']) && !is_null($data['filter_approved'])) {
-			$implode[] = "approved = '" . (int)$data['filter_approved'] . "'";
+			$implode[] = "c.approved = '" . (int)$data['filter_approved'] . "'";
 		}
 
 		if (!empty($data['filter_date_added'])) {
-			$implode[] = "DATE(date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+			$implode[] = "DATE(c.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
 		}
 
 		if ($implode) {
@@ -389,6 +403,7 @@ class ModelSaleCustomercart extends Model {
 
                 $product_data[] = array(
                     'cart_id'         => $cart['cart_id'],
+                    'date_added'         => $cart['date_added'],
                     'product_id'      => $product_query->row['product_id'],
                     'name'            => $product_query->row['name'],
                     'model'           => $product_query->row['model'],
@@ -422,4 +437,59 @@ class ModelSaleCustomercart extends Model {
         return $product_data;
     }
 	
+	public function getAddresses($customer_id) {
+		$address_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "address WHERE customer_id = '" . (int)$customer_id. "'");
+
+		foreach ($query->rows as $result) {
+			$country_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE country_id = '" . (int)$result['country_id'] . "'");
+
+			if ($country_query->num_rows) {
+				$country = $country_query->row['name'];
+				$iso_code_2 = $country_query->row['iso_code_2'];
+				$iso_code_3 = $country_query->row['iso_code_3'];
+				$address_format = $country_query->row['address_format'];
+			} else {
+				$country = '';
+				$iso_code_2 = '';
+				$iso_code_3 = '';
+				$address_format = '';
+			}
+
+			$zone_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE zone_id = '" . (int)$result['zone_id'] . "'");
+
+			if ($zone_query->num_rows) {
+				$zone = $zone_query->row['name'];
+				$zone_code = $zone_query->row['code'];
+			} else {
+				$zone = '';
+				$zone_code = '';
+			}
+
+			$address_data[$result['address_id']] = array(
+				'address_id'     => $result['address_id'],
+				'firstname'      => $result['firstname'],
+				'lastname'       => $result['lastname'],
+				'company'        => $result['company'],
+				'address_1'      => $result['address_1'],
+				'address_2'      => $result['address_2'],
+				'postcode'       => $result['postcode'],
+				'city'           => $result['city'],
+				'zone_id'        => $result['zone_id'],
+				'zone'           => $zone,
+				'zone_code'      => $zone_code,
+				'country_id'     => $result['country_id'],
+				'country'        => $country,
+				'telephone'      => $result['telephone'],
+				'iso_code_2'     => $iso_code_2,
+				'iso_code_3'     => $iso_code_3,
+				'address_format' => $address_format,
+				'custom_field'   => json_decode($result['custom_field'], true),
+				'isDefault'      => ($this->customer->getAddressId()==$result['address_id']?1:0)
+			);
+		}
+
+		return $address_data;
+	}
 }

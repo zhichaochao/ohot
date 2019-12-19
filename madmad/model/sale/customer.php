@@ -177,13 +177,38 @@ class ModelSaleCustomer extends Model {
 	return $query->row;
 	}
 
-	public function getlastCustomerOrders($customer_id)
+	public function getlastCustomerOrders($data = array())
 	{
- // "SELECT o.order_id,o.order_no,o.reading, o.payment_type, o.payment_method, o.email,o.telephone, o.order_status_id as orderstatus, CONCAT(o.firstname, ' ', o.lastname) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status, o.shipping_code, o.total, o.currency_code, o.currency_value, o.date_added, o.date_modified FROM `" . DB_PREFIX . "order` o"
+
+	$sql = "SELECT o.order_id,o.order_no,o.reading, o.payment_type, o.payment_method, o.email,o.telephone, o.order_status_id as orderstatus, CONCAT(o.firstname, ' ', o.lastname) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status, o.shipping_code, o.total, o.currency_code, o.currency_value, o.date_added, o.date_modified FROM " . DB_PREFIX . "order o  "  ;
 
 
+		if (isset($data['filter_order_status'])) {
 
-	$sql = "SELECT o.order_id,o.order_no,o.reading, o.payment_type, o.payment_method, o.email,o.telephone, o.order_status_id as orderstatus, CONCAT(o.firstname, ' ', o.lastname) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status, o.shipping_code, o.total, o.currency_code, o.currency_value, o.date_added, o.date_modified FROM " . DB_PREFIX . "order o WHERE PERIOD_DIFF(date_format(now( ), '%Y%m') , date_format(date_added, '%Y%m')) = 1 AND customer_id = '" . (int)$customer_id . "' "  ;
+				$implode = array();
+
+			$order_statuses = explode(',', $data['filter_order_status']);
+
+			foreach ($order_statuses as $order_status_id) {
+				$implode[] = "o.order_status_id = '" . (int)$order_status_id . "'";
+			}
+
+			if ($implode) {
+				$sql .= " WHERE (" . implode(" OR ", $implode) . ")";
+			}
+
+			// }
+
+		} else {
+			$sql .= " WHERE o.order_status_id > '0'";
+		}
+		if (isset($data['customer_id'])) {
+			$sql .= "AND customer_id= '" . $data['customer_id'] . "'"; 
+		}
+		if (!empty($data['filter_orderdate_added'])) {
+
+			$sql .= " AND   DATE(o.date_added) between DATE('" . $this->db->escape($data['filter_orderdate_added']) . "') and DATE('" . $this->db->escape($data['filter_orderdate_end']) . "')";
+		}
 	$query = $this->db->query($sql);
 
 	return $query->rows;

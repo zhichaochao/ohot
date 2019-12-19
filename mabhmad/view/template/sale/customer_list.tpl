@@ -114,7 +114,7 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?></a>
                     <?php } ?></td>
-                  <td class="text-right">上月订单 </td>
+                  <td class="text-right">全部订单 </td>
                 </tr>
               </thead>
               <tbody>

@@ -12,11 +12,24 @@
   
     <div class="panel panel-default">
       <div class="panel-body">
+             <?php if ($addresses) { ?>
+         <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <?php foreach ($addresses as $result) { ?>
+              <td class="text-left"><?php echo $result['address']; ?></td>
+              <?php } ?>
+            </tr>
+          </tbody>
+        </table>
+        <?php } ?>
+
         <table class="table table-bordered">
           <thead>
             <tr>
               <td class="text-left"><?php echo $column_product; ?></td>
               <td class="text-left"><?php echo $column_model; ?></td>
+              <td class="text-left">添加时间</td>
               <td class="text-right"><?php echo $column_quantity; ?></td>
               <td class="text-right"><?php echo $column_price; ?></td>
               <td class="text-right">总价</td> 
@@ -31,6 +44,7 @@
                 &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
                 <?php } ?></td>
               <td class="text-left"><?php echo $product['model']; ?></td>
+               <td class="text-left"><?php echo $product['date_added']; ?></td>
               <td class="text-right"><?php echo $product['quantity']; ?></td>
               <td class="text-right">
                 <?php if ($product['price'] == $product['original_price'] ) { ?>
@@ -50,6 +64,7 @@
             <?php } ?>
 
              <tr>
+          <td class="text-left"></td>
           <td class="text-left"></td>
           <td class="text-left"></td>
           <td class="text-right"> Total Quantity: <?php echo $zquantitys?></td>

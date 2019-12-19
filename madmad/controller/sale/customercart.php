@@ -47,6 +47,12 @@ class ControllerSaleCustomercart extends Controller {
 			$filter_status = null;
 		}
 
+		if (isset($this->request->get['filter_null'])) {
+            $filter_null = $this->request->get['filter_null'];
+        } else {
+            $filter_null = null;
+        }
+
 		
 		if (isset($this->request->get['telephone'])) {
 			$telephone = $this->request->get['telephone'];
@@ -96,6 +102,10 @@ class ControllerSaleCustomercart extends Controller {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
 
+		if (isset($this->request->get['filter_null'])) {
+			$url .= '&filter_null=' . $this->request->get['filter_null'];
+		}
+
 
 		if (isset($this->request->get['filter_date_added'])) {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
@@ -133,6 +143,7 @@ class ControllerSaleCustomercart extends Controller {
 			'filter_email'             => $filter_email,
 			'filter_customer_group_id' => $filter_customer_group_id,
 			'filter_status'            => $filter_status,
+            'filter_null'              => $filter_null,
 			'filter_date_added'        => $filter_date_added,
 			'telephone'                => $telephone,
 			'sort'                     => $sort,
@@ -217,6 +228,10 @@ class ControllerSaleCustomercart extends Controller {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
 
+		if (isset($this->request->get['filter_null'])) {
+            $url .= '&filter_null=' . $this->request->get['filter_null'];
+        }
+
 
 		if (isset($this->request->get['filter_date_added'])) {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
@@ -257,6 +272,10 @@ class ControllerSaleCustomercart extends Controller {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
 
+        if (isset($this->request->get['filter_null'])) {
+            $url .= '&filter_null=' . $this->request->get['filter_null'];
+        }
+
 	
 
 		if (isset($this->request->get['filter_date_added'])) {
@@ -285,6 +304,7 @@ class ControllerSaleCustomercart extends Controller {
 		$data['filter_email'] = $filter_email;
 		$data['filter_customer_group_id'] = $filter_customer_group_id;
 		$data['filter_status'] = $filter_status;
+        $data['filter_null'] = $filter_null;
 		$data['filter_date_added'] = $filter_date_added;
 
 		$this->load->model('customer/customer_group');
@@ -314,6 +334,61 @@ class ControllerSaleCustomercart extends Controller {
 		$data['column_price'] = $this->language->get('column_price');
 		$data['column_total'] = $this->language->get('column_total');
 
+		if (isset($this->request->get['filter_name'])) {
+            $filter_name = $this->request->get['filter_name'];
+        } else {
+            $filter_name = null;
+        }
+
+        if (isset($this->request->get['filter_email'])) {
+            $filter_email = $this->request->get['filter_email'];
+        } else {
+            $filter_email = null;
+        }
+
+        if (isset($this->request->get['filter_customer_group_id'])) {
+            $filter_customer_group_id = $this->request->get['filter_customer_group_id'];
+        } else {
+            $filter_customer_group_id = null;
+        }
+
+        if (isset($this->request->get['filter_status'])) {
+            $filter_status = $this->request->get['filter_status'];
+        } else {
+            $filter_status = null;
+        }
+
+        if (isset($this->request->get['filter_null'])) {
+            $filter_null = $this->request->get['filter_null'];
+        } else {
+            $filter_null = null;
+        }
+
+        
+        if (isset($this->request->get['telephone'])) {
+            $telephone = $this->request->get['telephone'];
+        } else {
+            $telephone = null;
+        }
+
+        if (isset($this->request->get['filter_date_added'])) {
+            $filter_date_added = $this->request->get['filter_date_added'];
+        } else {
+            $filter_date_added = null;
+        }
+
+        if (isset($this->request->get['sort'])) {
+            $sort = $this->request->get['sort'];
+        } else {
+            $sort = 'c.date_added';
+        }
+
+        if (isset($this->request->get['order'])) {
+            $order = $this->request->get['order'];
+        } else {
+            $order = 'DESC';
+        }
+
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
 		} else {
@@ -321,6 +396,39 @@ class ControllerSaleCustomercart extends Controller {
 		}
 
 		$url = '';
+
+		 if (isset($this->request->get['filter_name'])) {
+            $url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+        }
+
+        if (isset($this->request->get['filter_email'])) {
+            $url .= '&filter_email=' . urlencode(html_entity_decode($this->request->get['filter_email'], ENT_QUOTES, 'UTF-8'));
+        }
+
+        if (isset($this->request->get['filter_customer_group_id'])) {
+            $url .= '&filter_customer_group_id=' . $this->request->get['filter_customer_group_id'];
+        }
+
+        if (isset($this->request->get['filter_status'])) {
+            $url .= '&filter_status=' . $this->request->get['filter_status'];
+        }
+
+        if (isset($this->request->get['filter_null'])) {
+            $url .= '&filter_null=' . $this->request->get['filter_null'];
+        }
+
+
+        if (isset($this->request->get['filter_date_added'])) {
+            $url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
+        }
+
+        if (isset($this->request->get['sort'])) {
+            $url .= '&sort=' . $this->request->get['sort'];
+        }
+
+        if (isset($this->request->get['order'])) {
+            $url .= '&order=' . $this->request->get['order'];
+        }
 
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
@@ -343,6 +451,50 @@ class ControllerSaleCustomercart extends Controller {
 		 $cart_total = 0;
 // print_r($customercart);exit;
 		 foreach ($customercart as $product) {
+		 	$results = $this->model_sale_customercart->getAddresses($customer_id);
+        // print_r($results);exit();
+                foreach ($results as $result) {
+    
+                        $format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" 
+                            . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}'. "\n" . '{telephone}';
+    
+
+                    $find = array(
+                        '{firstname}',
+                        '{lastname}',
+                        '{company}',
+                        '{address_1}',
+                        '{address_2}',
+                        '{city}',
+                        '{postcode}',
+                        '{zone}',
+                        '{zone_code}',
+                        '{country}',
+                        '{telephone}'
+                    );
+
+                    $replace = array(
+                        'firstname' => $result['firstname'],
+                        'lastname'  => $result['lastname'],
+                        'company'   => $result['company'],
+                        'address_1' => $result['address_1'],
+                        'address_2' => $result['address_2'],
+                        'city'      => $result['city'],
+                        'postcode'  => $result['postcode'],
+                        'zone'      => $result['zone'],
+                        'zone_code' => $result['zone_code'],
+                        'country'   => $result['country'],
+                        'telephone' => $result['telephone']
+                    );
+
+                    $data['addresses'][] = array(
+                        'address_id' => $result['address_id'],
+                        'address'    => str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))))
+                        
+                    );
+                    
+                }
+
                 $product_total = 0;
                 
 
@@ -428,6 +580,7 @@ class ControllerSaleCustomercart extends Controller {
                 $data['products'][] = array(
                     'product_id'   => $product['product_id'],
                     'cart_id'   => $product['cart_id'],
+                    'date_added'   => $product['date_added'],
                     'thumb'     => $image,
                     'name'      => $product['name'],
                     'model'     => $product['model'],
