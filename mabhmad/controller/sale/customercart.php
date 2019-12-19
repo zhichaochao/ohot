@@ -455,49 +455,7 @@ class ControllerSaleCustomercart extends Controller {
          foreach ($customercart as $product) {
             //address
                 
-                $results = $this->model_sale_customercart->getAddresses($customer_id);
-        // print_r($results);exit();
-                foreach ($results as $result) {
-    
-                        $format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" 
-                            . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}'. "\n" . '{telephone}';
-    
-
-                    $find = array(
-                        '{firstname}',
-                        '{lastname}',
-                        '{company}',
-                        '{address_1}',
-                        '{address_2}',
-                        '{city}',
-                        '{postcode}',
-                        '{zone}',
-                        '{zone_code}',
-                        '{country}',
-                        '{telephone}'
-                    );
-
-                    $replace = array(
-                        'firstname' => $result['firstname'],
-                        'lastname'  => $result['lastname'],
-                        'company'   => $result['company'],
-                        'address_1' => $result['address_1'],
-                        'address_2' => $result['address_2'],
-                        'city'      => $result['city'],
-                        'postcode'  => $result['postcode'],
-                        'zone'      => $result['zone'],
-                        'zone_code' => $result['zone_code'],
-                        'country'   => $result['country'],
-                        'telephone' => $result['telephone']
-                    );
-
-                    $data['addresses'][] = array(
-                        'address_id' => $result['address_id'],
-                        'address'    => str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))))
-                        
-                    );
-                    
-                }
+               
                 $product_total = 0;
                 
 
@@ -602,6 +560,49 @@ class ControllerSaleCustomercart extends Controller {
                 $a +=$product['quantity'];
                 
             }
+             $results = $this->model_sale_customercart->getAddresses($customer_id);
+        // print_r($results);exit();
+                foreach ($results as $result) {
+    
+                        $format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" 
+                            . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}'. "\n" . '{telephone}';
+    
+
+                    $find = array(
+                        '{firstname}',
+                        '{lastname}',
+                        '{company}',
+                        '{address_1}',
+                        '{address_2}',
+                        '{city}',
+                        '{postcode}',
+                        '{zone}',
+                        '{zone_code}',
+                        '{country}',
+                        '{telephone}'
+                    );
+
+                    $replace = array(
+                        'firstname' => $result['firstname'],
+                        'lastname'  => $result['lastname'],
+                        'company'   => $result['company'],
+                        'address_1' => $result['address_1'],
+                        'address_2' => $result['address_2'],
+                        'city'      => $result['city'],
+                        'postcode'  => $result['postcode'],
+                        'zone'      => $result['zone'],
+                        'zone_code' => $result['zone_code'],
+                        'country'   => $result['country'],
+                        'telephone' => $result['telephone']
+                    );
+
+                    $data['addresses'][] = array(
+                        'address_id' => $result['address_id'],
+                        'address'    => str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))))
+                        
+                    );
+                    
+                }
             // print_r(  $data['products']);exit;
             $data['zquantitys']=$a;
             $data['zquantotal']= $this->currency->format($cart_total, $this->session->data['currency']);
