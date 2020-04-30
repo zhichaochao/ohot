@@ -65,6 +65,7 @@ class ControllerCheckoutPayment extends Controller {
                 'value' => $this->currency->convert($total['value'],'GBP','USD') //dyl
             );
         }
+        // 
 
 		/*********************快捷支付*********************************/
 
@@ -110,37 +111,75 @@ class ControllerCheckoutPayment extends Controller {
 		if(@$this->session->data['is_paypal_creditcard'] == 1){
 		    $landingpage = 'Billing';//信用卡支付
 		}
+		// print_r( $landingpage);exit();
 		$order_id = $this->session->data['order_id'];
+		 //print_r( $this->session->data);
+		//print_r( $order);exit();
 
 		$express_data = array(
 			'METHOD'             => 'SetExpressCheckout',
 			'RETURNURL'          => $this->url->link('checkout/payment/returnpay'),
 			'CANCELURL'          => $this->url->link('checkout/payment/cancelpay'),
-			// 'REQCONFIRMSHIPPING' => 0,
-			// 'NOSHIPPING'         => 1,
-			// 'LOCALECODE'         => 'en_US',
-			// 'LANDINGPAGE'        => $landingpage,
-			// 'CHANNELTYPE'        => 'Merchant',
-			// 'ALLOWNOTE'          => 1,
-   //          'ADDROVERRIDE'       => 0,
-				'REQCONFIRMSHIPPING' => 1,//买方的收货地址确认
+			'REQCONFIRMSHIPPING' => 1,//买方的收货地址确认
 			'NOSHIPPING'         => 2,
 			'LOCALECODE'         => 'en_US',
 			'LANDINGPAGE'        => $landingpage,
 			'CHANNELTYPE'        => 'Merchant',
 			'ALLOWNOTE'          => 1,
-            'ADDROVERRIDE'       => 0,
+       //     'ADDROVERRIDE'       => 1,
             'ADDRESSOVERRIDE'    => 1,
-            
-            'SOLUTIONTYPE'       => 'Sole',
+            'SOLUTIONTYPE'       => 'Mark',
             'PAGESTYLE'          => 'Hot Beauty Hair',
+            // 地址i
+              'PAYMENTREQUEST_0_SHIPTONAME'				 =>$order['payment_firstname'] .' '.$order['payment_lastname'],
+             'PAYMENTREQUEST_0_SHIPTOSTREET'			 =>$order['payment_address_1'],
+             'PAYMENTREQUEST_0_SHIPTOSTREET2'			 =>$order['payment_address_2'],
+             'PAYMENTREQUEST_0_SHIPTOCITY'			 =>$order['payment_city'],
+             'PAYMENTREQUEST_0_SHIPTOSTATE'	 =>$order['payment_zone'],
+             'PAYMENTREQUEST_0_SHIPTOZIP'		 =>$order['payment_postcode'],
+             'PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE'			 =>$order['payment_iso_code_2'],
+             'PAYMENTREQUEST_0_SHIPTOPHONENUM'				 =>$order['payment_telephone'],
+//   'PaymentDetails'=>array(    
+//'ShipToAddress'=>array(
+              //'Name'				 =>$order['payment_firstname'] .' '.$order['payment_lastname'],
+            //'Street1'			 =>$order['payment_address_1'],
+            //'Street2'			 =>$order['payment_address_2'],
+             //'CityName'			 =>$order['payment_city'],
+           // 'StateOrProvince'	 =>$order['payment_zone'],
+           // 'PostalCode'		 =>$order['payment_postcode'],
+          // 'Country'			 =>$order['payment_country'],
+           // 'Phone'				 =>$order['payment_telephone'],
+            //),),
+  // 'SHIPTOADDRESS_NAME'				 =>$order['payment_firstname'] .' '.$order['payment_lastname'],
+             //'SHIPTOADDRESS_STREET1'			 =>$order['payment_address_1'],
+             //'SHIPTOADDRESS_STREET2'			 =>$order['payment_address_2'],
+            // 'SHIPTOADDRESS_CITYNAME'			 =>$order['payment_city'],
+             //'SHIPTOADDRESS_STATEORPROVINCE'	 =>$order['payment_zone'],
+             //'SHIPTOADDRESS_POSTALCODE'		 =>$order['payment_postcode'],
+             //'SHIPTOADDRESS_COUNTRY'			 =>$order['payment_country'],
+             //'SHIPTOADDRESS_PHONE'				 =>$order['payment_telephone'],
+  //           'ADDRESSTYPE_NAME'				 =>$order['payment_firstname'] .' '.$order['payment_lastname'],
+    //         'ADDRESSTYPE_STREET1'			 =>$order['payment_address_1'],
+        //     'ADDRESSTYPE_STREET2'			 =>$order['payment_address_2'],
+      //       'ADDRESSTYPE_CITYNAME'			 =>$order['payment_city'],
+          //   'ADDRESSTYPE_STATEORPROVINCE'	 =>$order['payment_zone'],
+            // 'ADDRESSTYPE_POSTALCODE'		 =>$order['payment_postcode'],
+             //'ADDRESSTYPE_COUNTRY'			 =>$order['payment_country'],
+            // 'ADDRESSTYPE_PHONE'				 =>$order['payment_telephone'],
+           
+
+            // 返回
+
             'PAYMENTREQUEST_0_INVNUM' 				=> $order['order_no'],
 			'PAYMENTREQUEST_0_SHIPPINGAMT' 			=> 0,
 			'PAYMENTREQUEST_0_CURRENCYCODE' 		=> $order['currency_code'],
 			'PAYMENTREQUEST_0_AMT' 					=> $this->currency->format($order['total'],$this->currency->getCode(), '', false),
 			'PAYMENTREQUEST_0_ITEMAMT' 				=> $this->currency->format($order['total'],$this->currency->getCode(), '', false),
 			'PAYMENTREQUEST_0_PAYMENTACTION' 		=> 'sale',
+
+			// 'AddressType'
 		);
+		//print_r($express_data);exit();
 
 		if (isset($this->session->data['pp_login']['seamless']['access_token']) && (isset($this->session->data['pp_login']['seamless']['customer_id']) && $this->session->data['pp_login']['seamless']['customer_id'] == $this->customer->getId()) && $this->config->get('pp_login_seamless')) {
 			$express_data['IDENTITYACCESSTOKEN'] = $this->session->data['pp_login']['seamless']['access_token'];
@@ -148,6 +187,7 @@ class ControllerCheckoutPayment extends Controller {
 
 		$express_data = array_merge($express_data,$L_PAYMENTREQUEST);
 		$result = $this->model_extension_payment_pp_express->call($express_data);
+		// print_r($result );exit();
 
 		$log = new Log('ec_paypal_reset.log');
 		$log->write($express_data);
@@ -175,6 +215,7 @@ class ControllerCheckoutPayment extends Controller {
 			}
 		}
 		/*******************end  快捷支付*****************************/
+		// print_r($data['express_url']);exit();
 
 		$this->response->redirect($data['express_url']);
         //$data['payment'] = $this->load->controller('extension/payment/' . $this->session->data['payment_method']['code']);       
