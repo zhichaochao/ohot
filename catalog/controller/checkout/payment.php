@@ -87,7 +87,7 @@ class ControllerCheckoutPayment extends Controller {
 			$L_PAYMENTREQUEST[$desc_str] 	= $product['option_name'];
 			$L_PAYMENTREQUEST[$name_str] 	= $product['name'];
 			$L_PAYMENTREQUEST[$qty_str] 	= $product['quantity'];
-			$L_PAYMENTREQUEST[$amt_str] 	= $this->currency->format($product['price'], $this->currency->getCode(), '', false);
+			$L_PAYMENTREQUEST[$amt_str] 	= $this->currency->format($product['price'], 'USD', '', false);
 			$index++;
 		}
 
@@ -101,7 +101,7 @@ class ControllerCheckoutPayment extends Controller {
 				$L_PAYMENTREQUEST[$desc_str] 	= $total['title'];
 				$L_PAYMENTREQUEST[$name_str] 	= $total['code'];
 				$L_PAYMENTREQUEST[$qty_str] 	= 1;
-				$L_PAYMENTREQUEST[$amt_str] 	= $this->currency->format($total['value'],$this->currency->getCode(), '', false);
+				$L_PAYMENTREQUEST[$amt_str] 	= $this->currency->format($total['value'],'USD', '', false);
 			}
 
 			$index++;
@@ -172,14 +172,14 @@ class ControllerCheckoutPayment extends Controller {
 
             'PAYMENTREQUEST_0_INVNUM' 				=> $order['order_no'],
 			'PAYMENTREQUEST_0_SHIPPINGAMT' 			=> 0,
-			'PAYMENTREQUEST_0_CURRENCYCODE' 		=> $order['currency_code'],
-			'PAYMENTREQUEST_0_AMT' 					=> $this->currency->format($order['total'],$this->currency->getCode(), '', false),
-			'PAYMENTREQUEST_0_ITEMAMT' 				=> $this->currency->format($order['total'],$this->currency->getCode(), '', false),
+			'PAYMENTREQUEST_0_CURRENCYCODE' 		=> 'USD',
+			'PAYMENTREQUEST_0_AMT' 					=> $this->currency->format($order['total'],'USD', '', false),
+			'PAYMENTREQUEST_0_ITEMAMT' 				=> $this->currency->format($order['total'],'USD', '', false),
 			'PAYMENTREQUEST_0_PAYMENTACTION' 		=> 'sale',
 
 			// 'AddressType'
 		);
-		//print_r($express_data);exit();
+		// print_r('USD');exit();
 
 		if (isset($this->session->data['pp_login']['seamless']['access_token']) && (isset($this->session->data['pp_login']['seamless']['customer_id']) && $this->session->data['pp_login']['seamless']['customer_id'] == $this->customer->getId()) && $this->config->get('pp_login_seamless')) {
 			$express_data['IDENTITYACCESSTOKEN'] = $this->session->data['pp_login']['seamless']['access_token'];
@@ -261,10 +261,10 @@ class ControllerCheckoutPayment extends Controller {
 						'RETURNFMFDETAILS'           		=> 1,
 						'PAYMENTREQUEST_0_INVNUM' 			=> $order['order_no'],
 						'PAYMENTREQUEST_0_SHIPPINGAMT' 		=> '',
-						'PAYMENTREQUEST_0_CURRENCYCODE' 	=> $order['currency_code'],
+						'PAYMENTREQUEST_0_CURRENCYCODE' 	=> 'USD',
 						'PAYMENTREQUEST_0_PAYMENTACTION' 	=> $this->config->get('pp_express_method'),
-						'PAYMENTREQUEST_0_ITEMAMT' 			=> $this->currency->format($order['total'],$this->currency->getCode(), '', false),
-						'PAYMENTREQUEST_0_AMT' 				=> $this->currency->format($order['total'],$this->currency->getCode(), '', false)
+						'PAYMENTREQUEST_0_ITEMAMT' 			=> $this->currency->format($order['total'],'USD', '', false),
+						'PAYMENTREQUEST_0_AMT' 				=> $this->currency->format($order['total'],'USD', '', false)
 					);
 
 					$L_PAYMENTREQUEST = array();
@@ -280,7 +280,7 @@ class ControllerCheckoutPayment extends Controller {
 						$L_PAYMENTREQUEST[$desc_str] 	= $product['option_name'];
 						$L_PAYMENTREQUEST[$name_str] 	= $product['name'];
 						$L_PAYMENTREQUEST[$qty_str] 	= $product['quantity'];
-						$L_PAYMENTREQUEST[$amt_str] 	= $this->currency->format($product['price'],$this->currency->getCode(), '', false);
+						$L_PAYMENTREQUEST[$amt_str] 	= $this->currency->format($product['price'],'USD', '', false);
 						$index++;
 					}
 
@@ -294,7 +294,7 @@ class ControllerCheckoutPayment extends Controller {
 							$L_PAYMENTREQUEST[$desc_str] 	= $total['title'];
 							$L_PAYMENTREQUEST[$name_str] 	= $total['code'];
 							$L_PAYMENTREQUEST[$qty_str] 	= 1;
-							$L_PAYMENTREQUEST[$amt_str] 	= $this->currency->format($total['value'],$this->currency->getCode(), '', false);
+							$L_PAYMENTREQUEST[$amt_str] 	= $this->currency->format($total['value'],'USD', '', false);
 						}
 
 						$index++;
@@ -431,7 +431,7 @@ class ControllerCheckoutPayment extends Controller {
 									'BILLINGFREQUENCY'   => $item['recurring']['cycle'],
 									'TOTALBILLINGCYCLES' => $item['recurring']['duration'],
 									'AMT'                => $this->currency->format($this->tax->calculate($item['recurring']['price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'],
-									'CURRENCYCODE'       => $this->currency->getCode()
+									'CURRENCYCODE'       => 'USD'
 								);
 
 								//trial information
@@ -443,7 +443,7 @@ class ControllerCheckoutPayment extends Controller {
 										'TRIALAMT'                => $this->currency->format($this->tax->calculate($item['recurring']['trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity']
 									);
 
-									$trial_amt = $this->currency->format($this->tax->calculate($item['recurring']['trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'] . ' ' . $this->currency->getCode();
+									$trial_amt = $this->currency->format($this->tax->calculate($item['recurring']['trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'] . ' ' . 'USD';
 									$trial_text =  sprintf($this->language->get('text_trial'), $trial_amt, $item['recurring']['trial_cycle'], $item['recurring']['trial_frequency'], $item['recurring']['trial_duration']);
 
 									$data_p = array_merge($data_p, $data_trial);
@@ -451,7 +451,7 @@ class ControllerCheckoutPayment extends Controller {
 									$trial_text = '';
 								}
 
-								$recurring_amt = $this->currency->format($this->tax->calculate($item['recurring']['price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false)  * $item['quantity'] . ' ' . $this->currency->getCode();
+								$recurring_amt = $this->currency->format($this->tax->calculate($item['recurring']['price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false)  * $item['quantity'] . ' ' . 'USD';
 								$recurring_description = $trial_text . sprintf($this->language->get('text_recurring'), $recurring_amt, $item['recurring']['cycle'], $item['recurring']['frequency']);
 
 								if ($item['recurring']['duration'] > 0) {
