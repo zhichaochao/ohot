@@ -116,10 +116,11 @@ var win = $(window).width();
   function saveMethods() {
     var payment_method=$('#collapse-shipping-method li.active').attr('data');
 
-    // console.log(e)
+     console.log(payment_method);
+  //return false;
     // var address_id=$('#shipping-existings ul li.active').attr('aid');
     // console.log(address_id);
-    // if (address_id>0) {
+     if (payment_method) {
         
       $.ajax({
           url: 'index.php?route=checkout/shipping_method/save',
@@ -137,10 +138,11 @@ var win = $(window).width();
               alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
           }
       });
-    // }else{
-    //      $('#no_sel').html('Please Select Shipping Address');
-    //      alert('Please Select Shipping Address');
-    // }
+     }else{
+    //     $('#no_sel').html('Please Select Shipping Address');
+     //     alert('Please Select Shipping Address');
+		tips('Please Select Shipping Method','gantan');
+    }
 }
  }
  function getOrder(){
