@@ -157,6 +157,13 @@
                 </div>
               </div>
               <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-instagram"><?php echo $entry_instagram; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_instagram" value="<?php echo $config_instagram; ?>" placeholder="<?php echo $entry_instagram; ?>" id="input-instagram" class="form-control" />
+               
+                </div>
+              </div>
+              <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-telephone"><?php echo $entry_whatsapp; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="config_whatsapp" value="<?php echo $config_whatsapp; ?>" placeholder="<?php echo $config_whatsapp; ?>" id="input-telephone" class="form-control" />

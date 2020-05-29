@@ -66,6 +66,7 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_email'] = $this->language->get('entry_email');
 		$data['entry_telephone'] = $this->language->get('entry_telephone');
 		$data['entry_facebook'] = $this->language->get('entry_facebook');
+		$data['entry_instagram'] = $this->language->get('entry_instagram');
 		$data['entry_whatsapp'] = $this->language->get('entry_whatsapp');
 		$data['entry_skype'] = $this->language->get('entry_skype');
 		$data['entry_fax'] = $this->language->get('entry_fax');
@@ -483,6 +484,11 @@ class ControllerSettingSetting extends Controller {
 			$data['config_telephone'] = $this->request->post['config_telephone'];
 		} else {
 			$data['config_telephone'] = $this->config->get('config_telephone');
+		}
+		if (isset($this->request->post['config_instagram'])) {
+			$data['config_instagram'] = $this->request->post['config_instagram'];
+		} else {
+			$data['config_instagram'] = $this->config->get('config_instagram');
 		}
 		if (isset($this->request->post['config_facebook'])) {
 			$data['config_facebook'] = $this->request->post['config_facebook'];
