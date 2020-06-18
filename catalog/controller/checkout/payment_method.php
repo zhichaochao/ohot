@@ -51,8 +51,20 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			// print_r($results);exit();
 
 			foreach ($results as $result) {
-				// 只有尼日利亚才显示尼日利亚支付
-				if ($this->config->get($result['code'] . '_status')&&($result['code']!='naria_account'||($result['code']=='naria_account'&&$country_id==156))&&($result['code']!='ghanaian_cedi'||($result['code']=='ghanaian_cedi'&&$country_id==82))&&($result['code']!='ghanabanktransfer'||($result['code']=='ghanabanktransfer'&&$country_id==82))&&($result['code']!='ghanamobiletransfer'||($result['code']=='ghanamobiletransfer'&&$country_id==82))) {
+				
+				if (
+					$this->config->get($result['code'] . '_status')
+// 只有尼日利亚才显示尼日利亚支付
+					&&(($result['code']!='naria_account'||($result['code']=='naria_account'&&$country_id==156)||$this->session->data['currency']=='NGN')
+			//z只有		Ghana能使用一下三个支付方式	
+					&&($result['code']!='ghanaian_cedi'||($result['code']=='ghanaian_cedi'&&$country_id==82))
+					&&($result['code']!='ghanabanktransfer'||($result['code']=='ghanabanktransfer'&&$country_id==82))
+					&&($result['code']!='ghanamobiletransfer'||($result['code']=='ghanamobiletransfer'&&$country_id==82)))
+				
+					)
+					
+
+				 {
 					$this->load->model('extension/payment/' . $result['code']);
 
 					$method = $this->{'model_extension_payment_' . $result['code']}->getMethod($this->session->data['payment_address'], $total);
@@ -190,7 +202,15 @@ class ControllerCheckoutPaymentMethod extends Controller {
 
 			foreach ($results as $result) {
 				// 只有尼日利亚才显示尼日利亚支付
-				if ($this->config->get($result['code'] . '_status')&&($result['code']!='naria_account'||($result['code']=='naria_account'&&$country_id==156))&&($result['code']!='ghanaian_cedi'||(($result['code']=='ghanaian_cedi'||$result['code']=='ghanabanktransfer'||$result['code']=='ghanamobiletransfer')&&$country_id==82))) {
+					if (
+					$this->config->get($result['code'] . '_status')
+
+					&&(($result['code']!='naria_account'||($result['code']=='naria_account'&&$country_id==156)||$this->session->data['currency']=='NGN')
+					&&($result['code']!='ghanaian_cedi'||($result['code']=='ghanaian_cedi'&&$country_id==82))
+					&&($result['code']!='ghanabanktransfer'||($result['code']=='ghanabanktransfer'&&$country_id==82))
+					&&($result['code']!='ghanamobiletransfer'||($result['code']=='ghanamobiletransfer'&&$country_id==82)))
+				
+					) {
 					$this->load->model('extension/payment/' . $result['code']);
 
 					$method = $this->{'model_extension_payment_' . $result['code']}->getMethod($this->session->data['payment_address'], $total);
