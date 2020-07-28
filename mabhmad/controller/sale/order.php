@@ -1748,7 +1748,7 @@ class ControllerSaleOrder extends Controller {
 	public function invoice() {
 		$this->load->language('sale/order');
 
-		$data['title'] = $this->language->get('text_invoice');
+		$data['title'] = 'Invoice';
 
 		if ($this->request->server['HTTPS']) {
 			$data['base'] = HTTPS_SERVER;
@@ -1759,27 +1759,27 @@ class ControllerSaleOrder extends Controller {
 		$data['direction'] = $this->language->get('direction');
 		$data['lang'] = $this->language->get('code');
 
-		$data['text_invoice'] = $this->language->get('text_invoice');
-		$data['text_order_detail'] = $this->language->get('text_order_detail');
-		$data['text_order_id'] = $this->language->get('text_order_id');
-		$data['text_invoice_no'] = $this->language->get('text_invoice_no');
-		$data['text_invoice_date'] = $this->language->get('text_invoice_date');
-		$data['text_date_added'] = $this->language->get('text_date_added');
-		$data['text_telephone'] = $this->language->get('text_telephone');
-		$data['text_fax'] = $this->language->get('text_fax');
-		$data['text_email'] = $this->language->get('text_email');
-		$data['text_website'] = $this->language->get('text_website');
-		$data['text_payment_address'] = $this->language->get('text_payment_address');
-		$data['text_shipping_address'] = $this->language->get('text_shipping_address');
-		$data['text_payment_method'] = $this->language->get('text_payment_method');
-		$data['text_shipping_method'] = $this->language->get('text_shipping_method');
-		$data['text_comment'] = $this->language->get('text_comment');
+		$data['text_invoice'] = 'Invoice';
+		$data['text_order_detail'] = 'Order Details';
+		$data['text_order_id'] = 'Order ID:';
+		$data['text_invoice_no'] = 'Invoice No.:';
+		$data['text_invoice_date'] = 'Invoice Date:';
+		$data['text_date_added'] = 'Date Added';
+		$data['text_telephone'] ='Telephone';
+		$data['text_fax'] = 'Fax:';
+		$data['text_email'] = 'E-Mail';
+		$data['text_website'] = 'Web Site:';
+		$data['text_payment_address'] = 'Payment Address';
+		$data['text_shipping_address'] = 'Shipping Address';
+		$data['text_payment_method'] = 'Payment Method';
+		$data['text_shipping_method'] = 'Shipping Method';
+		$data['text_comment'] = 'Customer Comment';
 
-		$data['column_product'] = $this->language->get('column_product');
-		$data['column_model'] = $this->language->get('column_model');
-		$data['column_quantity'] = $this->language->get('column_quantity');
-		$data['column_price'] = $this->language->get('column_price');
-		$data['column_total'] = $this->language->get('column_total');
+		$data['column_product'] = 'Product';
+		$data['column_model'] = 'Model';
+		$data['column_quantity'] = 'Quantity';
+		$data['column_price'] = 'Unit Price';
+		$data['column_total'] = 'Total';
 
 		$this->load->model('sale/order');
 
