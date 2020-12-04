@@ -1948,7 +1948,7 @@
 	padding: 0 0.1rem 0 0.1rem;position: relative;margin-top: 0.2rem;font-weight: bold;}
 	.pro_content .pro_ul .text span em{float: left;}
 	.pro_content .pro_ul .text span del{float: left;font-size: 0.18rem;color: #999;font-weight: normal;margin-left: 0.05rem;}
-	.pro_content .pro_ul .text span.new{display: inline-block !important;width: auto;height: 0.3rem !important;text-align: center !important;padding: 0 0.1rem !important;
+	.pro_content .pro_ul .text span.new{display: inline-block !important;width: auto;height: 0.3rem !important;text-align: center !important;padding: 0 0.03rem !important;
 	background: #1faf85 !important;color: #fff !important;font-size: 0.22rem !important;font-family: helvetica;margin: 0 0 0 0.1rem;font-weight: normal;float: left;}
 	.pro_content .pro_ul .text span.sale{display: inline-block;width: 0.5rem;height: 0.3rem;text-align: center;
 	background: #f74d59;color: #fff;font-size: 0.22rem;font-family: helvetica;margin: 0 0 0 0.1rem;font-weight: normal;float: left;}
@@ -3289,7 +3289,7 @@
 	height: 0.4rem;line-height: 0.4rem;padding: 0 0.1rem; }
 	.promotion .pro_text .pro_ul .text .price i {font-size: 0.18rem;color: #999;text-decoration: line-through;
 	display: block;float: left;text-align: left;}
-	.promotion .pro_text .pro_ul .fsbg_div{width: 0.8rem;height: 0.4rem;background: #fe2a4d;text-align: center;float: right;margin-top: 0.1rem;}
+	.promotion .pro_text .pro_ul .fsbg_div{width: 0.4rem;height: 0.4rem;background: #fe2a4d;text-align: center;float: right;margin-top: 0.1rem;}
 	.promotion .pro_text .pro_ul .fsbg_div i{color: #fff;font-size: 0.18rem;line-height: 0.4rem;}
 	.promotion .pro_content .bot{background: #f5f5f5;}
 	
