@@ -153,7 +153,7 @@ class ControllerCatalogProduct extends Controller {
 //			不用再保存视频
 			if(isset($data['files'])) unset($data['files']);
 
-			$this->model_catalog_product->editProduct($this->request->get['product_id'], $data);
+			$q=$this->model_catalog_product->editProduct($this->request->get['product_id'], $data);
 
 			//获取路由参数 
 			$doneUrl=isset($this->request->get['route']) ? $this->request->get['route'] : "";
@@ -161,10 +161,14 @@ class ControllerCatalogProduct extends Controller {
 			//调用父类Controller的方法将操作记录添加入库
             $this->addUserDone($doneUrl,$done);
 
-			$this->session->data['success'] = $this->language->get('text_success');
+
+            if($q){
+                $this->session->data['warning'] = $q;
+            }else{
+                $this->session->data['success'] = $this->language->get('text_success');
+            }
 
 
-			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
 
@@ -802,12 +806,14 @@ class ControllerCatalogProduct extends Controller {
 		$data['button_filter'] = $this->language->get('button_filter');
 
 		$data['token'] = $this->session->data['token'];
-
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
-		} else {
-			$data['error_warning'] = '';
-		}
+		} else if(isset($this->session->data['warning'])) {
+            $data['error_warning'] = $this->session->data['warning'];
+            unset($this->session->data['warning']);
+		}else{
+            $data['error_warning'] = '';
+        }
 
 		if (isset($this->session->data['success'])) {
 			$data['success'] = $this->session->data['success'];

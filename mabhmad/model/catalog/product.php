@@ -550,11 +550,20 @@ $sql = "INSERT INTO " . DB_PREFIX . "product SET product_id = '" . $this->db->es
 
 	public function editProduct($product_id, $data) {
 
-		// print_r($data);exit();
+        // print_r($data);exit();
 
 		//加载Model
 		$this->load->model("catalog/option");
 
+        if (isset($data['product_category'])) {
+            foreach ($data['product_category'] as $category_id) {
+                //查询分类是否禁用
+                $category_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category WHERE  category_id = '" .$category_id . "' ");
+                if($category_query&& $category_query->row['status']==0 &&$data['status']==1 ){
+                    return $data['error_data']=$category_query->row['status'].'此产品分类被禁用';
+                }
+            }
+        }
         $sql = "UPDATE " . DB_PREFIX . "product SET
 				model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "',
 			    upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "',
